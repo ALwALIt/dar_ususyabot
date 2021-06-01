@@ -28,7 +28,7 @@ botusername = Config.TG_BOT_USERNAME
 
 
 @catub.bot_cmd(
-    pattern=f"^/broadcast$",
+    pattern=f"^/اذاعه$",
     from_users=Config.OWNER_ID,
 )
 async def bot_broadcast(event):
@@ -86,8 +86,8 @@ async def bot_broadcast(event):
 
 
 @catub.cat_cmd(
-    pattern=f"bot_users$",
-    command=("bot_users", plugin_category),
+    pattern=f"مستخدمين البوت$",
+    command=("مستخدمين البوت", plugin_category),
     info={
         "الامر": ".",
         "الشرح": "لعرض الاشخاص الذين يستخدمون البوت الخاص بك",
@@ -106,7 +106,7 @@ async def ban_starters(event):
 
 
 @catub.bot_cmd(
-    pattern=f"^/ban\s+(.*)",
+    pattern=f"^/بلوك\s+(.*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -141,7 +141,7 @@ async def ban_botpms(event):
 
 
 @catub.bot_cmd(
-    pattern=f"^/unban(?: |$)(.*)",
+    pattern=f"^/انبلوك(?: |$)(.*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -168,12 +168,12 @@ async def ban_botpms(event):
 
 
 @catub.cat_cmd(
-    pattern=f"bblist$",
-    command=("bblist", plugin_category),
+    pattern=f"المحظورين$",
+    command=("المحظورين", plugin_category),
     info={
         "الأمر": "للحصول على المستخدمين المحظورين في البوت",
         "الشرح": "للحصول على المستخدمين المحظورين في البوت.",
-        "الاستخدام": "{tr}bblist",
+        "الاستخدام": "{tr}المحظورين",
     },
 )
 async def ban_starters(event):

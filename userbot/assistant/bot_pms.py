@@ -259,7 +259,7 @@ async def handler(event):
 
 
 @catub.bot_cmd(
-    pattern=f"^/uinfo$",
+    pattern=f"^/معلومات$",
     from_users=Config.OWNER_ID,
 )
 async def bot_start(event):
@@ -340,7 +340,7 @@ async def send_flood_alert(user_) -> None:
             else:
                 await ban_user_from_bot(
                     user_,
-                    f"Automated Ban for Flooding bot [exceeded flood rate of ({FloodConfig.AUTOBAN})]",
+                    f"تم حظره تلقائيا بسبب التكرار [الحد الأقصى من التكرار ({FloodConfig.AUTOBAN})]",
                 )
                 FloodConfig.USERS[user_.id].clear()
                 FloodConfig.ALERT[user_.id].clear()
