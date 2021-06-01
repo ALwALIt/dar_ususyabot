@@ -77,12 +77,12 @@ async def bot_start(event):
     reply_to = await reply_id(event)
     if chat.id != Config.OWNER_ID:
         start_msg = f"مرحـبا بك ! 👤{_format.mentionuser(chat.first_name , chat.id)},\
-                    \nI am {_format.mentionuser(user.first_name , user.id)}'s assistant bot.\
-                    \nYou can contact to my master from here.\
-                    \n\nPowered by [Catuserbot](https://t.me/catuserbot17)"
+                    \n**أنا البوت المساعد الخاص بـ** {_format.mentionuser(user.first_name , user.id)}.\
+                    \n**يمكنك التواصل مع المالك من هنا.**\
+                    \n\n[اضـغط هنا لتـنصيب البوت](t.me/Jmthon)"
         buttons = [
             (
-                Button.url("للـتنصيب", "https://github.com/sandy1709/catuserbot"),
+                Button.url("للـتنصيب", "t.me/rrrd7"),
                 Button.url(
                     "الـدعم",
                     "t.me/Jmthon",
