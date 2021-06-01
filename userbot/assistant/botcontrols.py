@@ -34,18 +34,18 @@ botusername = Config.TG_BOT_USERNAME
 async def bot_broadcast(event):
     replied = await event.get_reply_message()
     if not replied:
-        return await event.reply("Reply to a message for Broadcasting First !")
+        return await event.reply("قم بالرد على الرسالة للأذاعه !")
     start_ = datetime.now()
-    br_cast = await replied.reply("Broadcasting ...")
+    br_cast = await replied.reply("يتم الأذاعه للجميع ...")
     blocked_users = []
     count = 0
     bot_users_count = len(get_all_starters())
     if bot_users_count == 0:
-        return await event.reply("`No one started your bot yet.`")
+        return await event.reply("لا يوجد اي شخص يستخدم بوتك")
     for user in get_all_starters():
         try:
             await event.client.send_message(
-                int(user.user_id), "🔊 You received a **new** Broadcast."
+                int(user.user_id), "🔊 تم استلام اذاعه جديدة."
             )
             await event.client.send_message(int(user.user_id), replied)
             await asyncio.sleep(0.8)
@@ -64,23 +64,23 @@ async def bot_broadcast(event):
             if count % 5 == 0:
                 try:
                     prog_ = (
-                        "🔊 Broadcasting ...\n\n"
+                        "🔊 الأذاعه العامه ...\n\n"
                         + progress_str(
                             total=bot_users_count,
                             current=count + len(blocked_users),
                         )
-                        + f"\n\n• ✔️ **Success** :  `{count}`\n"
-                        + f"• ✖️ **Failed** :  `{len(blocked_users)}`"
+                        + f"\n\n• ✔️ **بنـجاح* :  `{count}`\n"
+                        + f"• ✖️ **خطأ** :  `{len(blocked_users)}`"
                     )
                     await br_cast.edit(prog_)
                 except FloodWaitError as e:
                     await asyncio.sleep(e.seconds)
     end_ = datetime.now()
-    b_info = f"🔊  Successfully broadcasted message to ➜  <b>{count} users.</b>"
+    b_info = f"🔊 تـم بنجاح الأذاعه الى ➜  <b>{count} من المستخدمين.</b>"
     if len(blocked_users) != 0:
-        b_info += f"\n🚫  <b>{len(blocked_users)} users</b> blocked your bot recently, so have been removed."
+        b_info += f"\n🚫  <b>{len(blocked_users)} من المستخدمين</b> قام بحظر بوتك اذا تم حذف الرسالة."
     b_info += (
-        f"\n⏳  <code>Process took: {time_formatter((end_ - start_).seconds)}</code>."
+        f"\n⏳  <code>العملية اخذت: {time_formatter((end_ - start_).seconds)}</code>."
     )
     await br_cast.edit(b_info, parse_mode="html")
 
@@ -89,19 +89,19 @@ async def bot_broadcast(event):
     pattern=f"bot_users$",
     command=("bot_users", plugin_category),
     info={
-        "header": "To get users list who started bot.",
-        "description": "To get compelete list of users who started your bot",
-        "usage": "{tr}bot_users",
+        "الامر": ".",
+        "الشرح": "لعرض الاشخاص الذين يستخدمون البوت الخاص بك",
+        "الاستخدام": "{tr}bot_users",
     },
 )
 async def ban_starters(event):
-    "To get list of users who started bot."
+    "للحصول على مستخدمين البوت."
     ulist = get_all_starters()
     if len(ulist) == 0:
-        return await edit_delete(event, "`No one started your bot yet.`")
-    msg = "**The list of users who started your bot are :\n\n**"
+        return await edit_delete(event, "** ليم يستخدم اي احد بوتك**")
+    msg = "**قائمه مستخدمين البوت :\n\n**"
     for user in ulist:
-        msg += f"• 👤 {_format.mentionuser(user.first_name , user.user_id)}\n**ID:** `{user.user_id}`\n**UserName:** @{user.username}\n**Date: **__{user.date}__\n\n"
+        msg += f"• 👤 {_format.mentionuser(user.first_name , user.user_id)}\n**الايدي:** `{user.user_id}`\n**المعرفات:** @{user.username}\n**التاريخ: **__{user.date}__\n\n"
     await edit_or_reply(event, msg)
 
 
@@ -114,27 +114,27 @@ async def ban_botpms(event):
     reply_to = await reply_id(event)
     if not user_id:
         return await event.client.send_message(
-            event.chat_id, "`I can't find user to ban`", reply_to=reply_to
+            event.chat_id, "لا يمكنني العثور على المستخدم", reply_to=reply_to
         )
     if not reason:
         return await event.client.send_message(
-            event.chat_id, "`To ban the user provide reason first`", reply_to=reply_to
+            event.chat_id, "لحظر شخص اكتب السبب اولا", reply_to=reply_to
         )
     try:
         user = await event.client.get_entity(user_id)
         user_id = user.id
     except Exception as e:
-        return await event.reply(f"**Error:**\n`{str(e)}`")
+        return await event.reply(f"**خطأ:**\n`{str(e)}`")
     if user_id == Config.OWNER_ID:
-        return await event.reply("I can't ban you master")
+        return await event.reply("لا أستطيع حظر مالك البوت")
     check = check_is_black_list(user.id)
     if check:
         return await event.client.send_message(
             event.chat_id,
-            f"#Already_banned\
-            \nUser already exists in my Banned Users list.\
-            \n**Reason For Bot BAN:** `{check.reason}`\
-            \n**Date:** `{check.date}`.",
+            f"#بالفعل_محظور\
+            \nهذا المستخدم موجود في قائمه المحظورين\
+            \n**سبب الحظر:** `{check.reason}`\
+            \n**التاريخ:** `{check.date}`.",
         )
     msg = await ban_user_from_bot(user, reason, reply_to)
     await event.reply(msg)
@@ -149,19 +149,19 @@ async def ban_botpms(event):
     reply_to = await reply_id(event)
     if not user_id:
         return await event.client.send_message(
-            event.chat_id, "`I can't find user to unban`", reply_to=reply_to
+            event.chat_id, "لا استطيع ايجاد المستخدم", reply_to=reply_to
         )
     try:
         user = await event.client.get_entity(user_id)
         user_id = user.id
     except Exception as e:
-        return await event.reply(f"**Error:**\n`{str(e)}`")
+        return await event.reply(f"**خطأ:**\n`{str(e)}`")
     check = check_is_black_list(user.id)
     if not check:
         return await event.client.send_message(
             event.chat_id,
-            f"#User_Not_Banned\
-            \n👤 {_format.mentionuser(user.first_name , user.id)} doesn't exist in my Banned Users list.",
+            f"#المستخدمين_غير_المحظورين\
+            \n👤 {_format.mentionuser(user.first_name , user.id)} لا يوجد في قائمه الحظر.",
         )
     msg = await unban_user_from_bot(user, reason, reply_to)
     await event.reply(msg)
@@ -171,19 +171,19 @@ async def ban_botpms(event):
     pattern=f"bblist$",
     command=("bblist", plugin_category),
     info={
-        "header": "To get users list who are banned in bot.",
-        "description": "To get list of users who are banned in bot.",
-        "usage": "{tr}bblist",
+        "الأمر": "للحصول على المستخدمين المحظورين في البوت",
+        "الشرح": "للحصول على المستخدمين المحظورين في البوت.",
+        "الاستخدام": "{tr}bblist",
     },
 )
 async def ban_starters(event):
-    "To get list of users who are banned in bot."
+    "للحصول على المستخدمين المحظورين في البوت."
     ulist = get_all_bl_users()
     if len(ulist) == 0:
-        return await edit_delete(event, "`No one is banned in your bot yet.`")
-    msg = "**The list of users who are banned in your bot are :\n\n**"
+        return await edit_delete(event, "**لا يوجد اي شخص محظور**")
+    msg = "**قائمه المستخدمين المحظورين في البوت :\n\n**"
     for user in ulist:
-        msg += f"• 👤 {_format.mentionuser(user.first_name , user.chat_id)}\n**ID:** `{user.chat_id}`\n**UserName:** @{user.username}\n**Date: **__{user.date}__\n**Reason:** __{user.reason}__\n\n"
+        msg += f"• 👤 {_format.mentionuser(user.first_name , user.chat_id)}\n**الايدي:** `{user.chat_id}`\n**المعرفات:** @{user.username}\n**التاريخ: **__{user.date}__\n**السبب:** __{user.reason}__\n\n"
     await edit_or_reply(event, msg)
 
 

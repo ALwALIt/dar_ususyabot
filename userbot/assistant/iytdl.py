@@ -44,8 +44,8 @@ plugin_category = "bot"
 
 
 @catub.cat_cmd(
-    pattern="iytdl(?: |$)(.*)",
-    command=("iytdl", plugin_category),
+    pattern="اغنيه(?: |$)(.*)",
+    command=("اغنيه", plugin_category),
     info={
         "header": "ytdl with inline buttons.",
         "description": "To search and download youtube videos by inline buttons.",
@@ -63,10 +63,10 @@ async def iytdl_inline(event):
     elif reply and reply.text:
         input_url = (reply.text).strip()
     if not input_url:
-        return await edit_delete(event, "Give input or reply to a valid youtube URL")
-    catevent = await edit_or_reply(event, f"🔎 Searching Youtube for: `'{input_url}'`")
+        return await edit_delete(event, "اكتب اسم الاغنيه او اعط الرابط")
+    catevent = await edit_or_reply(event, f"🔎 يتم البحث في اليوتيوب عن: `'{input_url}'`")
     results = await event.client.inline_query(
-        Config.TG_BOT_USERNAME, f"ytdl {input_url}"
+        Config.TG_BOT_USERNAME, f"اغنيه {input_url}"
     )
     await catevent.delete()
     await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
