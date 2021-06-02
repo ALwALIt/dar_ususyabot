@@ -30,12 +30,12 @@ from ..sql_helper.mute_sql import is_muted, mute, unmute
 from . import BOTLOG, BOTLOG_CHATID
 
 # =================== STRINGS ============
-PP_TOO_SMOL = "`The image is too small`"
-PP_ERROR = "`Failure while processing the image`"
-NO_ADMIN = "`I am not an admin nub nibba!`"
-NO_PERM = "`I don't have sufficient permissions! This is so sed. Alexa play despacito`"
-CHAT_PP_CHANGED = "`Chat Picture Changed`"
-INVALID_MEDIA = "`Invalid Extension`"
+PP_TOO_SMOL = "**الصورة صغيرة جدًا** ."
+PP_ERROR = "**فشل أثناء معالجة الصورة** ."
+NO_ADMIN = "**أنا لست مشرف هنا!!** ."
+NO_PERM = "**ليس لدي أذونات كافية!** ."
+CHAT_PP_CHANGED = "**تغيرت صورة الدردشة** ⌁."
+INVALID_MEDIA = "**ملحق غير صالح** ."
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -69,17 +69,17 @@ plugin_category = "admin"
 
 
 @catub.cat_cmd(
-    pattern="gpic( -s| -d)$",
+    pattern="ضع( صوره| -d)$",
     command=("gpic", plugin_category),
     info={
-        "header": "For changing group display pic or deleting display pic",
-        "description": "Reply to Image for changing display picture",
+        "header": "لوضع صوره للمجموعه ",
+        "description": "قم بالرد على الصوره المراد وضعها",
         "flags": {
-            "-s": "To set group pic",
+            "ضع صوره": "لوضع صوره للمجموعة ",
             "-d": "To delete group pic",
         },
         "usage": [
-            "{tr}gpic -s <reply to image>",
+            "{tr}ضع صوره <بالرد على الصوره>",
             "{tr}gpic -d",
         ],
     },
@@ -131,8 +131,8 @@ async def set_group_photo(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="promote(?: |$)(.*)",
-    command=("promote", plugin_category),
+    pattern="رفع مشرف(?: |$)(.*)",
+    command=("رفع مشرف", plugin_category),
     info={
         "header": "To give admin rights for a person",
         "description": "Provides admin rights to the person in the chat\
@@ -176,8 +176,8 @@ async def promote(event):
 
 
 @catub.cat_cmd(
-    pattern="demote(?: |$)(.*)",
-    command=("demote", plugin_category),
+    pattern="تك(?: |$)(.*)",
+    command=("تك", plugin_category),
     info={
         "header": "To remove a person from admin list",
         "description": "Removes all admin rights for that peron in that chat\
@@ -220,8 +220,8 @@ async def demote(event):
 
 
 @catub.cat_cmd(
-    pattern="ban(?: |$)(.*)",
-    command=("ban", plugin_category),
+    pattern="حظر(?: |$)(.*)",
+    command=("حظر", plugin_category),
     info={
         "header": "Will ban the guy in the group where you used this command.",
         "description": "Permanently will remove him from this group and he can't join back\
@@ -281,8 +281,8 @@ async def _ban_person(event):
 
 
 @catub.cat_cmd(
-    pattern="unban(?: |$)(.*)",
-    command=("unban", plugin_category),
+    pattern="الغاء الحظر(?: |$)(.*)",
+    command=("الغاء الحظر", plugin_category),
     info={
         "header": "Will unban the guy in the group where you used this command.",
         "description": "Removes the user account from the banned list of the group\
@@ -329,8 +329,8 @@ async def watcher(event):
 
 
 @catub.cat_cmd(
-    pattern="mute(?: |$)(.*)",
-    command=("mute", plugin_category),
+    pattern="كتم(?: |$)(.*)",
+    command=("كتم", plugin_category),
     info={
         "header": "To stop sending messages from that user",
         "description": "If is is not admin then changes his permission in group,\
@@ -434,8 +434,8 @@ async def startmute(event):
 
 
 @catub.cat_cmd(
-    pattern="unmute(?: |$)(.*)",
-    command=("unmute", plugin_category),
+    pattern="الغاء الكتم(?: |$)(.*)",
+    command=("الغاء الكتم", plugin_category),
     info={
         "header": "To allow user to send messages again",
         "description": "Will change user permissions ingroup to send messages again.\
@@ -508,8 +508,8 @@ async def endmute(event):
 
 
 @catub.cat_cmd(
-    pattern="kick(?: |$)(.*)",
-    command=("kick", plugin_category),
+    pattern="طرد(?: |$)(.*)",
+    command=("طرد", plugin_category),
     info={
         "header": "To kick a person from the group",
         "description": "Will kick the user from the group so he can join back.\
@@ -548,7 +548,7 @@ async def endmute(event):
 
 
 @catub.cat_cmd(
-    pattern="pin( loud|$)",
+    pattern="تثبيت( بالاشعار|$)",
     command=("pin", plugin_category),
     info={
         "header": "For pining messages in chat",
@@ -586,8 +586,8 @@ async def pin(event):
 
 
 @catub.cat_cmd(
-    pattern="unpin( all|$)",
-    command=("unpin", plugin_category),
+    pattern="الغاء التثبيت( للكل|$)",
+    command=("الغاء التثبيت", plugin_category),
     info={
         "header": "For unpining messages in chat",
         "description": "reply to a message to unpin it in that in chat\
@@ -633,8 +633,8 @@ async def pin(event):
 
 
 @catub.cat_cmd(
-    pattern="undlt( -u)?(?: |$)(\d*)?",
-    command=("undlt", plugin_category),
+    pattern="الأحداث( -u)?(?: |$)(\d*)?",
+    command=("الأحداث", plugin_category),
     info={
         "header": "To get recent deleted messages in group",
         "description": "To check recent deleted messages in group, by default will show 5. you can get 1 to 15 messages.",

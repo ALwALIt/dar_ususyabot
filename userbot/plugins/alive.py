@@ -13,15 +13,16 @@ from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_
 from ..helpers.utils import reply_id
 from . import mention
 
-CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
-EMOJI = Config.CUSTOM_ALIVE_EMOJI or "  ✥ "
+CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/8c85ff635e3736629c3c2.jpg"
+CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "𝗪َ𝗘𝗟َِ𝗖𝗢𝗠َِ𝙀َِ 𝗧𝗢 𝗝𝗠𝗧𝗛𝗢𝗡 𝄵 ⇜"
+EMOJI = Config.CUSTOM_ALIVE_EMOJI or "-""
 
 plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="alive$",
-    command=("alive", plugin_category),
+    pattern="فحص$",
+    command=("فحص", plugin_category),
     info={
         "header": "To check bot's alive status",
         "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
@@ -37,12 +38,13 @@ async def amireallyalive(event):
     _, check_sgnirts = check_data_base_heal_th()
     if Config.ALIVE_PIC:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-        cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-        cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
-        cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-        cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
-        cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} Master:** {mention}\n"
+        cat_caption += f"**{EMOJI} قاعدۿ البيانات :** `{check_sgnirts}`\n"
+        cat_caption += f"**{EMOJI} نسخۿ التيليثون :** `{version.__version__}\n`"
+        cat_caption += f"**{EMOJI} نسخـۿ جـمثون:** `{catversion}`\n"
+        cat_caption += f"**{EMOJI} نسخـۿ البايثون :** `{python_version()}\n`"
+        cat_caption += f"**{EMOJI} الوقت :** `{uptime}\n`"
+        cat_caption += f"**{EMOJI} المنشئ:** {mention}\n"
+        cat_caption += f"**{EMOJI}**  **[𝗦𝗼𝘂𝗿𝗰𝗲 𝗖𝗵𝗮𝗻𝗻𝗲𝗹]**(t.me/jmthon)   .\n"
         await event.client.send_file(
             event.chat_id, Config.ALIVE_PIC, caption=cat_caption, reply_to=reply_to_id
         )
@@ -51,18 +53,18 @@ async def amireallyalive(event):
         await edit_or_reply(
             event,
             f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-            f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-            f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
-            f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-            f"**{EMOJI} Python Version :** `{python_version()}\n`"
-            f"**{EMOJI} Uptime :** `{uptime}\n`"
-            f"**{EMOJI} Master:** {mention}\n",
+            f"**{EMOJI} قـاعدة البيانات :** `{check_sgnirts}`\n"
+            f"**{EMOJI} اصـدار التيليثون :** `{version.__version__}\n`"
+            f"**{EMOJI} اصـدار جـمثون :** `{catversion}`\n"
+            f"**{EMOJI} اصـدار البـايثون :** `{python_version()}\n`"
+            f"**{EMOJI} الوقت :** `{uptime}\n`"
+            f"**{EMOJI} المنشئ:** {mention}\n",
         )
 
 
 @catub.cat_cmd(
-    pattern="ialive$",
-    command=("ialive", plugin_category),
+    pattern="السورس$",
+    command=("السورس", plugin_category),
     info={
         "header": "To check bot's alive status via inline mode",
         "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
@@ -74,11 +76,11 @@ async def amireallyalive(event):
 async def amireallyalive(event):
     "A kind of showing bot details by your inline bot"
     reply_to_id = await reply_id(event)
-    cat_caption = f"**Catuserbot is Up and Running**\n"
-    cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
-    cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-    cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
-    cat_caption += f"**{EMOJI} Master:** {mention}\n"
+    cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
+    cat_caption += f"**{EMOJI} اصـدار التيليثون :** `{version.__version__}\n`"
+    cat_caption += f"**{EMOJI} اصـدار جـمثون :** `{catversion}`\n"
+    cat_caption += f"**{EMOJI} اصـدار البـايثون :** `{python_version()}\n`"
+    cat_caption += f"**{EMOJI} المنشئ:** {mention}\n"
     results = await event.client.inline_query(Config.TG_BOT_USERNAME, cat_caption)
     await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
     await event.delete()

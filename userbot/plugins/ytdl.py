@@ -152,14 +152,14 @@ async def _get_file_name(path: pathlib.Path, full: bool = True) -> str:
 
 
 @catub.cat_cmd(
-    pattern="yta(?: |$)(.*)",
-    command=("yta", plugin_category),
+    pattern="اغنية(?: |$)(.*)",
+    command=("اغنية", plugin_category),
     info={
-        "header": "To download audio from many sites like Youtube",
-        "description": "downloads the audio from the given link (Suports the all sites which support youtube-dl)",
-        "examples": [
-            "{tr}yta <reply to link>",
-            "{tr}yta <link>",
+        "الامر": ".اغنية",
+        "الشرح": "**لتحميل الاغاني بواسطه روابط من اليوتيوب**",
+        "أمثلة": [
+            "{tr}yta <بالرد على الرابط>",
+            "{tr}اغنية <رابط>",
         ],
     },
 )
@@ -172,15 +172,15 @@ async def download_audio(event):
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
     if not url:
         return await edit_or_reply(event, "`What I am Supposed to find? Give link`")
-    catevent = await edit_or_reply(event, "`Preparing to download...`")
+    catevent = await edit_or_reply(event, "**يتم التـحظير**")
     reply_to_id = await reply_id(event)
     ytdl_data = await ytdl_down(catevent, audio_opts, url)
     if ytdl_data is None:
         return
     await catevent.edit(
-        f"`Preparing to upload song:`\
+        f"**يتـم ارسال الأغنيه**:\
         \n**{ytdl_data['title']}**\
-        \nby *{ytdl_data['uploader']}*"
+        \nبواسطة**{ytdl_data['uploader']}**"
     )
     f = pathlib.Path(f"{ytdl_data['title']}.mp3".replace("|", "_"))
     catthumb = pathlib.Path(f"{ytdl_data['title']}.mp3.jpg".replace("|", "_"))
@@ -219,14 +219,14 @@ async def download_audio(event):
 
 
 @catub.cat_cmd(
-    pattern="ytv(?: |$)(.*)",
-    command=("ytv", plugin_category),
+    pattern="فيديو(?: |$)(.*)",
+    command=("فيديو", plugin_category),
     info={
-        "header": "To download video from many sites like Youtube",
-        "description": "downloads the video from the given link(Suports the all sites which support youtube-dl)",
-        "examples": [
-            "{tr}ytv <reply to link>",
-            "{tr}ytv <link>",
+        "الامر": ".فيديو",
+        "الشرح": "لتحميل جميع الفيديوهات ارسل الامر مع الرابط",
+        "الأمثلة": [
+            "{tr}فيديو <قم بالرد على الرابط>",
+            "{tr}فيديو <الرابط>",
         ],
     },
 )
@@ -239,7 +239,7 @@ async def download_video(event):
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
     if not url:
         return await edit_or_reply(event, "What I am Supposed to find? Give link")
-    catevent = await edit_or_reply(event, "`Preparing to download...`")
+    catevent = await edit_or_reply(event, "**يتم تـنزيل الفيديـو**")
     reply_to_id = await reply_id(event)
     ytdl_data = await ytdl_down(catevent, video_opts, url)
     if ytdl_down is None:
@@ -251,9 +251,9 @@ async def download_video(event):
     if not os.path.exists(catthumb):
         catthumb = None
     await catevent.edit(
-        f"`Preparing to upload video:`\
+        f"**يتـم الأرسال**: \
         \n**{ytdl_data['title']}**\
-        \nby *{ytdl_data['uploader']}*"
+        \nبواسـطة **{ytdl_data['uploader']}**"
     )
     ul = io.open(f, "rb")
     c_time = time.time()
@@ -322,13 +322,13 @@ async def yt_search(event):
 
 
 @catub.cat_cmd(
-    pattern="insta (.*)",
-    command=("insta", plugin_category),
+    pattern="انستا (.*)",
+    command=("انستا", plugin_category),
     info={
-        "header": "To download instagram video/photo",
-        "description": "Note downloads only public profile photos/videos.",
-        "examples": [
-            "{tr}insta <link>",
+        "الامر": "لتحميل جميع الصور والفيديوهات مم الانستا",
+        "الشرح": "قم بارسال الامر مع الرابط.",
+        "الأمثلة": [
+            "{tr}انستا <الرابط>",
         ],
     },
 )
@@ -338,11 +338,11 @@ async def kakashi(event):
     link = event.pattern_match.group(1)
     if "www.instagram.com" not in link:
         await edit_or_reply(
-            event, "` I need a Instagram link to download it's Video...`(*_*)"
+            event, "**يجـب تضمين رابط لتحميله اولا**"
         )
     else:
         start = datetime.now()
-        catevent = await edit_or_reply(event, "**Downloading.....**")
+        catevent = await edit_or_reply(event, "**يتم التحمـيل.....**")
     async with event.client.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -362,7 +362,7 @@ async def kakashi(event):
         end = datetime.now()
         ms = (end - start).seconds
         await cat.edit(
-            f"<b><i>➥ Video uploaded in {ms} seconds.</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
+            f"<b><i>➥ تـم تحـميل الفيديو في {ms} ثانيه.</i></b>\n<b><i>➥ تـم الرفع بواسطه :- {hmention}</i></b>",
             parse_mode="html",
         )
     await event.client.delete_messages(

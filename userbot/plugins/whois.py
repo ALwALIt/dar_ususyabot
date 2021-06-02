@@ -56,27 +56,23 @@ async def fetch_info(replied_user, event):
         else ("This User has no First Name")
     )
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
-    username = "@{}".format(username) if username else ("This User has no Username")
-    user_bio = "This User has no About" if not user_bio else user_bio
-    caption = "<b><i>USER INFO from Durov's Database :</i></b>\n\n"
-    caption += f"<b>👤 First Name:</b> {first_name} {last_name}\n"
-    caption += f"<b>🤵 Username:</b> {username}\n"
-    caption += f"<b>🔖 ID:</b> <code>{user_id}</code>\n"
-    caption += f"<b>🌏 Data Centre ID:</b> {dc_id}\n"
-    caption += f"<b>🖼 Number of Profile Pics:</b> {replied_user_profile_photos_count}\n"
-    caption += f"<b>🤖 Is Bot:</b> {is_bot}\n"
-    caption += f"<b>🔏 Is Restricted:</b> {restricted}\n"
-    caption += f"<b>🌐 Is Verified by Telegram:</b> {verified}\n\n"
-    caption += f"<b>✍️ Bio:</b> \n<code>{user_bio}</code>\n\n"
-    caption += f"<b>👥 Common Chats with this user:</b> {common_chat}\n"
-    caption += f"<b>🔗 Permanent Link To Profile:</b> "
-    caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
+    username = "@{}".format(username) if username else ("لايوجد معرف")
+    user_bio = "لاتوجد نبذه" if not user_bio else user_bio
+    caption = "<b><i> 𓆩JMTHON SOURCE 𓆪 </i></b>\n"
+    caption += f"<b> ⌁ | الأسم :</b> {first_name} {last_name}\n"
+    caption += f"<b> ⌁ | الـمعرف :</b> {username}\n"
+    caption += f"<b> ⌁ | الايدي :</b> <code>{user_id}</code>\n"
+    caption += f"<b> ⌁ | عـدد الصور :</b> {replied_user_profile_photos_count}\n"
+    caption += f"<b> ⌁ | النبـذة : </b> {user_bio} \n"
+    caption += f"<b> ⌁ | حـسابه :</b> \n"
+    caption += f'<a href="tg://user?id={user_id}">{first_name}</a> \n'
+    caption += f"<b> ⌁ | الـمطور </b>  @JMTHON"
     return photo, caption
 
 
 @catub.cat_cmd(
-    pattern="userinfo(?: |$)(.*)",
-    command=("userinfo", plugin_category),
+    pattern="كشف(?: |$)(.*)",
+    command=("كشف", plugin_category),
     info={
         "header": "Gets information of an user such as restrictions ban by spamwatch or cas.",
         "description": "That is like whether he banned is spamwatch or cas and small info like groups in common, dc ..etc.",
@@ -128,9 +124,9 @@ async def _(event):
         cas = "**Antispam(CAS) Banned :** `Couldn't Fetch`"
     caption = """**Info of [{}](tg://user?id={}):
    -🔖ID : **`{}`
-   **-**👥**Groups in Common : **`{}`
-   **-**🌏**Data Centre Number : **`{}`
-   **-**🔏**Restricted by telegram : **`{}`
+   **-**👥**المجموعات المشتركة : **`{}`
+   **-**🌏**رقم قاعدة البيانات : **`{}`
+   **-**🔏**حسـاب موثق : **`{}`
    **-**🦅{}
    **-**👮‍♂️{}
 """.format(
@@ -147,8 +143,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="whois(?: |$)(.*)",
-    command=("whois", plugin_category),
+    pattern="ايدي(?: |$)(.*)",
+    command=("ايدي", plugin_category),
     info={
         "header": "Gets info of an user.",
         "description": "User compelete details.",

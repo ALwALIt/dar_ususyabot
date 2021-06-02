@@ -77,8 +77,8 @@ async def get_imposter_img(text: str) -> str:
 
 
 @catub.cat_cmd(
-    pattern="amongus(?: |$)(.*)",
-    command=("amongus", plugin_category),
+    pattern="من القاتل(?: |$)(.*)",
+    command=("من القاتل", plugin_category),
     info={
         "header": "Create a Sticker based on the popular game Among Us",
         "flags": {
@@ -135,8 +135,8 @@ async def sayliecmd(event):
 
 
 @catub.cat_cmd(
-    pattern="imposter(?: |$)(.*)",
-    command=("imposter", plugin_category),
+    pattern="قاتل(?: |$)(.*)",
+    command=("قاتل", plugin_category),
     info={
         "header": "Fun images for imposter ",
         "usage": "{tr}imposter <username/userid/reply>",
