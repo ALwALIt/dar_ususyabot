@@ -7,16 +7,16 @@ plugin_category = "fun"
 
 
 @catub.cat_cmd(
-    pattern="think$",
-    command=("think", plugin_category),
+    pattern="افكر$",
+    command=("افكر", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}think",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}افكر",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "think")
+    event = await edit_or_reply(event, "افكر")
     deq = deque(list("🤔🧐🤔🧐🤔🧐"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -25,17 +25,17 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="lmao$",
-    command=("lmao", plugin_category),
+    pattern="متت$",
+    command=("متت", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}lmao",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}متت",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "lmao")
-    deq = deque(list("😂🤣😂🤣😂🤣"))
+    event = await edit_or_reply(event, "متت")
+    deq = deque(list("😹🤣😂😹🤣😂"))
     for _ in range(48):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
@@ -43,17 +43,17 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="nothappy$",
-    command=("nothappy", plugin_category),
+    pattern="ضايج$",
+    command=("ضايج", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}nothappy",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}ضايج,
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "nathappy")
-    deq = deque(list("😁☹️😁☹️😁☹️😁"))
+    event = await edit_or_reply(event, "ضايج")
+    deq = deque(list("😕😞🙁☹️😕😞🙁"))
     for _ in range(48):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
@@ -61,16 +61,16 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="clock$",
-    command=("clock", plugin_category),
+    pattern="ساعه$",
+    command=("ساعه", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}clock",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}ساعه,
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "clock")
+    event = await edit_or_reply(event, "ساعه")
     deq = deque(list("🕙🕘🕗🕖🕕🕔🕓🕒🕑🕐🕛"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -79,16 +79,16 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="muah$",
-    command=("muah", plugin_category),
+    pattern="مح$",
+    command=("مح", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}muah",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}مح",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "muah")
+    event = await edit_or_reply(event, "مح")
     deq = deque(list("😗😙😚😚😘"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -97,16 +97,16 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="heart$",
-    command=("heart", plugin_category),
+    pattern="قلب$",
+    command=("قلب", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}heart",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}قلب",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "heart")
+    event = await edit_or_reply(event, "قلب")
     deq = deque(list("❤️🧡💛💚💙💜🖤"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -115,16 +115,16 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="gym$",
-    command=("gym", plugin_category),
+    pattern="جيم$",
+    command=("جيم", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}gym",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}جيم",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "gym")
+    event = await edit_or_reply(event, "جيم")
     deq = deque(list("🏃‍🏋‍🤸‍🏃‍🏋‍🤸‍🏃‍🏋‍🤸‍"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -133,16 +133,16 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="earth$",
-    command=("earth", plugin_category),
+    pattern="الارض$",
+    command=("الارض", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}earth",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}الارض",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "earth")
+    event = await edit_or_reply(event, "الارض")
     deq = deque(list("🌏🌍🌎🌎🌍🌏🌍🌎"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -151,16 +151,16 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="moon$",
-    command=("moon", plugin_category),
+    pattern="قمر$",
+    command=("قمر", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}moon",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}قمر",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "moon")
+    event = await edit_or_reply(event, "قمر")
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
     for _ in range(48):
         await asyncio.sleep(0.2)
@@ -169,19 +169,19 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="smoon$",
-    command=("smoon", plugin_category),
+    pattern="اقمار$",
+    command=("اقمار", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}smoon",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}اقمار",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "smoon")
+    event = await edit_or_reply(event, "اقمار")
     animation_interval = 0.2
     animation_ttl = range(101)
-    await event.edit("smoon..")
+    await event.edit("اقمار..")
     animation_chars = [
         "🌗🌗🌗🌗🌗\n🌓🌓🌓🌓🌓\n🌗🌗🌗🌗🌗\n🌓🌓🌓🌓🌓\n🌗🌗🌗🌗🌗",
         "🌘🌘🌘🌘🌘\n🌔🌔🌔🌔🌔\n🌘🌘🌘🌘🌘\n🌔🌔🌔🌔🌔\n🌘🌘🌘🌘🌘",
@@ -198,19 +198,19 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="tmoon$",
-    command=("tmoon", plugin_category),
+    pattern="قمور$",
+    command=("قمور", plugin_category),
     info={
-        "header": "Fun animation try yourself to know more",
-        "usage": "{tr}tmoon",
+        "الامر": "امر تسليه جربه بنفسك",
+        "الاستخدام": "{tr}قمور",
     },
 )
 async def _(event):
     "animation command"
-    event = await edit_or_reply(event, "tmoon")
+    event = await edit_or_reply(event, "قمور")
     animation_interval = 0.2
     animation_ttl = range(96)
-    await event.edit("tmoon..")
+    await event.edit("قمور..")
     animation_chars = [
         "🌗",
         "🌘",
