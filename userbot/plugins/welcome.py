@@ -84,35 +84,35 @@ async def _(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="savewelcome(?: |$)(.*)",
-    command=("savewelcome", plugin_category),
+    pattern="ضع ترحيب(?: |$)(.*)",
+    command=("ضع ترحيب", plugin_category),
     info={
-        "header": "To welcome new users in chat.",
-        "description": "Saves the message as a welcome note in the chat. And will send welcome message to every new user in group who ever joins newly in group.",
-        "option": {
-            "{mention}": "To mention the user",
-            "{title}": "To get chat name in message",
-            "{count}": "To get group members",
-            "{first}": "To use user first name",
-            "{last}": "To use user last name",
-            "{fullname}": "To use user full name",
-            "{userid}": "To use userid",
-            "{username}": "To use user username",
-            "{my_first}": "To use my first name",
-            "{my_fullname}": "To use my full name",
-            "{my_last}": "To use my last name",
-            "{my_mention}": "To mention myself",
-            "{my_username}": "To use my username.",
+        "الامر": ".ضع ترحيب",
+        "الشرح": "امر الترحيب يقوم بالتحريب بجميع الاشخاص الذين يدخلون للمجموعه",
+        "الاضافات": {
+            "{mention}": "عمل تاك للمستخدم",
+            "{title}": "لوضع اسم الدردشه مع الاسم",
+            "{count}": "لوضع عدد الاعضاء",
+            "{first}": "لوضع الاسم الاول للمستخدم ",
+            "{last}": "لوضع الاسك الثاني للمستخدم",
+            "{fullname}": "لوضع الاسم الكامل للمستخدم",
+            "{userid}": "لوضع ايدي الشخص",
+            "{username}": "لوضع معرف الشخص",
+            "{my_first}": "لوضع الاسم الاول الخاص بك",
+            "{my_fullname}": "لوضع الاسم الكامل الخاص بك",
+            "{my_last}": "لوضع الاسم الثاني الخاص بك",
+            "{my_mention}": "لعمل تاك لنفسك ",
+            "{my_username}": "لاستخدام معرفك.",
         },
-        "usage": [
-            "{tr}savewelcome <welcome message>",
-            "reply {tr}savewelcome to text message or supported media with text as media caption",
+        "الاستخدام": [
+            "{tr}ضع ترحيب <رسالة التحريب>",
+            "قم بالرد {tr}ضع ترحيب على الرسالة او الصوره لوضعها رساله ترحيبيه",
         ],
-        "examples": "{tr}savewelcome Hi {mention}, Welcome to {title} chat",
+        "الامثلة": "{tr}ضع ترحيب - هَِـلا يڪَِـمـࢪ نورِت 💞🦋 .",
     },
 )
 async def save_welcome(event):
-    "To set welcome message in chat."
+    "لوضع رسالة ترحيبيه في المجموعه"
     msg = await event.get_reply_message()
     string = "".join(event.text.split(maxsplit=1)[1:])
     msg_id = None
@@ -120,9 +120,9 @@ async def save_welcome(event):
         if BOTLOG_CHATID:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#WELCOME_NOTE\
-                \nCHAT ID: {event.chat_id}\
-                \nThe following message is saved as the welcome note for the {event.chat.title}, Don't delete this message !!",
+                f"#رسالة_الترحيب\
+                \nايدي الدردشه: {event.chat_id}\
+                \nيتم حفظ الرسالة التالية كملاحظة ترحيبية لـ {event.chat.title}, لا تثم بحذف هذه الرسالة !!",
             )
             msg_o = await event.client.forward_messages(
                 entity=BOTLOG_CHATID, messages=msg, from_peer=event.chat_id, silent=True
@@ -131,12 +131,12 @@ async def save_welcome(event):
         else:
             return await edit_or_reply(
                 event,
-                "`Saving media as part of the welcome note requires the BOTLOG_CHATID to be set.`",
+                "حفظ الصوره كـرسالة ترحيبيه يتطلب وضع الفار لـ BOTLOG_CHATID ",
             )
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "`Welcome note {} for this chat.`"
+    success = "** تم حفظ الترحيب الخاص بهذه الدردشه بنجاح**"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("saved"))
     rm_welcome_setting(event.chat_id)
@@ -146,46 +146,46 @@ async def save_welcome(event):
 
 
 @catub.cat_cmd(
-    pattern="clearwelcome$",
-    command=("clearwelcome", plugin_category),
+    pattern="حذف ترحيب$",
+    command=("حذف ترحيب", plugin_category),
     info={
-        "header": "To turn off welcome message in group.",
-        "description": "Deletes the welcome note for the current chat.",
-        "usage": "{tr}clearwelcome",
+        "الامر": ".حذف ترحيب",
+        "الشرح": "يقوم بحذف جميع الرسائل الترحيبيه للدردشه.",
+        "الاستخدام": "{tr}حذف ترحيب",
     },
 )
 async def del_welcome(event):
-    "To turn off welcome message"
+    "لحذف الرسائل الترحيبيه"
     if rm_welcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "`Welcome note deleted for this chat.`")
+        await edit_or_reply(event, "**تم حذف جميع الرسائل الترحيبيه لهذه الدردشه**")
     else:
-        await edit_or_reply(event, "`Do I have a welcome note here ?`")
+        await edit_or_reply(event, "** هل إمتلك ترحيبات بالاصل هنا  ?**")
 
 
 @catub.cat_cmd(
-    pattern="listwelcome$",
-    command=("listwelcome", plugin_category),
+    pattern="الترحيبات$",
+    command=("الترحيبات", plugin_category),
     info={
-        "header": "To check current welcome message in group.",
-        "usage": "{tr}listwelcome",
+        "الامر": "لرؤية جميع التحريبات المضافه للدردشه",
+        "الاستخدام": "{tr}الترحيبات",
     },
 )
 async def show_welcome(event):
     "To show current welcome message in group"
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        return await edit_or_reply(event, "`No welcome message saved here.`")
+        return await edit_or_reply(event, "**لم يتم حفظ اي رسائل ترحيبيه هنا**")
     if cws.f_mesg_id:
         msg_o = await event.client.get_messages(
             entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
         )
         await edit_or_reply(
-            event, "`I am currently welcoming new users with this welcome note.`"
+            event, "** أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة**"
         )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws.reply:
         await edit_or_reply(
-            event, "`I am currently welcoming new users with this welcome note.`"
+            event, "**أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة**"
         )
         await event.reply(cws.reply)
 

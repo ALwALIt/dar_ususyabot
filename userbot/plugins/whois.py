@@ -27,7 +27,7 @@ async def fetch_info(replied_user, event):
             user_id=replied_user.user.id, offset=42, max_id=0, limit=80
         )
     )
-    replied_user_profile_photos_count = "User haven't set profile pic"
+    replied_user_profile_photos_count = "هذا المستخدم لم يضع اي صوره"
     try:
         replied_user_profile_photos_count = replied_user_profile_photos.count
     except AttributeError:
@@ -84,7 +84,7 @@ async def _(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if not replied_user:
         return
-    catevent = await edit_or_reply(event, "`Fetching userinfo wait....`")
+    catevent = await edit_or_reply(event, "**يتم حساب المعلومات**")
     replied_user = await event.client(GetFullUserRequest(replied_user.id))
     user_id = replied_user.user.id
     # some people have weird HTML in their names
@@ -122,8 +122,8 @@ async def _(event):
             cas = "**Antispam(CAS) Banned :** `False`"
     else:
         cas = "**Antispam(CAS) Banned :** `Couldn't Fetch`"
-    caption = """**Info of [{}](tg://user?id={}):
-   -🔖ID : **`{}`
+    caption = """**معلومات [{}](tg://user?id={}):
+   -🔖 الايدي : **`{}`
    **-**👥**المجموعات المشتركة : **`{}`
    **-**🌏**رقم قاعدة البيانات : **`{}`
    **-**🔏**حسـاب موثق : **`{}`

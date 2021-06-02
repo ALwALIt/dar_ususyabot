@@ -64,10 +64,10 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
+        f"**يـوجد تحديث جديد لـجمثون:\n\nالاضافات:**\n`{changelog}`"
     )
     if len(changelog_str) > 4096:
-        await event.edit("`Changelog is too big, view the file to see it.`")
+        await event.edit("الاضافات كبيره جدا لعرضها")
         with open("output.txt", "w+") as file:
             file.write(changelog_str)
         await event.client.send_file(
@@ -106,21 +106,21 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     sandy = await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
+        "**تم التحديث بنجاح**\n" "**جار اعاده التشغيل انتظر**"
     )
     await event.client.reload(sandy)
 
 
 async def deploy(event, repo, ups_rem, ac_br, txt):
     if HEROKU_API_KEY is None:
-        return await event.edit("`Please set up`  **HEROKU_API_KEY**  ` Var...`")
+        return await event.edit("يجب وضع المتغيرات  **HEROKU_API_KEY**  ` الفار...`")
     heroku = heroku3.from_key(HEROKU_API_KEY)
     heroku_app = None
     heroku_applications = heroku.apps()
     if HEROKU_APP_NAME is None:
         await event.edit(
-            "`Please set up the` **HEROKU_APP_NAME** `Var`"
-            " to be able to deploy your userbot...`"
+            "يجب ضبط المتغيرات **HEROKU_APP_NAME** `الفار`"
+            " ضبط المتغيرات هنا  : https://t.me/Jmthon_tools/91"
         )
         repo.__del__()
         return
@@ -164,15 +164,15 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         return repo.__del__()
     build_status = heroku_app.builds(order_by="created_at", sort="desc")[0]
     if build_status.status == "failed":
-        await event.edit("`Build failed!\n" "Cancelled or there were some errors...`")
+        await event.edit("**فشلت العمليه**!\n" "يوجد هناك اخطاء في هيروكو")
         await asyncio.sleep(5)
         return await event.delete()
-    await event.edit("`Deploy was failed better to do manual deploy.`")
+    await event.edit("**فشل التحديث يفضل التنصيب يدويا**")
 
 
 @catub.cat_cmd(
-    pattern="update(| now)?$",
-    command=("update", plugin_category),
+    pattern="تحديث(| الان)?$",
+    command=("تحديث", plugin_category),
     info={
         "header": "To update userbot.",
         "description": "I recommend you to do update deploy atlest once a week.",
@@ -190,15 +190,15 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event, "`Checking for updates, please wait....`")
+    event = await edit_or_reply(event, "**يتم البحث عن التحديثات**")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
         return await edit_or_reply(
-            event, "`Set the required vars first to update the bot`"
+            event, "يجب ضبط المتغيرات اولا**"
         )
     try:
-        txt = "`Oops.. Updater cannot continue due to "
+        txt = "هنالك خطا بالتحديث** "
         txt += "some problems occured`\n\n**LOGTRACE:**\n"
         repo = Repo()
     except NoSuchPathError as error:
@@ -242,7 +242,7 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "\n`CATUSERBOT is`  **up-to-date**  `with`  "
+            "\nبـوت جمـثون تـم تحـديثه  "
             f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         return repo.__del__()
@@ -264,11 +264,11 @@ async def upstream(event):
 
 
 @catub.cat_cmd(
-    pattern="update deploy$",
+    pattern="تحديث البوت$",
 )
 async def upstream(event):
     event = await edit_or_reply(event, "`Pulling the catpack repo wait a sec ....`")
-    off_repo = "https://github.com/Mr-confused/catpack"
+    off_repo = "https://github.com/JMTHON-AR/catpack"
     os.chdir("/app")
     await _catutils.runcmd(f"rm -rf .git")
     try:
