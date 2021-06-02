@@ -13,7 +13,6 @@ from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_
 from ..helpers.utils import reply_id
 from . import mention
 
-CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/8c85ff635e3736629c3c2.jpg"
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "⇝ 𝗪َ𝗘𝗟َِ𝗖𝗢𝗠َِ𝙀َِ 𝗧𝗢 𝗝𝗠𝗧𝗛𝗢𝗡 𝄵 ⇜"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "  - "
 
