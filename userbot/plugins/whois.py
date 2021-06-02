@@ -53,7 +53,7 @@ async def fetch_info(replied_user, event):
     first_name = (
         first_name.replace("\u2060", "")
         if first_name
-        else ("This User has no First Name")
+        else ("هذا المستخدم ليس لديه اسم اول")
     )
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
     username = "@{}".format(username) if username else ("لايوجد معرف")
@@ -158,12 +158,12 @@ async def who(event):
     replied_user, reason = await get_user_from_event(event)
     if not replied_user:
         return
-    cat = await edit_or_reply(event, "`Fetching userinfo wait....`")
+    cat = await edit_or_reply(event, "**يتم الحصول على المعلومات**")
     replied_user = await event.client(GetFullUserRequest(replied_user.id))
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        return await edit_or_reply(cat, "`Could not fetch info of that user.`")
+        return await edit_or_reply(cat, "** لا يمكن الحصول على معلومات هذا المستخدم**")
     message_id_to_reply = await reply_id(event)
     try:
         await event.client.send_file(
@@ -183,8 +183,8 @@ async def who(event):
 
 
 @catub.cat_cmd(
-    pattern="link(?: |$)(.*)",
-    command=("link", plugin_category),
+    pattern="رابط الحساب?: |$)(.*)",
+    command=("رابط الحساب", plugin_category),
     info={
         "header": "Generates a link to the user's PM .",
         "usage": "{tr}link <username/userid/reply>",

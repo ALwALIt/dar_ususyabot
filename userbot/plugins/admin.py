@@ -118,15 +118,15 @@ async def set_group_photo(event):  # sourcery no-metrics
         try:
             await event.client(EditPhotoRequest(event.chat_id, InputChatPhotoEmpty()))
         except Exception as e:
-            return await edit_delete(event, f"**Error : **`{str(e)}`")
+            return await edit_delete(event, f"**خطأ : **`{str(e)}`")
         process = "deleted"
-        await edit_delete(event, "```Succesfully group profile pic deleted.```")
+        await edit_delete(event, "```تـم حذف الـصورة بنـجاح```")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#GROUPPIC\n"
-            f"Group profile pic {process} succesfully "
-            f"CHAT: {event.chat.title}(`{event.chat_id}`)",
+            "#صوره_المجموعة\n"
+            f"صورة المجموعه {process} بنجاح "
+            f"الدردشه: {event.chat.title}(`{event.chat_id}`)",
         )
 
 
@@ -134,19 +134,19 @@ async def set_group_photo(event):  # sourcery no-metrics
     pattern="رفع مشرف(?: |$)(.*)",
     command=("رفع مشرف", plugin_category),
     info={
-        "header": "To give admin rights for a person",
-        "description": "Provides admin rights to the person in the chat\
+        "الامر": "لرفع الشخص مشرف مع صلاحيات",
+        "الشرح": "لرفع الشخص مشرف بالمجموعه قم بالرد على الشخص\
             \nNote : You need proper rights for this",
-        "usage": [
-            "{tr}promote <userid/username/reply>",
-            "{tr}promote <userid/username/reply> <custom title>",
+        "الاستخدام": [
+            "{tr}رفع مشرف <ايدي/معرف/بالرد عليه>",
+            "{tr}رفع مشرف <ايدي/معرف/بالرد عليه> ",
         ],
     },
     groups_only=True,
     require_admin=True,
 )
 async def promote(event):
-    "To promote a person in chat"
+    "لرف الشخص مشرف بالمجموعه"
     new_rights = ChatAdminRights(
         add_admins=False,
         invite_users=True,
@@ -160,12 +160,12 @@ async def promote(event):
         rank = "Admin"
     if not user:
         return
-    catevent = await edit_or_reply(event, "`Promoting...`")
+    catevent = await edit_or_reply(event, "**يـتم الرفـع**")
     try:
         await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
     except BadRequestError:
         return await catevent.edit(NO_PERM)
-    await catevent.edit("`Promoted Successfully! Now gib Party`")
+    await catevent.edit("**تم رفعه مشرف بالمجموعه بنجاح ✅**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -179,23 +179,23 @@ async def promote(event):
     pattern="تك(?: |$)(.*)",
     command=("تك", plugin_category),
     info={
-        "header": "To remove a person from admin list",
-        "description": "Removes all admin rights for that peron in that chat\
-            \nNote : You need proper rights for this and also u must be owner or admin who promoted that guy",
-        "usage": [
-            "{tr}demote <userid/username/reply>",
-            "{tr}demote <userid/username/reply> <custom title>",
+        "الامر": "لتنزيل الشخص كن الاشراف",
+        "الشرح": "يقوم هذا الامر بحذف جميع صلاحيات المشرف\
+            \nملاحظه :**لازم تكون انت الشخص الي رفعه او تكون مالك المجموعه حتى تنزله**",
+        "الاستخدام": [
+            "{tr}تك <الايدي/المعرف/بالرد عليه>",
+            "{tr}تك <الايدي/المعرف/بالرد عليه>",
         ],
     },
     groups_only=True,
     require_admin=True,
 )
 async def demote(event):
-    "To demote a person in group"
+    "لتنزيل الشخص من رتبة الادمن"
     user, _ = await get_user_from_event(event)
     if not user:
         return
-    catevent = await edit_or_reply(event, "`Demoting...`")
+    catevent = await edit_or_reply(event, "**يـتم التنزيل من الاشراف**")
     newrights = ChatAdminRights(
         add_admins=None,
         invite_users=None,
@@ -209,13 +209,13 @@ async def demote(event):
         await event.client(EditAdminRequest(event.chat_id, user.id, newrights, rank))
     except BadRequestError:
         return await catevent.edit(NO_PERM)
-    await catevent.edit("`Demoted Successfully! Betterluck next time`")
+    await catevent.edit("**-  تـم تنزيله من قائمه الادمنيه بنجاح ✅**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"#DEMOTE\
-            \nUSER: [{user.first_name}](tg://user?id={user.id})\
-            \nCHAT: {event.chat.title}(`{event.chat_id}`)",
+            f"#تنزيل_مشرف\
+            \nالمعرف: [{user.first_name}](tg://user?id={user.id})\
+            \nالدردشه: {event.chat.title}(`{event.chat_id}`)",
         )
 
 

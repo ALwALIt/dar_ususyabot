@@ -12,13 +12,13 @@ cmdprefix = Config.COMMAND_HAND_LER
 plugin_category = "tools"
 
 hemojis = {
-    "admin": "👮‍♂️",
-    "bot": "🤖",
-    "fun": "🎨",
-    "misc": "🧩",
-    "tools": "🧰",
-    "utils": "🗂",
-    "extra": "➕",
+    "الأدمن": "👮‍♂️",
+    "البـوت": "🤖",
+    "التـسلية": "🎨",
+    "متفرقات": "🧩",
+    "الادوات": "🧰",
+    "المساعدات": "🗂",
+    "الاخرى": "➕",
 }
 
 
@@ -84,14 +84,14 @@ async def plugininfo(input_str, event, flag):
     outstr += f"**Commands Available :** `{len(cmds)}`\n"
     category = getkey(input_str)
     if category is not None:
-        outstr += f"**Category :** `{category}`\n\n"
+        outstr += f"**فئة الملف :** `{category}`\n\n"
     for cmd in cmds:
         outstr += f"•  **cmd :** `{cmdprefix}{cmd}`\n"
         try:
-            outstr += f"•  **info :** `{CMD_INFO[cmd][1]}`\n\n"
+            outstr += f"•  **معلومات :** `{CMD_INFO[cmd][1]}`\n\n"
         except IndexError:
-            outstr += f"•  **info :** `None`\n\n"
-    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <command name>`\
+            outstr += f"•  **معلومات :** `None`\n\n"
+    outstr += f"**👩‍💻 الاستخدام : ** `{cmdprefix}help <command name>`\
         \n**Note : **If command name is same as plugin name then use this `{cmdprefix}help -c <command name>`."
     return outstr
 
@@ -126,7 +126,7 @@ async def cmdlist():
 
 
 @catub.cat_cmd(
-    pattern="help ?(-)?(c|p|t)? ?(.*)?",
+    pattern="help ?(-c|-p|-t)? ?(.*)?",
     command=("help", plugin_category),
     info={
         "header": "To get guide for catuserbot.",
@@ -146,8 +146,8 @@ async def cmdlist():
 )
 async def _(event):
     "To get guide for catuserbot."
-    flag = event.pattern_match.group(2)
-    input_str = event.pattern_match.group(3)
+    flag = event.pattern_match.group(1)
+    input_str = event.pattern_match.group(2)
     reply_to_id = await reply_id(event)
     if flag and flag == "-c" and input_str:
         outstr = await cmdinfo(input_str, event)
@@ -158,7 +158,7 @@ async def _(event):
         if outstr is None:
             return
     else:
-        if flag == "t":
+        if flag == "-t":
             outstr = await grpinfo()
         else:
             results = await event.client.inline_query(Config.TG_BOT_USERNAME, "help")
