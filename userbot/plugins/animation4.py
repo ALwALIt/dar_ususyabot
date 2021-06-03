@@ -6,30 +6,30 @@ plugin_category = "fun"
 
 
 @catub.cat_cmd(
-    pattern="kilr(?: |$)(.*)",
-    command=("kilr", plugin_category),
+    pattern="قاتل(?: |$)(.*)",
+    command=("قاتل", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}kilr",
+        "usage": "{tr}قاتل",
     },
 )
 async def _(event):
     "animation command"
     name = event.pattern_match.group(1)
     if not name:
-        name = "die"
+        name = "مات"
     animation_interval = 0.7
     animation_ttl = range(8)
-    event = await edit_or_reply(event, f"**Ready Commando **__{ALIVE_NAME}....")
+    event = await edit_or_reply(event, f"**استعد ايها القائد **__{ALIVE_NAME}....")
     animation_chars = [
         "Ｆｉｉｉｉｉｒｅ",
-        f"__**Commando **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
-        f"__**Commando **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - -\n _/﹋\_\n",
-        f"__**Commando **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n<,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
-        f"__**Commando **__{ALIVE_NAME}         \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
-        f"__**Commando **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - - {name}\n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - -\n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n<,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - \n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}         \n\n_/﹋\_\n (҂`_´)\n  <,︻╦╤─ ҉ - -\n _/﹋\_\n",
+        f"__**المقاتل **__{ALIVE_NAME}          \n\n_/﹋\_\n (҂`_´)\n <,︻╦╤─ ҉ - - - {name}\n _/﹋\_\n",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -37,11 +37,11 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="eye$",
-    command=("eye", plugin_category),
+    pattern="عين$",
+    command=("عين", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}eye",
+        "usage": "{tr}عين;",
     },
 )
 async def _(event):
@@ -50,16 +50,20 @@ async def _(event):
     animation_ttl = range(10)
     event = await edit_or_reply(event, "👁👁")
     animation_chars = [
-        "👁👁\n  👄  =====> Hey, How are you?",
-        "👁👁\n  👅  =====> Everything okay?",
-        "👁👁\n  💋  =====> Why are you staring at this?",
-        "👁👁\n  👄  =====> You idiot",
-        "👁👁\n  👅  =====> Go away",
-        "👁👁\n  💋  =====> Stop laughing",
-        "👁👁\n  👄  =====> It's not funny",
-        "👁👁\n  👅  =====> I guess ur still looking",
-        "👁👁\n  💋  =====> Ok man 😑",
-        "👁👁\n  👄  =====> I go away then",
+        "👁👁\n  👱🏻‍♂️  =====> ۿـا ، شلونج شخبارج ؟",
+        "👁👁\n  👱🏻‍♀️  =====> كولشي تمام",
+        "👁👁\n  👱🏻‍♂️  =====> شنو ههاي شفتج 🤤",
+        "👁👁\n  👱🏻‍♀️  =====> هاي شبيك",
+        "👁👁\n  👱🏻‍♂️  =====> بس حلك 🤤",
+        "👁👁\n  👱🏻‍♀️  =====> وخر ",
+        "👁👁\n  👱🏻‍♂️  =====> متت 😹",
+        "👁👁\n  👱🏻‍♀️  =====> لا تضحك",
+        "👁👁\n  👱🏻‍♂️  =====> بس حلك متت 😹🤤",
+        "👁👁\n  👱🏻‍♀️  =====> كافي لتضحك😭😒",
+        "👁👁\n  👱🏻‍♂️  =====> باع لشفه 🤤",
+        "👁👁\n  👱🏻‍♀️  =====> هاي شبيك لتباوع",
+        "👁👁\n  👱🏻‍♂️  =====> دولي",
+        "👁👁\n  👱🏻‍♂️  =====> رايح بايي",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -69,18 +73,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="thinking$",
-    command=("thinking", plugin_category),
+    pattern="افكرر$",
+    command=("افكرر", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}thinking",
+        "usage": "{tr}افكرر",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 0.05
     animation_ttl = range(288)
-    event = await edit_or_reply(event, "thinking..")
+    event = await edit_or_reply(event, "افكرر..")
     animation_chars = [
         "THINKING",
         "THI&K#N₹",
@@ -117,7 +121,7 @@ async def _(event):
         "¶H×NK&N*",
         "NGITHKIN",
         "T+I#K@₹G",
-        "THINKING... 🤔",
+        "دا افكر 🙁😹 ",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -125,18 +129,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="snake$",
-    command=("snake", plugin_category),
+    pattern="افعى$",
+    command=("افعى", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}snake",
+        "usage": "{tr}افعى",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 0.3
     animation_ttl = range(27)
-    event = await edit_or_reply(event, "snake..")
+    event = await edit_or_reply(event, "افعى..")
     animation_chars = [
         "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
         "◻️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
@@ -172,18 +176,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="human$",
-    command=("human", plugin_category),
+    pattern="رجل$",
+    command=("رجل", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}human",
+        "usage": "{tr}رجل",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 0.5
     animation_ttl = range(16)
-    event = await edit_or_reply(event, "human...")
+    event = await edit_or_reply(event, "رجل...")
     animation_chars = [
         "⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬜⬜⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜⬜⬜\n🔲🔲🔲🔲🔲🔲🔲",
         "⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛⬛🚗\n⬜⬜⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜⬜⬜\n🔲🔲🔲🔲🔲🔲🔲",
@@ -256,18 +260,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="virus$",
-    command=("virus", plugin_category),
+    pattern="فايروس$",
+    command=("فايروس", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}virus",
+        "usage": "{tr}فايروس",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 1
     animation_ttl = range(30)
-    event = await edit_or_reply(event, "Injecting virus....")
+    event = await edit_or_reply(event, "فايروس....")
     animation_chars = [
         "🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
         "◼️🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
@@ -306,18 +310,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="repe$",
-    command=("repe", plugin_category),
+    pattern="ريبي$",
+    command=("ريبي", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}repe",
+        "usage": "{tr}ريبي",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 0.2
     animation_ttl = range(30)
-    event = await edit_or_reply(event, "repe")
+    event = await edit_or_reply(event, "ريبي")
     animation_chars = [
         "**r**",
         "**ra**",
@@ -356,18 +360,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="nikal$",
-    command=("nikal", plugin_category),
+    pattern="نيكول$",
+    command=("نيكول", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}nikal",
+        "usage": "{tr}نيكول",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 0.5
     animation_ttl = range(6)
-    event = await edit_or_reply(event, "nakal")
+    event = await edit_or_reply(event, "نيكول")
     animation_chars = [
         "`⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⣴⠿⠏⠀⠀⠀⠀⠀   ⢳⡀⠀⡏⠀⠀⠀   ⠀⢷\n⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀  ⠀   ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿  ⣸ Nikal   ⡇\n ⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀  ⣿  ⢹⠀        ⡇\n  ⠙⢿⣯⠄⠀⠀⠀__⠀⠀⡿ ⠀⡇⠀⠀⠀⠀    ⡼\n⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀   ⠘⠤⣄⣠⠞⠀\n⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀\n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀\n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀ ⠀⣄⢸⠀⠀⠀⠀⠀⠀`",
         "`⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⣴⠿⠏⠀⠀⠀⠀⠀  ⠀⢳⡀⠀⡏⠀⠀⠀   ⠀⢷\n⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀      ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿  ⣸ Lavde   ⡇\n ⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀  ⣿  ⢹⠀        ⡇\n  ⠙⢿⣯⠄⠀⠀|__|⠀⠀⡿ ⠀⡇⠀⠀⠀⠀    ⡼\n⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀   ⠘⠤⣄⣠⠞⠀\n⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀\n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀\n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀ ⠀⣄⢸⠀⠀⠀⠀⠀⠀`",
@@ -382,18 +386,18 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="music$",
-    command=("music", plugin_category),
+    pattern="موسيقى$",
+    command=("موسيقى", plugin_category),
     info={
         "header": "Fun animation try yourself to know more",
-        "usage": "{tr}music",
+        "usage": "{tr}موسيقى",
     },
 )
 async def _(event):
     "animation command"
     animation_interval = 1.5
     animation_ttl = range(11)
-    event = await edit_or_reply(event, "starting player...")
+    event = await edit_or_reply(event, "يتم بدأ  الموسيقى...")
     animation_chars = [
         "⬤⬤⬤ 81% ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`✖️`\n\n⠀⠀⠀⠀⠀[cee jay Music Player](tg://user?id=916234223)\n\n⠀⠀⠀⠀**Now Playing:shape of u**\n\n**00:00** ▱▱▱▱▱▱▱▱▱▱ **00:10**\n\n⠀⠀⠀⠀⠀`🔂` `⏮️` `⏪️` `▶️` `⏩️` `⏭️`\n\n**⠀Next Song:** __Alan Walker - Alone.__\n\n⠀⠀⠀⠀**⠀Device: Nokia 1100**",
         "⬤⬤⬤ 81% ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`✖️`\n\n⠀⠀⠀⠀⠀[cee jay Music Player](tg://user?id=916234223)\n\n⠀⠀⠀⠀**Now Playing:shape of u**\n\n**00:01** ▰▱▱▱▱▱▱▱▱▱ **00:10**\n\n⠀⠀⠀⠀⠀`🔂` `⏮️` `⏪️` `⏸️` `⏩️` `⏭️`\n\n**⠀Next Song:** __Alan Walker - Alone.__\n\n⠀⠀⠀⠀**⠀Device: Nokia 1100**",

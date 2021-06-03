@@ -47,7 +47,7 @@ async def _(event):
     command=("ضايج", plugin_category),
     info={
         "الامر": "امر تسليه جربه بنفسك",
-        "الاستخدام": "{tr}ضايج,
+        "الاستخدام": "{tr}ضايج",
     },
 )
 async def _(event):
@@ -65,7 +65,7 @@ async def _(event):
     command=("ساعه", plugin_category),
     info={
         "الامر": "امر تسليه جربه بنفسك",
-        "الاستخدام": "{tr}ساعه,
+        "الاستخدام": "{tr}ساعه",
     },
 )
 async def _(event):
