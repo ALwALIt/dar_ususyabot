@@ -31,7 +31,7 @@ from . import (
 )
 
 plugin_category = "tools"
-DEFAULTUSERBIO = DEFAULT_BIO or " ᗯᗩᏆᎢᏆᑎᏀ ᏞᏆᏦᗴ ᎢᏆᗰᗴ  "
+DEFAULTUSERBIO = DEFAULT_BIO or " كارثه أن يجتمع عقل ناضج وقلب عاطفي في جسد واحد  "
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ autopic_path = os.path.join(os.getcwd(), "userbot", "original_pic.png")
 digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
-digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/aeaebe33b1f3988a0b690.jpg"
+digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/9552b77d21e182ccf535b.jpg"
 
 COLLECTION_STRINGS = {
     "batmanpfp_strings": [
@@ -83,7 +83,7 @@ async def autopicloop():
         shutil.copy(autopic_path, autophoto_path)
         im = Image.open(autophoto_path)
         file_test = im.rotate(counter, expand=False).save(autophoto_path, "JPG")
-        current_time = datetime.now().strftime("  Time: %H:%M")
+        current_time = datetime.now().strftime("Time: %H:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 40)
@@ -163,7 +163,7 @@ async def bloom_pfploop():
         image = Image.open(autophoto_path)
         image.paste((R, G, B), [0, 0, image.size[0], image.size[1]])
         image.save(autophoto_path)
-        current_time = datetime.now().strftime("\n Time: %H:%M:%S \n \n Date: %d/%m/%y")
+        current_time = datetime.now().strftime("\n Time: %H:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
@@ -297,8 +297,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="autopic ?(.*)",
-    command=("autopic", plugin_category),
+    pattern="صورة وقتية ?(.*)",
+    command=("صورة وقتية", plugin_category),
     info={
         "header": "Changes profile pic every 1 minute with the custom pic with time",
         "description": "If you like to change the time interval for every new pic change \
@@ -334,9 +334,9 @@ async def _(event):
     else:
         if gvarstatus("autopic_counter") is None:
             addgvar("autopic_counter", 30)
-    if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
+    if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
         return await edit_delete(event, f"`Autopic is already enabled`")
-    addgvar("autopic", True)
+    addgvar("صورة وقتية", True)
     if input_str:
         addgvar("autopic_counter", input_str)
     await edit_delete(event, f"`Autopic has been started by my Master`")
@@ -399,8 +399,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="autoname$",
-    command=("autoname", plugin_category),
+    pattern="اسم وقتي",
+    command=("اسم وقتي", plugin_category),
     info={
         "header": "Changes your name with time",
         "description": "Updates your profile name along with time. Set AUTONAME var in heroku with your profile name,",
@@ -411,15 +411,15 @@ async def _(event):
 async def _(event):
     "To set your display name along with time"
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
-        return await edit_delete(event, f"`Autoname is already enabled`")
+        return await edit_delete(event, f"**الاسم الوقتي بالفعل مفعل**")
     addgvar("autoname", True)
-    await edit_delete(event, "`AutoName has been started by my Master `")
+    await edit_delete(event, "**تم تفعيل الاسم الوقتي**")
     await autoname_loop()
 
 
 @catub.cat_cmd(
-    pattern="autobio$",
-    command=("autobio", plugin_category),
+    pattern="البايو الوقتي$",
+    command=("البايو الوقتي", plugin_category),
     info={
         "header": "Changes your bio with time",
         "description": "Updates your profile bio along with time. Set DEFAULT_BIO var in heroku with your fav bio,",
@@ -430,15 +430,15 @@ async def _(event):
 async def _(event):
     "To update your bio along with time"
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
-        return await edit_delete(event, f"`Autobio is already enabled`")
+        return await edit_delete(event, f"**البايو الوقتي بالفعل مفعل**")
     addgvar("autobio", True)
-    await edit_delete(event, "`Autobio has been started by my Master `")
+    await edit_delete(event, "**تم تفعيل النبذة الوقتية**")
     await autobio_loop()
 
 
 @catub.cat_cmd(
-    pattern="end (.*)",
-    command=("end", plugin_category),
+    pattern="انهاء (.*)",
+    command=("انهاء", plugin_category),
     info={
         "header": "To stop the functions of autoprofile",
         "description": "If you want to stop autoprofile functions then use this cmd.",
@@ -520,16 +520,16 @@ async def _(event):  # sourcery no-metrics
             await event.client(
                 functions.account.UpdateProfileRequest(first_name=DEFAULTUSER)
             )
-            return await edit_delete(event, "`Autoname has been stopped now`")
-        return await edit_delete(event, "`Autoname haven't enabled`")
+            return await edit_delete(event, "**الاسم الوقتي تم تعطيله**")
+        return await edit_delete(event, "**الاسم الوقتي تم تعطيله**")
     if input_str == "autobio":
         if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
             delgvar("autobio")
             await event.client(
                 functions.account.UpdateProfileRequest(about=DEFAULTUSERBIO)
             )
-            return await edit_delete(event, "`Autobio has been stopped now`")
-        return await edit_delete(event, "`Autobio haven't enabled`")
+            return await edit_delete(event, "**البايو الوقتي تم تعطيله**")
+        return await edit_delete(event, "** انت لم تقم بتفعيل البايو الوقتي**")
     END_CMDS = [
         "autopic",
         "digitalpfp",
