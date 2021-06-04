@@ -91,14 +91,14 @@ async def plugininfo(input_str, event, flag):
             outstr += f"•  **info :** `{CMD_INFO[cmd][1]}`\n\n"
         except IndexError:
             outstr += f"•  **info :** `None`\n\n"
-    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <command name>`\
-        \n**Note : **If command name is same as plugin name then use this `{cmdprefix}help -c <command name>`."
+    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}المساعده <command name>`\
+        \n**Note : **If command name is same as plugin name then use this `{cmdprefix}المساعده -c <command name>`."
     return outstr
 
 
 async def grpinfo():
     outstr = "**Plugins in Catuserbot are:**\n\n"
-    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <plugin name>`\n\n"
+    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}المساعده <plugin name>`\n\n"
     category = ["الأدمن", "البـوت", "التـسلية", "متفرقات", "الادوات", "المساعدات", "الاخرى"]
     for cat in category:
         plugins = GRP_INFO[cat]
@@ -121,7 +121,7 @@ async def cmdlist():
             for cmd in cmds:
                 outstr += f"  - `{cmdprefix}{cmd}`\n"
             outstr += "\n"
-    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help -c <command name>`"
+    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}المساعده -c <command name>`"
     return outstr
 
 
@@ -138,10 +138,10 @@ async def cmdlist():
             "t": "To get all plugins in text format.",
         },
         "usage": [
-            "{tr}help (plugin/command name)",
-            "{tr}help -c (command name)",
+            "{tr}المساعده (plugin/command name)",
+            "{tr}المساعده -c (command name)",
         ],
-        "examples": ["{tr}help help", "{tr}help -c help"],
+        "examples": ["{tr}المساعده المساعده", "{tr}المساعده -c المساعده"],
     },
 )
 async def _(event):
@@ -161,7 +161,7 @@ async def _(event):
         if flag == "-t":
             outstr = await grpinfo()
         else:
-            results = await event.client.inline_query(Config.TG_BOT_USERNAME, "help")
+            results = await event.client.inline_query(Config.TG_BOT_USERNAME, "المساعده")
             await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
             await event.delete()
             return
@@ -195,7 +195,7 @@ async def _(event):
         outstr = f"• **{input_str.title()} has {len(cmds)} commands**\n"
         for cmd in cmds:
             outstr += f"  - `{cmdprefix}{cmd}`\n"
-        outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help -c <command name>`"
+        outstr += f"**👩‍💻 Usage : ** `{cmdprefix}المساعده -c <command name>`"
     await edit_or_reply(
         event, outstr, aslink=True, linktext="Total Commands of Catuserbot are :"
     )
@@ -216,7 +216,7 @@ async def _(event):
     if found:
         out_str = "".join(f"`{i}`    " for i in found)
         out = f"**I found {len(found)} command(s) for: **`{cmd}`\n\n{out_str}"
-        out += f"\n\n__For more info check {cmdprefix}help -c <command>__"
+        out += f"\n\n__For more info check {cmdprefix}المساعده -c <command>__"
     else:
         out = f"I can't find any such command `{cmd}` in CatUserbot"
     await edit_or_reply(event, out)
