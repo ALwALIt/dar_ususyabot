@@ -182,7 +182,7 @@ async def bloom_pfploop():
 
 
 async def autoname_loop():
-    AUTONAMESTART = gvarstatus("autoname") == "true"
+    AUTONAMESTART = gvarstatus("اسم وقتي") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
@@ -194,7 +194,7 @@ async def autoname_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(Config.CHANGE_TIME)
-        AUTONAMESTART = gvarstatus("autoname") == "true"
+        AUTONAMESTART = gvarstatus("اسم وقتي") == "true"
 
 
 async def autobio_loop():
@@ -410,9 +410,9 @@ async def _(event):
 )
 async def _(event):
     "To set your display name along with time"
-    if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
+    if gvarstatus("اسم وقتي") is not None and gvarstatus("اسم وقتي") == "true":
         return await edit_delete(event, f"**الاسم الوقتي بالفعل مفعل**")
-    addgvar("autoname", True)
+    addgvar("اسم وقتي", True)
     await edit_delete(event, "**تم تفعيل الاسم الوقتي**")
     await autoname_loop()
 
@@ -514,9 +514,9 @@ async def _(event):  # sourcery no-metrics
                     return
             return await edit_delete(event, "`Bloom has been stopped now`")
         return await edit_delete(event, "`Bloom haven't enabled`")
-    if input_str == "autoname":
-        if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
-            delgvar("autoname")
+    if input_str == "اسم وقتي":
+        if gvarstatus("اسم وقتي") is not None and gvarstatus("اسم وقتي") == "true":
+            delgvar("اسم وقتي")
             await event.client(
                 functions.account.UpdateProfileRequest(first_name=DEFAULTUSER)
             )
@@ -534,7 +534,7 @@ async def _(event):  # sourcery no-metrics
         "autopic",
         "digitalpfp",
         "bloom",
-        "autoname",
+        "اسم وقتي",
         "autobio",
         "thorpfp",
         "batmanpfp",
