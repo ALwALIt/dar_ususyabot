@@ -38,7 +38,7 @@ async def _(event):
         async with session.get(URL) as request:
             if request.status == 404:
                 return await edit_delete(event, "`" + username + " not found`")
-            catevent = await edit_or_reply(event, "`fetching github info ...`")
+            catevent = await edit_or_reply(event, "`جار البحث ع الريبو المطلوب 🔍❤️ ...`")
             result = await request.json()
             photo = result["avatar_url"]
             if result["bio"]:
