@@ -12,8 +12,8 @@ name = "Profile Photos"
 
 
 @catub.cat_cmd(
-    pattern="poto(?: |$)(.*)",
-    command=("poto", plugin_category),
+    pattern="صوره(?: |$)(.*)",
+    command=("صوره", plugin_category),
     info={
         "header": "To get user or group profile pic.",
         "description": "Reply to a user to get his profile pic or use command along\
@@ -63,11 +63,11 @@ async def potocmd(event):
             uid = int(uid)
             if uid <= 0:
                 await edit_or_reply(
-                    event, "```number Invalid!``` **Are you Comedy Me ?**"
+                    event, "```number Invalid!``` **لا يمكن بحث أو تحميل فقط صوره الشخص !**"
                 )
                 return
         except BaseException:
-            await edit_or_reply(event, "`Are you comedy me ?`")
+            await edit_or_reply(event, "`لا يمكن بحث أو تحميل فقط صوره الشخص !`")
             return
         if int(uid) > (len(photos)):
             return await edit_delere(
