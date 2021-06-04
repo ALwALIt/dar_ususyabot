@@ -58,7 +58,7 @@ async def amireallyalive(event):
             f"**{EMOJI} نسخـۿ البايثون :** `{python_version()}\n`"
             f"**{EMOJI} الوقت :** `{uptime}\n`"
             f"**{EMOJI} المنشئ:** {mention}\n"
-            f"**{EMOJI} قنـاة السـورس**: T.ME/JMTHON\n",
+            f"**{EMOJI} قنـاة السـورس**: (t.me/jmthon)\n",
         )
 
 
