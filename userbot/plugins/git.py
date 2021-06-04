@@ -22,8 +22,8 @@ GIT_TEMP_DIR = "./temp/"
 
 
 @catub.cat_cmd(
-    pattern="بحث ريبو( -l(\d+))? (.*)",
-    command=("بحث ريبو", plugin_category),
+    pattern="ريبو( -l(\d+))? (.*)",
+    command=("ريبو", plugin_category),
     info={
         "header": "Shows the information about an user on GitHub of given username",
         "flags": {"-l": "repo limit : default to 5"},
