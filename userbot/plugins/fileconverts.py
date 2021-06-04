@@ -48,8 +48,8 @@ thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
 
 @catub.cat_cmd(
-    pattern="spin(?: |$)((-)?(s)?)$",
-    command=("spin", plugin_category),
+    pattern="تحويل فيديو دائري(?: |$)((-)?(s)?)$",
+    command=("تحويل فيديو دائري", plugin_category),
     info={
         "header": "To convert replied image or sticker to spining round video.",
         "flags": {
@@ -144,8 +144,8 @@ async def pic_gifcmd(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="circle ?((-)?s)?$",
-    command=("circle", plugin_category),
+    pattern="تحويل ستيكر ?((-)?s)?$",
+    command=("تحويل ستيكر", plugin_category),
     info={
         "header": "To make circular video note/sticker.",
         "description": "crcular video note supports atmost 60 sec so give appropariate video.",
@@ -301,8 +301,8 @@ async def video_catfile(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="stoi$",
-    command=("stoi", plugin_category),
+    pattern="تحويل صورة$",
+    command=("تحويل صورة", plugin_category),
     info={
         "header": "Reply this command to a sticker to get image.",
         "usage": "{tr}stoi",
@@ -339,8 +339,8 @@ async def _(cat_event):
 
 
 @catub.cat_cmd(
-    pattern="itos$",
-    command=("itos", plugin_category),
+    pattern="تحويل ملف$",
+    command=("تحويل ملف", plugin_category),
     info={
         "header": "Reply this command to a image to get sticker.",
         "usage": "{tr}itos",
@@ -409,8 +409,8 @@ async def get(event):
 
 
 @catub.cat_cmd(
-    pattern="ftoi$",
-    command=("ftoi", plugin_category),
+    pattern="تحويل صوره$",
+    command=("تحويل صوره", plugin_category),
     info={
         "header": "Reply this command to a image file to convert it to image",
         "usage": "{tr}ftoi",
@@ -450,8 +450,8 @@ async def on_file_to_photo(event):
 
 
 @catub.cat_cmd(
-    pattern="gif(?: |$)(.*)",
-    command=("gif", plugin_category),
+    pattern="تحويل متحركه(?: |$)(.*)",
+    command=("تحويل متحركه", plugin_category),
     info={
         "header": "Converts Given animated sticker to gif.",
         "usage": "{tr}gif quality ; fps(frames per second)",
