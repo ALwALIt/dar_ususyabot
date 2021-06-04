@@ -25,8 +25,8 @@ def convert_from_bytes(size):
 
 
 @catub.cat_cmd(
-    pattern="speedtest(?: |$)(.*)",
-    command=("speedtest", plugin_category),
+    pattern="سرعه تجريب(?: |$)(.*)",
+    command=("سرعه تجريب", plugin_category),
     info={
         "header": "Botserver's speedtest by ookla.",
         "options": {
@@ -49,7 +49,7 @@ async def _(event):
     elif input_str == "text":
         as_text = True
     catevent = await edit_or_reply(
-        event, "`Calculating my internet speed. Please wait!`"
+        event, "`حساب سرعة الإنترنت الخاصة بي. أرجو الإنتظار!!`"
     )
     start = datetime.now()
     s = speedtest.Speedtest()
@@ -71,13 +71,13 @@ async def _(event):
         speedtest_image = response
         if as_text:
             await catevent.edit(
-                """`SpeedTest completed in {} seconds`
+                """`اكتمل اختبار السرعه في ثانيه {} seconds`
 
-`Download: {}`
-`Upload: {}`
-`Ping: {}`
-`Internet Service Provider: {}`
-`ISP Rating: {}`""".format(
+`تنزيل : {}`
+`تحميل : {}`
+`البنك : {}`
+`مزود الخدمة الانترنيت : {}`
+`ISP تـقـيـم : {}`""".format(
                     ms,
                     convert_from_bytes(download_speed),
                     convert_from_bytes(upload_speed),
