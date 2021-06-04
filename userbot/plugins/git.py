@@ -1,3 +1,5 @@
+@JMTHOM
+
 import os
 from datetime import datetime
 
@@ -20,8 +22,8 @@ GIT_TEMP_DIR = "./temp/"
 
 
 @catub.cat_cmd(
-    pattern="github( -l(\d+))? (.*)",
-    command=("github", plugin_category),
+    pattern="بحث ريبو( -l(\d+))? (.*)",
+    command=("بحث ريبو", plugin_category),
     info={
         "header": "Shows the information about an user on GitHub of given username",
         "flags": {"-l": "repo limit : default to 5"},
@@ -53,24 +55,24 @@ async def _(event):
                     limit -= 1
                     if limit == 0:
                         break
-            REPLY = "**GitHub Info for** `{username}`\
-                \n👤 **Name:** [{name}]({html_url})\
-                \n🔧 **Type:** `{type}`\
-                \n🏢 **Company:** `{company}`\
-                \n🔭 **Blog** : {blog}\
-                \n📍 **Location** : `{location}`\
-                \n📝 **Bio** : __{bio}__\
-                \n❤️ **Followers** : `{followers}`\
-                \n👁 **Following** : `{following}`\
-                \n📊 **Public Repos** : `{public_repos}`\
-                \n📄 **Public Gists** : `{public_gists}`\
-                \n🔗 **Profile Created** : `{created_at}`\
-                \n✏️ **Profile Updated** : `{updated_at}`".format(
+            REPLY = "**GitHub معلومات الريبو** `{username}`\
+                \n👤 **الاسم :** [{name}]({html_url})\
+                \n🔧 **نوع :** `{type}`\
+                \n🏢 **شركة :** `{company}`\
+                \n🔭 **مدونة** : {blog}\
+                \n📍 **موقع ** : `{location}`\
+                \n📝 **بـايـو** : __{bio}__\
+                \n❤️ **مـتـابـعـون** : `{followers}`\
+                \n👁 **الـتـالـي** : `{following}`\
+                \n📊 **إعادة الشراء العامة** : `{public_repos}`\
+                \n📄 **الجماهير العامة** : `{public_gists}`\
+                \n🔗 **تم إنشاء الملف الشخصي** : `{created_at}`\
+                \n✏️ **تحديث الملف الشخصي** : `{updated_at}`".format(
                 username=username, **result
             )
 
             if repos:
-                REPLY += "\n🔍 **Some Repos** : " + " | ".join(repos)
+                REPLY += "\n🔍 **بعض الريبو** : " + " | ".join(repos)
             downloader = SmartDL(photo, ppath, progress_bar=False)
             downloader.start(blocking=False)
             while not downloader.isFinished():
