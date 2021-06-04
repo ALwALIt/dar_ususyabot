@@ -84,14 +84,14 @@ async def plugininfo(input_str, event, flag):
     outstr += f"**Commands Available :** `{len(cmds)}`\n"
     category = getkey(input_str)
     if category is not None:
-        outstr += f"**فئة الملف :** `{category}`\n\n"
+        outstr += f"**Category :** `{category}`\n\n"
     for cmd in cmds:
         outstr += f"•  **cmd :** `{cmdprefix}{cmd}`\n"
         try:
-            outstr += f"•  **معلومات :** `{CMD_INFO[cmd][1]}`\n\n"
+            outstr += f"•  **info :** `{CMD_INFO[cmd][1]}`\n\n"
         except IndexError:
-            outstr += f"•  **معلومات :** `None`\n\n"
-    outstr += f"**👩‍💻 الاستخدام : ** `{cmdprefix}help <command name>`\
+            outstr += f"•  **info :** `None`\n\n"
+    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <command name>`\
         \n**Note : **If command name is same as plugin name then use this `{cmdprefix}help -c <command name>`."
     return outstr
 
@@ -99,7 +99,7 @@ async def plugininfo(input_str, event, flag):
 async def grpinfo():
     outstr = "**Plugins in Catuserbot are:**\n\n"
     outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <plugin name>`\n\n"
-    category = ["admin", "bot", "fun", "misc", "tools", "utils", "extra"]
+    category = ["الأدمن", "البـوت", "التـسلية", "متفرقات", "الادوات", "المساعدات", "الاخرى"]
     for cat in category:
         plugins = GRP_INFO[cat]
         outstr += f"**{hemojis[cat]} {cat.title()} **({len(plugins)})\n"
@@ -111,7 +111,7 @@ async def grpinfo():
 
 async def cmdlist():
     outstr = "**Total list of Commands in your Catuserbot are :**\n\n"
-    category = ["admin", "bot", "fun", "misc", "tools", "utils", "extra"]
+    category = ["الأدمن", "البـوت", "التـسلية", "متفرقات", "الادوات", "المساعدات", "الاخرى"]
     for cat in category:
         plugins = GRP_INFO[cat]
         outstr += f"**{hemojis[cat]} {cat.title()} ** - {len(plugins)}\n\n"
@@ -126,8 +126,8 @@ async def cmdlist():
 
 
 @catub.cat_cmd(
-    pattern="help ?(-c|-p|-t)? ?(.*)?",
-    command=("help", plugin_category),
+    pattern="المساعده ?(-c|-p|-t)? ?(.*)?",
+    command=("المساعده", plugin_category),
     info={
         "header": "To get guide for catuserbot.",
         "description": "To get information or guide for the command or plugin",
