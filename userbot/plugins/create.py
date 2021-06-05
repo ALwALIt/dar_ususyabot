@@ -10,31 +10,31 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="create (b|g|c) (.*)",
+    pattern="انشاء (كروب خاص|كروب|قناة) (.*)",
     command=("create", plugin_category),
     info={
-        "header": "To create a private group/channel with userbot.",
-        "description": "Use this cmd to create super group , normal group or channel.",
+        "header": "لإنشاء مجموعة / قناة خاصة باستخدام برنامج Userbot",
+        "description": "استخدم cmd هذا لإنشاء مجموعة فائقة أو مجموعة أو قناة عادية",
         "flags": {
-            "b": "to create a private super group",
-            "g": "To create a private basic group.",
-            "c": "to create a private channel",
+            "b": "لإنشاء مجموعة فائقة خاصة",
+            "g": "لإنشاء مجموعة أساسية خاصة",
+            "c": "لإنشاء قناة خاصة",
         },
         "usage": "{tr}create (b|g|c) <name of group/channel>",
         "examples": "{tr}create b catuserbot",
     },
 )
 async def _(event):
-    "To create a private group/channel with userbot"
+    "لإنشاء مجموعة / قناة خاصة باستخدام برنامج Userbot"
     type_of_group = event.pattern_match.group(1)
     group_name = event.pattern_match.group(2)
-    if type_of_group == "c":
-        descript = "This is a Test Channel created using catuserbot"
+    if type_of_group == "قناة":
+        descript = "هذه قناة اختبار تم إنشاؤها باستخدام برنامج جمثون"
     else:
-        descript = "This is a Test Group created using catuserbot"
-    event = await edit_or_reply(event, "creating......")
+        descript = "هذه مجموعة اختبار تم إنشاؤها باستخدام جمثون"
+    event = await edit_or_reply(event, "خلق...")
     flag = False
-    if type_of_group == "b":
+    if type_of_group == "كروب خاص":
         try:
             new_rights = ChatAdminRights(
                 add_admins=False,
@@ -75,13 +75,13 @@ async def _(event):
                 await event.edit(str(e))
             else:
                 LOGS.error(e)
-    elif type_of_group in ["g", "c"]:
+    elif type_of_group in ["كروب", "قناة"]:
         try:
             r = await event.client(
                 functions.channels.CreateChannelRequest(
                     title=group_name,
                     about=descript,
-                    megagroup=type_of_group != "c",
+                    megagroup=type_of_group != "قناة",
                 )
             )
 
