@@ -25,8 +25,8 @@ def convert_from_bytes(size):
 
 
 @catub.cat_cmd(
-    pattern="سرعه تجريب(?: |$)(.*)",
-    command=("سرعه تجريب", plugin_category),
+    pattern="سرعة النت(?: |$)(.*)",
+    command=("سرعة النت", plugin_category),
     info={
         "header": "Botserver's speedtest by ookla.",
         "options": {
@@ -98,12 +98,12 @@ async def _(event):
             await event.delete()
     except Exception as exc:
         await catevent.edit(
-            """**SpeedTest** completed in {} seconds
-Download: {}
-Upload: {}
-Ping: {}
+            """**اكتمل اختبار السرعه في ثانيه {} seconds
+تنزيل: {}
+تحميل: {}
+البنك: {}
 
-__With the Following ERRORs__
+__مع الاخطاء التالية__
 {}""".format(
                 ms,
                 convert_from_bytes(download_speed),
