@@ -61,17 +61,17 @@ COLLECTION_STRINGS = {
 
 
 async def autopicloop():
-    AUTOPICSTART = gvarstatus("autopic") == "true"
+    AUTOPICSTART = gvarstatus("صورة وقتية") == "true"
     if AUTOPICSTART and Config.DEFAULT_PIC is None:
         if BOTLOG:
             return await catub.send_message(
                 BOTLOG_CHATID,
-                "**Error**\n`For functing of autopic you need to set DEFAULT_PIC var in Heroku vars`",
+                "**Error**\n`For functing of صورة وقتية you need to set DEFAULT_PIC var in Heroku vars`",
             )
         return
-    if gvarstatus("autopic") is not None:
+    if gvarstatus("صورة وقتية") is not None:
         try:
-            counter = int(gvarstatus("autopic_counter"))
+            counter = int(gvarstatus("صورة وقتية_counter"))
         except Exception as e:
             LOGS.warn(str(e))
     while AUTOPICSTART:
@@ -97,7 +97,7 @@ async def autopicloop():
             await asyncio.sleep(Config.CHANGE_TIME)
         except BaseException:
             return
-        AUTOPICSTART = gvarstatus("autopic") == "true"
+        AUTOPICSTART = gvarstatus("صورة وقتية") == "true"
 
 
 async def digitalpicloop():
@@ -198,10 +198,10 @@ async def autoname_loop():
 
 
 async def autobio_loop():
-    AUTOBIOSTART = gvarstatus("autobio") == "true"
+    AUTOBIOSTART = gvarstatus("البايو الوقتي") == "true"
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
-        HM = time.strftime("%H:%M:%S")
+        HM = time.strftime("%H:%M")
         bio = f" {DEFAULTUSERBIO} |️ {HM}"
         LOGS.info(bio)
         try:
@@ -210,7 +210,7 @@ async def autobio_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(Config.CHANGE_TIME)
-        AUTOBIOSTART = gvarstatus("autobio") == "true"
+        AUTOBIOSTART = gvarstatus("البايو الوقتي") == "true"
 
 
 async def animeprofilepic(collection_images):
@@ -306,10 +306,10 @@ async def _(event):
         "options": "you can give integer input with cmd like 40,55,75 ..etc.\
              So that your profile pic will rotate with that specific angle",
         "note": "For functioning of this cmd you need to set DEFAULT_PIC var in heroku. \
-            To stop this do '.end autopic'",
+            To stop this do '.end صورة وقتية'",
         "usage": [
-            "{tr}autopic",
-            "{tr}autopic <any integer>",
+            "{tr}صورة وقتية",
+            "{tr}صورة وقتية <any integer>",
         ],
     },
 )
@@ -318,7 +318,7 @@ async def _(event):
     if Config.DEFAULT_PIC is None:
         return await edit_delete(
             event,
-            "**Error**\nFor functing of autopic you need to set DEFAULT_PIC var in Heroku vars",
+            "**Error**\nFor functing of صورة وقتية you need to set DEFAULT_PIC var in Heroku vars",
             parse_mode=_format.parse_pre,
         )
     downloader = SmartDL(Config.DEFAULT_PIC, autopic_path, progress_bar=False)
@@ -332,13 +332,13 @@ async def _(event):
         except ValueError:
             input_str = 60
     else:
-        if gvarstatus("autopic_counter") is None:
-            addgvar("autopic_counter", 30)
+        if gvarstatus("صورة وقتية_عدد") is None:
+            addgvar("صورة وقتية_عدد", 30)
     if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
         return await edit_delete(event, f"`Autopic is already enabled`")
     addgvar("صورة وقتية", True)
     if input_str:
-        addgvar("autopic_counter", input_str)
+        addgvar("صورة وقتية_عدد", input_str)
     await edit_delete(event, f"`Autopic has been started by my Master`")
     await autopicloop()
 
@@ -423,15 +423,15 @@ async def _(event):
     info={
         "header": "Changes your bio with time",
         "description": "Updates your profile bio along with time. Set DEFAULT_BIO var in heroku with your fav bio,",
-        "note": "To stop this do '.end autobio'",
-        "usage": "{tr}autobio",
+        "note": "To stop this do '.end البايو الوقتي'",
+        "usage": "{tr}البايو الوقتي",
     },
 )
 async def _(event):
     "To update your bio along with time"
-    if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
+    if gvarstatus("البايو الوقتي") is not None and gvarstatus("البايو الوقتي") == "true":
         return await edit_delete(event, f"**البايو الوقتي بالفعل مفعل**")
-    addgvar("autobio", True)
+    addgvar("البايو الوقتي", True)
     await edit_delete(event, "**تم تفعيل النبذة الوقتية**")
     await autobio_loop()
 
@@ -443,7 +443,7 @@ async def _(event):
         "header": "To stop the functions of autoprofile",
         "description": "If you want to stop autoprofile functions then use this cmd.",
         "options": {
-            "autopic": "To stop autopic",
+            "صورة وقتية": "To stop صورة وقتية",
             "digitalpfp": "To stop difitalpfp",
             "bloom": "To stop bloom",
             "autoname": "To stop autoname",
@@ -452,7 +452,7 @@ async def _(event):
             "batmanpfp": "To stop batmanpfp",
         },
         "usage": "{tr}end <option>",
-        "examples": ["{tr}end autopic"],
+        "examples": ["{tr}end صورة وقتية"],
     },
 )
 async def _(event):  # sourcery no-metrics
@@ -480,9 +480,9 @@ async def _(event):  # sourcery no-metrics
         )
         delgvar("autopfp_strings")
         return await edit_delete(event, "`batmanpfp has been stopped now`")
-    if input_str == "autopic":
-        if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
-            delgvar("autopic")
+    if input_str == "صورة وقتية":
+        if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
+            delgvar("صورة وقتية")
             if os.path.exists(autopic_path):
                 file = await event.client.upload_file(autopic_path)
                 try:
@@ -522,20 +522,20 @@ async def _(event):  # sourcery no-metrics
             )
             return await edit_delete(event, "**الاسم الوقتي تم تعطيله**")
         return await edit_delete(event, "**الاسم الوقتي تم تعطيله**")
-    if input_str == "autobio":
-        if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
-            delgvar("autobio")
+    if input_str == "البايو الوقتي":
+        if gvarstatus("البايو الوقتي") is not None and gvarstatus("البايو الوقتي") == "true":
+            delgvar("البايو الوقتي")
             await event.client(
                 functions.account.UpdateProfileRequest(about=DEFAULTUSERBIO)
             )
             return await edit_delete(event, "**البايو الوقتي تم تعطيله**")
         return await edit_delete(event, "** انت لم تقم بتفعيل البايو الوقتي**")
     END_CMDS = [
-        "autopic",
+        "صورة وقتية",
         "digitalpfp",
         "bloom",
         "اسم وقتي",
-        "autobio",
+        "البايو الوقتي",
         "thorpfp",
         "batmanpfp",
     ]
