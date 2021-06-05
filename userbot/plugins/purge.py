@@ -16,8 +16,8 @@ purgelist = {}
 
 
 @catub.cat_cmd(
-    pattern="purge(?: |$)(.*)",
-    command=("purge", plugin_category),
+    pattern="تنظيف(?: |$)(.*)",
+    command=("تنظيف", plugin_category),
     info={
         "header": "To purge messages from the replied message.",
         "description": "Deletes the x(count) amount of messages from the replied message if you don't use count then deletes all messages from there",
@@ -52,7 +52,7 @@ async def fastpurger(event):
                     msgs = []
         elif input_str:
             return await edit_or_reply(
-                event, f"**Error**\n`{input_str} is not an integer. Use proper syntax.`"
+                event, f"**خطأ**\n`{input_str} هذا ليس عدد صحيح  ، يرجى كتاب الجمله بشكل صحيح"
             )
         else:
             async for msg in event.client.iter_messages(
@@ -67,7 +67,7 @@ async def fastpurger(event):
     else:
         await edit_or_reply(
             event,
-            "`No message specified.`",
+            "`لا تـوجد رسالـة محددة`",
         )
         return
     if msgs:
@@ -75,12 +75,12 @@ async def fastpurger(event):
     await event.delete()
     hi = await event.client.send_message(
         event.chat_id,
-        "`Fast purge complete!\nPurged " + str(count) + " messages.`",
+        "`الـتنظيف السريـع اكتمل!\nتم حـذف " + str(count) + " من الـرسائل.`",
     )
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#PURGE \n`Purge of " + str(count) + " messages done successfully.`",
+            "#الـتنظيف \n`الـتنظيف لـ " + str(count) + " من الـرسائل تم بـنجاح ✅.`",
         )
     await sleep(5)
     await hi.delete()
@@ -163,8 +163,8 @@ async def purge_to(event):
 
 
 @catub.cat_cmd(
-    pattern="purgeme",
-    command=("purgeme", plugin_category),
+    pattern="حذف رسائلي",
+    command=("حذف رسائلي", plugin_category),
     info={
         "header": "To purge your latest messages.",
         "description": "Deletes x(count) amount of your latest messages.",
@@ -185,20 +185,20 @@ async def purgeme(event):
 
     smsg = await event.client.send_message(
         event.chat_id,
-        "**Purge complete!**` Purged " + str(count) + " messages.`",
+        "**اكتـمل التنظيـف !**` تـنظيف " + str(count) + " من الـرسائل.`",
     )
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#PURGEME \n`Purge of " + str(count) + " messages done successfully.`",
+            "#حذف_رسائلي \n`الـتنظيف لـ " + str(count) + " من الـرسائل بـنجاح ✅.`",
         )
     await sleep(5)
     await smsg.delete()
 
 
 @catub.cat_cmd(
-    pattern="del(\s*| \d+)$",
-    command=("del", plugin_category),
+    pattern="مسح(\s*| \d+)$",
+    command=("مسح", plugin_category),
     info={
         "header": "To delete replied message.",
         "description": "Deletes the message you replied to in x(count) seconds if count is not used then deletes immediately",
@@ -218,27 +218,27 @@ async def delete_it(event):
                 await msg_src.delete()
                 if BOTLOG:
                     await event.client.send_message(
-                        BOTLOG_CHATID, "#DEL \n`Deletion of message was successful`"
+                        BOTLOG_CHATID, "#المسح \n**تم ازالة الرسالة بنـجاح ✅**"
                     )
             except rpcbaseerrors.BadRequestError:
                 if BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "`Well, I can't delete a message. I am not an admin`",
+                        "** لا يمكنني حذف الرسائل لاني لست مشرف هنا ⚠️**",
                     )
         elif input_str:
             if not input_str.startswith("var"):
-                await edit_or_reply(event, "`Well the time you mentioned is invalid.`")
+                await edit_or_reply(event, "**لم يتم العثور على الرسالة 🆑**")
         else:
             try:
                 await msg_src.delete()
                 await event.delete()
                 if BOTLOG:
                     await event.client.send_message(
-                        BOTLOG_CHATID, "#DEL \n`Deletion of message was successful`"
+                        BOTLOG_CHATID, "#المسح \n**تم ازالة الرسالة بنـجاح ✅**"
                     )
             except rpcbaseerrors.BadRequestError:
-                await edit_or_reply(event, "`Well, I can't delete a message`")
+                await edit_or_reply(event, "**حسنا لا يمكنني حذف الرسالة 🆑**")
     else:
         if not input_str:
             await event.delete()
