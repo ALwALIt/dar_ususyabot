@@ -74,7 +74,7 @@ async def video_catfile(event):  # sourcery no-metrics
     if mediatype not in ["Photo", "Audio", "Voice", "Gif", "Sticker", "Video"]:
         return await edit_delete(event, "```الوسائط المدعومة غير موجودة ⌁```")
     flag = True
-    catevent = await edit_or_reply(event, "`التحويل إلى شكل دائري.`")
+    catevent = await edit_or_reply(event, "`جار التحويل الى شكل دائري انتظر قليلا 🔍 ⌁`")
     catfile = await reply.download_media(file="./temp/")
     if mediatype in ["Gif", "Video", "Sticker"]:
         if not catfile.endswith((".webp")):
@@ -207,8 +207,8 @@ async def video_catfile(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="تحويل صوره$",
-    command=("تحويل صوره", plugin_category),
+    pattern="تحويل صورة$",
+    command=("تحويل صورة", plugin_category),
     info={
         "header": "رد على هذا الأمر إلى ملصق للحصول على صورة ⌁",
         "usage": "{tr}stoi",
@@ -241,14 +241,14 @@ async def _(cat_event):
         else:
             await event.edit("Can't Convert")
     else:
-        await event.edit("Syntax : `.تحويل صورة` تحويل العادي")
+        await event.edit("- @JMTHON ⌁")
 
 
 @catub.cat_cmd(
     pattern="تحويل ملف$",
     command=("تحويل ملف", plugin_category),
     info={
-        "header": "Reply this command to a image to get sticker.",
+        "header": "رد على هذا الأمر على صورة للحصول على ملصق ⌁",
         "usage": "{tr}itos",
     },
 )
@@ -289,47 +289,6 @@ async def silently_send_message(conv, text):
     return response
 
 @catub.cat_cmd(
-    pattern="تحويل صورة$",
-    command=("تحويل صورة", plugin_category),
-    info={
-        "header": "Reply this command to a image file to convert it to image",
-        "usage": "{tr}ftoi",
-    },
-)
-async def on_file_to_photo(event):
-    "image file(png) to streamable image."
-    target = await event.get_reply_message()
-    try:
-        image = target.media.document
-    except AttributeError:
-        return await edit_delete(event, "`This isn't an image`")
-    if not image.mime_type.startswith("image/"):
-        return await edit_delete(event, "`This isn't an image`")
-    if image.mime_type == "image/webp":
-        return await edit_delete(event, "`For sticker to image use stoi command`")
-    if image.size > 10 * 1024 * 1024:
-        return  # We'd get PhotoSaveFileInvalidError otherwise
-    catt = await edit_or_reply(event, "`Converting.....`")
-    file = await event.client.download_media(target, file=BytesIO())
-    file.seek(0)
-    img = await event.client.upload_file(file)
-    img.name = "image.png"
-    try:
-        await event.client(
-            SendMediaRequest(
-                peer=await event.get_input_chat(),
-                media=types.InputMediaUploadedPhoto(img),
-                message=target.message,
-                entities=target.entities,
-                reply_to_msg_id=target.id,
-            )
-        )
-    except PhotoInvalidDimensionsError:
-        return
-    await catt.delete()
-
-
-@catub.cat_cmd(
     pattern="تحويل متحركه(?: |$)(.*)",
     command=("تحويل متحركه", plugin_category),
     info={
@@ -338,7 +297,7 @@ async def on_file_to_photo(event):
     },
 )
 async def _(event):  # sourcery no-metrics
-    "Converts Given animated sticker to gif"
+    "جار التحويل الى متحركه انتظر قليلا ...❤️"
     input_str = event.pattern_match.group(1)
     if not input_str:
         quality = None
@@ -348,7 +307,7 @@ async def _(event):  # sourcery no-metrics
         if len(loc) > 2:
             return await edit_delete(
                 event,
-                "wrong syntax . syntax is `.gif quality ; fps(frames per second)`",
+                "بناء جملة خاطئ. بناء الجملة هو جودة `.gif quality ; fps(frames per second)`",
             )
         if len(loc) == 2:
             if 0 < loc[0] < 721:
@@ -372,7 +331,7 @@ async def _(event):  # sourcery no-metrics
         return await edit_or_reply(event, "`Stupid!, This is not animated sticker.`")
     catevent = await edit_or_reply(
         event,
-        "Converting this Sticker to GiF...\n This may takes upto few mins..",
+        "جار تحويل الى متحركه انتظر قليلاً 🔍...\n قد يستغرق هذا بضع دقائق ⌁",
         parse_mode=_format.parse_pre,
     )
     try:
