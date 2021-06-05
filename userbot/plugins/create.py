@@ -57,7 +57,7 @@ async def _(event):
                 )
             )
             await event.edit(
-                "Group `{}` created successfully. Join {}".format(
+                "كروب `{}` تم إنشاؤها بنجاح الانضمام : {}".format(
                     group_name, result.link
                 )
             )
@@ -92,11 +92,11 @@ async def _(event):
                 )
             )
             await event.edit(
-                "Channel `{}` created successfully. Join {}".format(
+                "قناة `{}` تم إنشاؤها بنجاح . انضمام : {}".format(
                     group_name, result.link
                 )
             )
         except Exception as e:
             await event.edit(str(e))
     else:
-        await event.edit("Read `.help create` to know how to use me")
+        await event.edit("Read `.مساعدة` يمكنك إرسال أمر المساعده للمساعدة")
