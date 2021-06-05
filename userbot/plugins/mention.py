@@ -8,8 +8,8 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="(tagall|all)(?: |$)(.*)",
-    command=("tagall", plugin_category),
+    pattern="(للكل|all)(?: |$)(.*)",
+    command=("للكل", plugin_category),
     info={
         "header": "tags recent 100 persons in the group may not work for all",
         "usage": [
@@ -31,8 +31,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="report$",
-    command=("report", plugin_category),
+    pattern="ابلاغ$",
+    command=("ابلاغ", plugin_category),
     info={
         "header": "To tags admins in group.",
         "usage": "{tr}report",
@@ -40,7 +40,7 @@ async def _(event):
 )
 async def _(event):
     "To tags admins in group."
-    mentions = "@admin: **Spam Spotted**"
+    mentions = "@admin: **يوجد هناك بعض الازعاج**"
     chat = await event.get_input_chat()
     reply_to_id = await reply_id(event)
     async for x in event.client.iter_participants(
@@ -53,8 +53,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="men (.*)",
-    command=("mention", plugin_category),
+    pattern="تاك (.*)",
+    command=("تاك", plugin_category),
     info={
         "header": "Tags that person with the given custom text.",
         "usage": [
