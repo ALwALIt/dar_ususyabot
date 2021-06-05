@@ -11,12 +11,12 @@ LOGS = logging.getLogger(__name__)
 
 
 @catub.cat_cmd(
-    pattern="(get_id|id)(?: |$)(.*)",
-    command=("id", plugin_category),
+    pattern="(get_id|هوية شخصية)(?: |$)(.*)",
+    command=("هوية شخصية", plugin_category),
     info={
         "header": "To get id of the group or user.",
-        "description": "if given input then shows id of that given chat/channel/user else if you reply to user then shows id of the replied user \
-    along with current chat id and if not replied to user or given input then just show id of the chat where you used the command",
+        "description": "إذا تم إدخال إدخال ثم يعرض معرف تلك الدردشة / القناة / مستخدم آخر إذا قمت بالرد على المستخدم ثم يعرض معرف المستخدم الذي تم الرد عليه
+    مع معرف الدردشة الحالي وإذا لم يتم الرد على المستخدم أو إدخال إدخال معين ، فما عليك سوى إظهار معرف الدردشة حيث استخدمت الأمر",
         "usage": "{tr}id <reply/username>",
     },
 )
@@ -41,7 +41,7 @@ async def _(event):
                     )
             except Exception as e:
                 LOGS.info(str(e))
-        await edit_or_reply(event, "`Either give input as username or reply to user`")
+        await edit_or_reply(event, "`أدخل إما اسم مستخدم أو الرد على المستخدم`")
     elif event.reply_to_msg_id:
         await event.get_input_chat()
         r_msg = await event.get_reply_message()
@@ -49,12 +49,12 @@ async def _(event):
             bot_api_file_id = pack_bot_file_id(r_msg.media)
             await edit_or_reply(
                 event,
-                f"**Current Chat ID : **`{str(event.chat_id)}`\n**From User ID: **`{str(r_msg.sender_id)}`\n**Media File ID: **`{bot_api_file_id}`",
+                f"**معرف الدردشة الحالي : **`{str(event.chat_id)}`\n**من معرف المستخدم : **`{str(r_msg.sender_id)}`\n**ميديا فايل ID: **`{bot_api_file_id}`",
             )
         else:
             await edit_or_reply(
                 event,
-                f"**Current Chat ID : **`{str(event.chat_id)}`\n**From User ID: **`{str(r_msg.sender_id)}`",
+                f"**معرف الدردشة الحالي : **`{str(event.chat_id)}`\n**من معرف المستخدم : **`{str(r_msg.sender_id)}`",
             )
     else:
-        await edit_or_reply(event, f"**Current Chat ID : **`{str(event.chat_id)}`")
+        await edit_or_reply(event, f"**معرف الدردشة الحالي : **`{str(event.chat_id)}`")
