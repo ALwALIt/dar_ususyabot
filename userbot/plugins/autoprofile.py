@@ -66,7 +66,7 @@ async def autopicloop():
         if BOTLOG:
             return await catub.send_message(
                 BOTLOG_CHATID,
-                "**Error**\n`For functing of صورة وقتية you need to set DEFAULT_PIC var in Heroku vars`",
+                "**خطأ**\n يجب وضع فار الصورة لتلفعيل هذا الامر\n  .set var DEFAULT_PIC + رابط الصوره",
             )
         return
     if gvarstatus("صورة وقتية") is not None:
@@ -186,7 +186,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f" {DEFAULTUSER} - {HM}"
+        name = f"- {HM} | {DEFAULTUSER}"
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
