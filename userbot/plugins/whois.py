@@ -64,8 +64,7 @@ async def fetch_info(replied_user, event):
     caption += f"<b> ⌁ | الايدي :</b> <code>{user_id}</code>\n"
     caption += f"<b> ⌁ | عـدد الصور :</b> {replied_user_profile_photos_count}\n"
     caption += f"<b> ⌁ | النبـذة : </b> {user_bio} \n"
-    caption += f"<b> ⌁ | حـسابه :</b> \n"
-    caption += f'<a href="tg://user?id={user_id}">{first_name}</a> \n'
+    caption += f"<b> ⌁ | حـسابه :</b> href=tg://user?id={user_id}>{first_name} \n"
     caption += f"<b> ⌁ | الـمطور </b>  @JMTHON"
     return photo, caption
 
@@ -74,9 +73,9 @@ async def fetch_info(replied_user, event):
     pattern="كشف(?: |$)(.*)",
     command=("كشف", plugin_category),
     info={
-        "header": "Gets information of an user such as restrictions ban by spamwatch or cas.",
-        "description": "That is like whether he banned is spamwatch or cas and small info like groups in common, dc ..etc.",
-        "usage": "{tr}userinfo <username/userid/reply>",
+        "الامر": "امر الكشف يقوم بإرسال بعض معلومات الشهص مم المجموعات المشتركه والخ  ، ",
+        "الشرح": "للحصول على بعض معلومات الشخص.",
+        "الاستخدام": "{tr}كشف <المعرف/ايدي/بالرد عليه>",
     },
 )
 async def _(event):
@@ -146,9 +145,9 @@ async def _(event):
     pattern="ايدي(?: |$)(.*)",
     command=("ايدي", plugin_category),
     info={
-        "header": "Gets info of an user.",
-        "description": "User compelete details.",
-        "usage": "{tr}whois <username/userid/reply>",
+        "الامر": "Gets info of an user.",
+        "الشرح": "User compelete details.",
+        "الاستخدام": "{tr}whois <username/userid/reply>",
     },
 )
 async def who(event):
@@ -186,8 +185,8 @@ async def who(event):
     pattern="رابط الحساب?: |$)(.*)",
     command=("رابط الحساب", plugin_category),
     info={
-        "header": "Generates a link to the user's PM .",
-        "usage": "{tr}link <username/userid/reply>",
+        "الامر": "يقوم بصنع رابط لحساب اي شخص حتى لو غير معرفه سيبقى الرابط شغال .",
+        "الاستخدام": "{tr}رابط الحساب <معرف/ايدي/بالرد عليه>",
     },
 )
 async def permalink(mention):
