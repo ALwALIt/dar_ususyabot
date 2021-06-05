@@ -5,8 +5,8 @@ import shutil
 from ..helpers.google_image_download import googleimagesdownload
 
 
-@bot.on(admin_cmd(pattern=r"بحث صور(?: |$)(\d*)? ?(.*)"))
-@bot.on(sudo_cmd(pattern=r"بحث صور(?: |$)(\d*)? ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"صور(?: |$)(\d*)? ?(.*)"))
+@bot.on(sudo_cmd(pattern=r"صور(?: |$)(\d*)? ?(.*)", allow_sudo=True))
 async def img_sampler(event):
     if event.fwd_from:
         return
