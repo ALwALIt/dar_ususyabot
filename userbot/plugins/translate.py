@@ -24,8 +24,8 @@ async def getTranslate(text, **kwargs):
 
 
 @catub.cat_cmd(
-    pattern="tl (.*)",
-    command=("tl", plugin_category),
+    pattern="ترجمه (.*)",
+    command=("ترجمه", plugin_category),
     info={
         "header": "To translate the text to required language.",
         "note": "For langugage codes check [this link](https://telegra.ph/Language-codes-11-01)",
@@ -47,7 +47,7 @@ async def _(event):
         lan, text = input_str.split(";")
     else:
         return await edit_delete(
-            event, "`.tl LanguageCode` as reply to a message", time=5
+            event, "للترجمه رد على الرساله واكتب .ترجمه مع كود الدوله**", time=5
         )
     text = deEmojify(text.strip())
     lan = lan.strip()
@@ -55,8 +55,8 @@ async def _(event):
     try:
         translated = await getTranslate(text, dest=lan)
         after_tr_text = translated.text
-        output_str = f"**TRANSLATED from {LANGUAGES[translated.src].title()} to {LANGUAGES[lan].title()}**\
-                \n`{after_tr_text}`"
+        output_str = f"تمت الترجمه من↫ {LANGUAGES[translated.src].title()} الى↵ {LANGUAGES[lan].title()} ↯**\
+                \n\n{after_tr_text}"
         await edit_or_reply(event, output_str)
     except Exception as exc:
         await edit_delete(event, f"**Error:**\n`{str(exc)}`", time=5)
