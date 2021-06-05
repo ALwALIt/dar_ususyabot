@@ -29,10 +29,10 @@ async def _(event):
     type_of_group = event.pattern_match.group(1)
     group_name = event.pattern_match.group(2)
     if type_of_group == "قناة":
-        descript = "هذه قناة اختبار تم إنشاؤها باستخدام برنامج جمثون"
+        descript = "هذه قناة اختبار تم إنشاؤها باستخدام برنامج جمثون @JMTHON"
     else:
-        descript = "هذه مجموعة اختبار تم إنشاؤها باستخدام جمثون"
-    event = await edit_or_reply(event, "خلق...")
+        descript = "هذه مجموعة اختبار تم إنشاؤها باستخدام جمثون @JMTHON"
+    event = await edit_or_reply(event, "جار انشاء ..")
     flag = False
     if type_of_group == "كروب خاص":
         try:
@@ -57,7 +57,7 @@ async def _(event):
                 )
             )
             await event.edit(
-                "كروب `{}` تم إنشاؤها بنجاح الانضمام : {}".format(
+                "كروب `{}` تم إنشاؤها بنجاح رابط الكروب  : {}".format(
                     group_name, result.link
                 )
             )
@@ -92,7 +92,7 @@ async def _(event):
                 )
             )
             await event.edit(
-                "قناة `{}` تم إنشاؤها بنجاح . انضمام : {}".format(
+                "قناة `{}` تم إنشاؤها بنجاح رابط القناة للانضمام : {}".format(
                     group_name, result.link
                 )
             )
