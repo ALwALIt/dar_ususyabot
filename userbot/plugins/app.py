@@ -13,8 +13,8 @@ plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="app (.*)",
-    command=("app", plugin_category),
+    pattern="تطبيق (.*)",
+    command=("تطبيق", plugin_category),
     info={
         "header": "To search any app in playstore",
         "description": "Searches the app in the playstore and provides the link to the app in playstore and fetchs app details",
@@ -24,7 +24,7 @@ plugin_category = "utils"
 async def app_search(event):
     "To search any app in playstore."
     app_name = event.pattern_match.group(1)
-    event = await edit_or_reply(event, "`Searching!..`")
+    event = await edit_or_reply(event, "`جار التحميل التطبيق المطلوب انتظر 🔍❤️!..`")
     try:
         remove_space = app_name.split(" ")
         final_name = "+".join(remove_space)
@@ -71,7 +71,7 @@ async def app_search(event):
             + "</a>"
         )
         app_details += "\n<code>Rating :</code> " + app_rating.replace(
-            "Rated ", "⭐ "
+            "مصنفة ", "⭐ "
         ).replace(" out of ", "/").replace(" stars", "", 1).replace(
             " stars", "⭐ "
         ).replace(
@@ -82,9 +82,9 @@ async def app_search(event):
             + app_link
             + "'>View in Play Store</a>"
         )
-        app_details += f"\n\n===> {ALIVE_NAME} <==="
+        app_details += f"\n\n===> -: @JMTHON <==="
         await event.edit(app_details, link_preview=True, parse_mode="HTML")
     except IndexError:
-        await event.edit("No result found in search. Please enter **Valid app name**")
+        await event.edit("لم يتم العثور على نتيجة في البحث. الرجاء إدخال ** اسم التطبيق صالح**")
     except Exception as err:
-        await event.edit("Exception Occured:- " + str(err))
+        await event.edit("حدث استثناء:- " + str(err))
