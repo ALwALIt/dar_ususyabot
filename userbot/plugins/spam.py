@@ -39,32 +39,32 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#SPAM\n"
-                        + f"Spam was executed successfully in [User](tg://user?id={event.chat_id}) chat with {counter} times with below message",
+                        + f"تـم تـكرار العـدد العـشوائي بنـجاح  [User](tg://user?id={event.chat_id}) الـدردشة مـع {counter} مرات مع الرسالة أدناه",
                     )
                 else:
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#SPAM\n"
-                        + f"Spam was executed successfully in {event.chat.title}(`{event.chat_id}`) with {counter} times with below message",
+                        + f"تـم تـكرار العـدد العـشوائي بنـجاح  {event.chat.title}(`{event.chat_id}`) مـع {counter} مرات مع الرسالة أدناه",
                     )
             else:
                 if event.is_private:
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#DELAYSPAM\n"
-                        + f"Delay spam was executed successfully in [User](tg://user?id={event.chat_id}) chat with {counter} times with below message with delay {sleeptimet} seconds",
+                        + f"تـم تأخـير التكـرار العشـوائي [User](tg://user?id={event.chat_id}) الـدردشـة مـع {counter} مرات مع الرسالة أدناه مع تأخير {sleeptimet} ثـانية ",
                     )
                 else:
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#DELAYSPAM\n"
-                        + f"Delay spam was executed successfully in {event.chat.title}(`{event.chat_id}`) with {counter} times with below message with delay {sleeptimet} seconds",
+                        + f"تـم تأخيـر التـكرار العـشوائـي {event.chat.title}(`{event.chat_id}`) مـع {counter} مرات مع الرسالة أدناه مع تأخير {sleeptimet} ثـانيـة ",
                     )
 
             sandy = await event.client.send_file(BOTLOG_CHATID, sandy)
             await _catutils.unsavegif(event, sandy)
         return
-    elif event.reply_to_msg_id and sandy.text:
+        elif event.reply_to_msg_id and sandy.text:
         spam_message = sandy.text
         for _ in range(counter):
             await event.client.send_message(event.chat_id, spam_message)
@@ -75,14 +75,14 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
                 await event.client.send_message(
                     BOTLOG_CHATID,
                     "#SPAM\n"
-                    + f"Spam was executed successfully in [User](tg://user?id={event.chat_id}) chat with {counter} messages of \n"
+                    + f"تـم تنـفيذ التـكرار العـشوائـي [User](tg://user?id={event.chat_id}) الـدردشة مـع {counter} الـرسائل  \n"
                     + f"`{spam_message}`",
                 )
             else:
                 await event.client.send_message(
                     BOTLOG_CHATID,
                     "#SPAM\n"
-                    + f"Spam was executed successfully in {event.chat.title}(`{event.chat_id}`) chat  with {counter} messages of \n"
+                    + f"تـم تنـفيذ الـتكرار العـشوائي {event.chat.title}(`{event.chat_id}`) الـدردشة مـع {counter} الرسـائل  \n"
                     + f"`{spam_message}`",
                 )
         else:
@@ -90,21 +90,20 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
                 await event.client.send_message(
                     BOTLOG_CHATID,
                     "#DELAYSPAM\n"
-                    + f"Delay Spam was executed successfully in [User](tg://user?id={event.chat_id}) chat with delay {sleeptimet} seconds and with {counter} messages of \n"
-                    + f"`{spam_message}`",
+                    + f"تم تنفيذ تأخير البريد العشوائي بنجاح في [User](tg://user?id={event.chat_id}) الدردشة مع تأخير {sleeptimet} ثواني و مع {counter} رسائل \n"
+                    + f"`{spam_message}` ",
                 )
             else:
                 await event.client.send_message(
                     BOTLOG_CHATID,
                     "#DELAYSPAM\n"
-                    + f"Delay spam was executed successfully in {event.chat.title}(`{event.chat_id}`) chat with delay {sleeptimet} seconds and with {counter} messages of \n"
-                    + f"`{spam_message}`",
+                    + f"تم تنفيذ تأخير البريد العشوائي بنجاح في {event.chat.title}(`{event.chat_id}`) الدردشة مع تأخير {sleeptimet} ثواني و مع {counter} رسائل \n"
+                    + f"`{spam_message}` ",
                 )
 
-
 @catub.cat_cmd(
-    pattern="spam (.*)",
-    command=("spam", plugin_category),
+    pattern="تكرار (.*)",
+    command=("تكرار", plugin_category),
     info={
         "header": "Floods the text in the chat !! with given number of times,",
         "description": "Sends the replied media/message <count> times !! in the chat",
@@ -128,8 +127,8 @@ async def spammer(event):
 
 
 @catub.cat_cmd(
-    pattern="spspam$",
-    command=("spspam", plugin_category),
+    pattern="تكرار ملصقات$",
+    command=("تكرار ملصقات", plugin_category),
     info={
         "header": "To spam the chat with stickers.",
         "description": "To spam chat with all stickers in that replied message sticker pack.",
@@ -198,8 +197,8 @@ async def stickerpack_spam(event):
 
 
 @catub.cat_cmd(
-    pattern="cspam (.*)",
-    command=("cspam", plugin_category),
+    pattern="سبام (.*)",
+    command=("سبام", plugin_category),
     info={
         "header": "Spam the text letter by letter",
         "description": "Spam the chat with every letter in given text as new message.",
