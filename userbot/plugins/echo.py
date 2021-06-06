@@ -57,7 +57,7 @@ async def echo(event):
     except Exception as e:
         await edit_delete(catevent, f"**خطأ:**\n`{str(e)}`")
     else:
-        await edit_or_reply(catevent, "ههلا")
+        await edit_or_reply(catevent, "تـم تفـعيل وضـع الازعاج على الشخص بنجاح ✅")
 
 
 @catub.cat_cmd(
