@@ -90,7 +90,7 @@ async def _(event):
         for trigger in to_unblacklist
     )
     await edit_or_reply(
-        event, f"تـم حـذف الكـلمة {successful} / {len(to_unblacklist)} : مـن القائـمة السـوداء ""
+        event, f"تـم حـذف الكـلمة {successful} / {len(to_unblacklist)} : مـن القائـمة السـوداء"
     )
 
 
