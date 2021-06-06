@@ -26,7 +26,7 @@ async def on_new_message(event):
             except Exception:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f"I do not have DELETE permission in {get_display_name(await event.get_chat())}.\
+                    f"لـيس لدي صلاحيات الحذف فس {get_display_name(await event.get_chat())}.\
                      So removing blacklist words from this group",
                 )
                 for word in snips:
@@ -35,8 +35,8 @@ async def on_new_message(event):
 
 
 @catub.cat_cmd(
-    pattern="addblacklist ((.|\n)*)",
-    command=("addblacklist", plugin_category),
+    pattern="منع ((.|\n)*)",
+    command=("منع", plugin_category),
     info={
         "header": "To add blacklist words to database",
         "description": "The given word or words will be added to blacklist in that specific chat if any user sends then the message gets deleted.",
@@ -59,15 +59,15 @@ async def _(event):
         sql.add_to_blacklist(event.chat_id, trigger.lower())
     await edit_or_reply(
         event,
-        "Added {} triggers to the blacklist in the current chat".format(
+        "تم اضافة {} الى القائمه السوداء بنجاح ✅".format(
             len(to_blacklist)
         ),
     )
 
 
 @catub.cat_cmd(
-    pattern="rmblacklist ((.|\n)*)",
-    command=("rmblacklist", plugin_category),
+    pattern="الغاء منع ((.|\n)*)",
+    command=("الغاء منع", plugin_category),
     info={
         "header": "To remove blacklist words from database",
         "description": "The given word or words will be removed from blacklist in that specific chat",
@@ -90,17 +90,17 @@ async def _(event):
         for trigger in to_unblacklist
     )
     await edit_or_reply(
-        event, f"Removed {successful} / {len(to_unblacklist)} from the blacklist"
+        event, f"تـم حـذف الكـلمة {successful} / {len(to_unblacklist)} : مـن القائـمة السـوداء ""
     )
 
 
 @catub.cat_cmd(
-    pattern="listblacklist$",
-    command=("listblacklist", plugin_category),
+    pattern="القائمة السوداء$",
+    command=("القائمة السوداء", plugin_category),
     info={
         "header": "To show the black list words",
         "description": "Shows you the list of blacklist words in that specific chat",
-        "usage": "{tr}listblacklist",
+        "الاستخدام": "{tr}القائمة السوداء",
     },
     groups_only=True,
     require_admin=True,
@@ -108,10 +108,10 @@ async def _(event):
 async def _(event):
     "To show the blacklist words in that specific chat"
     all_blacklisted = sql.get_chat_blacklist(event.chat_id)
-    OUT_STR = "Blacklists in the Current Chat:\n"
+    OUT_STR = "الكلمات المحظورة في الدردشة الحالية:\n"
     if len(all_blacklisted) > 0:
         for trigger in all_blacklisted:
             OUT_STR += f"👉 {trigger} \n"
     else:
-        OUT_STR = "No Blacklists found. Start saving using `.addblacklist`"
+        OUT_STR = "لاتـوجد كلمه محظورة حاليـا لأضـافه كلـمه الى القائمه استعمل أمر  `.منع`"
     await edit_or_reply(event, OUT_STR)
