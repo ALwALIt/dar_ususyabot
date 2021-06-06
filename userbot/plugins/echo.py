@@ -21,8 +21,8 @@ plugin_category = "fun"
 
 
 @catub.cat_cmd(
-    pattern="addecho$",
-    command=("addecho", plugin_category),
+    pattern="تقليد$",
+    command=("تقليد", plugin_category),
     info={
         "header": "To repeat messages sent by the user.",
         "description": "Reply to user with this cmd so from then his every text and sticker messages will be repeated back to him.",
@@ -33,9 +33,9 @@ async def echo(event):
     "To echo the user messages"
     if event.reply_to_msg_id is None:
         return await edit_or_reply(
-            event, "`Reply to a User's message to echo his messages`"
+            event, "يرجى الرد على الشخص الذي تـريد ازعاجه 🌿"
         )
-    catevent = await edit_or_reply(event, "`Adding Echo to user...`")
+    catevent = await edit_or_reply(event, "**يتم تفعيل هذا الامر انتظر قليلا 💞**")
     user, rank = await get_user_from_event(event, catevent, nogroup=True)
     if not user:
         return
@@ -51,18 +51,18 @@ async def echo(event):
     user_name = user.first_name
     user_username = user.username
     if is_echo(chat_id, user_id):
-        return await edit_or_reply(event, "The user is already enabled with echo ")
+        return await edit_or_reply(event, "**تـم تفـعيل وضـع الازعاج على الشخص بنجاح ✅** ")
     try:
         addecho(chat_id, user_id, chat_name, user_name, user_username, chat_type)
     except Exception as e:
-        await edit_delete(catevent, f"**Error:**\n`{str(e)}`")
+        await edit_delete(catevent, f"**خطأ:**\n`{str(e)}`")
     else:
-        await edit_or_reply(catevent, "Hi")
+        await edit_or_reply(catevent, "ههلا")
 
 
 @catub.cat_cmd(
-    pattern="rmecho$",
-    command=("rmecho", plugin_category),
+    pattern="الغاء التقليد$",
+    command=("الغاء التقليد", plugin_category),
     info={
         "header": "To stop repeating paticular user messages.",
         "description": "Reply to user with this cmd to stop repeating his messages back.",
@@ -73,7 +73,7 @@ async def echo(event):
     "To stop echoing the user messages"
     if event.reply_to_msg_id is None:
         return await edit_or_reply(
-            event, "Reply to a User's message to echo his messages"
+            event, "يرجى الرد على الشخص الذي تـريد ازعاجه 🌿"
         )
     reply_msg = await event.get_reply_message()
     user_id = reply_msg.sender_id
@@ -82,16 +82,16 @@ async def echo(event):
         try:
             remove_echo(chat_id, user_id)
         except Exception as e:
-            await edit_delete(catevent, f"**Error:**\n`{str(e)}`")
+            await edit_delete(catevent, f"**خطأ:**\n`{str(e)}`")
         else:
-            await edit_or_reply(event, "Echo has been stopped for the user")
+            await edit_or_reply(event, "*تـم ايقاف وضـع الازعاج على الشخص بنجاح ✅**")
     else:
-        await edit_or_reply(event, "The user is not activated with echo")
+        await edit_or_reply(event, "** لم يتم تفعيل الازعاج بالاصل ⚠️**")
 
 
 @catub.cat_cmd(
-    pattern="delecho( -a)?",
-    command=("delecho", plugin_category),
+    pattern="الغاء تقليد( -a)?",
+    command=("الغاء تقليد", plugin_category),
     info={
         "header": "To delete echo in this chat.",
         "description": "To stop echoing users messages of all enabled users in the paticular chat or all chats.",
@@ -109,35 +109,35 @@ async def echo(event):
         lecho = get_all_echos()
         if len(lecho) == 0:
             return await edit_delete(
-                event, "You havent enabled echo atleast for one user in any chat."
+                event, "لم يتم تفعيل الازعاج بالاصل لاي شخص ⚠️"
             )
         try:
             remove_all_echos()
         except Exception as e:
-            await edit_delete(event, f"**Error:**\n`{str(e)}`", 10)
+            await edit_delete(event, f"**خطأ:**\n`{str(e)}`", 10)
         else:
             await edit_or_reply(
-                event, "Deleted echo for all enabled users in all chats."
+                event, "**تـم ايقاف وضـع الازعاج على الجميع بنجاح ✅** ."
             )
     else:
         lecho = get_echos(event.chat_id)
         if len(lecho) == 0:
             return await edit_delete(
-                event, "You havent enabled echo atleast for one user in this chat."
+                event, "لم يتم تفعيل الازعاج بالاصل لاي شخص ⚠️"
             )
         try:
             remove_echos(event.chat_id)
         except Exception as e:
-            await edit_delete(event, f"**Error:**\n`{str(e)}`", 10)
+            await edit_delete(event, f"**خطأ:**\n`{str(e)}`", 10)
         else:
             await edit_or_reply(
-                event, "Deleted echo for all enabled users in this chat"
+                event, "تـم ايقاف وضـع الازعاج على الجميع بنجاح ✅"
             )
 
 
 @catub.cat_cmd(
-    pattern="listecho( -a)?$",
-    command=("listecho", plugin_category),
+    pattern="المقلدهم( -a)?$",
+    command=("المقلدهم", plugin_category),
     info={
         "header": "shows the list of users for whom you enabled echo",
         "flags": {
@@ -153,7 +153,7 @@ async def echo(event):  # sourcery no-metrics
     "To list all users on who you enabled echoing."
     input_str = event.pattern_match.group(1)
     private_chats = ""
-    output_str = "**Echo enabled users:**\n\n"
+    output_str = "**قائمه الاشخاص المقلدهم:**\n\n"
     if input_str:
         lsts = get_all_echos()
         group_chats = ""
@@ -168,12 +168,12 @@ async def echo(event):  # sourcery no-metrics
                         )
                 else:
                     if echos.user_username:
-                        group_chats += f"☞ [{echos.user_name}](https://t.me/{echos.user_username}) in chat {echos.chat_name} of chat id `{echos.chat_id}`\n"
+                        group_chats += f"☞ [{echos.user_name}](https://t.me/{echos.user_username}) في الدردشة {echos.chat_name} لايدي `{echos.chat_id}`\n"
                     else:
-                        group_chats += f"☞ [{echos.user_name}](tg://user?id={echos.user_id}) in chat {echos.chat_name} of chat id `{echos.chat_id}`\n"
+                        group_chats += f"☞ [{echos.user_name}](tg://user?id={echos.user_id}) في الدردشة {echos.chat_name} لايدي  `{echos.chat_id}`\n"
 
         else:
-            return await edit_or_reply(event, "There are no echo enabled users")
+            return await edit_or_reply(event, "لم يتم تفعيل الازعاج بالاصل ⚠️")
         if private_chats != "":
             output_str += "**Private Chats**\n" + private_chats + "\n\n"
         if group_chats != "":
@@ -182,7 +182,7 @@ async def echo(event):  # sourcery no-metrics
         lsts = get_echos(event.chat_id)
         if len(lsts) <= 0:
             return await edit_or_reply(
-                event, "There are no echo enabled users in this chat"
+                event, "لم يتم تفعيل الازعاج بالاصل في هذه الدردشه ⚠️"
             )
 
         for echos in lsts:
@@ -194,7 +194,7 @@ async def echo(event):  # sourcery no-metrics
                 private_chats += (
                     f"☞ [{echos.user_name}](tg://user?id={echos.user_id})\n"
                 )
-        output_str = f"**Echo enabled users in this chat are:**\n" + private_chats
+        output_str = f"**الاشخاص الذي تم تقليدهم في هذه الدردشه:**\n" + private_chats
 
     await edit_or_reply(event, output_str)
 
