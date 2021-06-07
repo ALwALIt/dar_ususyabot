@@ -11,35 +11,40 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="azan(?: |$)(.*)",
-    command=("azan", plugin_category),
+    pattern="صلاه(?: |$)(.*)",
+    command=("صلاه", plugin_category),
     info={
         "header": "Shows you the Islamic prayer times of the given city name.",
         "note": "you can set default city by using {tr}setcity command.",
-        "usage": "{tr}azan <city name>",
-        "examples": "{tr}azan hyderabad",
+        "usage": "{tr}صلاه <المحافظه>",
+        "examples": "{tr}صلاه baghdad ",
     },
 )
-async def get_adzan(adzan):
-    "Shows you the Islamic prayer times of the given city name"
-    input_str = adzan.pattern_match.group(1)
-    LOKASI = gvarstatus("DEFCITY") or "Delhi" if not input_str else input_str
-    url = f"http://muslimsalat.com/{LOKASI}.json?key=bd099c5825cbedb9aa934e255a81a5fc"
+sync def get_adzan(adzan):
+    LOKASI = adzan.pattern_match.group(1)
+    url = f"https://api.pray.zone/v2/times/today.json?city={LOKASI}"
     request = requests.get(url)
     if request.status_code != 200:
-        return await edit_delete(
+        await edit_delete(
             adzan, f"`Couldn't fetch any data about the city {LOKASI}`", 5
         )
+        return
     result = json.loads(request.text)
-    catresult = f"<b>Islamic prayer times </b>\
-            \n\n<b>City     : </b><i>{result['query']}</i>\
-            \n<b>Country  : </b><i>{result['country']}</i>\
-            \n<b>Date     : </b><i>{result['items'][0]['date_for']}</i>\
-            \n<b>Fajr     : </b><i>{result['items'][0]['fajr']}</i>\
-            \n<b>Shurooq    : </b><i>{result['items'][0]['shurooq']}</i>\
-            \n<b>Dhuhr    : </b><i>{result['items'][0]['dhuhr']}</i>\
-            \n<b>Asr    : </b><i>{result['items'][0]['asr']}</i>\
-            \n<b>Maghrib    : </b><i>{result['items'][0]['maghrib']}</i>\
-            \n<b>Isha     : </b><i>{result['items'][0]['isha']}</i>\
+    catresult = f"<b>اوقـات صـلاه المـسلمين 👳‍♂️ </b>\
+            \n\n<b>المـدينة     : </b><i>{result['results']['location']['city']}</i>\
+            \n<b>الـدولة  : </b><i>{result['results']['location']['country']}</i>\
+            \n<b>التـاريخ     : </b><i>{result['results']['datetime'][0]['date']['gregorian']}</i>\
+            \n<b>الهـجري    : </b><i>{result['results']['datetime'][0]['date']['hijri']}</i>\
+            \n\n<b>الامـساك    : </b><i>{result['results']['datetime'][0]['times']['Imsak']}</i>\
+            \n<b>شـروق الشمس  : </b><i>{result['results']['datetime'][0]['times']['Sunrise']}</i>\
+            \n<b>الـفجر     : </b><i>{result['results']['datetime'][0]['times']['Fajr']}</i>\
+            \n<b>الضـهر    : </b><i>{result['results']['datetime'][0]['times']['Dhuhr']}</i>\
+            \n<b>العـصر      : </b><i>{result['results']['datetime'][0]['times']['Asr']}</i>\
+            \n<b>غـروب الشمس   : </b><i>{result['results']['datetime'][0]['times']['Sunset']}</i>\
+            \n<b>المـغرب  : </b><i>{result['results']['datetime'][0]['times']['Maghrib']}</i>\
+            \n<b>العشـاء     : </b><i>{result['results']['datetime'][0]['times']['Isha']}</i>\
+            \n<b>منتـصف الليل : </b><i>{result['results']['datetime'][0]['times']['Midnight']}</i>\
     "
     await edit_or_reply(adzan, catresult, "html")
+
+#JMTHON 
