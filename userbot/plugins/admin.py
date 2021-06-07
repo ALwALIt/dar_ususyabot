@@ -281,8 +281,8 @@ async def _ban_person(event):
 
 
 @catub.cat_cmd(
-    pattern="الغاء الحظر(?: |$)(.*)",
-    command=("الغاء الحظر", plugin_category),
+    pattern="الغاء حظر(?: |$)(.*)",
+    command=("الغاء حظر", plugin_category),
     info={
         "header": "Will unban the guy in the group where you used this command.",
         "description": "Removes the user account from the banned list of the group\
@@ -345,22 +345,22 @@ async def watcher(event):
 async def startmute(event):
     "To mute a person in that paticular chat"
     if event.is_private:
-        await event.edit("`Unexpected issues or ugly errors may occur!`")
+        await event.edit("`قد تحدث مشاكل غير متوقعة أو أخطاء قبيحة!`")
         await sleep(2)
         await event.get_reply_message()
         replied_user = await event.client(GetFullUserRequest(event.chat_id))
         if is_muted(event.chat_id, event.chat_id):
             return await event.edit(
-                "`This user is already muted in this chat ~~lmfao sed rip~~`"
+                "`تم كتم المستخدم بنجاح`"
             )
         if event.chat_id == catub.uid:
-            return await edit_delete(event, "`You cant mute yourself`")
+            return await edit_delete(event, "`لايمكن كتمك ،`")
         try:
             mute(event.chat_id, event.chat_id)
         except Exception as e:
-            await event.edit(f"**Error **\n`{str(e)}`")
+            await event.edit(f"**حدث خطا **\n`{str(e)}`")
         else:
-            await event.edit("`Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **`")
+            await event.edit("`¦  تم كتم الشخص بنجاح`")
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
@@ -373,16 +373,16 @@ async def startmute(event):
         creator = chat.creator
         if not admin and not creator:
             return await edit_or_reply(
-                event, "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
+                event, "`لايمكنك كتم الى لديك اشراف`"
             )
         user, reason = await get_user_from_event(event)
         if not user:
             return
         if user.id == catub.uid:
-            return await edit_or_reply(event, "`Sorry, I can't mute myself`")
+            return await edit_or_reply(event, "`آسف ، ماكدر اكتم روحي 😂`")
         if is_muted(user.id, event.chat_id):
             return await edit_or_reply(
-                event, "`This user is already muted in this chat ~~lmfao sed rip~~`"
+                event, "`تم كتم الشخص في هاذا الدردشه بنجاح`"
             )
         result = await event.client(
             functions.channels.GetParticipantRequest(event.chat_id, user.id)
@@ -391,12 +391,12 @@ async def startmute(event):
             if result.participant.banned_rights.send_messages:
                 return await edit_or_reply(
                     event,
-                    "`This user is already muted in this chat ~~lmfao sed rip~~`",
+                    "`تم كتم هاذا المستخدم بالفعل`",
                 )
         except AttributeError:
             pass
         except Exception as e:
-            return await edit_or_reply(event, f"**Error : **`{str(e)}`", 10)
+            return await edit_or_reply(event, f"**حدث خطا : **`{str(e)}`", 10)
         try:
             await event.client(EditBannedRequest(event.chat_id, user.id, MUTE_RIGHTS))
         except UserAdminInvalidError:
@@ -404,15 +404,15 @@ async def startmute(event):
                 if chat.admin_rights.delete_messages is not True:
                     return await edit_or_reply(
                         event,
-                        "`You can't mute a person if you dont have delete messages permission. ಥ﹏ಥ`",
+                        "`لا يمكنك كتم الشخص اي شخص الى اذا لديك صلاحية حذف",
                     )
             elif "creator" not in vars(chat):
                 return await edit_or_reply(
-                    event, "`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  "
+                    event, "`لايمكنني كتم الشخص الى يوجد لدي اشراف` "
                 )
             mute(user.id, event.chat_id)
         except Exception as e:
-            return await edit_or_reply(event, f"**Error : **`{str(e)}`", 10)
+            return await edit_or_reply(event, f"**حدث خطا : **`{str(e)}`", 10)
         if reason:
             await edit_or_reply(
                 event,
@@ -434,8 +434,8 @@ async def startmute(event):
 
 
 @catub.cat_cmd(
-    pattern="الغاء الكتم(?: |$)(.*)",
-    command=("الغاء الكتم", plugin_category),
+    pattern="الغاء كتم(?: |$)(.*)",
+    command=("الغاء كتم", plugin_category),
     info={
         "header": "To allow user to send messages again",
         "description": "Will change user permissions ingroup to send messages again.\
@@ -449,12 +449,12 @@ async def startmute(event):
 async def endmute(event):
     "To mute a person in that paticular chat"
     if event.is_private:
-        await event.edit("`Unexpected issues or ugly errors may occur!`")
+        await event.edit("`قد تحدث مشاكل او اخطاء غير متوقعه!`")
         await sleep(1)
         replied_user = await event.client(GetFullUserRequest(event.chat_id))
         if not is_muted(event.chat_id, event.chat_id):
             return await event.edit(
-                "`__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）`"
+                "`لم يتم كتم المستخدم في هاذا الدردشة`"
             )
         try:
             unmute(event.chat_id, event.chat_id)
@@ -462,7 +462,7 @@ async def endmute(event):
             await event.edit(f"**Error **\n`{str(e)}`")
         else:
             await event.edit(
-                "`Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍`"
+                "`تم الغاء كتم المستخدم بنجاح`"
             )
         if BOTLOG:
             await event.client.send_message(
@@ -490,7 +490,7 @@ async def endmute(event):
         except AttributeError:
             return await edit_or_reply(
                 event,
-                "`This user can already speak freely in this chat ~~lmfao sed rip~~`",
+                "`يمكن للمستخدم بالفعل التحدث بحرية في هاذا الدردشة`",
             )
         except Exception as e:
             return await edit_or_reply(event, f"**Error : **`{str(e)}`")
@@ -527,7 +527,7 @@ async def endmute(event):
     user, reason = await get_user_from_event(event)
     if not user:
         return
-    catevent = await edit_or_reply(event, "`Kicking...`")
+    catevent = await edit_or_reply(event, "`جار الطرد...`")
     try:
         await event.client.kick_participant(event.chat_id, user.id)
     except Exception as e:
