@@ -1,4 +1,4 @@
-# by  @sandy1709 ( https://t.me/mrconfused  )
+# by  @rrrd7 ( https://t.me/JMTHON  )
 
 # songs finder for catuserbot
 import asyncio
@@ -27,10 +27,10 @@ LOGS = logging.getLogger(__name__)
 # =========================================================== #
 #                           STRINGS                           #
 # =========================================================== #
-SONG_SEARCH_STRING = "<code>wi8..! I am finding your song....</code>"
-SONG_NOT_FOUND = "<code>Sorry !I am unable to find any song like that</code>"
-SONG_SENDING_STRING = "<code>yeah..! i found something wi8..🥰...</code>"
-SONGBOT_BLOCKED_STRING = "<code>Please unblock @songdl_bot and try again</code>"
+SONG_SEARCH_STRING = "<code>wi8..!**جار البحث عن الاغنيه انتظر رجاءا ✅**....</code>"
+SONG_NOT_FOUND = "<code>Sorry ! لم استطيع ايجاد الاغنيه مثل هذه</code>"
+SONG_SENDING_STRING = "<code>yeah..!**جار البحث عن الاغنيه انتظر رجاءا ✅**..🥰...</code>"
+SONGBOT_BLOCKED_STRING = "<code>قم بالغاء حظر البوت @songdl_bot وحاول مجددا</code>"
 # =========================================================== #
 #                                                             #
 # =========================================================== #
@@ -59,9 +59,9 @@ async def _(event):
         if reply.message:
             query = reply.message
     else:
-        return await edit_or_reply(event, "`What I am Supposed to find `")
+        return await edit_or_reply(event, "**ما الذي تريد ان ابحث عنه**")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    catevent = await edit_or_reply(event, "جار البحث عن الاغنيه انتظر رجاءا ✅*....`")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -92,7 +92,7 @@ async def _(event):
         return await catevent.edit(
             f"**عـذرا لم استطيع ايجاد الاغنيه او الفيديو لـ** `{query}`"
         )
-    await catevent.edit("**جار البحث عن الاغنيه انتدر رجاءا ✅**")
+    await catevent.edit("**جار البحث عن الاغنيه انتظر رجاءا ✅**")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
