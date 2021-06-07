@@ -64,7 +64,7 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
             sandy = await event.client.send_file(BOTLOG_CHATID, sandy)
             await _catutils.unsavegif(event, sandy)
         return
-        elif event.reply_to_msg_id and sandy.text:
+    elif event.reply_to_msg_id and sandy.text:
         spam_message = sandy.text
         for _ in range(counter):
             await event.client.send_message(event.chat_id, spam_message)
