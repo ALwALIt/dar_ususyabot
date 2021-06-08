@@ -570,7 +570,7 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @catub.cat_cmd(
-    pattern="الحماية (اون|اوف)$",
+    pattern="الحماية (on|off)$",
     command=("الحماية", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
