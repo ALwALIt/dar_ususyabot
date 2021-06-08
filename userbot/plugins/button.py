@@ -84,8 +84,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="ibutton(?: |$)(.*)",
-    command=("ibutton", plugin_category),
+    pattern="لستة(?: |$)(.*)",
+    command=("لستة", plugin_category),
     info={
         "header": "To create button posts via inline",
         "note": f"Markdown is Default to html",
@@ -93,7 +93,7 @@ async def _(event):
         "usage": [
             "{tr}ibutton <text> [Name on button]<buttonurl:link you want to open>",
         ],
-        "examples": "{tr}ibutton test [google]<buttonurl:https://www.google.com> [catuserbot]<buttonurl:https://t.me/catuserbot17:same> [support]<buttonurl:https://t.me/catuserbot_support>",
+        "examples": "{tr}لستة قنواتي الرسمية [𝗧ُِٔ𝗢ٍَِ𝗢َِّ𝗟َٖ𝗦َ]<buttonurl:t.me/JMTHON> [𝗝ََِ𝗠ٓ𝗧َُِْٓ𝗛ُ𝗢َ𝗡ٍَ]<buttonurl:t.me/JMTHON> ",
     },
 )
 async def _(event):
