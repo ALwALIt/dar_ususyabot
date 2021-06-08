@@ -26,7 +26,7 @@ def resize_image(image):
 
 
 @catub.cat_cmd(
-    pattern="(تلكراف?) ?(م|ن|ميديا|نص)(?: |$)(.*)",
+    pattern="(ت(يلي)?g(كراف)?) ?(م|ن|ميديا|نص)(?: |$)(.*)",
     command=("تلكراف", plugin_category),
     info={
         "header": "To get telegraph link.",
