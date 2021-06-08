@@ -592,10 +592,10 @@ async def pmpermit_on(event):
         if gvarstatus("pmpermit") is not None:
             delgvar("pmpermit")
             await edit_delete(
-                event, "** تم تعطيل امر الحماية لحسابك بنجاح ✅"
+                event, "** تم تعطيل امر الحماية لحسابك بنجاح ✅**"
             )
         else:
-            await edit_delete(event, "**امر الحمايه بالفعل مُعطل لحسابك 🌿")
+            await edit_delete(event, "**امر الحمايه بالفعل مُعطل لحسابك 🌿**")
 
 
 @catub.cat_cmd(
@@ -614,7 +614,7 @@ async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية on` ليعمل الامر بنجاح ⚕️",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -693,7 +693,7 @@ async def disapprove_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` __ليعمل الامر بنجاح__ ",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية on` __ليعمل الامر بنجاح__ ",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -741,7 +741,7 @@ async def block_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية on` ليعمل الامر بنجاح ⚕️",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -797,7 +797,7 @@ async def unblock_pm(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية on` ليعمل الامر بنجاح ⚕️",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -828,13 +828,13 @@ async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية on` ليعمل الامر بنجاح ⚕️",
         )
     approved_users = pmpermit_sql.get_all_approved()
-    APPROVED_PMs = "**Current Approved PMs**\n\n"
+    APPROVED_PMs = "**قائمه امر الحماية**\n\n"
     if len(approved_users) > 0:
         for user in approved_users:
-            APPROVED_PMs += f"• 👤 {_format.mentionuser(user.first_name , user.user_id)}\n**ID:** `{user.user_id}`\n**UserName:** @{user.username}\n**Date: **__{user.date}__\n**Reason: **__{user.reason}__\n\n"
+            APPROVED_PMs += f"• 👤 {_format.mentionuser(user.first_name , user.user_id)}\n**الايدي:** `{user.user_id}`\n**المعرف:** @{user.username}\n**التاريخ: **__{user.date}__\n**السبب: **__{user.reason}__\n\n"
     else:
         APPROVED_PMs = "**- انت لم توافق على اي شخص بالاصل 💞⚕️"
     await edit_or_reply(
