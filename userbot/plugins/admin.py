@@ -69,7 +69,7 @@ plugin_category = "admin"
 
 
 @catub.cat_cmd(
-    pattern="ضع( صوره| -d)$",
+    pattern="ضع( صورة| -d)$",
     command=("gpic", plugin_category),
     info={
         "header": "لوضع صوره للمجموعه ",
@@ -633,8 +633,8 @@ async def pin(event):
 
 
 @catub.cat_cmd(
-    pattern="الأحداث( -ر)?(?: |$)(\d*)?",
-    command=("الأحداث", plugin_category),
+    pattern="الاحداث( -ر)?(?: |$)(\d*)?",
+    command=("الاحداث", plugin_category),
     info={
         "header": "To get recent deleted messages in group",
         "description": "To check recent deleted messages in group, by default will show 5. you can get 1 to 15 messages.",
