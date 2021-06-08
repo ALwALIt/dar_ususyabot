@@ -150,7 +150,7 @@ async def do_pm_options_action(event, chat):
     except AttributeError:
         PMMESSAGE_CACHE = {}
     if str(chat.id) not in PM_WARNS:
-        text = "**ختر  خيار واحد فقط ولا تختار اكثر والا سيتم حظرك هذا اخر تحذير 🔽**"
+        text = "**ارجوك لا ترسل شي اخر فقط انتظر لا تكرر والا شيتم حظرك**"
         await event.reply(text)
         PM_WARNS[str(chat.id)] = 1
         sql.del_collection("pmwarns")
@@ -197,10 +197,10 @@ async def do_pm_enquire_action(event, chat):
     except AttributeError:
         PMMESSAGE_CACHE = {}
     if str(chat.id) not in PM_WARNS:
-        text = """** ههاه لازم تصبر مالك الحساب ما شاف الرسالة انتظر. \
+        text = """ ههاه لازم تصبر مالك الحساب ما شاف الرسالة انتظر. \
 مالك الحساب يرد على الكل بس ما اعرف اذا كان اكو كم شخص يتجاهلهم بس اصبر
-مالك الحساب راح يرد عليك لما يكون متصل, اذا راد يرد عليك اصلا**
-**اتمنى ما تكرر الرسائل حتى ما اضطر احظرك 🙂🌿**"""
+مالك الحساب راح يرد عليك لما يكون متصل, اذا راد يرد عليك اصلا
+**اتمنى ما تكرر الرسائل حتى ما اضطر احظرك 🙂🌿** """
         await event.reply(text)
         PM_WARNS[str(chat.id)] = 1
         sql.del_collection("pmwarns")
@@ -219,14 +219,14 @@ async def do_pm_enquire_action(event, chat):
         LOGS.info(str(e))
     sql.del_collection("pmmessagecache")
     sql.add_collection("pmmessagecache", PMMESSAGE_CACHE, {})
-    USER_BOT_WARN_ZERO = f"**If I remember correctly I mentioned in my previous message that this is not the right place for you to spam. \
-Though you ignored that message. So, I simply blocked you. \
-Now you can't do anything unless my master comes online and unblocks you.**"
+    USER_BOT_WARN_ZERO = f"اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر. \
+تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب. \
+**حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر. 🙂💕**"
     await event.reply(USER_BOT_WARN_ZERO)
     await event.client(functions.contacts.BlockRequest(chat.id))
     the_message = f"#المحظورين_للحماية\
                 \n[{get_display_name(chat)}](tg://user?id={chat.id}) is blocked\
-                \n**Reason:** هو/هي لم يقم بالتوقف عن ارسال الرسائل والتكرار"
+                \n**السبب:** هو/هي لم يقم بالتوقف عن ارسال الرسائل والتكرار"
     sqllist.rm_from_list("pmenquire", chat.id)
     try:
         return await event.client.send_message(
@@ -249,7 +249,7 @@ async def do_pm_request_action(event, chat):
     if str(chat.id) not in PM_WARNS:
         text = """ههاه لازم تصبر مالك الحساب ما شاف الرسالة انتظر. \
 مالك الحساب يرد على الكل بس ما اعرف اذا كان اكو كم شخص يتجاهلهم بس اصبر
-مالك الحساب راح يرد عليك لما يكون متصل, اذا راد يرد عليك اصلا**
+مالك الحساب راح يرد عليك لما يكون متصل, اذا راد يرد عليك اصلا
 **اتمنى ما تكرر الرسائل حتى ما اضطر احظرك 🙂🌿**"""
         await event.reply(text)
         PM_WARNS[str(chat.id)] = 1
@@ -269,9 +269,9 @@ async def do_pm_request_action(event, chat):
         LOGS.info(str(e))
     sql.del_collection("pmmessagecache")
     sql.add_collection("pmmessagecache", PMMESSAGE_CACHE, {})
-    USER_BOT_WARN_ZERO =  f"**اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر. \
-تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب. \
-حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر. 🙂💕**"
+    USER_BOT_WARN_ZERO =  f"اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر \
+تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب \
+**حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر 🙂💕**"
     await event.reply(USER_BOT_WARN_ZERO)
     await event.client(functions.contacts.BlockRequest(chat.id))
     the_message = f"#المحظورين_للحماية\
@@ -297,9 +297,9 @@ async def do_pm_chat_action(event, chat):
     except AttributeError:
         PMMESSAGE_CACHE = {}
     if str(chat.id) not in PM_WARNS:
-        text = """ههاه لازم تصبر مالك الحساب ما شاف الرسالة انتظر. \
+        text = """ههاه لازم تصبر مالك الحساب ما شاف الرسالة انتظر \
 مالك الحساب يرد على الكل بس ما اعرف اذا كان اكو كم شخص يتجاهلهم بس اصبر
-مالك الحساب راح يرد عليك لما يكون متصل, اذا راد يرد عليك اصلا**
+مالك الحساب راح يرد عليك لما يكون متصل, اذا راد يرد عليك اصلا
 **اتمنى ما تكرر الرسائل حتى ما اضطر احظرك 😕🌿**"""
         await event.reply(text)
         PM_WARNS[str(chat.id)] = 1
@@ -319,14 +319,14 @@ async def do_pm_chat_action(event, chat):
         LOGS.info(str(e))
     sql.del_collection("pmmessagecache")
     sql.add_collection("pmmessagecache", PMMESSAGE_CACHE, {})
-    USER_BOT_WARN_ZERO =  f"**اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر. \
-تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب. \
-حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر 😕💘.**"
+    USER_BOT_WARN_ZERO =  f"اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر \
+تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب \
+**حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر 😕💘**"
     await event.reply(USER_BOT_WARN_ZERO)
     await event.client(functions.contacts.BlockRequest(chat.id))
     the_message = f"#BLOCKED_PM\
                 \n[{get_display_name(chat)}](tg://user?id={chat.id}) is blocked\
-                \n**السبي:** هو/هي لم يقم بالتوقف عن ارسال الرسائل والتكرار"
+                \n**السبب:** هو/هي لم يقم بالتوقف عن ارسال الرسائل والتكرار"
     sqllist.rm_from_list("pmchat", chat.id)
     try:
         return await event.client.send_message(
@@ -348,9 +348,9 @@ async def do_pm_spam_action(event, chat):
             del PMMESSAGE_CACHE[str(chat.id)]
     except Exception as e:
         LOGS.info(str(e))
-    USER_BOT_WARN_ZERO =  f"**اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر. \
-تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب. \
-حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر 🙁💕.**"
+    USER_BOT_WARN_ZERO =  f"اتذكر حذرتك وقلت لك لا تكرر اكثر من خيار ولا ترسل رسائل مجرد انتظر \
+تعتقد راح اخليك تكرر لا اسف راح احظرك من الحساب \
+**حاليا متكدر بعد تتكلم الى ان ياتي صاحب الحساب ويقوم بالغاء الحظر 🙁💕**"
     await event.reply(USER_BOT_WARN_ZERO)
     await event.client(functions.contacts.BlockRequest(chat.id))
     the_message = f"#BLOCKED_PM\
@@ -478,8 +478,8 @@ async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = "**- عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك 😐⚕**"
         return await event.answer(text, cache_time=0, alert=True)
-    text = """**حسنا تم ارسال طلبك بنجاح 💕 . لا تقم بأختيار خيار ثاني. \
-مالك الحساب مشغول الان, عندما يصبح مالك الحساب متصلا سوف يقول بالرد عليك. \
+    text = """**حسنا تم ارسال طلبك بنجاح 💕 لا تقم بأختيار خيار ثاني \
+مالك الحساب مشغول الان  عندما يصبح مالك الحساب متصلا سوف يقول بالرد عليك \
 بعدها يمكنك التحدث بحرية لكن ليس الان**"""
     sqllist.add_to_list("pmenquire", event.query.user_id)
     try:
@@ -500,7 +500,7 @@ async def on_plug_in_callback_query_handler(event):
         text = "**- عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك 😐⚕**"
         return await event.answer(text, cache_time=0, alert=True)
     text = """__حسنا لقد قمت بأبلاغ مالك الحساب عندما يصبح متصلا بالانترنت \
- أو عندما يكون مالك الحساب متاح سةف يقوم بالرد عليك لذلك ارجوك انتظر__\
+ أو عندما يكون مالك الحساب متاح سوف يقوم بالرد عليك لذلك ارجوك انتظر__\
 
 **لكن في الوقت الحالي لا تكرر ارسال الرسائل حتر لا اضطر لحظرك 🙁💞**"""
     sqllist.add_to_list("pmrequest", event.query.user_id)
@@ -521,8 +521,8 @@ async def on_plug_in_callback_query_handler(event):
     if event.query.user_id == event.client.uid:
         text = "**- عذرا هذه الخيارات ليست لك انها للمستخدمين الذين يراسلوك 😐⚕**"
         return await event.answer(text, cache_time=0, alert=True)
-    text = """__بالطبع يمكنك التحدث مع مالك الحساب لكن ليس الان . نستطيع التكلم في\
-وقت اخر حاليا انا مشغول قليلا عندما اصبح متصلا واذا كنت غير مشغول سأكلمك هذا اكيـد.__"""
+    text = """__بالطبع يمكنك التحدث مع مالك الحساب لكن ليس الان نستطيع التكلم في\
+وقت اخر حاليا انا مشغول قليلا عندما اصبح متصلا واذا كنت غير مشغول سأكلمك هذا اكيـد__"""
     sqllist.add_to_list("pmchat", event.query.user_id)
     try:
         PM_WARNS = sql.get_collection("pmwarns").json
@@ -554,8 +554,8 @@ async def on_plug_in_callback_query_handler(event):
          \n░░░░░░░░░░░█░░█\
          \n░░░░░░░░░░░█░░█\
          \n░░░░░░░░░░░░▀▀`\
-         \n**So uncool, this is not your home. Go bother somewhere else.\
-         \n\nAnd this is your last warning if you send one more message you will be blocked automatically.**"
+         \n**جييد لكن هذا ليس بيتك حتى تقوم بالازعاج اذهب للعب بعيدا \
+         \n\nو هذا اخر تحذير لك ااذا ترسل رسالة اخرى ساقوم بحظرك تلقائيا **"
     sqllist.add_to_list("pmrequesr", event.query.user_id)
     try:
         PM_WARNS = sql.get_collection("pmspam").json
@@ -570,8 +570,8 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @catub.cat_cmd(
-    pattern="pmguard (on|off)$",
-    command=("pmguard", plugin_category),
+    pattern="الحماية (اون|اوف)$",
+    command=("الحماية", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
         "usage": "{tr}pmguard on/off",
@@ -584,18 +584,18 @@ async def pmpermit_on(event):
         if gvarstatus("pmpermit") is None:
             addgvar("pmpermit", "true")
             await edit_delete(
-                event, "__Pmpermit has been enabled for your account succesfully.__"
+                event, "** تم تفعيل امر الحماية لحسابك بنجاح ✅**"
             )
         else:
-            await edit_delete(event, "__Pmpermit is already enabled for your account")
+            await edit_delete(event, "**امر الحمايه بالفعل مُمكن لحسابك 🌿**")
     else:
         if gvarstatus("pmpermit") is not None:
             delgvar("pmpermit")
             await edit_delete(
-                event, "__Pmpermit has been disabled for your account succesfully__"
+                event, "** تم تعطيل امر الحماية لحسابك بنجاح ✅"
             )
         else:
-            await edit_delete(event, "__Pmpermit is already disabled for your account")
+            await edit_delete(event, "**امر الحمايه بالفعل مُعطل لحسابك 🌿")
 
 
 @catub.cat_cmd(
@@ -614,7 +614,7 @@ async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__Turn on pmpermit by doing __`{cmdhd}الحماية تغشيل` __for working of this plugin__",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -649,7 +649,7 @@ async def approve_p_m(event):
             sqllist.rm_from_list("pmoptions", chat.id)
         await edit_delete(
             event,
-            f"__Approved to pm__ [{user.first_name}](tg://user?id={user.id})\n**Reason :** __{reason}__",
+            f"تم المـوافقة على [{user.first_name}](tg://user?id={user.id})\n**السبب :** __{reason}__",
         )
         try:
             PMMESSAGE_CACHE = sql.get_collection("pmmessagecache").json
@@ -670,7 +670,7 @@ async def approve_p_m(event):
     else:
         await edit_delete(
             event,
-            f"[{user.first_name}](tg://user?id={user.id}) __is already in approved list__",
+            f"[{user.first_name}](tg://user?id={user.id}) __بالفعل موجود في قائمة السماح__",
         )
 
 
@@ -693,7 +693,7 @@ async def disapprove_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__Turn on pmpermit by doing __`{cmdhd}pmguard on` __for working of this plugin__",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` __ليعمل الامر بنجاح__ ",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -708,7 +708,7 @@ async def disapprove_p_m(event):
     if reason == "all":
         pmpermit_sql.disapprove_all()
         return await edit_delete(
-            event, "__Ok! I have disapproved everyone succesfully.__"
+            event, "__حسنا! تم رفض الجميع بنجاح ✅__"
         )
     if not reason:
         reason = "Not Mentioned."
@@ -716,12 +716,12 @@ async def disapprove_p_m(event):
         pmpermit_sql.disapprove(user.id)
         await edit_or_reply(
             event,
-            f"[{user.first_name}](tg://user?id={user.id}) __is disapproved to personal message me.__\n**Reason:**__ {reason}__",
+            f"[{user.first_name}](tg://user?id={user.id}) __تـم رفضه بنـجاح ✅__\n**السبب:**__ {reason}__",
         )
     else:
         await edit_delete(
             event,
-            f"[{user.first_name}](tg://user?id={user.id}) __is not yet approved__",
+            f"[{user.first_name}](tg://user?id={user.id}) __لم تتم الموافقة عليه بالاصل__",
         )
 
 
@@ -741,7 +741,7 @@ async def block_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__Turn on pmpermit by doing __`{cmdhd} on` __for working of this plugin__",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -777,7 +777,7 @@ async def block_p_m(event):
     await event.client(functions.contacts.BlockRequest(user.id))
     await edit_delete(
         event,
-        f"[{user.first_name}](tg://user?id={user.id}) __is blocked, he can no longer personal message you.__\n**Reason:** __{reason}__",
+        f"[{user.first_name}](tg://user?id={user.id}) __تم حظره بنجاح لا يمكنه مراسلتك بعد الان ✅⚕️__\n**السبب:** __{reason}__",
     )
 
 
@@ -797,7 +797,7 @@ async def unblock_pm(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__Turn on pmpermit by doing __`{cmdhd}pmguard on` __for working of this plugin__",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -809,12 +809,12 @@ async def unblock_pm(event):
         reason = "Not Mentioned."
     await event.client(functions.contacts.UnblockRequest(user.id))
     await event.edit(
-        f"[{user.first_name}](tg://user?id={user.id}) __is unblocked he/she can personal message you from now on.__\n**Reason:** __{reason}__"
+        f"[{user.first_name}](tg://user?id={user.id}) __تم الغاء حظره بنجاح يمكنه التكلم معك الان ✅⚕️__\n**السبب:** __{reason}__"
     )
 
 
 @catub.cat_cmd(
-    pattern="المسموح لهم  $",
+    pattern="المسموح لهم$",
     command=("المسموح لهم", plugin_category),
     info={
         "header": "To see list of approved users.",
@@ -828,7 +828,7 @@ async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"__Turn on pmpermit by doing __`{cmdhd}pmguard on` __to work this plugin__",
+            f"__يجب تفعيل امر الحمايه اولا للتفعيل ارسل __`{cmdhd}الحماية اون` ليعمل الامر بنجاح ⚕️",
         )
     approved_users = pmpermit_sql.get_all_approved()
     APPROVED_PMs = "**Current Approved PMs**\n\n"
@@ -836,7 +836,7 @@ async def approve_p_m(event):
         for user in approved_users:
             APPROVED_PMs += f"• 👤 {_format.mentionuser(user.first_name , user.user_id)}\n**ID:** `{user.user_id}`\n**UserName:** @{user.username}\n**Date: **__{user.date}__\n**Reason: **__{user.reason}__\n\n"
     else:
-        APPROVED_PMs = "`You haven't approved anyone yet`"
+        APPROVED_PMs = "**- انت لم توافق على اي شخص بالاصل 💞⚕️"
     await edit_or_reply(
         event,
         APPROVED_PMs,
