@@ -25,7 +25,7 @@ PP_ERROR = "**  حدث خطا اثناء معالجه الصوره  ⌁**"
 BIO_SUCCESS = "**  تم تغير بايو حسابك بنجاح ⌁،**"
 NAME_OK = "**  تم تغير اسم حسابك بنجاح ⌁**"
 USERNAME_SUCCESS = "** تم تغير معرف حسابك بنجاح ⌁،**"
-USERNAME_TAKEN = "**  هذا المعرف مستخدم ⌁ ،**
+USERNAME_TAKEN = "**  هذا المعرف مستخدم ⌁ ،**"
 # ===============================================================
 
 
@@ -74,8 +74,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="وضع صوره$",
-    command=("وضع صوره", plugin_category),
+    pattern="وضع صورة$",
+    command=("وضع صورة", plugin_category),
     info={
         "header": "To set profile pic for this account.",
         "usage": "{tr}ppic <reply to image or gif>",
