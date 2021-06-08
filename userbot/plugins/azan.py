@@ -11,8 +11,8 @@ plugin_category = "extra"
 
 
 @catub.cat_cmd(
-    pattern="صلاه(?: |$)(.*)",
-    command=("صلاه", plugin_category),
+    pattern="صلاة(?: |$)(.*)",
+    command=("صلاة", plugin_category),
     info={
         "header": "Shows you the Islamic prayer times of the given city name.",
         "note": "you can set default city by using {tr}setcity command.",
