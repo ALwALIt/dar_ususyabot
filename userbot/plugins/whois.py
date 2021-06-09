@@ -59,13 +59,14 @@ async def fetch_info(replied_user, event):
     username = "@{}".format(username) if username else ("لايوجد معرف")
     user_bio = "لاتوجد نبذه" if not user_bio else user_bio
     caption = "<b><i> 𓆩JMTHON SOURCE 𓆪 </i></b>\n"
-    caption += f"<b> ⌁ | الأسم :</b> {first_name} {last_name}\n"
-    caption += f"<b> ⌁ | الـمعرف :</b> {username}\n"
-    caption += f"<b> ⌁ | الايدي :</b> <code>{user_id}</code>\n"
-    caption += f"<b> ⌁ | عـدد الصور :</b> {replied_user_profile_photos_count}\n"
-    caption += f"<b> ⌁ | النبـذة : </b> {user_bio} \n"
-    caption += f"<b> ⌁ | حـسابه :</b>[{first_name}](href=tg://user?id={user_id}) \n\n"
-    caption += f"<b> ⌁ | الـمطور </b>  [𝗝ََِ𝗠ٓ𝗧َُِْٓ𝗛ُ𝗢َ𝗡ٍَ](t.me/JMTHON)"
+    caption += f"<b> ⌁ | الأسم ↬</b> {first_name} {last_name}\n"
+    caption += f"<b> ⌁ | الـمعرف ↬</b> {username}\n"
+    caption += f"<b> ⌁ | الايدي ↬</b> <code>{user_id}</code>\n"
+    caption += f"<b> ⌁ | عـدد الصور ↬</b> {replied_user_profile_photos_count}\n"
+    caption += f"<b> ⌁ | النبـذة ↬ </b> {user_bio} \n"
+    caption += f"<b> ⌁ | حـسابه ↬</b> \n"
+    caption += f'<a href="tg://user?id={user_id}">{first_name}</a> \n'
+    caption += f"<b>  الـسورس</b> - [𝗝ََِ𝗠ٓ𝗧َُِْٓ𝗛ُ𝗢َ𝗡ٍَ](t.me/JMTHON) ⌁ "
     return photo, caption
 
 
@@ -125,9 +126,7 @@ async def _(event):
    -🔖 الايدي : **`{}`
    **-**👥**المجموعات المشتركة : **`{}`
    **-**🌏**رقم قاعدة البيانات : **`{}`
-   **-**🔏**حسـاب موثق : **`{}`
-   **-**🦅{}
-   **-**👮‍♂️{}
+   **-**⚕️**الـدعم : **[𝗝ََِ𝗠ٓ𝗧َُِْٓ𝗛ُ𝗢َ𝗡ٍَ](t.me/JMTHON)**
 """.format(
         first_name,
         user_id,
