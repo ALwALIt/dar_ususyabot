@@ -41,8 +41,8 @@ UNBAN_RIGHTS = ChatBannedRights(
 
 
 @catub.cat_cmd(
-    pattern="حظر(?: |$)(.*)",
-    command=("حظر", plugin_category),
+    pattern="حظر عام(?: |$)(.*)",
+    command=("حظر عام", plugin_category),
     info={
         "header": "To ban user in every group where you are admin.",
         "description": "Will ban the person in every group where you are admin only.",
@@ -125,8 +125,8 @@ async def catgban(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="الغاء حظر(?: |$)(.*)",
-    command=("الغاء حظر", plugin_category),
+    pattern="الغاء حظر العام(?: |$)(.*)",
+    command=("الغاء حظر العام", plugin_category),
     info={
         "header": "To unban the person from every group where you are admin.",
         "description": "will unban and also remove from your gbanned list.",
@@ -201,8 +201,8 @@ async def catgban(event):
 
 
 @catub.cat_cmd(
-    pattern="المحظورين$",
-    command=("المحظورين", plugin_category),
+    pattern="المحظورين عام$",
+    command=("المحظورين عام", plugin_category),
     info={
         "header": "Shows you the list of all gbanned users by you.",
         "usage": "{tr}listgban",
