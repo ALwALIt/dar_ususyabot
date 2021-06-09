@@ -8,16 +8,17 @@ from telethon import Button, functions, types, utils
 
 import userbot
 from userbot import BOTLOG, BOTLOG_CHATID
-from userbot.Config import Config
-from userbot.core.logger import logging
-from userbot.core.session import catub
-from userbot.utils import load_module
 
+from .Config import Config
+from .core.logger import logging
+from .core.session import catub
+from .helpers.utils import install_pip
 from .sql_helper.global_collection import (
     del_keyword_collectionlist,
     get_item_collectionlist,
 )
 from .sql_helper.globals import gvarstatus
+from .utils import load_module
 
 LOGS = logging.getLogger("CatUserbot")
 
@@ -58,19 +59,19 @@ def verifyLoggerGroup():
             if not isinstance(entity, types.User) and not entity.creator:
                 if entity.default_banned_rights.send_messages:
                     LOGS.info(
-                        "Permissions missing to send messages for the specified Logger group."
+                        "لا توجد صلاحيات لإرسال رسائل لايدي المجموعه الذي وضعته ."
                     )
                 if entity.default_banned_rights.invite_users:
                     LOGS.info(
-                        "Permissions missing to addusers for the specified Logger group."
+                        "لا توجد صلاحيات لاضافه المستخدمين لايدي المجموعه الذي وضعت ."
                     )
         except ValueError:
-            LOGS.error("Logger group ID cannot be found. " "Make sure it's correct.")
+            LOGS.error("لم يتم التعرف على ايدي المجموعه. " "يرجى التاكد من انه صحيح.")
         except TypeError:
-            LOGS.error("Logger group ID is unsupported. " "Make sure it's correct.")
+            LOGS.error("لم يتم التعرف على ايدي المجموعه. " "يرجى التاكد من انه صحيح.")
         except Exception as e:
             LOGS.error(
-                "An Exception occured upon trying to verify the logger group.\n"
+                "حدث خطأ عند محاولة التحقق من سجل المجموعة.\n"
                 + str(e)
             )
         try:
@@ -80,24 +81,24 @@ def verifyLoggerGroup():
             if not isinstance(entity, types.User) and not entity.creator:
                 if entity.default_banned_rights.send_messages:
                     LOGS.info(
-                        "Permissions missing to send messages for the specified Pm logger group."
+                        "لا توجد صلاحيات لإرسال رسائل لايدي المجموعه الذي وضعته ."
                     )
                 if entity.default_banned_rights.invite_users:
                     LOGS.info(
-                        "Permissions missing to addusers for the specified Pm Logger group."
+                        "لا توجد صلاحيات لاضافه المستخدمين لايدي المجموعه الذي وضعت ."
                     )
         except ValueError:
-            LOGS.error("Pm Logger group ID cannot be found. " "Make sure it's correct.")
+            LOGS.error("لم يتم التعرف على ايدي المجموعه. " "يرجى التاكد من انه صحيح.")
         except TypeError:
-            LOGS.error("Pm Logger group ID is unsupported. " "Make sure it's correct.")
+            LOGS.error("لم يتم التعرف على ايدي المجموعه. " "يرجى التاكد من انه صحيح.")
         except Exception as e:
             LOGS.error(
-                "An Exception occured upon trying to verify the Pm logger group.\n"
+                "حدث خطأ عند محاولة التحقق من سجل المجموعة.\n"
                 + str(e)
             )
     else:
         LOGS.info(
-            "You haven't set the PRIVATE_GROUP_BOT_API_ID in vars please set it for proper functioning of userbot."
+            "انت لم تقم بوضع PRIVATE_GROUP_BOT_API_ID في الفارات يرجى وضعها للاستفادة من المميزات الاخرى."
         )
 
 
@@ -150,9 +151,9 @@ async def startupmessage():
         if BOTLOG:
             Config.CATUBLOGO = await catub.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://telegra.ph/file/4e3ba8e8f7e535d5a2abe.jpg",
-                caption="**Your CatUserbot has been started successfully.**",
-                buttons=[(Button.url("Support", "https://t.me/catuserbot"),)],
+                "https://telegra.ph/file/5e750a1399676ae4fc387.jpg",
+                caption="**بـوت جمثـون يـعمل بنجاح**",
+                buttons=[(Button.url("الدعـم", "https://t.me/JMTHON"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -168,7 +169,7 @@ async def startupmessage():
         if msg_details:
             await catub.check_testcases()
             message = await catub.get_messages(msg_details[0], ids=msg_details[1])
-            text = message.text + "\n\n**Ok Bot is Back and Alive.**"
+            text = message.text + "\n\n**تمام البوت طبيعي وشغال.**"
             await catub.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
                 await catub.send_message(
@@ -206,12 +207,22 @@ for name in files:
         shortname = path1.stem
         try:
             if shortname.replace(".py", "") not in Config.NO_LOAD:
-                load_module(shortname.replace(".py", ""))
+                flag = True
+                check = 0
+                while flag:
+                    try:
+                        load_module(shortname.replace(".py", ""))
+                        break
+                    except ModuleNotFoundError as e:
+                        install_pip(e.name)
+                        check += 1
+                        if check > 5:
+                            break
             else:
                 os.remove(Path(f"userbot/plugins/{shortname}.py"))
         except Exception as e:
             os.remove(Path(f"userbot/plugins/{shortname}.py"))
-            LOGS.info(f"unable to load {shortname} because of error {e}")
+            LOGS.info(f"غير قادر لتحميل {shortname} بسبب الخطأ {e}")
 
 path = "userbot/assistant/*.py"
 files = glob.glob(path)
@@ -222,9 +233,21 @@ for name in files:
         shortname = path1.stem
         try:
             if shortname.replace(".py", "") not in Config.NO_LOAD:
-                load_module(
-                    shortname.replace(".py", ""), plugin_path="userbot/assistant"
-                )
+                flag = True
+                check = 0
+                while flag:
+                    try:
+                        load_module(
+                            shortname.replace(".py", ""),
+                            plugin_path="userbot/assistant",
+                        )
+                        break
+                    except ModuleNotFoundError as e:
+                        install_pip(e.name)
+                        check += 1
+                        if check > 5:
+                            break
+
             else:
                 os.remove(Path(f"userbot/assistant/{shortname}.py"))
         except Exception as e:
@@ -233,10 +256,10 @@ for name in files:
             LOGS.info(f"{e.args}")
 
 print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-print("Yay your userbot is officially working.!!!")
+print("البـوت يعمل بنـجاح بالـفعل.!!!")
 print(
-    f"Congratulation, now type {cmdhr}alive to see message if catub is live\
-      \nIf you need assistance, head to https://t.me/catuserbot_support"
+    f"مبروك ارسل {cmdhr}السورس لرؤية اذا كان البوت شغال\
+      \nاذا تحتاج شي, تواصل معنا https://t.me/JMTHON"
 )
 print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
 
