@@ -64,7 +64,7 @@ async def fetch_info(replied_user, event):
     caption += f"<b> ⌁ | الايدي :</b> <code>{user_id}</code>\n"
     caption += f"<b> ⌁ | عـدد الصور :</b> {replied_user_profile_photos_count}\n"
     caption += f"<b> ⌁ | النبـذة : </b> {user_bio} \n"
-    caption += f"<b> ⌁ | حـسابه :</b> href=tg://user?id={user_id}>{first_name} \n\n"
+    caption += f"<b> ⌁ | حـسابه :</b>[{first_name}](href=tg://user?id={user_id}) \n\n"
     caption += f"<b> ⌁ | الـمطور </b>  [𝗝ََِ𝗠ٓ𝗧َُِْٓ𝗛ُ𝗢َ𝗡ٍَ](t.me/JMTHON)"
     return photo, caption
 
