@@ -11,8 +11,8 @@ plugin_category = "fun"
 
 
 @catub.cat_cmd(
-    pattern="scam(?: |$)(.*)",
-    command=("scam", plugin_category),
+    pattern="وهمي(?: |$)(.*)",
+    command=("وهمي", plugin_category),
     info={
         "header": "To show fake actions for a paticular period of time",
         "description": "if time is not mentioned then it may choose random time 5 or 6 mintues for mentioning time use in seconds",
@@ -23,29 +23,29 @@ plugin_category = "fun"
         ],
         "examples": "{tr}scam photo 300",
         "actions": [
-            "typing",
-            "contact",
-            "game",
-            "location",
-            "voice",
-            "round",
-            "video",
-            "photo",
-            "document",
+            "كتابة",
+            "جهة",
+            "لعبة",
+            "موقع",
+            "صوتية",
+            "جولة",
+            "فيديو",
+            "صورة",
+            "ملف",
         ],
     },
 )
 async def _(event):
     options = [
-        "typing",
-        "contact",
-        "game",
-        "location",
-        "voice",
-        "round",
-        "video",
-        "photo",
-        "document",
+        "كتابة",
+            "جهة",
+            "لعبة",
+            "موقع",
+            "صوتية",
+            "جولة",
+            "فيديو",
+            "صورة",
+            "ملف",
     ]
     input_str = event.pattern_match.group(1)
     args = input_str.split()
@@ -63,7 +63,7 @@ async def _(event):
         scam_action = str(args[0]).lower()
         scam_time = int(args[1])
     else:
-        await edit_delete(event, "`Invalid Syntax !!`")
+        await edit_delete(event, "`خطأ كتابة الجملة !!`")
         return
     try:
         if scam_time > 0:
@@ -75,8 +75,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="prankpromote(?: |$)(.*)",
-    command=("prankpromote", plugin_category),
+    pattern="ارفعه(?: |$)(.*)",
+    command=("ارفعه", plugin_category),
     info={
         "header": "To promote a person without admin rights",
         "note": "You need proper rights for this",
@@ -91,7 +91,7 @@ async def _(event):
 async def _(event):
     "To promote a person without admin rights"
     new_rights = ChatAdminRights(post_messages=True)
-    catevent = await edit_or_reply(event, "`Promoting...`")
+    catevent = await edit_or_reply(event, "**جـاري رفع مشرف....**")
     user, rank = await get_user_from_event(event, catevent)
     if not rank:
         rank = "Admin"
@@ -101,12 +101,12 @@ async def _(event):
         await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
     except BadRequestError:
         return await catevent.edit(NO_PERM)
-    await catevent.edit("`Promoted Successfully! Now gib Party`")
+    await catevent.edit("**تم رفعه بنجاح خلص ذا كانت مزحه امر تسلية 😹🙁**")
 
 
 @catub.cat_cmd(
-    pattern="padmin$",
-    command=("padmin", plugin_category),
+    pattern="مشرف$",
+    command=("مشرف", plugin_category),
     info={
         "header": "Fun animation for faking user promotion",
         "description": "An animation that shows enabling all permissions to him that he is admin(fake promotion)",
@@ -118,28 +118,28 @@ async def _(event):
     "Fun animation for faking user promotion."
     animation_interval = 1
     animation_ttl = range(20)
-    event = await edit_or_reply(event, "`promoting.......`")
+    event = await edit_or_reply(event, "**جـاري رفع مشرف.......**")
     animation_chars = [
-        "**Promoting User As Admin...**",
-        "**Enabling All Permissions To User...**",
-        "**(1) Send Messages: ☑️**",
-        "**(1) Send Messages: ✅**",
-        "**(2) Send Media: ☑️**",
-        "**(2) Send Media: ✅**",
-        "**(3) Send Stickers & GIFs: ☑️**",
-        "**(3) Send Stickers & GIFs: ✅**",
-        "**(4) Send Polls: ☑️**",
-        "**(4) Send Polls: ✅**",
-        "**(5) Embed Links: ☑️**",
-        "**(5) Embed Links: ✅**",
-        "**(6) Add Users: ☑️**",
-        "**(6) Add Users: ✅**",
-        "**(7) Pin Messages: ☑️**",
-        "**(7) Pin Messages: ✅**",
-        "**(8) Change Chat Info: ☑️**",
-        "**(8) Change Chat Info: ✅**",
-        "**Permission Granted Successfully**",
-        f"**pRoMooTeD SuCcEsSfUlLy bY: {ALIVE_NAME}**",
+        "**جـاري رفع مشرف...**",
+        "**تمكين كافة أذونات المستخدم ...**",
+        "**(1) إرسل رسائل: ☑️**",
+        "**(1) إرسل رسائل: ✅**",
+        "**(2) إرسال الوسائط: ☑️**",
+        "**(2) إرسال الوسائط: ✅**",
+        "**(3) إرسال ملصقات وصور GIF: ☑️**",
+        "**(3) إرسال ملصقات وصور GIF: ✅**",
+        "**(4) إرسال استطلاعات الرأي: ☑️**",
+        "**(4) إرسال استطلاعات الرأي: ✅**",
+        "**(5) روابط التضمين: ☑️**",
+        "**(5) روابط التضمين: ✅**",
+        "**(6) أضف مستخدمين: ☑️**",
+        "**(6) أضف مستخدمين: ✅**",
+        "**(7) تثبيت الرسائل: ☑️**",
+        "**(7) تثبيت الرسائل: ✅**",
+        "**(8) تغيير معلومات الدردشة: ☑️**",
+        "**(8) تغيير معلومات الدردشة: ✅**",
+        "**تم منح الإذن بنجاح**",
+        f"**امتيازات عامة : {DEFAULTUSER}**",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
