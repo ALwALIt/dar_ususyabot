@@ -41,8 +41,8 @@ UNBAN_RIGHTS = ChatBannedRights(
 
 
 @catub.cat_cmd(
-    pattern="حظر عام(?: |$)(.*)",
-    command=("حظر عام", plugin_category),
+    pattern="حظر(?: |$)(.*)",
+    command=("حظر", plugin_category),
     info={
         "header": "To ban user in every group where you are admin.",
         "description": "Will ban the person in every group where you are admin only.",
@@ -51,16 +51,16 @@ UNBAN_RIGHTS = ChatBannedRights(
 )
 async def catgban(event):  # sourcery no-metrics
     "To ban user in every group where you are admin."
-    cate = await edit_or_reply(event, "`جار حظر المستخدم ♻️`")
+    cate = await edit_or_reply(event, "**جـار الــحظر.......**")
     start = datetime.now()
     user, reason = await get_user_from_event(event, cate)
     if not user:
         return
     if user.id == catub.uid:
-        return await edit_delete(cate, "`لماذا احظر نفسي ?`")
+        return await edit_delete(cate, "**لا استـطيع حـظر نفسي 🌿⚕**")
     if gban_sql.is_gbanned(user.id):
         await cate.edit(
-            f"`هو `[user](tg://user?id={user.id})`موجود بالفعل في قائمة المحظورين ⌁`"
+            f"هذا [المستخدم](tg://user?id={user.id}) موجود بالفعل في قائمة الحظر ✅"
         )
     else:
         gban_sql.catgban(user.id, reason)
@@ -69,9 +69,9 @@ async def catgban(event):  # sourcery no-metrics
     count = 0
     sandy = len(san)
     if sandy == 0:
-        return await edit_delete(cate, "`لايمكنك حظر المستخدم الى مشرف في مجموعة واحده ع الاقل ⌁` ")
+        return await edit_delete(cate, "**أنت لست مدير مجموعة واحدة على الأقل 😕💗**")
     await cate.edit(
-        f"`بدء حظر `[user](tg://user?id={user.id}) `في {len(san)} الكروبات`"
+        f"يتم حظر [المستخدم](tg://user?id={user.id}) في {len(san)} من المجموعات"
     )
     for i in range(sandy):
         try:
@@ -81,40 +81,40 @@ async def catgban(event):  # sourcery no-metrics
         except BadRequestError:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"`ليس لديك الإذن المطلوب في ¦ `\n**الدردشة :** {event.chat.title}(`{event.chat_id}`)\n`الحظر هنا`",
+                f"ليس لديك صلاحيات في  :\n**المجموعة :** {event.chat.title}(`{event.chat_id}`)\nلتقوم بالحظر ⚕️💘",
             )
     end = datetime.now()
     cattaken = (end - start).seconds
     if reason:
         await cate.edit(
-            f"[{user.first_name}](tg://user?id={user.id}) `تم حظره في {count} في المجموعات {cattaken} ثواني`!!\n**سبب :** `{reason}`"
+            f"[{user.first_name}](tg://user?id={user.id}) تم حـظره بنجاح في {count} من المجموعات في {cattaken} من الثواني !!\n**السبب :** `{reason}`"
         )
     else:
         await cate.edit(
-            f"[{user.first_name}](tg://user?id={user.id}) `تم حظره في {count} في المجموعات {cattaken} ثواني`!!"
+            f"[{user.first_name}](tg://user?id={user.id}) تم حـظره بنجاح في {count} من المجموعات في {cattaken} من الثواني !!"
         )
     if BOTLOG and count != 0:
         reply = await event.get_reply_message()
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#حظر\
-                \nحظر عالمي\
+                f"#الحـظر\
+                \nالحظـر\
                 \n**المستخدم : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ايدي : **`{user.id}`\
-                \n**سبب :** `{reason}`\
-                \n__محظور في {count} groups__\
-                \n**الوقت المستغرق : **`{cattaken} ثواني`",
+                \n**الايدي : **`{user.id}`\
+                \n**السبب :** `{reason}`\
+                \nالحظر في  {count} من المجموعات\
+                \n**الوقت المستغرق : **`{cattaken} من الثواني`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#حظر\
-                \nحظر عالمي\
-                \n**المستخدم ¦  **[{user.first_name}](tg://user?id={user.id})\
-                \n**ايدي ¦  **`{user.id}`\
-                \n__محظور في {count} groups__\
-                \n**الوقت المستغرق : **`{cattaken} ثواني`",
+                f"#الحـظر\
+                \nالحظـر\
+                \n**المستخدم : **[{user.first_name}](tg://user?id={user.id})\
+                \n**الايدي : **`{user.id}`\
+                \nالحظر في  {count} من المجموعات\
+                \n**الوقت المستغرق : **`{cattaken} من الثواني`",
             )
         try:
             if reply:
@@ -125,8 +125,8 @@ async def catgban(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="الغاء حظر العام(?: |$)(.*)",
-    command=("الغاء حظر العام", plugin_category),
+    pattern="الغاء حظر(?: |$)(.*)",
+    command=("الغاء حظر", plugin_category),
     info={
         "header": "To unban the person from every group where you are admin.",
         "description": "will unban and also remove from your gbanned list.",
@@ -135,7 +135,7 @@ async def catgban(event):  # sourcery no-metrics
 )
 async def catgban(event):
     "To unban the person from every group where you are admin."
-    cate = await edit_or_reply(event, "`جار الغاء حظر المستخدم في المجموعات ♻️ .`")
+    cate = await edit_or_reply(event, "**يتم الغاء الحظر ⚕️🤍**")
     start = datetime.now()
     user, reason = await get_user_from_event(event, cate)
     if not user:
@@ -144,16 +144,16 @@ async def catgban(event):
         gban_sql.catungban(user.id)
     else:
         return await edit_delete(
-            cate, f"هو [user](tg://user?id={user.id}) `ليس موجود في قائمة المحظورين`"
+            cate, f"هذا [المستخدم](tg://user?id={user.id}) لم يتم حظره بالاصل ❕"
         )
     san = []
     san = await admin_groups(event)
     count = 0
     sandy = len(san)
     if sandy == 0:
-        return await edit_delete(cate, "`أنت لست مشرفًا حتى على مجموعة واحدة على الأقل `")
+        return await edit_delete(cate, "أنت لست مدير مجموعة واحدة على الأقل ")
     await cate.edit(
-        f"بدء الغاء الحظر [user](tg://user?id={user.id}) في `{len(san)}` المجموعات"
+        f"يتم الغاء حظر  [المستخدم](tg://user?id={user.id}) في `{len(san)}` من المجموعات "
     )
     for i in range(sandy):
         try:
@@ -163,46 +163,46 @@ async def catgban(event):
         except BadRequestError:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"`ليس لدي الاذن المطلوب  ¦ `\n**المجموعة : **{event.chat.title}(`{event.chat_id}`)\n`للغاء الحظر`",
+                f"**ليس لديك صلاحيات في** :\n**الدردشة : **{event.chat.title}(`{event.chat_id}`)\n - لتقوم بالغاء حظره ⚕️❕",
             )
     end = datetime.now()
     cattaken = (end - start).seconds
     if reason:
         await cate.edit(
-            f"[{user.first_name}](tg://user?id={user.id}`) كان غير محظور في {count} الكروبات {cattaken} ثواني`!!\n**سبب :** `{reason}`"
+            f"[{user.first_name}](tg://user?id={user.id}) تم الغاء حظره بنجاح في {count} من المجموعات في {cattaken} من الثواني !!\n**السبب :** `{reason}`"
         )
     else:
         await cate.edit(
-            f"[{user.first_name}](tg://user?id={user.id}) `كان غير محظور في {count} الكروبات {cattaken} ثواني`!!"
+            f"[{user.first_name}](tg://user?id={user.id}) تم الغاء حـظره بنجاح في {count} من المجموعات في {cattaken} من الثواني"
         )
 
     if BOTLOG and count != 0:
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#UNGBAN\
-                \nGlobal Unban\
-                \n**المستخدم : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ايدي : **`{user.id}`\
-                \n**Reason :** `{reason}`\
-                \n__الغاء حظر في {count} الكروبات__\
-                \n**الوقت المستغرق : **`{cattaken} ثواني`",
+                f"#تم_الغاء_حظرهم\
+                \nالغير محـظورين\
+                \n**المعـرف : **[{user.first_name}](tg://user?id={user.id})\
+                \n**الايدي : **`{user.id}`\
+                \n**الـسبب :** `{reason}`\
+                \n__تم الغاء حظره في {count} من المجموعات__\
+                \n**الوقت المستغرق : **`{cattaken} من الثواني`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#UNGBAN\
-                \nGlobal Unban\
-                \n**المستخدم : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ايدي : **`{user.id}`\
-                \n__الغاء حظر {count} groups__\
-                \n**الوقت المستغرق : **`{cattaken} ثواني`",
+                f"#تم_الغاء_حظرهم\
+                \nالغير محـظورين\
+                \n**المعـرف : **[{user.first_name}](tg://user?id={user.id})\
+                \n**الايدي : **`{user.id}`\
+                \n__تم الغاء حظره في {count} من المجموعات__\
+                \n**الوقت المستغرق : **`{cattaken} من الثواني`",
             )
 
 
 @catub.cat_cmd(
-    pattern="المحظورين عام$",
-    command=("المحظورين عام", plugin_category),
+    pattern="المحظورين$",
+    command=("المحظورين", plugin_category),
     info={
         "header": "Shows you the list of all gbanned users by you.",
         "usage": "{tr}listgban",
@@ -211,17 +211,17 @@ async def catgban(event):
 async def gablist(event):
     "Shows you the list of all gbanned users by you."
     gbanned_users = gban_sql.get_all_gbanned()
-    GBANNED_LIST = "Current Gbanned Users\n"
+    GBANNED_LIST = "الـمستخدمين الـمحظورين\n"
     if len(gbanned_users) > 0:
         for a_user in gbanned_users:
             if a_user.reason:
-                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) for {a_user.reason}\n"
+                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) لـ {a_user.reason}\n"
             else:
                 GBANNED_LIST += (
-                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) Reason None\n"
+                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) بـدون سبب\n"
                 )
     else:
-        GBANNED_LIST = "no Gbanned Users (yet)"
+        GBANNED_LIST = "لا يوجد مستخدمين محظورين ⚕️🌿"
     await edit_or_reply(event, GBANNED_LIST)
 
 
@@ -237,7 +237,7 @@ async def gablist(event):
 async def startgmute(event):
     "To mute a person in all groups where you are admin."
     if event.is_private:
-        await event.edit("`قد تحدث مشاكل او اخطاء غير متوقعة !`")
+        await event.edit("قد تحدث مشاكل او اخطاء غير متوقعة ")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -246,12 +246,12 @@ async def startgmute(event):
         if not user:
             return
         if user.id == catub.uid:
-            return await edit_or_reply(event, "`عذرا لايمكنني كتم نفسي 📍`")
+            return await edit_or_reply(event, "**- عذرا لايمكنني كتم نفسي 📍**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "`اسف انا غير قادر ع احضار او كتم المستخدم ⌁`")
+        return await edit_or_reply(event, "اسف انا غير قادر ع حظـر او كتم المستخدم ⚕️❤")
     if is_muted(userid, "gmute"):
         return await edit_or_reply(
             event,
@@ -265,26 +265,26 @@ async def startgmute(event):
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} ▫️ ¦  تم كتم المستخدم \n**سبب :** `{reason}`",
+                f"{_format.mentionuser(user.first_name ,user.id)} تم كتـم المستخدم بنجاح ✅\n**الـسبب :** `{reason}`",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} ▫️ ¦  تم كتم المستخدم ",
+                f"{_format.mentionuser(user.first_name ,user.id)} تم كتـم المستخدم بنجاح ✅",
             )
     if BOTLOG:
         reply = await event.get_reply_message()
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#GMUTE\n"
+                "#الكـتم\n"
                 f"**المستخدم 👱‍♂ :** {_format.mentionuser(user.first_name ,user.id)} \n"
                 f"**سبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#GMUTE\n"
+                "#الكـتم\n"
                 f"**المستخدم 👱‍♂ :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
         if reply:
@@ -303,7 +303,7 @@ async def startgmute(event):
 async def endgmute(event):
     "To remove gmute on that person."
     if event.is_private:
-        await event.edit("`قد تحدث مشاكل او اخطاء غير متوقعة !`")
+        await event.edit("قد تحدث مشاكل او اخطاء غير متوقعة !")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -312,16 +312,16 @@ async def endgmute(event):
         if not user:
             return
         if user.id == catub.uid:
-            return await edit_or_reply(event, "`عذرا لا يمكنني كتم نفسي 📍`")
+            return await edit_or_reply(event, "**عذرا لا يمكنني كتم نفسي 📍**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "`آسف أنا غير قادر على إحضار المستخدم 📍`")
+        return await edit_or_reply(event, "**آسف أنا غير قادر على حظـر المستخدم 📍**")
 
     if not is_muted(userid, "gmute"):
         return await edit_or_reply(
-            event, f"{_format.mentionuser(user.first_name ,user.id)} `غير مكتوم 🔱`"
+            event, f"{_format.mentionuser(user.first_name ,user.id)} غير مكتوم 🔱"
         )
     try:
         unmute(userid, "gmute")
@@ -331,25 +331,25 @@ async def endgmute(event):
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `▫️ ¦  تم الغاء كتم من هنا`\n**سبب  :** `{reason}`",
+                f"{_format.mentionuser(user.first_name ,user.id)} تم الغاء كتم المستخدم بنجاح ✅\n**الـسبب  :** `{reason}`",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `▫️ ¦  تم الغاء كتم من هنا`",
+                f"{_format.mentionuser(user.first_name ,user.id)} **تم الغاء كتم المستخدم بنجاح 👨‍💻",
             )
     if BOTLOG:
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#UNGMUTE\n"
+                "#الـغاء_الـكتم\n"
                 f"**المستخدم 👨‍💻 :** {_format.mentionuser(user.first_name ,user.id)} \n"
                 f"**سبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#UNGMUTE\n"
+                "#الـغاء_الـكتم\n"
                 f"**المستخدم 👨‍💻 :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
 
@@ -358,42 +358,3 @@ async def endgmute(event):
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
         await event.delete()
-        
-@catub.cat_cmd(
-    pattern="طرد(?: |$)(.*)",
-    command=("طرد", plugin_category),
-    info={
-        "header": "To kick a person from the group",
-        "description": "Will kick the user from the group so he can join back.\
-        \nNote : You need proper rights for this.",
-        "usage": [
-            "{tr}kick <userid/username/reply>",
-            "{tr}kick <userid/username/reply> <reason>",
-        ],
-    },
-    groups_only=True,
-    require_admin=True,
-)
-async def endmute(event):
-    "استخدم هذا لطرد المستخدم من الدردشة"
-    user, reason = await get_user_from_event(event)
-    if not user:
-        return
-    catevent = await edit_or_reply(event, "`جار طرد المستخدم ♻️`")
-    try:
-        await event.client.kick_participant(event.chat_id, user.id)
-    except Exception as e:
-        return await catevent.edit(NO_PERM + f"\n{str(e)}")
-    if reason:
-        await catevent.edit(
-            f"`مطرود` [{user.first_name}](tg://user?id={user.id})`!`\nسبب : {reason}"
-        )
-    else:
-        await catevent.edit(f"`مطرود` [{user.first_name}](tg://user?id={user.id})`!`")
-    if BOTLOG:
-        await event.client.send_message(
-            BOTLOG_CHATID,
-            "#الطرد\n"
-            f"المستخدم ¦  [{user.first_name}](tg://user?id={user.id})\n"
-            f"الدردشة ¦  {event.chat.title}(`{event.chat_id}`)\n",
-        )
