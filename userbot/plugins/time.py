@@ -45,8 +45,8 @@ async def get_tz(con):
 
 
 @catub.cat_cmd(
-    pattern="ctime(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?",
-    command=("ctime", plugin_category),
+    pattern="وقت(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?",
+    command=("وقت", plugin_category),
     info={
         "header": "To get current time of a paticular country",
         "note": "For country names check [this link](https://telegra.ph/country-names-10-24)",
@@ -74,10 +74,10 @@ async def time_func(tdata):
     else:
         return await edit_or_reply(
             tdata,
-            f"`It's`  **{dt.now().strftime(t_form)}**` on `**{dt.now().strftime(d_form)}** `here.`",
+            f"`هاذا الوقت`  **{dt.now().strftime(t_form)}**` على `**{dt.now().strftime(d_form)}** `هنا.`",
         )
     if not timezones:
-        return await edit_or_reply(tdata, "`Invaild country.`")
+        return await edit_or_reply(tdata, "`بلد غير صالح.`")
     if len(timezones) == 1:
         time_zone = timezones[0]
     elif len(timezones) > 1:
@@ -112,8 +112,8 @@ async def time_func(tdata):
 
 
 @catub.cat_cmd(
-    pattern="time(?: |$)(.*)",
-    command=("time", plugin_category),
+    pattern="الوقت(?: |$)(.*)",
+    command=("الوقت", plugin_category),
     info={
         "header": "To show current time.",
         "description": "shows current default time you can change by changing TZ in heroku vars.",
