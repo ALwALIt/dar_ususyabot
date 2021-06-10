@@ -61,7 +61,7 @@ async def _(event):
     else:
         return await edit_or_reply(event, "**ما الذي تريد ان ابحث عنه**")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "جار البحث عن الاغنيه انتظر رجاءا ✅*....`")
+    catevent = await edit_or_reply(event, "**جار تحميل الأغنية انتظر قليلا 🔍🎶**")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -92,7 +92,7 @@ async def _(event):
         return await catevent.edit(
             f"**عـذرا لم استطيع ايجاد الاغنيه او الفيديو لـ** `{query}`"
         )
-    await catevent.edit("**جار البحث عن الاغنيه انتظر رجاءا ✅**")
+    await catevent.edit("**جار التحميل انتظر قليلا ❤️🔍**")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
