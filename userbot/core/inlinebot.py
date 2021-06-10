@@ -51,7 +51,7 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"𝗝𝗠𝗧𝗛𝗢𝗡 𝗛𝗲𝗹𝗽𝗲𝗿\
+    text = f"𝗖𝗮𝘁𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗛𝗲𝗹𝗽𝗲𝗿\
         \n𝗣𝗿𝗼𝘃𝗶𝗱𝗲𝗱 𝗯𝘆 {mention}"
     buttons = [
         (
@@ -238,7 +238,7 @@ async def inline_handler(event):  # sourcery no-metrics
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
-                    Button.url("Repo", "https://github.com/JMTHON-AR/catuserbot"),
+                    Button.url("SUPPORT", "https://t.me/JMTHON"),
                 )
             ]
             CAT_IMG = Config.ALIVE_PIC or None
@@ -439,7 +439,7 @@ async def inline_handler(event):  # sourcery no-metrics
             await event.answer([result] if result else None)
         elif string == "pmpermit":
             buttons = [
-                Button.inline(text="Show Options.", data="show_pmpermit_options"),
+                Button.inline(text="عـرض الـخيارات.", data="show_pmpermit_options"),
             ]
             CAT_IMG = gvarstatus("pmpermit_pic") or None
             query = gvarstatus("pmpermit_text")
@@ -470,7 +470,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 Button.url("الـدعم", "https://t.me/JMTHON"),
                 Button.url(
                     "للتنصيب",
-                    "https://heroku.com/deploy?template=https://github.com/JMTHON-AR/CATPACK",
+                    "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FJMTHON-AR%2FJM-pack&template=https%3A%2F%2Fgithub.com%2FJMTHON-AR%2FJM-pack",
                 ),
             )
         ]
@@ -479,14 +479,14 @@ async def inline_handler(event):  # sourcery no-metrics
             url=CATLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "**قـم بـتنصيب الـبوت.", "md"
+            "𝗗𝗲𝗽𝗹𝗼𝘆 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗝𝗠𝗧𝗛𝗢𝗡.", "md"
         )
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
-            title="𝘾𝙖𝙩𝙐𝙨𝙚𝙧𝙗𝙤𝙩",
-            description="نـصب مجـاني و بـنفسك",
-            url="https://heroku.com/deploy?template=https://github.com/JMTHON-AR/CATPACK",
+            title="𝗝𝗠𝗧𝗛𝗢𝗡",
+            description="نصـب بنـفسك",
+            url="https://t.me/JMTHON",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(
