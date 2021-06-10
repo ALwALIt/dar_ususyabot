@@ -18,8 +18,8 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="restart$",
-    command=("restart", plugin_category),
+    pattern="اعاده تشغيل$",
+    command=("اعاده تشغيل", plugin_category),
     info={
         "header": "Restarts the bot !!",
         "usage": "{tr}restart",
@@ -31,7 +31,7 @@ async def _(event):
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
     sandy = await edit_or_reply(
         event,
-        "Restarted. `.ping` me or `.help` to check if I am online, actually it takes 1-2 min for restarting",
+        "للتحقق مما إذا كنت متصلاً بالإنترنت ، يستغرق الأمر في الواقع 1-2 دقيقة لإعادة التشغيل",
     )
     try:
         ulist = get_collectionlist_items()
@@ -49,32 +49,11 @@ async def _(event):
     except Exception as e:
         LOGS.error(e)
 
-
 @catub.cat_cmd(
-    pattern="shutdown$",
-    command=("shutdown", plugin_category),
+    pattern="سليب( [0-9]+)?$",
+    command=("سليب", plugin_category),
     info={
-        "header": "Shutdowns the bot !!",
-        "description": "To turn off the dyno of heroku. you cant turn on by bot you need to got to heroku and turn on or use @hk_heroku_bot",
-        "usage": "{tr}shutdown",
-    },
-)
-async def _(event):
-    "Shutdowns the bot"
-    if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
-    await edit_or_reply(event, "`Turning off bot now ...Manually turn me on later`")
-    if HEROKU_APP is not None:
-        HEROKU_APP.process_formation()["worker"].scale(0)
-    else:
-        sys.exit(0)
-
-
-@catub.cat_cmd(
-    pattern="sleep( [0-9]+)?$",
-    command=("sleep", plugin_category),
-    info={
-        "header": "Userbot will stop working for the mentioned time.",
+        "header": "سوف يتوقف Userbot عن العمل في الوقت المذكور",
         "usage": "{tr}sleep <seconds>",
         "examples": "{tr}sleep 60",
     },
@@ -82,16 +61,16 @@ async def _(event):
 async def _(event):
     "To sleep the userbot"
     if " " not in event.pattern_match.group(1):
-        return await edit_or_reply(event, "Syntax: `.sleep time`")
+        return await edit_or_reply(event, "بناء الجملة: وقت .سليب`")
     counter = int(event.pattern_match.group(1))
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "You put the bot to sleep for " + str(counter) + " seconds",
+            "لقد وضعت الروبوت في وضع السكون  " + str(counter) + " ثواني",
         )
-    event = await edit_or_reply(event, f"`ok, let me sleep for {counter} seconds`")
+    event = await edit_or_reply(event, f"`اوك, دعني أنام لأجل {counter} ثواني`")
     sleep(counter)
-    await event.edit("`OK, I'm awake now.`")
+    await event.edit("`حسنًا ، أنا مستيقظ الآن.`")
 
 
 @catub.cat_cmd(
