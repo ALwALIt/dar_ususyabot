@@ -711,7 +711,7 @@ async def disapprove_p_m(event):
             event, "__حسنا! تم رفض الجميع بنجاح ✅__"
         )
     if not reason:
-        reason = "Not Mentioned."
+        reason = "**- لم يتم ذكره ❕**."
     if pmpermit_sql.is_approved(user.id):
         pmpermit_sql.disapprove(user.id)
         await edit_or_reply(
@@ -751,7 +751,7 @@ async def block_p_m(event):
         if not user:
             return
     if not reason:
-        reason = "Not Mentioned."
+        reason = "**لم يتم ذكره ❕**"
     try:
         PM_WARNS = sql.get_collection("pmwarns").json
     except AttributeError:
@@ -806,7 +806,7 @@ async def unblock_pm(event):
         if not user:
             return
     if not reason:
-        reason = "Not Mentioned."
+        reason = "**لم يتم ذكره ❕**."
     await event.client(functions.contacts.UnblockRequest(user.id))
     await event.edit(
         f"[{user.first_name}](tg://user?id={user.id}) __تم الغاء حظره بنجاح يمكنه التكلم معك الان ✅⚕️__\n**السبب:** __{reason}__"
