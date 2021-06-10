@@ -10,7 +10,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME or None
 HEROKU_API_KEY = Config.HEROKU_API_KEY or None
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
-UPSTREAM_REPO = "https://github.com/JMTHON-AR/catuserbot"
+UPSTREAM_REPO = "https://github.com/JMTHON-AR/JMTHON"
 T = Config.COMMAND_HAND_LER
 
 requirements_path = path.join(
@@ -133,7 +133,7 @@ async def update(event, repo, ups_rem, ac_br):
 @bot.on(admin_cmd(outgoing=True, pattern=r"تحديث($| (الان|البوت))"))
 @bot.on(sudo_cmd(pattern="تحديث($| (الان|البوت))", allow_sudo=True))
 async def upstream(event):
-    "بالنسبة لأمر التحديث ، تحقق مما إذا كان ساد ثون تم تحديثه"
+    "بالنسبة لأمر التحديث ، تحقق مما إذا كان جمـثون تم تحديثه"
     conf = event.pattern_match.group(1).strip()
     event = await edit_or_reply(
         event,
@@ -204,7 +204,7 @@ async def upstream(event):
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            "ϟ  اضغط هنا **للتحديث السريع  .**[`{}تحديث الان`] او اضغط هنا **لتنصيب التحديث** وقد يستغرق 5 دقائق ↫ [`{}تحديث البوت`]".format(T, T)
+            "ϟ  اضغط هنا **للتحديث السريع  .**[`{}تحديث الان`] \n @JMTHON".format(T, T)
         )
 
     if force_update:
