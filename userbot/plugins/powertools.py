@@ -18,8 +18,8 @@ plugin_category = "tools"
 
 
 @catub.cat_cmd(
-    pattern="اعاده تشغيل$",
-    command=("اعاده تشغيل", plugin_category),
+    pattern="اعادة تشغيل$",
+    command=("اعادة تشغيل", plugin_category),
     info={
         "header": "Restarts the bot !!",
         "usage": "{tr}restart",
@@ -28,10 +28,10 @@ plugin_category = "tools"
 async def _(event):
     "Restarts the bot !!"
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
+        await event.client.send_message(BOTLOG_CHATID, "#اعادة_تشغيل \n" "اعادة تشغيل البوت")
     sandy = await edit_or_reply(
         event,
-        "للتحقق مما إذا كنت متصلاً بالإنترنت ، يستغرق الأمر في الواقع 1-2 دقيقة لإعادة التشغيل",
+        "**جار اعادة تشغيل البوت انتظر قليلا وارسل  .فحص  او  .السورس لرؤية البوت اذا شغال",
     )
     try:
         ulist = get_collectionlist_items()
@@ -49,11 +49,32 @@ async def _(event):
     except Exception as e:
         LOGS.error(e)
 
+
 @catub.cat_cmd(
-    pattern="سليب( [0-9]+)?$",
-    command=("سليب", plugin_category),
+    pattern="shutdown$",
+    command=("shutdown", plugin_category),
     info={
-        "header": "سوف يتوقف Userbot عن العمل في الوقت المذكور",
+        "header": "Shutdowns the bot !!",
+        "description": "To turn off the dyno of heroku. you cant turn on by bot you need to got to heroku and turn on or use @hk_heroku_bot",
+        "usage": "{tr}shutdown",
+    },
+)
+async def _(event):
+    "Shutdowns the bot"
+    if BOTLOG:
+        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
+    await edit_or_reply(event, "`Turning off bot now ...Manually turn me on later`")
+    if HEROKU_APP is not None:
+        HEROKU_APP.process_formation()["worker"].scale(0)
+    else:
+        sys.exit(0)
+
+
+@catub.cat_cmd(
+    pattern="sleep( [0-9]+)?$",
+    command=("sleep", plugin_category),
+    info={
+        "header": "Userbot will stop working for the mentioned time.",
         "usage": "{tr}sleep <seconds>",
         "examples": "{tr}sleep 60",
     },
@@ -61,16 +82,16 @@ async def _(event):
 async def _(event):
     "To sleep the userbot"
     if " " not in event.pattern_match.group(1):
-        return await edit_or_reply(event, "بناء الجملة: وقت .سليب`")
+        return await edit_or_reply(event, "Syntax: `.sleep time`")
     counter = int(event.pattern_match.group(1))
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "لقد وضعت الروبوت في وضع السكون  " + str(counter) + " ثواني",
+            "You put the bot to sleep for " + str(counter) + " seconds",
         )
-    event = await edit_or_reply(event, f"`اوك, دعني أنام لأجل {counter} ثواني`")
+    event = await edit_or_reply(event, f"`ok, let me sleep for {counter} seconds`")
     sleep(counter)
-    await event.edit("`حسنًا ، أنا مستيقظ الآن.`")
+    await event.edit("`OK, I'm awake now.`")
 
 
 @catub.cat_cmd(
