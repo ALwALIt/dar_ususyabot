@@ -84,8 +84,8 @@ async def _(event):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="ضع ترحيب(?: |$)(.*)",
-    command=("ضع ترحيب", plugin_category),
+    pattern="ترحيب(?: |$)(.*)",
+    command=("ترحيب", plugin_category),
     info={
         "الامر": ".ضع ترحيب",
         "الشرح": "امر الترحيب يقوم بالتحريب بجميع الاشخاص الذين يدخلون للمجموعه",
