@@ -8,8 +8,8 @@ from .core.session import catub
 
 __version__ = "3.0.0"
 __license__ = "GNU Affero General Public License v3.0"
-__author__ = "CatUserBot <https://github.com/sandy1709/catuserbot>"
-__copyright__ = "CatUserBot Copyright (C) 2020 - 2021  " + __author__
+__author__ = "JMTHON <https://github.com/JMTHON/catuserbot>"
+__copyright__ = "JMTHON Copyright (C) 2020 - 2021  " + __author__
 
 catub.version = __version__
 catub.tgbot.version = __version__
@@ -19,9 +19,9 @@ StartTime = time.time()
 catversion = "3.0.0"
 
 if Config.UPSTREAM_REPO == "goodcat":
-    UPSTREAM_REPO_URL = "https://github.com/sandy1709/catuserbot"
+    UPSTREAM_REPO_URL = "https://github.com/JMTHON/catuserbot"
 elif Config.UPSTREAM_REPO == "badcat":
-    UPSTREAM_REPO_URL = "https://github.com/Jisan09/catuserbot"
+    UPSTREAM_REPO_URL = "https://github.com/JMTHON/catuserbot"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 

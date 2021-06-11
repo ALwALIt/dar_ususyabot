@@ -20,7 +20,7 @@ from .sql_helper.global_collection import (
 from .sql_helper.globals import gvarstatus
 from .utils import load_module
 
-LOGS = logging.getLogger("CatUserbot")
+LOGS = logging.getLogger("JMTHON")
 
 print(userbot.__copyright__)
 print("Licensed under the terms of the " + userbot.__license__)
