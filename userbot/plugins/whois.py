@@ -72,8 +72,8 @@ async def fetch_info(replied_user, event):
 
 
 @catub.cat_cmd(
-    pattern="ايدي(?: |$)(.*)",
-    command=("ايدي", plugin_category),
+    pattern="ككشف?: |$)(.*)",
+    command=("ككشف", plugin_category),
     info={
         "الامر": "Gets information of an user such as restrictions ban by spamwatch or cas.",
         "الشرح": "That is like whether he banned is spamwatch or cas and small info like groups in common, dc ..etc.",
@@ -144,8 +144,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="whois(?: |$)(.*)",
-    command=("whois", plugin_category),
+    pattern="ايدي(?: |$)(.*)",
+    command=("ايدي", plugin_category),
     info={
         "header": "Gets info of an user.",
         "description": "User compelete details.",
