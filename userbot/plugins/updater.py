@@ -190,7 +190,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event, "`Checking for updates, please wait....`")
+    event = await edit_or_reply(event, "**التاكد من وجود تحديث ⚕️**")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
@@ -242,15 +242,15 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "\nبـوت جمثون محدث لاخر اصدار ✅❕  "
-            f"**{UPSTREAM_REPO_BRANCH}**\n"
+            "\n**بـوت جمثون محدث لاخر اصدار ✅❕**  "
+            f"****\n"
         )
         return repo.__del__()
     if conf == "" and not force_update:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            f"ارسل `{cmdhd}تحديث الان` لتحديث البوت"
+            f"ارسل `{cmdhd}تحديث الان` لتحديث البوت ❕💞"
         )
 
     if force_update:
@@ -267,7 +267,7 @@ async def upstream(event):
     pattern="تحديث البوت$",
 )
 async def upstream(event):
-    event = await edit_or_reply(event, "`Pulling the catpack repo wait a sec ....`")
+    event = await edit_or_reply(event, "**يتم البحث عن التحديث انتظر**")
     off_repo = "https://github.com/JMTHON/JMTHON-PACK"
     os.chdir("/app")
     await _catutils.runcmd(f"rm -rf .git")
