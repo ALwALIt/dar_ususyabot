@@ -87,7 +87,7 @@ async def _(event):  # sourcery no-metrics
     pattern="ترحيب(?: |$)(.*)",
     command=("ترحيب", plugin_category),
     info={
-        "الامر": ".ضع ترحيب",
+        "الامر": ".ترحيب",
         "الشرح": "امر الترحيب يقوم بالتحريب بجميع الاشخاص الذين يدخلون للمجموعه",
         "الاضافات": {
             "{mention}": "عمل تاك للمستخدم",
@@ -136,7 +136,7 @@ async def save_welcome(event):
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "** تم حفظ الترحيب الخاص بهذه الدردشه بنجاح**"
+    success = "** تم حفظ الترحيب بنجاح ✅**"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("saved"))
     rm_welcome_setting(event.chat_id)
@@ -157,7 +157,7 @@ async def save_welcome(event):
 async def del_welcome(event):
     "لحذف الرسائل الترحيبيه"
     if rm_welcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "**تم حذف جميع الرسائل الترحيبيه لهذه الدردشه**")
+        await edit_or_reply(event, "**تم حذف الترحيب بنجاح ✅**")
     else:
         await edit_or_reply(event, "** هل إمتلك ترحيبات بالاصل هنا  ?**")
 
