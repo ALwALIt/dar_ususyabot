@@ -72,8 +72,8 @@ async def fetch_info(replied_user, event):
 
 
 @catub.cat_cmd(
-    pattern="ككشف?: |$)(.*)",
-    command=("ككشف", plugin_category),
+    pattern="كشف(?: |$)(.*)",
+    command=("كشف", plugin_category),
     info={
         "الامر": "Gets information of an user such as restrictions ban by spamwatch or cas.",
         "الشرح": "That is like whether he banned is spamwatch or cas and small info like groups in common, dc ..etc.",
@@ -123,13 +123,11 @@ async def _(event):
             cas = "**Antispam(CAS) Banned :** `False`"
     else:
         cas = "**Antispam(CAS) Banned :** `Couldn't Fetch`"
-    caption = """**Info of [{}](tg://user?id={}):
-   -🔖ID : **`{}`
-   **-**👥**Groups in Common : **`{}`
-   **-**🌏**Data Centre Number : **`{}`
-   **-**🔏**Restricted by telegram : **`{}`
-   **-**🦅{}
-   **-**👮‍♂️{}
+    caption = """**معلومات المستخدم [{}](tg://user?id={}):\n\n
+   **-**⚕️ الايدي: **`{}`
+   **-**👥**المجموعات المشتركه : **`{}`
+   **-**🌏**رقم قاعده البيانات : **`{}`
+   **-**🔏**هل هو حساب موثق  : **`{}`
 """.format(
         first_name,
         user_id,
