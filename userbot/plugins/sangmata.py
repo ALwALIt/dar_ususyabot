@@ -12,8 +12,8 @@ plugin_category = "utils"
 
 
 @catub.cat_cmd(
-    pattern="sg(u)?(?: |$)(.*)",
-    command=("sg", plugin_category),
+    pattern="تاريخ(م)?(?: |$)(.*)",
+    command=("تاريخ", plugin_category),
     info={
         "header": "To get name history of the user.",
         "flags": {
@@ -40,7 +40,7 @@ async def _(event):  # sourcery no-metrics
         return
     uid = user.id
     chat = "@SangMataInfo_bot"
-    catevent = await edit_or_reply(event, "`Processing...`")
+    catevent = await edit_or_reply(event, "**انتظر قليلا..**")
     async with event.client.conversation(chat) as conv:
         try:
             await conv.send_message(f"/search_id {uid}")
