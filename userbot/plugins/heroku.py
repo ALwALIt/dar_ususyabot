@@ -119,8 +119,8 @@ async def variable(var):  # sourcery no-metrics
 
 
 @catub.cat_cmd(
-    pattern="usage$",
-    command=("usage", plugin_category),
+    pattern="استخدامي$",
+    command=("استخدامي", plugin_category),
     info={
         "header": "To Check dyno usage of userbot and also to know how much left.",
         "usage": "{tr}usage",
@@ -133,9 +133,9 @@ async def dyno_usage(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(
             dyno,
-            "Set the required vars in heroku to function this normally `HEROKU_API_KEY` and `HEROKU_APP_NAME`.",
+            "**- يرجى وضع الفارات المطلوبة يدويا اولا -** `HEROKU_API_KEY` and `HEROKU_APP_NAME`.",
         )
-    dyno = await edit_or_reply(dyno, "`Processing...`")
+    dyno = await edit_or_reply(dyno, "**يتم الحساب...**")
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -177,20 +177,20 @@ async def dyno_usage(dyno):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     return await dyno.edit(
-        "**Dyno Usage**:\n\n"
-        f" -> `Dyno usage for`  **{Config.HEROKU_APP_NAME}**:\n"
+        "**مدة الاستخدام لديك**:\n\n"
+        f" -> ** - ساعات الاستخدام لـ**  **{Config.HEROKU_APP_NAME}**:\n"
         f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
         f"**|**  [`{AppPercentage}`**%**]"
         "\n\n"
-        " -> `Dyno hours quota remaining this month`:\n"
+        " ->**- الساعات المتبقية لهذا الشهر  **:\n"
         f"     •  `{hours}`**h**  `{minutes}`**m**  "
         f"**|**  [`{percentage}`**%**]"
     )
 
 
 @catub.cat_cmd(
-    pattern="(herokulogs|logs)$",
-    command=("logs", plugin_category),
+    pattern="(herokulogs|الدخول)$",
+    command=("الدخول", plugin_category),
     info={
         "header": "To get recent 100 lines logs from heroku.",
         "usage": ["{tr}herokulogs", "{tr}logs"],
@@ -218,7 +218,7 @@ async def _(dyno):
         .get("key")
     )
     url = f"https://nekobin.com/{key}"
-    reply_text = f"Recent 100 lines of heroku logs: [here]({url})"
+    reply_text = f"**اخر 100 سطر في تطبيقك على هيروكو: [اضغط هنا]({url})"
     await edit_or_reply(dyno, reply_text)
 
 
