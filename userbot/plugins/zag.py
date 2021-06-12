@@ -13,7 +13,7 @@ async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
-    if input_str == "م23":
+    if input_str == "م21":
         r = random.randint(0, 3)
         logger.debug(r)
         if r == 0:
