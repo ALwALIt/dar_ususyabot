@@ -64,7 +64,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**تحـديث جديد لـبوت جـمثون [{ac_br}]:\n\nالتـغييرات:**\n`{changelog}`"
+        f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -106,7 +106,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     sandy = await event.edit(
-        "**تم التحديث بنجاح جار اعادة التشغيل ✅!\n" "يتم إعادة تشغيل اابوت انتظر ❕"
+        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
     )
     await event.client.reload(sandy)
 
@@ -171,8 +171,8 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 
 
 @catub.cat_cmd(
-    pattern="تحديث(| الان)?$",
-    command=("تحديث", plugin_category),
+    pattern="update(| now)?$",
+    command=("update", plugin_category),
     info={
         "header": "To update userbot.",
         "description": "I recommend you to do update deploy atlest once a week.",
@@ -190,19 +190,19 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event, "**يتم التاكد من وجود تحديث ⚕️**")
+    event = await edit_or_reply(event, "`Checking for updates, please wait....`")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
         return await edit_or_reply(
-            event, "**يرجى ضبط المتغيرات اولا**"
+            event, "`Set the required vars first to update the bot`"
         )
     try:
-        txt = "**عذرا لا يمكن اكمال التحديث بسبب  : "
-        txt += "بعض المشاكل حصلت`\n\n**LOGTRACE:**\n"
+        txt = "`Oops.. Updater cannot continue due to "
+        txt += "some problems occured`\n\n**LOGTRACE:**\n"
         repo = Repo()
     except NoSuchPathError as error:
-        await event.edit(f"{txt}\n`الدليل {error} لم يتم ايجاده`")
+        await event.edit(f"{txt}\n`directory {error} is not found`")
         return repo.__del__()
     except GitCommandError as error:
         await event.edit(f"{txt}\n`Early failure! {error}`")
@@ -242,32 +242,32 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "\n**بـوت جمثون محدث لاخر اصدار ✅❕**  "
-            f""
+            "\n`CATUSERBOT is`  **up-to-date**  `with`  "
+            f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         return repo.__del__()
     if conf == "" and not force_update:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            f"ارسل `{cmdhd}تحديث الان` لتحديث البوت ❕💞"
+            f"do `{cmdhd}update deploy` to update the catuserbot"
         )
 
     if force_update:
         await event.edit(
-            "**يتم البحث عن اذا كان هناك تحديث لكودات البوت**..."
+            "`Force-Syncing to latest stable userbot code, please wait...`"
         )
     if conf == "now":
-        await event.edit("يتم التحديث انتظر رجاءا ❕")
+        await event.edit("`Updating userbot, please wait....`")
         await update(event, repo, ups_rem, ac_br)
     return
 
 
 @catub.cat_cmd(
-    pattern="تحديث البوت$",
+    pattern="update deploy$",
 )
 async def upstream(event):
-    event = await edit_or_reply(event, "**يتم البحث عن التحديث انتظر**")
+    event = await edit_or_reply(event, "`Pulling the catpack repo wait a sec ....`")
     off_repo = "https://github.com/JMTHON/JM-THON"
     os.chdir("/app")
     await _catutils.runcmd(f"rm -rf .git")
@@ -323,4 +323,4 @@ async def variable(var):
         )
     heroku_var = app.config()
     await edit_or_reply(var, f"`Changing goodcat to badcat wait for 2-3 minutes.`")
-    heroku_var["UPSTREAM_REPO"] = "https://github.com/JMTHON-AR/JM-THON"
+    heroku_var["UPSTREAM_REPO"] = "https://github.com/Jisan09/catuserbot"
