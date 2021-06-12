@@ -31,7 +31,7 @@ async def _(event):
         await event.client.send_message(BOTLOG_CHATID, "#اعادة_تشغيل \n" "اعادة تشغيل البوت")
     sandy = await edit_or_reply(
         event,
-        "**جار اعادة تشغيل البوت انتظر قليلا وارسل  .فحص  او  .السورس لرؤية البوت اذا شغال",
+        "**جار اعادة تشغيل البوت انتظر قليلا وارسل  `.فحص`  او  `.السورس` لرؤية البوت اذا شغال**",
     )
     try:
         ulist = get_collectionlist_items()
