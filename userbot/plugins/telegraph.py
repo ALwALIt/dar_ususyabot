@@ -26,8 +26,8 @@ def resize_image(image):
 
 
 @catub.cat_cmd(
-    pattern="(t(ele)?g(raph)?) ?(m|t|media|text)(?: |$)(.*)",
-    command=("telegraph", plugin_category),
+    pattern="(ت(ل)?ك(راف)?) ?(m|t|media|text)(?: |$)(.*)",
+    command=("تلكراف", plugin_category),
     info={
         "header": "To get telegraph link.",
         "description": "Reply to text message to paste that text on telegraph you can also pass input along with command \
@@ -46,7 +46,7 @@ def resize_image(image):
 )  # sourcery no-metrics
 async def _(event):
     "To get telegraph link."
-    catevent = await edit_or_reply(event, "`processing........`")
+    catevent = await edit_or_reply(event, "**انتظر قليلا...**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -78,8 +78,8 @@ async def _(event):
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await catevent.edit(
-                f"**link : **[telegraph](https://telegra.ph{media_urls[0]})\
-                    \n**Time Taken : **`{ms} seconds.`",
+                f"**الرابط : **[اضغط هنا](https://telegra.ph{media_urls[0]})\
+                    \n**الوقت المستغرق : **`{ms} من الثواني.`",
                 link_preview=True,
             )
     elif input_str in ["text", "t"]:
@@ -107,7 +107,7 @@ async def _(event):
         ms = (end - start).seconds
         cat = f"https://telegra.ph/{response['path']}"
         await catevent.edit(
-            f"**link : ** [telegraph]({cat})\
-                 \n**Time Taken : **`{ms} seconds.`",
+            f"**الرابط : ** [اضغط هنا]({cat})\
+                 \n**الوقت المستغرق : **`{ms} من الثواني.`",
             link_preview=True,
         )
