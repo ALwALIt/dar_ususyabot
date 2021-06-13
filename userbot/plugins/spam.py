@@ -229,8 +229,8 @@ async def tmeme(event):
 
 
 @catub.cat_cmd(
-    pattern="wspam (.*)",
-    command=("wspam", plugin_category),
+    pattern="وسبام (.*)",
+    command=("وسبام", plugin_category),
     info={
         "header": "Spam the text word by word.",
         "description": "Spams the chat with every word in given text asnew message.",
@@ -258,26 +258,3 @@ async def tmeme(event):
                 "#WSPAM\n"
                 + f"Word Spam was executed successfully in {event.chat.title}(`{event.chat_id}`) chat with : `{message}`",
             )
-
-
-@catub.cat_cmd(
-    pattern="(delayspam|dspam) (.*)",
-    command=("delayspam", plugin_category),
-    info={
-        "header": "To spam the chat with count number of times with given text and given delay sleep time.",
-        "description": "For example if you see this dspam 2 10 hi. Then you will send 10 hi text messages with 2 seconds gap between each message.",
-        "usage": [
-            "{tr}delayspam <delay> <count> <text>",
-            "{tr}dspam <delay> <count> <text>",
-        ],
-        "examples": ["{tr}delayspam 2 10 hi", "{tr}dspam 2 10 hi"],
-    },
-)
-async def spammer(event):
-    "To spam with custom sleep time between each message"
-    reply = await event.get_reply_message()
-    input_str = "".join(event.text.split(maxsplit=1)[1:]).split(" ", 2)
-    sleeptimet = sleeptimem = float(input_str[0])
-    cat = input_str[1:]
-    await event.delete()
-    await spam_function(event, reply, cat, sleeptimem, sleeptimet, DelaySpam=True)
