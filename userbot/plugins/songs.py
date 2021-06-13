@@ -61,7 +61,7 @@ async def _(event):
     else:
         return await edit_or_reply(event, "**ما الذي تريد ان ابحث عنه**")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**جار تحميل الأغنية انتظر قليلا ❤️🎶**")
+    catevent = await edit_or_reply(event, "**جار تحميل الاغنيه انتظر قليلا 🎧♥️**")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -92,7 +92,7 @@ async def _(event):
         return await catevent.edit(
             f"**عـذرا لم استطيع ايجاد الاغنيه او الفيديو لـ** `{query}`"
         )
-    await catevent.edit("**لقد وجدت المطلوب انتظر قليلا ،❤️🔍**")
+    await catevent.edit("**جار تحميل الاغنيه انتظر قليلا 🎧♥️**")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
@@ -124,8 +124,8 @@ async def delete_messages(event, chat, from_message):
 
 
 @catub.cat_cmd(
-    pattern="vsong(?: |$)(.*)",
-    command=("vsong", plugin_category),
+    pattern="تحميل فيديو(?: |$)(.*)",
+    command=("تحميل فيديو", plugin_category),
     info={
         "header": "To get video songs from youtube.",
         "description": "Basically this command searches youtube and sends the first video",
@@ -145,7 +145,7 @@ async def _(event):
     else:
         return await edit_or_reply(event, "`What I am Supposed to find`")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    catevent = await edit_or_reply(event, "`جار تحميل الفيديو المطلوب ...`")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -176,7 +176,7 @@ async def _(event):
         return await catevent.edit(
             f"Sorry!. I can't find any related video/audio for `{query}`"
         )
-    await catevent.edit("`yeah..! i found something wi8..🥰`")
+    await catevent.edit("`انتظر قليلا جار تحميل الفيديو`")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
