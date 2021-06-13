@@ -1,4 +1,4 @@
-# by  @rrrd7 ( https://t.me/JMTHON  )
+# by  @sandy1709 ( https://t.me/mrconfused  )
 
 # songs finder for catuserbot
 import asyncio
@@ -59,13 +59,13 @@ async def _(event):
         if reply.message:
             query = reply.message
     else:
-        return await edit_or_reply(event, "**ما الذي تريد ان ابحث عنه**")
+        return await edit_or_reply(event, "`What I am Supposed to find `")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**جار تحميل الاغنيه انتظر قليلا 🎧♥️**")
+    catevent = await edit_or_reply(event, "`جار تحميب الاغنية انتظر قليلا 🎶♥️`")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
-            f"**عـذرا لم استطيع ايجاد الاغنيه او الفيديو لـ** `{query}`"
+            f"Sorry!. I can't find any related video/audio for `{query}`"
         )
     cmd = event.pattern_match.group(1)
     q = "320k" if cmd == "320" else "128k"
@@ -79,10 +79,10 @@ async def _(event):
         pass
     stderr = (await _catutils.runcmd(song_cmd))[1]
     if stderr:
-        return await catevent.edit(f"**خـطأ :** `{stderr}`")
+        return await catevent.edit(f"**Error :** `{stderr}`")
     catname, stderr = (await _catutils.runcmd(name_cmd))[:2]
     if stderr:
-        return await catevent.edit(f"**خـطأ :** `{stderr}`")
+        return await catevent.edit(f"**Error :** `{stderr}`")
     # stderr = (await runcmd(thumb_cmd))[1]
     catname = os.path.splitext(catname)[0]
     # if stderr:
@@ -90,9 +90,9 @@ async def _(event):
     song_file = Path(f"{catname}.mp3")
     if not os.path.exists(song_file):
         return await catevent.edit(
-            f"**عـذرا لم استطيع ايجاد الاغنيه او الفيديو لـ** `{query}`"
+            f"Sorry!. I can't find any related video/audio for `{query}`"
         )
-    await catevent.edit("**جار تحميل الاغنيه انتظر قليلا 🎧♥️**")
+    await catevent.edit("`لقد وجدت المطلوب انتظر قليلا 🔍♥️`")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
@@ -145,7 +145,7 @@ async def _(event):
     else:
         return await edit_or_reply(event, "`What I am Supposed to find`")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "`جار تحميل الفيديو المطلوب ...`")
+    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
@@ -176,7 +176,7 @@ async def _(event):
         return await catevent.edit(
             f"Sorry!. I can't find any related video/audio for `{query}`"
         )
-    await catevent.edit("`انتظر قليلا جار تحميل الفيديو`")
+    await catevent.edit("`yeah..! i found something wi8..🥰`")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
