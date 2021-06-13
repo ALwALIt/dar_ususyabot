@@ -18,6 +18,7 @@ from ..sql_helper.global_collection import (
     del_keyword_collectionlist,
     get_collectionlist_items,
 )
+from ..sql_helper.globals import delgvar
 
 plugin_category = "tools"
 cmdhd = Config.COMMAND_HAND_LER
@@ -64,7 +65,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
+        f"**تحديث جديـد لجـمثون :\n\nالأضافـات:**\n`{changelog}`"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -106,7 +107,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     sandy = await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a minute!`"
+        "**تم التحديث بنجاح ✅**\n" "**جار اعادة التشغيل... انتظر قليلا !**"
     )
     await event.client.reload(sandy)
 
@@ -167,12 +168,14 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         await event.edit("`Build failed!\n" "Cancelled or there were some errors...`")
         await asyncio.sleep(5)
         return await event.delete()
-    await event.edit("`Deploy was failed better to do manual deploy.`")
+    await event.edit("`Deploy was failed. So restarting to update`")
+    delgvar("ipaddress")
+    await event.client.disconnect()
 
 
 @catub.cat_cmd(
-    pattern="update(| now)?$",
-    command=("update", plugin_category),
+    pattern="تحديث(| الان)?$",
+    command=("تحديث", plugin_category),
     info={
         "header": "To update userbot.",
         "description": "I recommend you to do update deploy atlest once a week.",
@@ -264,11 +267,11 @@ async def upstream(event):
 
 
 @catub.cat_cmd(
-    pattern="update deploy$",
+    pattern="تحديث البوت$",
 )
 async def upstream(event):
     event = await edit_or_reply(event, "`Pulling the catpack repo wait a sec ....`")
-    off_repo = "https://github.com/JMTHON/JM-THON"
+    off_repo = "https://github.com/JMTHON-AR/JM-THON"
     os.chdir("/app")
     await _catutils.runcmd(f"rm -rf .git")
     try:
