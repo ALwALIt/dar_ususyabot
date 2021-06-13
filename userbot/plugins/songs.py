@@ -124,8 +124,8 @@ async def delete_messages(event, chat, from_message):
 
 
 @catub.cat_cmd(
-    pattern="تحميل فيديو(?: |$)(.*)",
-    command=("تحميل فيديو", plugin_category),
+    pattern="vsong(?: |$)(.*)",
+    command=("vsong", plugin_category),
     info={
         "header": "To get video songs from youtube.",
         "description": "Basically this command searches youtube and sends the first video",
