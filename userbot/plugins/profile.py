@@ -194,8 +194,8 @@ async def count(event):
 
 
 @catub.cat_cmd(
-    pattern="حذف صوره ?(.*)",
-    command=("حذف صوره", plugin_category),
+    pattern="حذف صورة ?(.*)",
+    command=("حذف صورة", plugin_category),
     info={
         "header": "To delete profile pic for this account.",
         "description": "If you havent mentioned no of profile pics then only 1 will be deleted.",
