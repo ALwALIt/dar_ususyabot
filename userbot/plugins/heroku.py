@@ -56,22 +56,22 @@ async def variable(var):  # sourcery no-metrics
     if (Config.HEROKU_API_KEY is None) or (Config.HEROKU_APP_NAME is None):
         return await edit_delete(
             var,
-            "Set the required vars in heroku to function this normally `HEROKU_API_KEY` and `HEROKU_APP_NAME`.",
+            "**يجب عليك وضع الفارات المطلوبة من هيروكو وهي \n `HEROKU_API_KEY` و `HEROKU_APP_NAME`.",
         )
     app = Heroku.app(Config.HEROKU_APP_NAME)
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
     if exe == "get":
-        cat = await edit_or_reply(var, "`Getting information...`")
+        cat = await edit_or_reply(var, "**يتم سحب المعلومات**")
         await asyncio.sleep(1.0)
         try:
             variable = var.pattern_match.group(2).split()[0]
             if variable in heroku_var:
                 return await cat.edit(
-                    "**ConfigVars**:" f"\n\n`{variable}` = `{heroku_var[variable]}`\n"
+                    "**الفار المتغير**:" f"\n\n`{variable}` = `{heroku_var[variable]}`\n"
                 )
             await cat.edit(
-                "**ConfigVars**:" f"\n\n__Error:\n-> __`{variable}`__ don't exists__"
+                "**الفار المتغير**:" f"\n\n__Error:\n-> __`{variable}`__ لا يوجد هكذا شي"
             )
         except IndexError:
             configs = prettyjson(heroku_var.to_dict(), indent=2)
@@ -89,19 +89,19 @@ async def variable(var):  # sourcery no-metrics
             os.remove("configs.json")
     elif exe == "set":
         variable = "".join(var.text.split(maxsplit=2)[2:])
-        cat = await edit_or_reply(var, "`Setting information...`")
+        cat = await edit_or_reply(var, "**يتم سحب المعلومات**")
         if not variable:
-            return await cat.edit("`.set var <ConfigVars-name> <value>`")
+            return await cat.edit("`.set var <كود الفار> <القيمة>`")
         value = "".join(variable.split(maxsplit=1)[1:])
         variable = "".join(variable.split(maxsplit=1)[0])
         if not value:
-            return await cat.edit("`.set var <ConfigVars-name> <value>`")
+            return await cat.edit("`.set var <كود الفار> <القيمة>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await cat.edit(f"`{variable}` **successfully changed to  ->  **`{value}`")
+            await cat.edit(f"`{variable}` **تم بنجاح التغيير الى  ->  **`{value}`")
         else:
             await cat.edit(
-                f"`{variable}`**  successfully added with value`  ->  **{value}`"
+                f"`{variable}`**  تم بنجاح اضافه القيمة مع   ->  **`{value}`"
             )
         heroku_var[variable] = value
     elif exe == "del":
