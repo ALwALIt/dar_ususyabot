@@ -245,8 +245,8 @@ async def _(cat_event):
 
 
 @catub.cat_cmd(
-    pattern="تحويل ملف$",
-    command=("تحويل ملف", plugin_category),
+    pattern="تحويل ملصق$",
+    command=("تحويل ملصق", plugin_category),
     info={
         "header": "رد على هذا الأمر على صورة للحصول على ملصق ⌁",
         "usage": "{tr}itos",
