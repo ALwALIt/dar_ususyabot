@@ -3,21 +3,21 @@ from html_telegraph_poster import TelegraphPoster
 
 def media_type(message):
     if message and message.photo:
-        return "Photo"
+        return "كتابة"
     if message and message.audio:
-        return "Audio"
+        return "اغنية"
     if message and message.voice:
-        return "Voice"
+        return "صوتي"
     if message and message.video_note:
-        return "Round Video"
+        return "جولة"
     if message and message.gif:
-        return "Gif"
+        return "متحركة"
     if message and message.sticker:
-        return "Sticker"
+        return "ملصق"
     if message and message.video:
-        return "Video"
+        return "فيديو"
     if message and message.document:
-        return "Document"
+        return "ملف"
     return None
 
 
