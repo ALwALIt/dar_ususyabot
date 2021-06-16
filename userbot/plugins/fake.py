@@ -15,8 +15,8 @@ plugin_category = "fun"
 
 
 @catub.cat_cmd(
-    pattern="وهمية(?: |$)(.*)",
-    command=("وهمية", plugin_category),
+    pattern="وهمي(?: |$)(.*)",
+    command=("وهمي", plugin_category),
     info={
         "header": "To show fake actions for a paticular period of time",
         "description": "if time is not mentioned then it may choose random time 5 or 6 mintues for mentioning time use in seconds",
