@@ -15,14 +15,14 @@ LOGS = logging.getLogger(__name__)
 async def media_to_pic(event, reply, noedits=False):
     mediatype = media_type(reply)
     if mediatype not in [
-        "Photo",
-        "Round Video",
-        "Gif",
-        "Sticker",
-        "Video",
-        "Voice",
-        "Audio",
-        "Document",
+        "صورة",
+        "جولة",
+        "متحركة",
+        "ملصق",
+        "فيديو",
+        "صوتي",
+        "اغنية",
+        "ملف",
     ]:
         return event, None
     if not noedits:
@@ -35,13 +35,13 @@ async def media_to_pic(event, reply, noedits=False):
     catfile = os.path.join("./temp/", "meme.png")
     if os.path.exists(catfile):
         os.remove(catfile)
-    if mediatype == "Photo":
+    if mediatype == "صورة":
         catmedia = await reply.download_media(file="./temp")
         im = Image.open(catmedia)
         im.save(catfile)
-    elif mediatype in ["Audio", "Voice"]:
+    elif mediatype in ["اغنية", "صوتي"]:
         await event.client.download_media(reply, catfile, thumb=-1)
-    elif mediatype == "Sticker":
+    elif mediatype == "ملصق":
         catmedia = await reply.download_media(file="./temp")
         if catmedia.endswith(".tgs"):
             await runcmd(
@@ -50,7 +50,7 @@ async def media_to_pic(event, reply, noedits=False):
         elif catmedia.endswith(".webp"):
             im = Image.open(catmedia)
             im.save(catfile)
-    elif mediatype in ["Round Video", "Video", "Gif"]:
+    elif mediatype in ["جولة", "فيديو", "متحركة"]:
         await event.client.download_media(reply, catfile, thumb=-1)
         if not os.path.exists(catfile):
             catmedia = await reply.download_media(file="./temp")
@@ -59,10 +59,10 @@ async def media_to_pic(event, reply, noedits=False):
                 clip = clip.save_frame(catfile, 0.1)
             except:
                 clip = clip.save_frame(catfile, 0)
-    elif mediatype == "Document":
+    elif mediatype == "ملف:
         mimetype = reply.document.mime_type
         mtype = mimetype.split("/")
-        if mtype[0].lower() == "image":
+        if mtype[0].lower() == "صورة":
             catmedia = await reply.download_media(file="./temp")
             im = Image.open(catmedia)
             im.save(catfile)
