@@ -27,7 +27,8 @@ from . import (
     _catutils,
     catub,
     edit_delete,
-    logging,
+    logging
+    ALIVE_EMOJI,
 )
 
 plugin_category = "tools"
