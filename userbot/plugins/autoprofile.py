@@ -32,6 +32,7 @@ from . import (
 
 plugin_category = "tools"
 DEFAULTUSERBIO = DEFAULT_BIO or " كارثه أن يجتمع عقل ناضج وقلب عاطفي في جسد واحد  "
+EMOJI = ALIVE_EMOJI or "-"
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
 
@@ -186,7 +187,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f"- {HM} | {DEFAULTUSER}"
+        name = f"{EMOJI} {HM} | {DEFAULTUSER}"
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
