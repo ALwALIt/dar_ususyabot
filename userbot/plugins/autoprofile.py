@@ -31,7 +31,7 @@ from . import (
 )
 
 plugin_category = "tools"
-JMTHON = ALIVE_EMOJI
+JMTHON = ALIVE_EMOJI or "-"
 DEFAULTUSERBIO = DEFAULT_BIO or " كارثه أن يجتمع عقل ناضج وقلب عاطفي في جسد واحد  "
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
