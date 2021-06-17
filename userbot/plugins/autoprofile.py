@@ -23,7 +23,8 @@ from . import (
     AUTONAME,
     BOTLOG,
     BOTLOG_CHATID,
-    DEFAULT_BIO,
+    DEFAULT_BIO
+    ALIVE_EMOJI,
     _catutils,
     catub,
     edit_delete,
