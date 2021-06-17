@@ -24,7 +24,6 @@ from . import (
     BOTLOG,
     BOTLOG_CHATID,
     DEFAULT_BIO,
-    ALIVE_EMOJI,
     _catutils,
     catub,
     edit_delete,
@@ -32,7 +31,6 @@ from . import (
 )
 
 plugin_category = "tools"
-JMTHON = ALIVE_EMOJI
 DEFAULTUSERBIO = DEFAULT_BIO or " كارثه أن يجتمع عقل ناضج وقلب عاطفي في جسد واحد  "
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
@@ -188,7 +186,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f"- {HM} | {DEFAULTUSER}"
+        name = f"- {ALIVE_EMOJI} | {DEFAULTUSER}"
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
