@@ -186,7 +186,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f"- {ALIVE_EMOJI} | {DEFAULTUSER}"
+        name = f"- | {DEFAULTUSER}"
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
