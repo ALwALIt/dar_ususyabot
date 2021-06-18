@@ -1,4 +1,4 @@
-# batmanpfp and thorpfp by @Nihinivi
+# @RRRD7.- @UUNZZ
 
 import asyncio
 import base64
@@ -186,7 +186,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f"-{HM} | {DEFAULTUSER}"
+        name = f"-{HM} |"
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
