@@ -265,7 +265,7 @@ async def startgmute(event):
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} تم كتـم المستخدم بنجاح ✅\n**الـسبب :** `{reason}`",
+                f"{_format.mentionuser(user.first_name ,user.id)} تم كتـم المستخدم بنجاح ✅\n **الـسبب :** `{reason}`",
             )
         else:
             await edit_or_reply(
