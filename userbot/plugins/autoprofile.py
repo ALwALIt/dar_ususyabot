@@ -169,7 +169,7 @@ async def bloom_pfploop():
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
         ofnt = ImageFont.truetype(FONT_FILE_TO_USE, 250)
         drawn_text.text((95, 250), current_time, font=fnt, fill=(FR, FG, FB))
-        drawn_text.text((95, 250), "      😈", font=ofnt, fill=(FR, FG, FB))
+        drawn_text.text((95, 250), "  - ", font=ofnt, fill=(FR, FG, FB))
         img.save(autophoto_path)
         file = await catub.upload_file(autophoto_path)
         try:
@@ -186,7 +186,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f"-{HM} |"
+        name = f"{HM} |"
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
