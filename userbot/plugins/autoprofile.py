@@ -31,7 +31,7 @@ from . import (
 )
 
 plugin_category = "tools"
-DEFAULTUSERBIO = DEFAULT_BIO or " **ها هية الذكريات تميت ولاكنها لا تموت**  "
+DEFAULTUSERBIO = DEFAULT_BIO or " كارثه أن يجتمع عقل ناضج وقلب عاطفي في جسد واحد  "
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ autopic_path = os.path.join(os.getcwd(), "userbot", "original_pic.png")
 digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
-digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/aeaebe33b1f3988a0b690.jpg"
+digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/9552b77d21e182ccf535b.jpg"
 
 COLLECTION_STRINGS = {
     "batmanpfp_strings": [
@@ -66,12 +66,12 @@ async def autopicloop():
         if BOTLOG:
             return await catub.send_message(
                 BOTLOG_CHATID,
-                "**خطأ**\n - يجب وضع فار الصورة لتفعيل هذا الامر\n  .set var DEFAULT_PIC + رابط الصوره",
+                "**خطأ**\n يجب وضع فار الصورة لتلفعيل هذا الامر\n  .set var DEFAULT_PIC + رابط الصوره",
             )
         return
     if gvarstatus("صورة وقتية") is not None:
         try:
-            counter = int(gvarstatus("autopic_counter"))
+            counter = int(gvarstatus("صورة وقتية_counter"))
         except Exception as e:
             LOGS.warn(str(e))
     while AUTOPICSTART:
@@ -82,12 +82,12 @@ async def autopicloop():
                 pass
         shutil.copy(autopic_path, autophoto_path)
         im = Image.open(autophoto_path)
-        file_test = im.rotate(counter, expand=False).save(autophoto_path, "PNG")
-        current_time = datetime.now().strftime(" Time: %H:%M ")
+        file_test = im.rotate(counter, expand=False).save(autophoto_path, "JPG")
+        current_time = datetime.now().strftime("Time: %I:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
-        fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
-        drawn_text.text((150, 250), current_time, font=fnt, fill=(124, 252, 0))
+        fnt = ImageFont.truetype(FONT_FILE_TO_USE, 40)
+        drawn_text.text((150, 250), current_time, font=fnt, fill=(0))
         img.save(autophoto_path)
         file = await catub.upload_file(autophoto_path)
         try:
@@ -111,7 +111,7 @@ async def digitalpicloop():
                 pass
         shutil.copy(digitalpic_path, autophoto_path)
         Image.open(autophoto_path)
-        current_time = datetime.now().strftime("%H:%M")
+        current_time = datetime.now().strftime("%I:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         cat = str(base64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9kaWdpdGFsLnR0Zg=="))[
@@ -163,7 +163,7 @@ async def bloom_pfploop():
         image = Image.open(autophoto_path)
         image.paste((R, G, B), [0, 0, image.size[0], image.size[1]])
         image.save(autophoto_path)
-        current_time = datetime.now().strftime("\n Time: %H:%M:%S \n \n Date: %d/%m/%y")
+        current_time = datetime.now().strftime("\n Time: %H:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
@@ -186,7 +186,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
-        name = f" {HM} | "
+        name = f"- {HM} | "
         LOGS.info(name)
         try:
             await catub(functions.account.UpdateProfileRequest(first_name=name))
@@ -198,7 +198,7 @@ async def autoname_loop():
 
 
 async def autobio_loop():
-    AUTOBIOSTART = gvarstatus("بايو وقتي") == "true"
+    AUTOBIOSTART = gvarstatus("البايو الوقتي") == "true"
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%I:%M")
@@ -210,7 +210,7 @@ async def autobio_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(Config.CHANGE_TIME)
-        AUTOBIOSTART = gvarstatus("بايو وقتي") == "true"
+        AUTOBIOSTART = gvarstatus("البايو الوقتي") == "true"
 
 
 async def animeprofilepic(collection_images):
@@ -306,10 +306,10 @@ async def _(event):
         "options": "you can give integer input with cmd like 40,55,75 ..etc.\
              So that your profile pic will rotate with that specific angle",
         "note": "For functioning of this cmd you need to set DEFAULT_PIC var in heroku. \
-            To stop this do '.end autopic'",
+            To stop this do '.end صورة وقتية'",
         "usage": [
-            "{tr}autopic",
-            "{tr}autopic <any integer>",
+            "{tr}صورة وقتية",
+            "{tr}صورة وقتية <any integer>",
         ],
     },
 )
@@ -318,7 +318,7 @@ async def _(event):
     if Config.DEFAULT_PIC is None:
         return await edit_delete(
             event,
-            "**خطأ**\n يجب وضع فار الصورة لتلفعيل هذا الامر\n  .set var DEFAULT_PIC + رابط الصوره",
+            "**Error**\nFor functing of صورة وقتية you need to set DEFAULT_PIC var in Heroku vars",
             parse_mode=_format.parse_pre,
         )
     downloader = SmartDL(Config.DEFAULT_PIC, autopic_path, progress_bar=False)
@@ -332,13 +332,13 @@ async def _(event):
         except ValueError:
             input_str = 60
     else:
-        if gvarstatus("صورة وقتية_counter") is None:
-            addgvar("صورة وقتية_counter", 30)
+        if gvarstatus("صورة وقتية_عدد") is None:
+            addgvar("صورة وقتية_عدد", 30)
     if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
         return await edit_delete(event, f"`Autopic is already enabled`")
     addgvar("صورة وقتية", True)
     if input_str:
-        addgvar("autopic_counter", input_str)
+        addgvar("صورة وقتية_عدد", input_str)
     await edit_delete(event, f"`Autopic has been started by my Master`")
     await autopicloop()
 
@@ -399,7 +399,7 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="اسم وقتي$",
+    pattern="اسم وقتي",
     command=("اسم وقتي", plugin_category),
     info={
         "header": "Changes your name with time",
@@ -418,32 +418,32 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="autobio$",
-    command=("autobio", plugin_category),
+    pattern="البايو الوقتي$",
+    command=("البايو الوقتي", plugin_category),
     info={
         "header": "Changes your bio with time",
         "description": "Updates your profile bio along with time. Set DEFAULT_BIO var in heroku with your fav bio,",
-        "note": "To stop this do '.end autobio'",
-        "usage": "{tr}autobio",
+        "note": "To stop this do '.end البايو الوقتي'",
+        "usage": "{tr}البايو الوقتي",
     },
 )
 async def _(event):
     "To update your bio along with time"
-    if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
-        return await edit_delete(event, f"`Autobio is already enabled`")
-    addgvar("autobio", True)
-    await edit_delete(event, "`Autobio has been started by my Master `")
+    if gvarstatus("البايو الوقتي") is not None and gvarstatus("البايو الوقتي") == "true":
+        return await edit_delete(event, f"**البايو الوقتي بالفعل مفعل**")
+    addgvar("البايو الوقتي", True)
+    await edit_delete(event, "**تم تفعيل النبذة الوقتية**")
     await autobio_loop()
 
 
 @catub.cat_cmd(
-    pattern="end (.*)",
-    command=("end", plugin_category),
+    pattern="انهاء (.*)",
+    command=("انهاء", plugin_category),
     info={
         "header": "To stop the functions of autoprofile",
         "description": "If you want to stop autoprofile functions then use this cmd.",
         "options": {
-            "autopic": "To stop autopic",
+            "صورة وقتية": "To stop صورة وقتية",
             "digitalpfp": "To stop difitalpfp",
             "bloom": "To stop bloom",
             "autoname": "To stop autoname",
@@ -452,7 +452,7 @@ async def _(event):
             "batmanpfp": "To stop batmanpfp",
         },
         "usage": "{tr}end <option>",
-        "examples": ["{tr}end autopic"],
+        "examples": ["{tr}end صورة وقتية"],
     },
 )
 async def _(event):  # sourcery no-metrics
@@ -480,9 +480,9 @@ async def _(event):  # sourcery no-metrics
         )
         delgvar("autopfp_strings")
         return await edit_delete(event, "`batmanpfp has been stopped now`")
-    if input_str == "autopic":
-        if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
-            delgvar("autopic")
+    if input_str == "صورة وقتية":
+        if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
+            delgvar("صورة وقتية")
             if os.path.exists(autopic_path):
                 file = await event.client.upload_file(autopic_path)
                 try:
@@ -514,28 +514,28 @@ async def _(event):  # sourcery no-metrics
                     return
             return await edit_delete(event, "`Bloom has been stopped now`")
         return await edit_delete(event, "`Bloom haven't enabled`")
-    if input_str == "autoname":
-        if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
-            delgvar("autoname")
+    if input_str == "اسم وقتي":
+        if gvarstatus("اسم وقتي") is not None and gvarstatus("اسم وقتي") == "true":
+            delgvar("اسم وقتي")
             await event.client(
                 functions.account.UpdateProfileRequest(first_name=DEFAULTUSER)
             )
-            return await edit_delete(event, "`Autoname has been stopped now`")
-        return await edit_delete(event, "`Autoname haven't enabled`")
-    if input_str == "autobio":
-        if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
-            delgvar("autobio")
+            return await edit_delete(event, "**الاسم الوقتي تم تعطيله**")
+        return await edit_delete(event, "**الاسم الوقتي تم تعطيله**")
+    if input_str == "البايو الوقتي":
+        if gvarstatus("البايو الوقتي") is not None and gvarstatus("البايو الوقتي") == "true":
+            delgvar("البايو الوقتي")
             await event.client(
                 functions.account.UpdateProfileRequest(about=DEFAULTUSERBIO)
             )
-            return await edit_delete(event, "`Autobio has been stopped now`")
-        return await edit_delete(event, "`Autobio haven't enabled`")
+            return await edit_delete(event, "**البايو الوقتي تم تعطيله**")
+        return await edit_delete(event, "** انت لم تقم بتفعيل البايو الوقتي**")
     END_CMDS = [
-        "autopic",
+        "صورة وقتية",
         "digitalpfp",
         "bloom",
-        "autoname",
-        "autobio",
+        "اسم وقتي",
+        "البايو الوقتي",
         "thorpfp",
         "batmanpfp",
     ]
