@@ -185,7 +185,7 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("اسم وقتي") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
-        HM = time.strftime("%H:%M")
+        HM = time.strftime(""%I:%M"")
         name = f"{HM} |"
         LOGS.info(name)
         try:
