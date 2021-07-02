@@ -114,7 +114,7 @@ async def digitalpicloop():
         current_time = datetime.now().strftime("%I:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
-        cat = str(base64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9Qcm9kdWN0U2Fucy1Cb2xkSXRhbGljLnR0Zg=="))[
+        cat = str(base64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9pbXBhY3QudHRm=="))[
             2:36
         ]
         fnt = ImageFont.truetype(cat, 200)
