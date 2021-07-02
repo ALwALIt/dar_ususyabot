@@ -1,4 +1,4 @@
-# batmanpfp and thorpfp by @Nihinivi
+# ARABIC TRANSLATE BY @RRRD7  - @UUNZZ
 
 import asyncio
 import base64
@@ -41,7 +41,7 @@ autopic_path = os.path.join(os.getcwd(), "userbot", "original_pic.png")
 digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
-digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/9552b77d21e182ccf535b.jpg"
+digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/55dd5cae92df0ae1469e9.jpg"
 
 COLLECTION_STRINGS = {
     "batmanpfp_strings": [
@@ -61,7 +61,7 @@ COLLECTION_STRINGS = {
 
 
 async def autopicloop():
-    AUTOPICSTART = gvarstatus("صورة وقتية") == "true"
+    AUTOPICSTART = gvarstatus("autopic") == "true"
     if AUTOPICSTART and Config.DEFAULT_PIC is None:
         if BOTLOG:
             return await catub.send_message(
@@ -69,9 +69,9 @@ async def autopicloop():
                 "**خطأ**\n يجب وضع فار الصورة لتلفعيل هذا الامر\n  .set var DEFAULT_PIC + رابط الصوره",
             )
         return
-    if gvarstatus("صورة وقتية") is not None:
+    if gvarstatus("autopic") is not None:
         try:
-            counter = int(gvarstatus("صورة وقتية_counter"))
+            counter = int(gvarstatus("autopic_counter"))
         except Exception as e:
             LOGS.warn(str(e))
     while AUTOPICSTART:
@@ -97,7 +97,7 @@ async def autopicloop():
             await asyncio.sleep(Config.CHANGE_TIME)
         except BaseException:
             return
-        AUTOPICSTART = gvarstatus("صورة وقتية") == "true"
+        AUTOPICSTART = gvarstatus("autopic") == "true"
 
 
 async def digitalpicloop():
@@ -111,10 +111,10 @@ async def digitalpicloop():
                 pass
         shutil.copy(digitalpic_path, autophoto_path)
         Image.open(autophoto_path)
-        current_time = datetime.now().strftime("%I:%M")
+        current_time = datetime.now().strftime("𖥻 %I:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
-        cat = str(base64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9kaWdpdGFsLnR0Zg=="))[
+        cat = str(base64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9Qcm9kdWN0U2Fucy1Cb2xkSXRhbGljLnR0Zg=="))[
             2:36
         ]
         fnt = ImageFont.truetype(cat, 200)
@@ -163,7 +163,7 @@ async def bloom_pfploop():
         image = Image.open(autophoto_path)
         image.paste((R, G, B), [0, 0, image.size[0], image.size[1]])
         image.save(autophoto_path)
-        current_time = datetime.now().strftime("\n Time: %H:%M")
+        current_time = datetime.now().strftime("\n Time: %I:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
@@ -297,8 +297,8 @@ async def _(event):
 
 
 @catub.cat_cmd(
-    pattern="صورة وقتية ?(.*)",
-    command=("صورة وقتية", plugin_category),
+    pattern="autopic ?(.*)",
+    command=("autopic", plugin_category),
     info={
         "header": "Changes profile pic every 1 minute with the custom pic with time",
         "description": "If you like to change the time interval for every new pic change \
@@ -306,10 +306,10 @@ async def _(event):
         "options": "you can give integer input with cmd like 40,55,75 ..etc.\
              So that your profile pic will rotate with that specific angle",
         "note": "For functioning of this cmd you need to set DEFAULT_PIC var in heroku. \
-            To stop this do '.end صورة وقتية'",
+            To stop this do '.end autopic'",
         "usage": [
-            "{tr}صورة وقتية",
-            "{tr}صورة وقتية <any integer>",
+            "{tr}autopic",
+            "{tr}autopic <any integer>",
         ],
     },
 )
@@ -318,7 +318,7 @@ async def _(event):
     if Config.DEFAULT_PIC is None:
         return await edit_delete(
             event,
-            "**Error**\nFor functing of صورة وقتية you need to set DEFAULT_PIC var in Heroku vars",
+            "**Error**\nFor functing of autopic you need to set DEFAULT_PIC var in Heroku vars",
             parse_mode=_format.parse_pre,
         )
     downloader = SmartDL(Config.DEFAULT_PIC, autopic_path, progress_bar=False)
@@ -332,26 +332,26 @@ async def _(event):
         except ValueError:
             input_str = 60
     else:
-        if gvarstatus("صورة وقتية_عدد") is None:
-            addgvar("صورة وقتية_عدد", 30)
-    if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
+        if gvarstatus("autopic_عدد") is None:
+            addgvar("autopic_عدد", 30)
+    if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
         return await edit_delete(event, f"`Autopic is already enabled`")
-    addgvar("صورة وقتية", True)
+    addgvar("autopic", True)
     if input_str:
-        addgvar("صورة وقتية_عدد", input_str)
+        addgvar("autopic_عدد", input_str)
     await edit_delete(event, f"`Autopic has been started by my Master`")
     await autopicloop()
 
 
 @catub.cat_cmd(
-    pattern="digitalpfp$",
-    command=("digitalpfp", plugin_category),
+    pattern="صورة وقتية$",
+    command=("صورة وقتية", plugin_category),
     info={
         "header": "Updates your profile pic every 1 minute with time on it",
         "description": "Deletes old profile pic and Update profile pic with new image with time on it.\
              You can change this image by setting DIGITAL_PIC var in heroku with telegraph image link",
-        "note": "To stop this do '.end digitalpfp'",
-        "usage": "{tr}digitalpfp",
+        "note": "To stop this do '.end صورة وقتية'",
+        "usage": "{tr}صورة وقتية",
     },
 )
 async def _(event):
@@ -361,9 +361,9 @@ async def _(event):
     while not downloader.isFinished():
         pass
     if gvarstatus("digitalpic") is not None and gvarstatus("digitalpic") == "true":
-        return await edit_delete(event, f"`Digitalpic is already enabled`")
+        return await edit_delete(event, f"**- الصورة الوقتية بالفعل مُمكنة**")
     addgvar("digitalpic", True)
-    await edit_delete(event, f"`digitalpfp has been started by my Master`")
+    await edit_delete(event, f"**- تم تفعيل الصورة الوقتية بنجاح ✅** ")
     await digitalpicloop()
 
 
@@ -443,8 +443,8 @@ async def _(event):
         "header": "To stop the functions of autoprofile",
         "description": "If you want to stop autoprofile functions then use this cmd.",
         "options": {
-            "صورة وقتية": "To stop صورة وقتية",
-            "digitalpfp": "To stop difitalpfp",
+            "autopic": "To stop autopic",
+            "صورة وقتية": "To stop difitalpfp",
             "bloom": "To stop bloom",
             "autoname": "To stop autoname",
             "autobio": "To stop autobio",
@@ -452,7 +452,7 @@ async def _(event):
             "batmanpfp": "To stop batmanpfp",
         },
         "usage": "{tr}end <option>",
-        "examples": ["{tr}end صورة وقتية"],
+        "examples": ["{tr}end autopic"],
     },
 )
 async def _(event):  # sourcery no-metrics
@@ -480,9 +480,9 @@ async def _(event):  # sourcery no-metrics
         )
         delgvar("autopfp_strings")
         return await edit_delete(event, "`batmanpfp has been stopped now`")
-    if input_str == "صورة وقتية":
-        if gvarstatus("صورة وقتية") is not None and gvarstatus("صورة وقتية") == "true":
-            delgvar("صورة وقتية")
+    if input_str == "autopic":
+        if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
+            delgvar("autopic")
             if os.path.exists(autopic_path):
                 file = await event.client.upload_file(autopic_path)
                 try:
@@ -492,7 +492,7 @@ async def _(event):  # sourcery no-metrics
                     return
             return await edit_delete(event, "`Autopic has been stopped now`")
         return await edit_delete(event, "`Autopic haven't enabled`")
-    if input_str == "digitalpfp":
+    if input_str == "صورة وقتية":
         if gvarstatus("digitalpic") is not None and gvarstatus("digitalpic") == "true":
             delgvar("digitalpic")
             await event.client(
@@ -500,8 +500,8 @@ async def _(event):  # sourcery no-metrics
                     await event.client.get_profile_photos("me", limit=1)
                 )
             )
-            return await edit_delete(event, "`Digitalpfp has been stopped now`")
-        return await edit_delete(event, "`Digitalpfp haven't enabled`")
+            return await edit_delete(event,"**- تم ايقاف الصورة الوقتية بنجاح**")
+        return await edit_delete(event," **- انت لم تقم بتفعيل الصوره الوقتية بالفعل**")
     if input_str == "bloom":
         if gvarstatus("bloom") is not None and gvarstatus("bloom") == "true":
             delgvar("bloom")
@@ -531,8 +531,8 @@ async def _(event):  # sourcery no-metrics
             return await edit_delete(event, "**البايو الوقتي تم تعطيله**")
         return await edit_delete(event, "** انت لم تقم بتفعيل البايو الوقتي**")
     END_CMDS = [
+        "autopic",
         "صورة وقتية",
-        "digitalpfp",
         "bloom",
         "اسم وقتي",
         "البايو الوقتي",
