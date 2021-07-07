@@ -157,12 +157,12 @@ def errors_handler(func):
             result = output[0] + output[1]
             ftext += result
             pastelink = paste_text(ftext)
-            text = "**هنالك خطا في البوت ارسل هذه الرساله الى المطورين**\n\n"
-            link = "[اضغط هنا](https://t.me/JMTHON)"
-            text += "يمكنك التبليغ عن المشكله"
-            text += f"- فقط قم بتوجيه الرسالة الى {link}.\n"
-            text += "لال يوجد خطا بالتسجيب فقط هناك بالوقت والتاريخ\n\n"
-            text += f"**تبليغ الخطا : ** [{new['error']}]({pastelink})"
+            text = "**CatUserbot Error report**\n\n"
+            link = "[here](https://t.me/catuserbot_support)"
+            text += "If you wanna you can report it"
+            text += f"- just forward this message {link}.\n"
+            text += "Nothing is logged except the fact of error and date\n\n"
+            text += f"**Error report : ** [{new['error']}]({pastelink})"
             await check.client.send_message(
                 Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
             )
