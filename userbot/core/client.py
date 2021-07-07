@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, List, Union
 
 from telethon import TelegramClient, events
+from telethon.errors import MessageIdInvalidError, MessageNotModifiedError
 
 from ..Config import Config
 from ..helpers.utils.events import checking
@@ -20,7 +21,7 @@ from .events import MessageEdited, NewMessage
 from .fasttelethon import download_file, upload_file
 from .logger import logging
 from .managers import edit_delete
-from .pluginManager import restart_script
+from .pluginManager import get_message_link, restart_script
 
 LOGS = logging.getLogger(__name__)
 
@@ -92,11 +93,11 @@ class CatUserBotClient(TelegramClient):
         def decorator(func):  # sourcery no-metrics
             async def wrapper(check):
                 if groups_only and not check.is_group:
-                    await edit_delete(check, "`I don't think this is a group.`", 10)
+                    await edit_delete(check, "**- أنا لا اعتقـد ان هذه مجمـوعة 🧸♥**", 10)
                     return
                 if private_only and not check.is_private:
                     await edit_delete(
-                        check, "`I don't think this is a personal Chat.`", 10
+                        check, "**- أنا لا اعتقـد ان هذه دردشة خاصة 🧸♥**", 10
                     )
                     return
                 try:
@@ -105,6 +106,10 @@ class CatUserBotClient(TelegramClient):
                     raise events.StopPropagation
                 except KeyboardInterrupt:
                     pass
+                except MessageNotModifiedError:
+                    LOGS.error("يبـدو أن هذه الرسالة نفس الرسالة السابقة")
+                except MessageIdInvalidError:
+                    LOGS.error("** يبدو أن الرسالة تم حذفها او غير قادر على ايجادها")
                 except BaseException as e:
                     LOGS.exception(e)
                     if not disable_errors:
@@ -118,6 +123,7 @@ class CatUserBotClient(TelegramClient):
                                   \n\n--------BEGIN USERBOT TRACEBACK LOG--------\
                                   \nDate: {date}\nGroup ID: {str(check.chat_id)}\
                                   \nSender ID: {str(check.sender_id)}\
+                                  \nMessage Link: {await check.client.get_msg_link(check)}\
                                   \n\nEvent Trigger:\n{str(check.text)}\
                                   \n\nTraceback info:\n{str(traceback.format_exc())}\
                                   \n\nError text:\n{str(sys.exc_info()[1])}"
@@ -131,15 +137,15 @@ class CatUserBotClient(TelegramClient):
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
-                        pastelink = paste_text(ftext)
-                        text = "**CatUserbot Error report**\n\n"
-                        link = "[here](https://t.me/catuserbot_support)"
-                        text += "If you wanna you can report it"
-                        text += f"- just forward this message {link}.\n"
+                        pastelink = paste_text(ftext, markdown=False)
+                        text = "**هنالك خطأ في بوت القـط**\n\n"
+                        link = "[هـنا](https://t.me/RRRD7)"
+                        text += "اذا واجهتك مشكله فقط قم بالتبليغ"
+                        text += f"- فقط قم بتوجيه الرسالة {link}.\n"
                         text += (
                             "Nothing is logged except the fact of error and date\n\n"
                         )
-                        text += f"**Error report : ** [{new['error']}]({pastelink})"
+                        text += f"** الخطأ : ** [{new['error']}]({pastelink})"
                         await check.client.send_message(
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
@@ -214,23 +220,27 @@ class CatUserBotClient(TelegramClient):
                     raise events.StopPropagation
                 except KeyboardInterrupt:
                     pass
+                except MessageNotModifiedError:
+                    LOGS.error("يبـدو أن هذه الرسالة نفس الرسالة السابقة")
+                except MessageIdInvalidError:
+                    LOGS.error("** يبدو أن الرسالة تم حذفها او غير قادر على ايجادها")
                 except BaseException as e:
-                    # Check if we have to disable error logging.
-                    LOGS.exception(e)  # Log the error in console
+                    LOGS.exception(e)
                     if not disable_errors:
                         if Config.PRIVATE_GROUP_BOT_API_ID == 0:
                             return
                         date = (datetime.datetime.now()).strftime("%m/%d/%Y, %H:%M:%S")
                         ftext = f"\nDisclaimer:\nThis file is pasted only here ONLY here,\
-                                    \nwe logged only fact of error and date,\nwe respect your privacy,\
-                                    \nyou may not report this error if you've\
-                                    \nany confidential data here, no one will see your data\
-                                    \n\n--------BEGIN USERBOT TRACEBACK LOG--------\
-                                    \nDate: {date}\nGroup ID: {str(check.chat_id)}\
-                                    \nSender ID: {str(check.sender_id)}\
-                                    \n\nEvent Trigger:\n{str(check.text)}\
-                                    \n\nTraceback info:\n{str(traceback.format_exc())}\
-                                    \n\nError text:\n{str(sys.exc_info()[1])}"
+                                  \nwe logged only fact of error and date,\nwe respect your privacy,\
+                                  \nyou may not report this error if you've\
+                                  \nany confidential data here, no one will see your data\
+                                  \n\n--------BEGIN USERBOT TRACEBACK LOG--------\
+                                  \nDate: {date}\nGroup ID: {str(check.chat_id)}\
+                                  \nSender ID: {str(check.sender_id)}\
+                                  \nMessage Link: {await check.client.get_msg_link(check)}\
+                                  \n\nEvent Trigger:\n{str(check.text)}\
+                                  \n\nTraceback info:\n{str(traceback.format_exc())}\
+                                  \n\nError text:\n{str(sys.exc_info()[1])}"
                         new = {
                             "error": str(sys.exc_info()[1]),
                             "date": datetime.datetime.now(),
@@ -241,15 +251,15 @@ class CatUserBotClient(TelegramClient):
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
-                        pastelink = paste_text(ftext)
-                        text = "**CatUserbot Error report**\n\n"
-                        link = "[here](https://t.me/catuserbot_support)"
-                        text += "If you wanna you can report it"
-                        text += f"- just forward this message {link}.\n"
+                        pastelink = paste_text(ftext, markdown=False)
+                        text = "**هنالك خطأ في بوت القـط**\n\n"
+                        link = "[هـنا](https://t.me/RRRD7)"
+                        text += "اذا واجهتك مشكله فقط قم بالتبليغ"
+                        text += f"- فقط قم بتوجيه الرسالة {link}.\n"
                         text += (
                             "Nothing is logged except the fact of error and date\n\n"
                         )
-                        text += f"**Error report : ** [{new['error']}]({pastelink})"
+                        text += f"** الخطأ : ** [{new['error']}]({pastelink})"
                         await check.client.send_message(
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
@@ -284,4 +294,5 @@ class CatUserBotClient(TelegramClient):
 CatUserBotClient.fast_download_file = download_file
 CatUserBotClient.fast_upload_file = upload_file
 CatUserBotClient.reload = restart_script
+CatUserBotClient.get_msg_link = get_message_link
 CatUserBotClient.check_testcases = checking

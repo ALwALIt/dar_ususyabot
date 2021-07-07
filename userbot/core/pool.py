@@ -34,8 +34,8 @@ def _get() -> ThreadPoolExecutor:
 def _stop():
     _EXECUTOR.shutdown()
     # pylint: disable=protected-access
-    _LOG.info(_LOG_STR, f"Stopped Pool : {_EXECUTOR._max_workers} Workers")
+    _LOG.info(_LOG_STR, f"انـتهى الـتجـميع : {_EXECUTOR._max_workers} Workers")
 
 
 # pylint: disable=protected-access
-_LOG.info(_LOG_STR, f"Started Pool : {_EXECUTOR._max_workers} Workers")
+_LOG.info(_LOG_STR, f"يـتم الـتجـميع : {_EXECUTOR._max_workers} Workers")
