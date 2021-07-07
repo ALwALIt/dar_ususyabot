@@ -25,10 +25,39 @@ LOGS = logging.getLogger(__name__)
 
 plugin_category = "bot"
 botusername = Config.TG_BOT_USERNAME
+cmhd = Config.COMMAND_HAND_LER
 
 
 @catub.bot_cmd(
-    pattern=f"^/اذاعه$",
+    pattern=f"^/help$",
+    from_users=Config.OWNER_ID,
+)
+async def bot_help(event):
+    await event.reply(
+        f"""اوامر البوت هي :
+**ملاحظة : **هذه الاوامر تعمل فقط في الـبوت {botusername}
+
+• **الامر : **/معلومات <بالرد على رسالة المستخدم>
+• **المعلومات : ** من خلال هذا الامر يمكنك معرف من الشخص الذي ارسل تاملصق او المتحركه للبوت  ،
+• **ملاحظة : **تعمل لجميع المستخدمين حتى الذين فعلاو خصوصية التحويل
+
+• **الامر : **/بلوك <السبب> او   /حظر <المعرف/ايدي المستخدم> <السبب>
+• **المعلومات : ** قم بالرد على الرسالة مع السبب ليتم حظره وتبليغك لاحقا بإنه محظور
+• **ملاحظة : ** السبب مطلوب بدون السبب الامر لا يشتغل
+
+• **الامر : **/انبلوك <السبب> او   /الغاء حظر <المعرف/الايدي>
+• **المعلومات : **قم بالرد على المستخدم مع السبب او ارسل فقط الامر مع الايدي او المعرف
+• **ملاحظة : ** للتأكد من قائمة المحظورين ارسل  `{cmhd}المحظورين`.
+
+• **الامر : **/اذاعة
+• **المعلومات : ** لعمل اذاعة لجميع المستخدمين بالرد على الرسالة ولرؤية مستخدمين البوت ارسل  `{cmhd}المستخدمين`.
+• **ملاحظة : ** اذا الشخص قام بايقاف البوت او حظره الرسائل لم تصل اليه بسبب ارتباط قاعده البيانات
+"""
+    )
+
+
+@catub.bot_cmd(
+    pattern=f"^/اذاعة$",
     from_users=Config.OWNER_ID,
 )
 async def bot_broadcast(event):
@@ -57,7 +86,7 @@ async def bot_broadcast(event):
             LOGS.error(str(e))
             if BOTLOG:
                 await event.client.send_message(
-                    BOTLOG_CHATID, f"**Error while broadcasting**\n`{str(e)}`"
+                    BOTLOG_CHATID, f"**خطأ في الأذاعة **\n`{str(e)}`"
                 )
         else:
             count += 1
@@ -80,18 +109,18 @@ async def bot_broadcast(event):
     if len(blocked_users) != 0:
         b_info += f"\n🚫  <b>{len(blocked_users)} من المستخدمين</b> قام بحظر بوتك اذا تم حذف الرسالة."
     b_info += (
-        f"\n⏳  <code>العملية اخذت: {time_formatter((end_ - start_).seconds)}</code>."
+        f"\n⏳  <code> العملية اخذت: {time_formatter((end_ - start_).seconds)}</code>."
     )
     await br_cast.edit(b_info, parse_mode="html")
 
 
 @catub.cat_cmd(
-    pattern=f"مستخدمين البوت$",
-    command=("مستخدمين البوت", plugin_category),
+    pattern=f"المستخدمين$",
+    command=("المستخدمين", plugin_category),
     info={
-        "الامر": ".",
-        "الشرح": "لعرض الاشخاص الذين يستخدمون البوت الخاص بك",
-        "الاستخدام": "{tr}bot_users",
+        "header": "To get users list who started bot.",
+        "description": "To get compelete list of users who started your bot",
+        "usage": "{tr}bot_users",
     },
 )
 async def ban_starters(event):
@@ -149,19 +178,19 @@ async def ban_botpms(event):
     reply_to = await reply_id(event)
     if not user_id:
         return await event.client.send_message(
-            event.chat_id, "لا استطيع ايجاد المستخدم", reply_to=reply_to
+            event.chat_id, "`I can't find user to unban`", reply_to=reply_to
         )
     try:
         user = await event.client.get_entity(user_id)
         user_id = user.id
     except Exception as e:
-        return await event.reply(f"**خطأ:**\n`{str(e)}`")
+        return await event.reply(f"**Error:**\n`{str(e)}`")
     check = check_is_black_list(user.id)
     if not check:
         return await event.client.send_message(
             event.chat_id,
-            f"#المستخدمين_غير_المحظورين\
-            \n👤 {_format.mentionuser(user.first_name , user.id)} لا يوجد في قائمه الحظر.",
+            f"#User_Not_Banned\
+            \n👤 {_format.mentionuser(user.first_name , user.id)} doesn't exist in my Banned Users list.",
         )
     msg = await unban_user_from_bot(user, reason, reply_to)
     await event.reply(msg)
@@ -171,25 +200,25 @@ async def ban_botpms(event):
     pattern=f"المحظورين$",
     command=("المحظورين", plugin_category),
     info={
-        "الأمر": "للحصول على المستخدمين المحظورين في البوت",
-        "الشرح": "للحصول على المستخدمين المحظورين في البوت.",
-        "الاستخدام": "{tr}المحظورين",
+        "header": "To get users list who are banned in bot.",
+        "description": "To get list of users who are banned in bot.",
+        "usage": "{tr}bblist",
     },
 )
 async def ban_starters(event):
-    "للحصول على المستخدمين المحظورين في البوت."
+    "To get list of users who are banned in bot."
     ulist = get_all_bl_users()
     if len(ulist) == 0:
-        return await edit_delete(event, "**لا يوجد اي شخص محظور**")
-    msg = "**قائمه المستخدمين المحظورين في البوت :\n\n**"
+        return await edit_delete(event, "`No one is banned in your bot yet.`")
+    msg = "**The list of users who are banned in your bot are :\n\n**"
     for user in ulist:
-        msg += f"• 👤 {_format.mentionuser(user.first_name , user.chat_id)}\n**الايدي:** `{user.chat_id}`\n**المعرفات:** @{user.username}\n**التاريخ: **__{user.date}__\n**السبب:** __{user.reason}__\n\n"
+        msg += f"• 👤 {_format.mentionuser(user.first_name , user.chat_id)}\n**ID:** `{user.chat_id}`\n**UserName:** @{user.username}\n**Date: **__{user.date}__\n**Reason:** __{user.reason}__\n\n"
     await edit_or_reply(event, msg)
 
 
 @catub.cat_cmd(
-    pattern=f"bot_antif (on|off)$",
-    command=("bot_antif", plugin_category),
+    pattern=f"التكرار (on|off)$",
+    command=("التكرار", plugin_category),
     info={
         "header": "To enable or disable bot antiflood.",
         "description": "if it was turned on then after 10 messages or 10 edits of same messages in less time then your bot auto loacks them.",
