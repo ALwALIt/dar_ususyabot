@@ -21,7 +21,7 @@ async def reply_id(event):
 
 async def get_user_from_event(
     event, catevent=None, secondgroup=None, nogroup=False, noedits=False
-):
+):  # sourcery no-metrics
     if catevent is None:
         catevent = event
     if nogroup is False:
@@ -35,7 +35,7 @@ async def get_user_from_event(
             user = args[0]
             if len(args) > 1:
                 extra = "".join(args[1:])
-            if user.isnumeric():
+            if user.isnumeric() or (user.startswith("-") and user[1:].isnumeric()):
                 user = int(user)
             if event.message.entities:
                 probable_user_mention_entity = event.message.entities[0]
@@ -61,14 +61,14 @@ async def get_user_from_event(
             previous_message = await event.get_reply_message()
             if previous_message.from_id is None:
                 if not noedits:
-                    await edit_delete(catevent, "`Well that's an anonymous admin !`")
+                    await edit_delete(catevent, "** هذا مشرف مجهول الهوية **")
                 return None, None
             user_obj = await event.client.get_entity(previous_message.sender_id)
             return user_obj, extra
         elif not args:
             if not noedits:
                 await edit_delete(
-                    catevent, "`Pass the user's username, id or reply!`", 5
+                    catevent, "**- يجب وضع الايدي او معرف او بالرد على الشخص اولا**", 5
                 )
             return None, None
     except Exception as e:
