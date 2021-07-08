@@ -257,7 +257,7 @@ async def startgmute(event):
     if is_muted(userid, "gmute"):
         return await edit_or_reply(
             event,
-            f"{_format.mentionuser(user.first_name ,user.id)} ` مكتوم بالفعل ✅`",
+            f"{_format.mentionuser(user.first_name ,user.id)}  مكتوم بالفعل ✅",
         )
     try:
         mute(userid, "gmute")
@@ -338,7 +338,7 @@ async def endgmute(event):
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} **تم الغاء كتم المستخدم بنجاح 👨‍💻",
+                f"{_format.mentionuser(user.first_name ,user.id)} **تم الغاء كتم المستخدم بنجاح 👨‍💻**",
             )
     if BOTLOG:
         if reason:
