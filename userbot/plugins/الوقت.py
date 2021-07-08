@@ -61,7 +61,7 @@ async def time_func(tdata):
     con = tdata.pattern_match.group(1).title()
     tz_num = tdata.pattern_match.group(2)
     t_form = "%I:%M"
-    d_form = "%d/%m/%y - %A"
+    d_form = "%d/%m/%y "
     c_name = ""
     if len(con) > 4:
         try:
@@ -76,10 +76,10 @@ async def time_func(tdata):
     else:
         return await edit_or_reply(
             tdata,
-            f"`هـذا الوقت`  **{dt.now().strftime(t_form)}**` على `**{dt.now().strftime(d_form)}** `هنا.`",
+            f"**الـساعة الآن** **{dt.now().strftime(t_form)}\n**تـاريـخ اليوم**{dt.now().strftime(d_form)}**",
         )
     if not timezones:
-        return await edit_or_reply(tdata, "`بلد غير صالح.`")
+        return await edit_or_reply(tdata, "الـبلد غير صالح")
     if len(timezones) == 1:
         time_zone = timezones[0]
     elif len(timezones) > 1:
@@ -126,7 +126,7 @@ async def _(event):
     "To show current time"
     reply_msg_id = await reply_id(event)
     current_time = dt.now().strftime(
-        f"⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n⚡ARABIC CAT⚡\n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n   {os.path.basename(Config.TZ)}\n  Time: %I:%M \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡"
+        f"⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n⚡JMTHON ⚡\n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡\n   {os.path.basename(Config.TZ)}\n  Time: %I:%M \n  Date: %d.%m.%y \n⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡⚡"
     )
     input_str = event.pattern_match.group(1)
     if input_str:
