@@ -39,7 +39,7 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
                 if event.is_private:
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "#SPAM\n"
+                        "#التكرار\n"
                         + f"Spam was executed successfully in [User](tg://user?id={event.chat_id}) chat with {counter} times with below message",
                     )
                 else:
@@ -76,7 +76,7 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
             if event.is_private:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    "#SPAM\n"
+                    "#تكرار\n"
                     + f"Spam was executed successfully in [User](tg://user?id={event.chat_id}) chat with {counter} messages of \n"
                     + f"`{spam_message}`",
                 )
@@ -105,8 +105,8 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
 
 
 @catub.cat_cmd(
-    pattern="spam (.*)",
-    command=("spam", plugin_category),
+    pattern="تكرار (.*)",
+    command=("تكرار", plugin_category),
     info={
         "header": "Floods the text in the chat !! with given number of times,",
         "description": "Sends the replied media/message <count> times !! in the chat",
