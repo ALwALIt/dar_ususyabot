@@ -155,8 +155,8 @@ async def _get_file_name(path: pathlib.Path, full: bool = True) -> str:
 
 
 @catub.cat_cmd(
-    pattern="تحميل ص(?: |$)(.*)",
-    command=("تحميل ص", plugin_category),
+    pattern="تحميل صوت(?: |$)(.*)",
+    command=("تحميل صوت", plugin_category),
     info={
         "header": "To download audio from many sites like Youtube",
         "description": "downloads the audio from the given link (Suports the all sites which support youtube-dl)",
@@ -223,8 +223,8 @@ async def download_audio(event):
 
 
 @catub.cat_cmd(
-    pattern="تحميل ف(?: |$)(.*)",
-    command=("تحميل ف", plugin_category),
+    pattern="تحميل فيد(?: |$)(.*)",
+    command=("تحميل فيد", plugin_category),
     info={
         "header": "To download video from many sites like Youtube",
         "description": "downloads the video from the given link(Suports the all sites which support youtube-dl)",
@@ -288,8 +288,8 @@ async def download_video(event):
 
 
 @catub.cat_cmd(
-    pattern="ابحث(?: |$)(\d*)? ?(.*)",
-    command=("ابحث", plugin_category),
+    pattern="يوت(?: |$)(\d*)? ?(.*)",
+    command=("يوت", plugin_category),
     info={
         "header": "To search youtube videos",
         "description": "Fetches youtube search results with views and duration with required no of count results by default it fetches 10 results",
