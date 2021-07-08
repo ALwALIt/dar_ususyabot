@@ -31,9 +31,9 @@ async def _(event):  # ARABIC CATUSERBOT BY  : @RRRD7
     input_str = "".join(event.text.split(maxsplit=1)[1:])
     reply_message = await event.get_reply_message()
     if not input_str and not reply_message:
-        await edit_delete(
+        await edit_delete( #ترجمه فريق جمثون على التيلكرام
             event,
-            "`reply to  user's text message to get name/username history or give userid/username`",
+            "** يـجب الـرد على الشخـص او كتـابة معـرفه مع الأمـر لأظـهار تواريـخ اسمـه**",
         )
     user, rank = await get_user_from_event(event, secondgroup=True)
     if not user:
@@ -45,7 +45,7 @@ async def _(event):  # ARABIC CATUSERBOT BY  : @RRRD7
         try:
             await conv.send_message(f"/search_id {uid}")
         except YouBlockedUserError:
-            await edit_delete(catevent, "`unblock @Sangmatainfo_bot and then try`")
+            await edit_delete(catevent, "الغـي حـظر @Sangmatainfo_bot وحـاول مـجددا")
         responses = []
         while True:
             try:
@@ -55,16 +55,16 @@ async def _(event):  # ARABIC CATUSERBOT BY  : @RRRD7
             responses.append(response.text)
         await event.client.send_read_acknowledge(conv.chat_id)
     if not responses:
-        await edit_delete(catevent, "`bot can't fetch results`")
+        await edit_delete(catevent, "**لم يتم ايجاد اي نتيجـة**")
     if "No records found" in responses:
-        await edit_delete(catevent, "`The user doesn't have any record`")
+        await edit_delete(catevent, "هـذا المـستخدم لـيس لديـه اي سـجل")
     names, usernames = await sanga_seperator(responses)
     cmd = event.pattern_match.group(1)
     sandy = None
-    check = usernames if cmd == "u" else names
+    check = usernames if cmd == "م" else names
     for i in check:
         if sandy:
             await event.reply(i, parse_mode=_format.parse_pre)
-        else:
+        else:#ترجمه فريق جمثون على التيلكرام
             sandy = True
             await catevent.edit(i, parse_mode=_format.parse_pre)
