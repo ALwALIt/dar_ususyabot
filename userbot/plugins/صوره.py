@@ -1,7 +1,4 @@
-"""
-All Thenks goes to Emily ( The creater of This Plugin) from ftg userbot
-"""
-
+#ترجمه فريق جمثون على التيلكرام
 from userbot import catub
 
 from ..core.managers import edit_delete, edit_or_reply
@@ -42,28 +39,28 @@ async def potocmd(event):
         uid = 1
         if int(uid) > (len(photos)):
             return await edit_delete(
-                event, "`No photo found of this NIBBA / NIBBI. Now u Die!`"
+                event, "**لم يتـم العثـور على صـورة لـهذا الـشخص ❕**"
             )
         send_photos = await event.client.download_media(photos[uid - 1])
         await event.client.send_file(event.chat_id, send_photos)
-    elif uid.strip() == "all":
+    elif uid.strip() == "كلها":
         if len(photos) > 0:
             await event.client.send_file(event.chat_id, photos)
         else:
             try:
-                if u:
+                if u:  #ترجمه فريق جمثون على التيلكرام
                     photo = await event.client.download_profile_photo(user.sender)
                 else:
                     photo = await event.client.download_profile_photo(event.input_chat)
                 await event.client.send_file(event.chat_id, photo)
             except Exception:
-                return await edit_delete(event, "`This user has no photos to show you`")
+                return await edit_delete(event, "** هذا المـستخدم ليس لـديه صـورة لـعرضها 🧸♥**")
     else:
         try:
             uid = int(uid)
             if uid <= 0:
                 await edit_or_reply(
-                    event, "```number Invalid!``` **لا يمكن بحث أو تحميل فقط صوره الشخص !**"
+                    event, "الـرقم خـطأ لا يمكن بحث أو تحميل هذه الصورة للشخص !"
                 )
                 return
         except BaseException:
@@ -71,7 +68,7 @@ async def potocmd(event):
             return
         if int(uid) > (len(photos)):
             return await edit_delere(
-                event, "`No photo found of this NIBBA / NIBBI. Now u Die!`"
+                event, "**لم يتـم العثـور على صـورة لـهذا الـشخص ❕**"
             )
 
         send_photos = await event.client.download_media(photos[uid - 1])
