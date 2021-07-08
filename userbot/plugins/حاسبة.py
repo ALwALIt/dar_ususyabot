@@ -9,7 +9,7 @@ from . import catub, edit_or_reply
 
 plugin_category = "utils"
 
-
+#ترجمه فريق جمثون على التيلكرام
 @catub.cat_cmd(
     pattern="حساب (.*)",
     command=("حساب", plugin_category),
@@ -29,7 +29,7 @@ async def calculator(event):
     redirected_error = sys.stderr = io.StringIO()
     stdout, stderr, exc = None, None, None
     san = f"print({cmd})"
-    try:
+    try: #ترجمه فريق جمثون على التيلكرام
         await aexec(san, event)
     except Exception:
         exc = traceback.format_exc()
@@ -43,9 +43,9 @@ async def calculator(event):
     elif stderr:
         evaluation = stderr
     elif stdout:
-        evaluation = stdout
+        evaluation = stdout  #ترجمه فريق جمثون على التيلكرام
     else:
-        evaluation = "** عذرا لا يمكنني ايجاد ناتج لهءه المعادلة**"
+        evaluation = "** عذرا لا يمكنني ايجاد ناتج لهذه المعادلة**"
     final_output = "**الـمعادلة**: `{}` \n\n **الـحل**: \n`{}` \n".format(
         cmd, evaluation
     )
