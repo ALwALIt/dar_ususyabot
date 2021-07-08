@@ -78,7 +78,7 @@ async def _(event):
     try:
         sql.set_flood(event.chat_id, input_str)
         sql.__load_flood_settings()
-        await event.edit(f"تم تحديث عدد الـتكرار لـ {input_str} فس الدردشه الحالية")
+        await event.edit(f"تم تحديث عدد الـتكرار لـ {input_str} في الدردشه الحالية")
     except Exception as e:
         await event.edit(str(e))
 # For Catuserbot
