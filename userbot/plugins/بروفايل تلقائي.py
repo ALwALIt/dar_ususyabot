@@ -299,7 +299,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
-        name = f"𖥻 {HM} • "
+        name = f"𖥻 {HM} | "
         LOGS.info(name)
         try:
             await bot(functions.account.UpdateProfileRequest(first_name=name))
