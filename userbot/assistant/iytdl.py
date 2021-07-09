@@ -45,8 +45,8 @@ plugin_category = "bot"
 
 
 @catub.cat_cmd(
-    pattern="تحميل(?: |$)(.*)",
-    command=("تحميل", plugin_category),
+    pattern="تنزيل(?: |$)(.*)",
+    command=("تنزيل", plugin_category),
     info={
         "header": "ytdl with inline buttons.",
         "description": "To search and download youtube videos by inline buttons.",
