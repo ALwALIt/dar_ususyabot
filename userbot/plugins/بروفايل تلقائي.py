@@ -39,7 +39,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC
-
+#m
 
 @bot.on(admin_cmd(pattern="الحدث ?(.*)"))
 async def autopic(event):
