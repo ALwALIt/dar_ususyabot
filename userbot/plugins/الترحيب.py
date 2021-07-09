@@ -149,8 +149,8 @@ async def save_welcome(event):
 
 
 @catub.cat_cmd(
-    pattern="حذف ترحيب$",
-    command=("حذف ترحيب", plugin_category),
+    pattern="حذف الترحيبات$",
+    command=("حذف الترحيبات", plugin_category),
     info={
         "الامر": ".حذف ترحيب",
         "الشرح": "يقوم بحذف جميع الرسائل الترحيبيه للدردشه.",
