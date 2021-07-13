@@ -23,7 +23,7 @@ catversion = "3.0.1"
 if Config.UPSTREAM_REPO == "Jmthon-iq":
     UPSTREAM_REPO_URL = "https://github.com/JMTHON-AR/JM-THON"
 elif Config.UPSTREAM_REPO == "goodcat":
-    UPSTREAM_REPO_URL = "https://github.com/JMTHON-AR/JM-THON"
+    UPSTREAM_REPO_URL = "https://github.com/sandy1709/catuserbot"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
