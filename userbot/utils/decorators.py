@@ -10,8 +10,8 @@ from ..Config import Config
 from ..core.data import _sudousers_list, blacklist_chats_list
 from ..core.events import MessageEdited, NewMessage
 from ..core.logger import logging
-from ..core.session import catub
-from ..helpers.utils.format import paste_text
+from ..core.session import jmthon
+from ..helpers.utils.format import paste_message
 from ..helpers.utils.utils import runcmd
 from ..sql_helper.globals import gvarstatus
 
@@ -150,22 +150,24 @@ def errors_handler(func):
                 "date": datetime.datetime.now(),
             }
 
-            ftext += "\n\n--------END USERBOT TRACEBACK LOG--------"
+            ftext += "\n\n-------- هـذه واجـهة المشاكل --------"
             command = 'git log --pretty=format:"%an: %s" -5'
-            ftext += "\n\n\nLast 5 commits:\n"
+            ftext += "\n\n\nاخـر 5 تعـديلات:\n"
             output = (await runcmd(command))[:2]
             result = output[0] + output[1]
             ftext += result
-            pastelink = paste_text(ftext)
-            text = "**CatUserbot Error report**\n\n"
-            link = "[here](https://t.me/catuserbot_support)"
-            text += "If you wanna you can report it"
-            text += f"- just forward this message {link}.\n"
-            text += "Nothing is logged except the fact of error and date\n\n"
-            text += f"**Error report : ** [{new['error']}]({pastelink})"
+            pastelink = await paste_message(ftext)
+            text = "**تقرير خطا جمثون**\n\n"
+            link = "[هنا](https://t.me/GroupJmthon)"
+            text += "إذا كنت تريد يمكنك الإبلاغ عن ذلك"
+            text += f"- فقط قم بإعادة توجيه هذه الرسالة {link}.\n"
+            text +="لا يتم تسجيل اي خطا فقط التاريخ والوقت\n\n"
+            text += f"**⌔︙ تقرير الخطأ : ** [{new['error']}]({pastelink})"
             await check.client.send_message(
                 Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
             )
+
+
 
     return wrapper
 
@@ -219,8 +221,8 @@ def register(**args):
 
     def decorator(func):
         if not disable_edited:
-            catub.add_event_handler(func, MessageEdited(**args))
-        catub.add_event_handler(func, NewMessage(**args))
+            jmthon.add_event_handler(func, MessageEdited(**args))
+        jmthon.add_event_handler(func, NewMessage(**args))
         try:
             LOAD_PLUG[file_test].append(func)
         except Exception:
@@ -276,8 +278,8 @@ def command(**args):
 
     def decorator(func):
         if allow_edited_updates:
-            catub.add_event_handler(func, MessageEdited(**args))
-        catub.add_event_handler(func, NewMessage(**args))
+            jmthon.add_event_handler(func, MessageEdited(**args))
+        jmthon.add_event_handler(func, NewMessage(**args))
         try:
             LOAD_PLUG[file_test].append(func)
         except BaseException:

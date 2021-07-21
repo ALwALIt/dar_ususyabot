@@ -12,7 +12,7 @@ from userbot import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
 
 from ..Config import Config
 from ..core.logger import logging
-from ..core.session import catub
+from ..core.session import jmthon
 from ..helpers.utils import install_pip
 from ..sql_helper.global_collection import (
     del_keyword_collectionlist,
@@ -22,7 +22,7 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
 
-LOGS = logging.getLogger("جـمثون")
+LOGS = logging.getLogger("JMTHON")
 cmdhr = Config.COMMAND_HAND_LER
 
 
@@ -31,27 +31,27 @@ async def setup_bot():
     To set up bot for userbot
     """
     try:
-        await catub.connect()
-        config = await catub(functions.help.GetConfigRequest())
+        await jmthon.connect()
+        config = await jmthon(functions.help.GetConfigRequest())
         for option in config.dc_options:
-            if option.ip_address == catub.session.server_address:
-                if catub.session.dc_id != option.id:
+            if option.ip_address == jmthon.session.server_address:
+                if jmthon.session.dc_id != option.id:
                     LOGS.warning(
-                        f"Fixed DC ID in session from {catub.session.dc_id}"
-                        f" to {option.id}"
+                        f"⌔︙ معرف ثابت في الجلسة من {jmthon.session.dc_id}"
+                        f"⌔︙ لـ  {option.id}"
                     )
-                catub.session.set_dc(option.id, option.ip_address, option.port)
-                catub.session.save()
+                jmthon.session.set_dc(option.id, option.ip_address, option.port)
+                jmthon.session.save()
                 break
-        bot_details = await catub.tgbot.get_me()
+        bot_details = await jmthon.tgbot.get_me()
         Config.TG_BOT_USERNAME = f"@{bot_details.username}"
-        # await catub.start(bot_token=Config.TG_BOT_USERNAME)
-        catub.me = await catub.get_me()
-        catub.uid = catub.tgbot.uid = utils.get_peer_id(catub.me)
+        # await jmthon.start(bot_token=Config.TG_BOT_USERNAME)
+        jmthon.me = await jmthon.get_me()
+        jmthon.uid = jmthon.tgbot.uid = utils.get_peer_id(jmthon.me)
         if Config.OWNER_ID == 0:
-            Config.OWNER_ID = utils.get_peer_id(catub.me)
+            Config.OWNER_ID = utils.get_peer_id(jmthon.me)
     except Exception as e:
-        LOGS.error(f"STRING_SESSION - {str(e)}")
+        LOGS.error(f"كـود تيرمكس - {str(e)}")
         sys.exit()
 
 
@@ -61,11 +61,11 @@ async def startupmessage():
     """
     try:
         if BOTLOG:
-            Config.CATUBLOGO = await catub.tgbot.send_file(
+            Config.CATUBLOGO = await jmthon.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://telegra.ph/file/f5f3209be40faf1ceace7.jpg",
-                caption="**- بـوت جـمثون يـعمل بنجـاح**",
-                buttons=[(Button.url("الـدعم", "https://t.me/JMTHON"),)],
+                "https://telegra.ph/file/15756790ad2f42592cdba.jpg",
+                caption="⌔︙ بـوت جـمثون شغـال ويعـمل بنـجاح ✅ \n⌔︙ Channel  :  @JMTHON",
+                buttons=[(Button.url("كروب جـمثون", "https://t.me/GroupJmthon"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -79,12 +79,12 @@ async def startupmessage():
         return None
     try:
         if msg_details:
-            await catub.check_testcases()
-            message = await catub.get_messages(msg_details[0], ids=msg_details[1])
-            text = message.text + "\n\n**حـسنا البوت الان يعمل بنجاح من جديد ✅**"
-            await catub.edit_message(msg_details[0], msg_details[1], text)
+            await jmthon.check_testcases()
+            message = await jmthon.get_messages(msg_details[0], ids=msg_details[1])
+            text = message.text + "\n\n**⌔︙ اهلا وسهلا لقد قمت باعاده تشغيل بـوت جـمثون تمت بنجاح**"
+            await jmthon.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
-                await catub.send_message(
+                await jmthon.send_message(
                     msg_details[0],
                     f"{cmdhr}بنك",
                     reply_to=msg_details[1],
@@ -96,7 +96,6 @@ async def startupmessage():
         return None
 
 
-# don't know work or not just a try in future will use sleep
 async def ipchange():
     """
     Just to check if ip change or not
@@ -110,7 +109,7 @@ async def ipchange():
         delgvar("ipaddress")
         LOGS.info("Ip Change detected")
         try:
-            await catub.disconnect()
+            await jmthon.disconnect()
         except (ConnectionError, CancelledError):
             pass
         return "ip change"
@@ -120,9 +119,9 @@ async def add_bot_to_logger_group(chat_id):
     """
     To add bot to logger groups
     """
-    bot_details = await catub.tgbot.get_me()
+    bot_details = await jmthon.tgbot.get_me()
     try:
-        await catub(
+        await jmthon(
             functions.messages.AddChatUserRequest(
                 chat_id=chat_id,
                 user_id=bot_details.username,
@@ -131,7 +130,7 @@ async def add_bot_to_logger_group(chat_id):
         )
     except BaseException:
         try:
-            await catub(
+            await jmthon(
                 functions.channels.InviteToChannelRequest(
                     channel=chat_id,
                     users=[bot_details.username],
@@ -172,7 +171,7 @@ async def load_plugins(folder):
                     os.remove(Path(f"userbot/{folder}/{shortname}.py"))
             except Exception as e:
                 os.remove(Path(f"userbot/{folder}/{shortname}.py"))
-                LOGS.info(f"**-غير قادر على تحمـيل : {shortname} \n -بسبب الخـطأ {e}**")
+                LOGS.info(f"⌔︙ غير قادر على التحميل {shortname} يوجد هناك خطا بسبب : {e}")
 
 
 async def verifyLoggerGroup():
@@ -182,70 +181,60 @@ async def verifyLoggerGroup():
     flag = False
     if BOTLOG:
         try:
-            entity = await catub.get_entity(BOTLOG_CHATID)
+            entity = await jmthon.get_entity(BOTLOG_CHATID)
             if not isinstance(entity, types.User) and not entity.creator:
                 if entity.default_banned_rights.send_messages:
                     LOGS.info(
-                        "Permissions missing to send messages for the specified PRIVATE_GROUP_BOT_API_ID."
+                        "⌔︙ الفار الأذونات مفقودة لإرسال رسائل لـ PRIVATE_GROUP_BOT_API_ID المحدد."
                     )
                 if entity.default_banned_rights.invite_users:
                     LOGS.info(
-                        "Permissions missing to addusers for the specified PRIVATE_GROUP_BOT_API_ID."
+                        "⌔︙ الفار الأذونات مفقودة لإرسال رسائل لـ PRIVATE_GROUP_BOT_API_ID المحدد."
                     )
         except ValueError:
             LOGS.error(
-                "PRIVATE_GROUP_BOT_API_ID cannot be found. Make sure it's correct."
+                "⌔︙ تـأكد من فـار المجـموعة  PRIVATE_GROUP_BOT_API_ID."
             )
         except TypeError:
             LOGS.error(
-                "PRIVATE_GROUP_BOT_API_ID is unsupported. Make sure it's correct."
+                "⌔︙ لا يمكـن العثور على فار المجموعه PRIVATE_GROUP_BOT_API_ID. تأكد من صحتها."
             )
         except Exception as e:
             LOGS.error(
-                "An Exception occured upon trying to verify the PRIVATE_GROUP_BOT_API_ID.\n"
+                "⌔︙ حدث استثناء عند محاولة التحقق من PRIVATE_GROUP_BOT_API_ID.\n"
                 + str(e)
             )
     else:
-        descript = "- لا تحذف هذا الكروب ابدا لانه يربط فارات حسابك تلقائيا ويقوم بحفظ الترحيبات وبعض الاوامر هنا انتبه رجاءا\n- @JMTHON "
+        descript = "⌔︙ لا تحذف هذه المجموعة أو تغير إلى مجموعة (إذا قمت بتغيير المجموعة ، فسيتم فقد كل شيئ .)"
         _, groupid = await create_supergroup(
-            "كـروب تسـجيل الدخـول والاوامر", catub, Config.TG_BOT_USERNAME, descript
+            "مجموعه بوت جمثون الخاص بك", jmthon, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print(
-            "تـم عمل بـوت الـمساعد واضـافة الفـارات معـه"
+            "⌔︙ تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات."
         )
         flag = True
-    if PM_LOGGER_GROUP_ID:
+    if PM_LOGGER_GROUP_ID != -100:
         try:
-            entity = await catub.get_entity(PM_LOGGER_GROUP_ID)
+            entity = await jmthon.get_entity(PM_LOGGER_GROUP_ID)
             if not isinstance(entity, types.User) and not entity.creator:
                 if entity.default_banned_rights.send_messages:
                     LOGS.info(
-                        "Permissions missing to send messages for the specified PM_LOGGER_GROUP_ID."
+                        "⌔︙ الأذونات مفقودة لإرسال رسائل لـ PM_LOGGER_GROUP_ID المحدد."
                     )
                 if entity.default_banned_rights.invite_users:
                     LOGS.info(
-                        "Permissions missing to addusers for the specified PM_LOGGER_GROUP_ID."
+                        "⌔︙ الأذونات مفقودة للمستخدمين الإضافيين لـ PM_LOGGER_GROUP_ID المحدد."
                     )
         except ValueError:
-            LOGS.error("PM_LOGGER_GROUP_ID cannot be found. Make sure it's correct.")
+            LOGS.error("⌔︙ لا يمكن العثور على فار  PM_LOGGER_GROUP_ID. تأكد من صحتها.")
         except TypeError:
-            LOGS.error("PM_LOGGER_GROUP_ID is unsupported. Make sure it's correct.")
+            LOGS.error("⌔︙ PM_LOGGER_GROUP_ID غير مدعوم. تأكد من صحتها.")
         except Exception as e:
             LOGS.error(
-                "An Exception occured upon trying to verify the PM_LOGGER_GROUP_ID.\n"
+                "⌔︙ حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n"
                 + str(e)
             )
-    else:
-        descript = "- لا تحذف او تغير اي شي في هذا البوت \n  - @JMTHON"
-        _, groupid = await create_supergroup(
-            "كـروب مـساعده جمثون", catub, Config.TG_BOT_USERNAME, descript
-        )
-        addgvar("PM_LOGGER_GROUP_ID", groupid)
-        print(
-            "تـم عمـل الكروب المـساعد بنـجاح واضافة الـفارات الـيه."
-        )
-        flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
         args = [executable, "-m", "userbot"]
