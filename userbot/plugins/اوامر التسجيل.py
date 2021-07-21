@@ -136,51 +136,6 @@ async def log(log_text):
     await asyncio.sleep(2)
     await log_text.delete()
 
-
-@jmthon.ar_cmd(
-    pattern="تسجيل$",
-    command=("تسجيل", plugin_category),
-    info={
-        "header": "To turn on logging of messages from that chat.",
-        "description": "Set PM_LOGGER_GROUP_ID in vars to work this",
-        "usage": [
-            "{tr}تسجيل",
-        ],
-    },
-)
-async def set_no_log_p_m(event):
-    "To turn on logging of messages from that chat."
-    if Config.PM_LOGGER_GROUP_ID != -100:
-        chat = await event.get_chat()
-        if no_log_pms_sql.is_approved(chat.id):
-            no_log_pms_sql.disapprove(chat.id)
-            await edit_delete(
-                event, "`logging of messages from this group has been started`", 5
-            )
-
-
-@jmthon.ar_cmd(
-    pattern="الغاء التسجيل$",
-    command=("الغاء التسجيل", plugin_category),
-    info={
-        "header": "To turn off logging of messages from that chat.",
-        "description": "Set PM_LOGGER_GROUP_ID in vars to work this",
-        "usage": [
-            "{tr}الغاء التسجيل",
-        ],
-    },
-)
-async def set_no_log_p_m(event):
-    "To turn off logging of messages from that chat."
-    if Config.PM_LOGGER_GROUP_ID != -100:
-        chat = await event.get_chat()
-        if not no_log_pms_sql.is_approved(chat.id):
-            no_log_pms_sql.approve(chat.id)
-            await edit_delete(
-                event, "`Logging of messages from this chat has been stopped`", 5
-            )
-
-
 @jmthon.ar_cmd(
     pattern="خ تسجيل (on|off)$",
     command=("خ تسجيل", plugin_category),
