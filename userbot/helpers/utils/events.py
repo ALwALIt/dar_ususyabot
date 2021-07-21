@@ -78,10 +78,10 @@ async def get_user_from_event(
     return None, None
 
 
-async def checking(catub):
+async def checking(jmthon):
     cat_c = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     try:
         cat_channel = Get(cat_c)
-        await catub(cat_channel)
+        await jmthon(cat_channel)
     except BaseException:
         pass
