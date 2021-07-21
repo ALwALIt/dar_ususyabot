@@ -63,7 +63,6 @@ async def startup_process():
     Catcheck.sucess = True
     return
 
-
 jmthon.loop.run_until_complete(startup_process())
 def start_bot():
 	try:
