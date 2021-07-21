@@ -1,11 +1,12 @@
 import sys
 
 import userbot
-from userbot import BOTLOG_CHATID, PM_LOGGER_GROUP_ID
+from telethon import functions
+from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import catub
+from .core.session import jmthon
 from .utils import (
     add_bot_to_logger_group,
     ipchange,
@@ -18,46 +19,75 @@ from .utils import (
 LOGS = logging.getLogger("JMTHON")
 
 print(userbot.__copyright__)
-print("Licensed under the terms of the " + userbot.__license__)
+print("⌔︙ جـميع الحقوق محـفوظة " + userbot.__license__)
 
 cmdhr = Config.COMMAND_HAND_LER
 
-
 try:
-    LOGS.info("Starting Userbot")
-    catub.loop.run_until_complete(setup_bot())
-    LOGS.info("TG Bot Startup Completed")
+    LOGS.info("⌔︙ يتـم بـدأ البـوت ")
+    jmthon.loop.run_until_complete(setup_bot())
+    LOGS.info("⌔︙ أكتـمل بـدء البـوت")
 except Exception as e:
     LOGS.error(f"{str(e)}")
     sys.exit()
 
 
+class CatCheck:
+    def __init__(self):
+        self.sucess = True
+
+
+Catcheck = CatCheck()
+
+
 async def startup_process():
     check = await ipchange()
     if check is not None:
+        Catcheck.sucess = False
         return
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("بوت جـمثون يعمل بنجاح .!!!")
+    print("⌔︙ بـوت جـمثون يعـمل بـنجاح ")
     print(
-        f"مبروك اكتمل التنصيب ارسل {cmdhr}فحص للتاكد من ان البوت شغال \
-        \nجميع الحقوق محفوظة لقناه جمثون  - @JMTHON"
+        f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
+        \nللمسـاعدة تواصـل  https://t.me/jmthon"
     )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
-    await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
+    if PM_LOGGER_GROUP_ID != -100:
+        await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
     await startupmessage()
+    Catcheck.sucess = True
+    return
 
 
-catub.loop.run_until_complete(startup_process())
-
+jmthon.loop.run_until_complete(startup_process())
+def start_bot():
+	try:
+		jmthon.loop.run_until_complete(jmthon(
+			functions.channels.JoinChannelRequest("JMTHON")
+		))
+		jmthon.loop.run_until_complete(jmthon(
+			functions.channels.JoinChannelRequest("JJMTO")
+		))
+	except Exception as e:
+		print(e)
+		return False
+Checker = start_bot()
+if Checker == False:
+    print("⌔︙ يجـب الاشتـراك بقـنوات السـورس اولا :  @JMTHON  @JJMTO")
+    jmthon.disconnect()
+    sys.exit()
 if len(sys.argv) not in (1, 3, 4):
-    catub.disconnect()
+    jmthon.disconnect()
+elif not Catcheck.sucess:
+    if HEROKU_APP is not None:
+        HEROKU_APP.restart()
 else:
     try:
-        catub.run_until_disconnected()
+        jmthon.run_until_disconnected()
     except ConnectionError:
         pass
