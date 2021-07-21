@@ -66,46 +66,6 @@ async def monito_p_m_s(event):  # sourcery no-metrics
             except Exception as e:
                 LOGS.warn(str(e))
 
-
-@jmthon.ar_cmd(incoming=True, func=lambda e: e.mentioned, edited=False, forword=None)
-async def log_tagged_messages(event):
-    hmm = await event.get_chat()
-    from .afk import AFK_
-
-    if gvarstatus("GRPLOG") and gvarstatus("GRPLOG") == "false":
-        return
-    if (
-        (no_log_pms_sql.is_approved(hmm.id))
-        or (Config.PM_LOGGER_GROUP_ID == -100)
-        or ("on" in AFK_.USERAFK_ON)
-        or (await event.get_sender() and (await event.get_sender()).bot)
-    ):
-        return
-    full = None
-    try:
-        full = await event.client.get_entity(event.message.from_id)
-    except Exception as e:
-        LOGS.info(str(e))
-    messaget = media_type(event)
-    resalt = f"#الـتاك \n<b>الـكروب : </b><code>{hmm.title}</code>"
-    if full is not None:
-        resalt += (
-            f"\n<b>الـمرسل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
-        )
-    if messaget is not None:
-        resalt += f"\n<b>نـوع الرسـالة : </b><code>{messaget}</code>"
-    else:
-        resalt += f"\n<b>الـرسالة : </b>{event.message.message}"
-    resalt += f"\n<b>رابـط الـرسالة: </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> هـنا الرابط</a>"
-    if not event.is_private:
-        await event.client.send_message(
-            Config.PM_LOGGER_GROUP_ID,
-            resalt,
-            parse_mode="html",
-            link_preview=False,
-        )
-
-
 @jmthon.ar_cmd(
     pattern="حفظ(?:\s|$)([\s\S]*)",
     command=("حفظ", plugin_category),
