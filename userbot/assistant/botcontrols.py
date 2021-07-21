@@ -3,7 +3,7 @@ from datetime import datetime
 
 from telethon.errors import BadRequestError, FloodWaitError, ForbiddenError
 
-from userbot import catub
+from userbot import jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -28,7 +28,7 @@ botusername = Config.TG_BOT_USERNAME
 cmhd = Config.COMMAND_HAND_LER
 
 
-@catub.bot_cmd(
+@jmthon.ar_cmd(
     pattern=f"^/help$",
     from_users=Config.OWNER_ID,
 )
@@ -56,7 +56,7 @@ async def bot_help(event):
     )
 
 
-@catub.bot_cmd(
+@jmthon.ar_cmd(
     pattern=f"^/اذاعة$",
     from_users=Config.OWNER_ID,
 )
@@ -71,7 +71,10 @@ async def bot_broadcast(event):
     bot_users_count = len(get_all_starters())
     if bot_users_count == 0:
         return await event.reply("لا يوجد اي شخص يستخدم بوتك")
-    for user in get_all_starters():
+    users = get_all_starters()
+    if users is None:
+        return await event.reply("**هـنالك خـطأ اثناء فحص قائـمة المستخدمين**")
+    for user in users:
         try:
             await event.client.send_message(
                 int(user.user_id), "🔊 تم استلام اذاعه جديدة."
@@ -80,9 +83,9 @@ async def bot_broadcast(event):
             await asyncio.sleep(0.8)
         except FloodWaitError as e:
             await asyncio.sleep(e.seconds)
-        except (BadRequestError, ForbiddenError):
+        except (BadRequestError, ValueError, ForbiddenError):
             del_starter_from_db(int(user.user_id))
-        except Exception:
+        except Exception as e:
             LOGS.error(str(e))
             if BOTLOG:
                 await event.client.send_message(
@@ -114,7 +117,7 @@ async def bot_broadcast(event):
     await br_cast.edit(b_info, parse_mode="html")
 
 
-@catub.cat_cmd(
+@jmthon.ar_cmd(
     pattern=f"المستخدمين$",
     command=("المستخدمين", plugin_category),
     info={
@@ -134,8 +137,8 @@ async def ban_starters(event):
     await edit_or_reply(event, msg)
 
 
-@catub.bot_cmd(
-    pattern=f"^/بلوك\s+(.*)",
+@jmthon.ar_cmd(
+    pattern=f"^/بلوك\s+([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -169,8 +172,8 @@ async def ban_botpms(event):
     await event.reply(msg)
 
 
-@catub.bot_cmd(
-    pattern=f"^/انبلوك(?: |$)(.*)",
+@jmthon.ar_cmd(
+    pattern=f"^/انبلوك(?:\s|$)([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -178,27 +181,27 @@ async def ban_botpms(event):
     reply_to = await reply_id(event)
     if not user_id:
         return await event.client.send_message(
-            event.chat_id, "`I can't find user to unban`", reply_to=reply_to
+            event.chat_id, "** لا استطيع ايجاد المستخـدم للحـظر**", reply_to=reply_to
         )
     try:
         user = await event.client.get_entity(user_id)
         user_id = user.id
     except Exception as e:
-        return await event.reply(f"**Error:**\n`{str(e)}`")
+        return await event.reply(f"**خـطأ:**\n`{str(e)}`")
     check = check_is_black_list(user.id)
     if not check:
         return await event.client.send_message(
             event.chat_id,
-            f"#User_Not_Banned\
-            \n👤 {_format.mentionuser(user.first_name , user.id)} doesn't exist in my Banned Users list.",
+            f"#الغاء البلوك من الشخصي \
+            \n👤 {_format.mentionuser(user.first_name , user.id)} تم الغاء حظره من البوت بنجاح.",
         )
     msg = await unban_user_from_bot(user, reason, reply_to)
     await event.reply(msg)
 
 
-@catub.cat_cmd(
+@jmthon.ar_cmd(
     pattern=f"المحظورين$",
-    command=("المحظورين", plugin_category),
+    command=("bblist", plugin_category),
     info={
         "header": "To get users list who are banned in bot.",
         "description": "To get list of users who are banned in bot.",
@@ -209,16 +212,16 @@ async def ban_starters(event):
     "To get list of users who are banned in bot."
     ulist = get_all_bl_users()
     if len(ulist) == 0:
-        return await edit_delete(event, "`No one is banned in your bot yet.`")
-    msg = "**The list of users who are banned in your bot are :\n\n**"
+        return await edit_delete(event, "** لا يوجـد شخص محـظور في البـوت الـى الان**")
+    msg = "**المسـتخدميـن المحـظورين في بـوتك هـم :\n\n**"
     for user in ulist:
-        msg += f"• 👤 {_format.mentionuser(user.first_name , user.chat_id)}\n**ID:** `{user.chat_id}`\n**UserName:** @{user.username}\n**Date: **__{user.date}__\n**Reason:** __{user.reason}__\n\n"
+        msg += f"• 👤 {_format.mentionuser(user.first_name , user.chat_id)}\n**الايدي:** `{user.chat_id}`\n**المعرف:** @{user.username}\n**التاريخ: **{user.date}\n**السبب:** {user.reason}\n\n"
     await edit_or_reply(event, msg)
 
 
-@catub.cat_cmd(
-    pattern=f"التكرار (on|off)$",
-    command=("التكرار", plugin_category),
+@jmthon.ar_cmd(
+    pattern=f"bot_antif (on|off)$",
+    command=("bot_antif", plugin_category),
     info={
         "header": "To enable or disable bot antiflood.",
         "description": "if it was turned on then after 10 messages or 10 edits of same messages in less time then your bot auto loacks them.",

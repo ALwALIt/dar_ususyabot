@@ -3,7 +3,7 @@ from math import floor
 
 from telethon.utils import get_display_name
 
-from userbot import catub
+from userbot import jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -39,14 +39,14 @@ async def get_user_and_reason(event):
         if user.isdigit():
             user_id = int(user)
         if user.startswith("@"):
-           user_id = user
+            user_id = user
     return user_id, reason
 
 
 # taken from https://github.com/code-rgb/USERGE-X/blob/f95766027ef95854d05e523b42cd158c2e8cdbd0/userge/plugins/bot/bot_forwards.py#L420
 def progress_str(total: int, current: int) -> str:
     percentage = current * 100 / total
-    prog_arg = "**Progress** : `{}%`\n" "```[{}{}]```"
+    prog_arg = "**العـملية** : `{}%`\n" "```[{}{}]```"
     return prog_arg.format(
         percentage,
         "".join((Config.FINISHED_PROGRESS_STR for i in range(floor(percentage / 5)))),

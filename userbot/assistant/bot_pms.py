@@ -8,7 +8,7 @@ from telethon.errors import UserIsBlockedError
 from telethon.events import CallbackQuery, StopPropagation
 from telethon.utils import get_display_name
 
-from userbot import Config, catub
+from userbot import Config, jmthon
 
 from ..core import check_owner, pool
 from ..core.logger import logging
@@ -64,14 +64,14 @@ async def check_bot_started_users(user, event):
         await event.client.send_message(BOTLOG_CHATID, notification)
 
 
-@catub.bot_cmd(
+@jmthon.bot_cmd(
     pattern=f"^/start({botusername})?([\s]+)?$",
     incoming=True,
     func=lambda e: e.is_private,
 )
 async def bot_start(event):
     chat = await event.get_chat()
-    user = await catub.get_me()
+    user = await jmthon.get_me()
     if check_is_black_list(chat.id):
         return
     reply_to = await reply_id(event)
@@ -139,7 +139,7 @@ async def bot_start(event):
         await check_bot_started_users(chat, event)
 
 
-@catub.bot_cmd(incoming=True, func=lambda e: e.is_private)
+@jmthon.bot_cmd(incoming=True, func=lambda e: e.is_private)
 async def bot_pms(event):  # sourcery no-metrics
     chat = await event.get_chat()
     if check_is_black_list(chat.id):
@@ -177,7 +177,7 @@ async def bot_pms(event):  # sourcery no-metrics
                     )
                 else:
                     msg = await event.client.send_message(
-                        user_id, event.text, reply_to=reply_msg
+                        user_id, event.text, reply_to=reply_msg, link_preview=False
                     )
             except UserIsBlockedError:
                 return await event.reply("هـذا البـوت تم حـظره بواسـطه المستخدم ")
@@ -196,7 +196,7 @@ async def bot_pms(event):  # sourcery no-metrics
                     )
 
 
-@catub.bot_cmd(edited=True)
+@jmthon.bot_cmd(edited=True)
 async def bot_pms_edit(event):  # sourcery no-metrics
     chat = await event.get_chat()
     if check_is_black_list(chat.id):
@@ -213,7 +213,7 @@ async def bot_pms_edit(event):  # sourcery no-metrics
         if reply_msg:
             await event.client.send_message(
                 Config.OWNER_ID,
-                f"⬆️ **تـم تعديـل الرساله بواسطـة المستخـدم** {_format.mentionuser(get_display_name(chat) , chat.id)} as :",
+                f"⬆️ **تـم تعديـل رسـالة** \n الـمستخدم العـدلها:{_format.mentionuser(get_display_name(chat) , chat.id)} \n كـ :",
                 reply_to=reply_msg,
             )
             msg = await event.forward_to(Config.OWNER_ID)
@@ -231,6 +231,8 @@ async def bot_pms_edit(event):  # sourcery no-metrics
         if reply_to is not None:
             users = get_user_id(reply_to)
             result_id = 0
+            if users is None:
+                return
             for usr in users:
                 if event.id == usr.logger_id:
                     user_id = int(usr.chat_id)
@@ -287,8 +289,8 @@ async def handler(event):
                 LOGS.error(str(e))
 
 
-@catub.bot_cmd(
-    pattern=f"^/معلومات$",
+@jmthon.bot_cmd(
+    pattern=f"^/uinfo$",
     from_users=Config.OWNER_ID,
 )
 async def bot_start(event):
@@ -319,7 +321,6 @@ async def bot_start(event):
     await info_msg.edit(uinfo)
 
 
-
 async def send_flood_alert(user_) -> None:
     # sourcery no-metrics
     buttons = [
@@ -341,7 +342,7 @@ async def send_flood_alert(user_) -> None:
             FloodConfig.ALERT[user_.id]["count"] = 1
         except Exception as e:
             if BOTLOG:
-                await catub.tgbot.send_message(
+                await jmthon.tgbot.send_message(
                     BOTLOG_CHATID, f"**Error:**\nWhile updating flood count\n`{str(e)}`"
                 )
         flood_count = FloodConfig.ALERT[user_.id]["count"]
@@ -366,7 +367,7 @@ async def send_flood_alert(user_) -> None:
                     "Is Flooding your bot !, Check `.help delsudo` to remove the user from Sudo."
                 )
                 if BOTLOG:
-                    await catub.tgbot.send_message(BOTLOG_CHATID, sudo_spam)
+                    await jmthon.tgbot.send_message(BOTLOG_CHATID, sudo_spam)
             else:
                 await ban_user_from_bot(
                     user_,
@@ -380,7 +381,7 @@ async def send_flood_alert(user_) -> None:
         if not fa_id:
             return
         try:
-            msg_ = await catub.tgbot.get_messages(BOTLOG_CHATID, fa_id)
+            msg_ = await jmthon.tgbot.get_messages(BOTLOG_CHATID, fa_id)
             if msg_.text != flood_msg:
                 await msg_.edit(flood_msg, buttons=buttons)
         except Exception as fa_id_err:
@@ -388,30 +389,30 @@ async def send_flood_alert(user_) -> None:
             return
     else:
         if BOTLOG:
-            fa_msg = await catub.tgbot.send_message(
+            fa_msg = await jmthon.tgbot.send_message(
                 BOTLOG_CHATID,
                 flood_msg,
                 buttons=buttons,
             )
         try:
-            chat = await catub.tgbot.get_entity(BOTLOG_CHATID)
-            await catub.tgbot.send_message(
+            chat = await jmthon.tgbot.get_entity(BOTLOG_CHATID)
+            await jmthon.tgbot.send_message(
                 Config.OWNER_ID,
                 f"⚠️  **[Bot Flood Warning !](https://t.me/c/{chat.id}/{fa_msg.id})**",
             )
         except UserIsBlockedError:
             if BOTLOG:
-                await catub.tgbot.send_message(BOTLOG_CHATID, "**Unblock your bot !**")
+                await jmthon.tgbot.send_message(BOTLOG_CHATID, "**Unblock your bot !**")
     if FloodConfig.ALERT[user_.id].get("fa_id") is None and fa_msg:
         FloodConfig.ALERT[user_.id]["fa_id"] = fa_msg.id
 
 
-@catub.tgbot.on(CallbackQuery(data=re.compile(b"bot_pm_ban_([0-9]+)")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"bot_pm_ban_([0-9]+)")))
 @check_owner
 async def bot_pm_ban_cb(c_q: CallbackQuery):
     user_id = int(c_q.pattern_match.group(1))
     try:
-        user = await catub.get_entity(user_id)
+        user = await jmthon.get_entity(user_id)
     except Exception as e:
         await c_q.answer(f"Error:\n{str(e)}")
     else:
@@ -448,7 +449,7 @@ def is_flood(uid: int) -> Optional[bool]:
         return True
 
 
-@catub.tgbot.on(CallbackQuery(data=re.compile(b"toggle_bot-antiflood_off$")))
+@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"toggle_bot-antiflood_off$")))
 @check_owner
 async def settings_toggle(c_q: CallbackQuery):
     if gvarstatus("bot_antif") is None:
@@ -458,8 +459,8 @@ async def settings_toggle(c_q: CallbackQuery):
     await c_q.edit("قفل التكرار تم تعطيله الان !")
 
 
-@catub.bot_cmd(incoming=True, func=lambda e: e.is_private)
-@catub.bot_cmd(edited=True, func=lambda e: e.is_private)
+@jmthon.bot_cmd(incoming=True, func=lambda e: e.is_private)
+@jmthon.bot_cmd(edited=True, func=lambda e: e.is_private)
 async def antif_on_msg(event):
     if gvarstatus("bot_antif") is None:
         return
