@@ -48,10 +48,10 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("Yay your userbot is officially working.!!!")
+    print("⌔︙ بـوت جـمثون يعـمل بـنجاح ")
     print(
-        f"Congratulation, now type {cmdhr}alive to see message if jmthon is live\
-        \nIf you need assistance, head to https://t.me/JMTHON"
+        f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
+        \nللمسـاعدة تواصـل  https://t.me/jmthon"
     )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
