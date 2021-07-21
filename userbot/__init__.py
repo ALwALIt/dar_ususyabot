@@ -7,18 +7,18 @@ from .core.logger import logging
 from .core.session import catub
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
-__version__ = "3.0.1"
-__license__ = "GNU Affero General Public License v3.0"
-__author__ = "JMTHON  <https://github.com/JMTHON-AR/JM-THON>"
-__copyright__ = "JMTHON (C) 2020 - 2021  " + __author__
+__version__ = "2.0.0"
+__license__ = "كـتابة وتـعديل فريـق جـمثون"
+__author__ = "جـمثون <https://T.ME/JMTHON>"
+__copyright__ = "JMTHON TEAM (C) 2020 - 2021  " + __author__
 
-catub.version = __version__
-catub.tgbot.version = __version__
-LOGS = logging.getLogger("JMTHON")
-bot = catub
+jmthon.version = __version__
+jmthon.tgbot.version = __version__
+LOGS = logging.getLogger("جـمثون")
+bot = jmthon
 
 StartTime = time.time()
-catversion = "3.0.1"
+catversion = "2.0.0"
 
 if Config.UPSTREAM_REPO == "Jmthon-iq":
     UPSTREAM_REPO_URL = "https://github.com/JMTHON-AR/JM-THON"
@@ -44,7 +44,7 @@ else:
 
 if Config.PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
-        Config.PM_LOGGER_GROUP_ID = 0
+        Config.PM_LOGGER_GROUP_ID = -100
     else:
         Config.PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
 elif str(Config.PM_LOGGER_GROUP_ID)[0] != "-":
