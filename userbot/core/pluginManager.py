@@ -62,7 +62,7 @@ def run_async(func: callable):
     return loop.run_until_complete(func)
 
 
-async def restart_script(client: TelegramClient, sandy):
+async def restart_script(client: TelegramClient, jasme):
     """Restart the current script."""
     try:
         ulist = get_collectionlist_items()
@@ -72,7 +72,7 @@ async def restart_script(client: TelegramClient, sandy):
     except Exception as e:
         LOGS.error(e)
     try:
-        add_to_collectionlist("restart_update", [sandy.chat_id, sandy.id])
+        add_to_collectionlist("restart_update", [jasme.chat_id, jasme.id])
     except Exception as e:
         LOGS.error(e)
     executable = sys.executable.replace(" ", "\\ ")
@@ -84,5 +84,5 @@ async def restart_script(client: TelegramClient, sandy):
 async def get_message_link(client, event):
     chat = await event.get_chat()
     if event.is_private:
-        return f"tg://openmessage?user_id={chat.id}&message_id={event.message.id}"
-    return f"https://t.me/c/{chat.id}/{event.message.id}"
+        return f"tg://openmessage?user_id={chat.id}&message_id={event.id}"
+    return f"https://t.me/c/{chat.id}/{event.id}"

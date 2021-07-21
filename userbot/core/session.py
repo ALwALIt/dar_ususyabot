@@ -16,7 +16,7 @@ else:
     session = "catuserbot"
 
 try:
-    catub = CatUserBotClient(
+    jmthon = CatUserBotClient(
         session=session,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
@@ -27,12 +27,12 @@ try:
         connection_retries=None,
     )
 except Exception as e:
-    print(f"STRING_SESSION - {str(e)}")
+    print(f"⌔︙ كـود تـيرمـكس - {str(e)}")
     sys.exit()
 
 
-catub.tgbot = tgbot = CatUserBotClient(
-    session="CatTgbot",
+jmthon.tgbot = tgbot = CatUserBotClient(
+    session="arTgbot",
     api_id=Config.APP_ID,
     api_hash=Config.API_HASH,
     loop=loop,
