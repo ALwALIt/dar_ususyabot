@@ -1,1 +1,1 @@
-from .catub_config import Config
+from .jmthon_config import Config
