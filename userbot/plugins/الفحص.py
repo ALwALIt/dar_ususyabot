@@ -24,8 +24,8 @@ plugin_category = "utils"
 
 
 @jmthon.ar_cmd(
-    pattern="فحص$",
-    command=("فحص", plugin_category),
+    pattern="السورس$",
+    command=("السورس", plugin_category),
     info={
         "header": "To check bot's alive status",
         "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
