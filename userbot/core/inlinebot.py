@@ -381,14 +381,18 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.inline(
                         text=f"{EMOJI} قاعدة البيانات : ✅"
                     ),
+                ], 
+                [
                     Button.inline(
-                        text=f"{EMOJI} الاصدار : {catversion}"
+                        text=f"{EMOJI} الأصدار : {catversion}"
                     ),
                 ],
                 [
                     Button.inline(
                         text=f"{EMOJI} التيليثون : {version.__version__}"
                     ),
+                ],
+                [    
                     Button.inline(
                         text=f"{EMOJI} البايثون : {python_version()}"
                     ),
@@ -397,6 +401,8 @@ async def inline_handler(event):  # sourcery no-metrics
                     Button.inline(
                         text=f"{EMOJI} الوقت : {uptime}"
                     ),
+                ],
+                [   
                     Button.inline(
                         text=f"{EMOJI} المالك : {Config.ALIVE_NAME}"
                     ),
