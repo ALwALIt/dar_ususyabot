@@ -256,7 +256,7 @@ async def upstream(event):
     if changelog == "" and not force_update:
         await event.edit(
             "**⌔︙ سورس جمثون محدث الى اخر اصدار **\n"
-            f"**السـورس** : @JMTHON"
+            f"**قـنـاة سـورس جـمـثـون** : @JMTHON"
         )
         return repo.__del__()
     if conf == "" and not force_update:
