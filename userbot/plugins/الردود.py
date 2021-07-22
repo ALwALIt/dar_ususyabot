@@ -142,7 +142,7 @@ async def add_new_filter(new_handler):
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = "⌔︙ الـرد {} {} تـم اضـافتة بنـجـاح "
+    success = "⌔︙ الـرد {} تـم اضـافتة بنـجـاح ✅"
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         return await edit_or_reply(new_handler, success.format(keyword, "added"))
     remove_filter(str(new_handler.chat_id), keyword)
@@ -165,8 +165,8 @@ async def on_snip_list(event):
     OUT_STR = "⌔︙ لا توجد ردود مضافة في هذه الدردشه  🔍"
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if OUT_STR == "⌔︙ لا توجد ردود مضافة في هذه الدردشه  🔍":
-            OUT_STR = "⌔︙ الردود التي تم اضافتها في هذه الدردش :\n"
+        if OUT_STR == "⌔︙ لا توجد ردود مضافة في هذه الدردشة  🔍":
+            OUT_STR = "⌔︙ الردود التي تم اضافتها في هذه الدردشة\n"
         OUT_STR += "⌔︙ {}\n".format(filt.keyword)
     await edit_or_reply(
         event,
@@ -188,7 +188,7 @@ async def remove_a_filter(r_handler):
     "Stops the specified keyword."
     filt = r_handler.pattern_match.group(1)
     if not remove_filter(r_handler.chat_id, filt):
-        await r_handler.edit("⌔︙ الـرد {} غير موجود.   .".format(filt))
+        await r_handler.edit("⌔︙ الـرد {} غير موجود ".format(filt))
     else:
         await r_handler.edit("⌔︙ الـرد {} تـم حـذفة بنـجـاح  ✅".format(filt))
 
