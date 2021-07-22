@@ -22,13 +22,13 @@ plugin_category = "tools"
     pattern="اعادة تشغيل$",
     command=("اعادة تشغيل", plugin_category),
     info={
-        "header": "اعادة تشغيل البوت !!",
-        "usage": "{tr}اعادة تشغيل",
+        "header": "Restarts the bot !!",
+        "usage": "{tr}restart",
     },
     disable_errors=True,
 )
 async def _(event):
-    "⌔︙إعـادة تشغيـل البـوت "
+    "Restarts the bot !!"
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "**⌔︙إعـادة التشغيـل ↻** \n" "**⌔︙ تم إعـادة تشغيـل البـوت ↻**")
     sandy = await edit_or_reply(
@@ -48,7 +48,7 @@ async def _(event):
         LOGS.error(e)
     try:
         delgvar("ipaddress")
-        await catub.disconnect()
+        await jmthon.disconnect()
     except CancelledError:
         pass
     except Exception as e:
@@ -59,45 +59,20 @@ async def _(event):
     pattern="اطفاء$",
     command=("اطفاء", plugin_category),
     info={
-        "header": "⌔︙ إيقاف التشغيـل ✕",
-        "description": "⌔︙لإيقـاف الدايـنو لموقـع هيروڪو، عندها لايمڪنك التشغيـل من البوت وبذلك عليك الذهـاب لموقـع هيروڪو لتشغيـله 💡",
-        "usage": "{tr}اطفاء",
+        "header": "Shutdowns the bot !!",
+        "description": "To turn off the dyno of heroku. you cant turn on by bot you need to got to heroku and turn on or use @hk_heroku_bot",
+        "usage": "{tr}shutdown",
     },
 )
 async def _(event):
-    "⌔︙ إيقاف التشغيـل ✕"
+    "Shutdowns the bot"
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "**⌔︙ إيقاف التشغيـل ✕ **\n" "**⌔︙ تـم إيقـاف تشغيـل البـوت بنجـاح ✓**")
-    await edit_or_reply(event, "**⌔︙ جـاري إيقـاف تشغيـل البـوت الآن ..**\n⌔︙  **أعـد تشغيـلي يدويـاً لاحقـاً عـبر هيـروڪو ..**\n⌔︙**سيبقى البـوت متوقفـاً عن العمـل لغايـة** \n**⌔︙الوقـت المذڪـور 💡**")
+    await edit_or_reply(event, "**⌔︙ جـاري إيقـاف تشغيـل البـوت الآن ..**\n⌔︙  **أعـد تشغيـلي يدويـاً لاحقـاً عـبر هيـروڪو ..**\n⌔︙**سيبقى البـوت متوقفـاً عن العمـل")
     if HEROKU_APP is not None:
         HEROKU_APP.process_formation()["worker"].scale(0)
     else:
         sys.exit(0)
-
-
-@jmthon.ar_cmd(
-    pattern="اطفاء مؤقت( [0-9]+)?$",
-    command=("اطفاء مؤقت", plugin_category),
-    info={
-        "header": "Userbot will stop working for the mentioned time.",
-        "usage": "{tr}sleep <seconds>",
-        "examples": "{tr}sleep 60",
-    },
-)
-async def _(event):
-    "To sleep the userbot"
-    if " " not in event.pattern_match.group(1):
-        return await edit_or_reply(event, "⌔︙ كتابة الامر ⎀ : `.اطفاء مؤقت + الوقت`")
-    counter = int(event.pattern_match.group(1))
-    if BOTLOG:
-        await event.client.send_message(
-            BOTLOG_CHATID,
-            "**⌔︙ تـم وضـع البـوت في وضـع السڪون لـ : ** " + str(counter) + " **⌔︙عـدد الثوانـي ⏱**",
-        )
-    event = await edit_or_reply(event, f"`⌔︙ حسنـاً، سأدخـل وضـع السڪون لـ : {counter} ** عـدد الثوانـي ⏱** ")
-    sleep(counter)
-    await event.edit("** ⌔︙ حسنـاً أنـا نشـط الآن ᯤ **")
-
 
 @jmthon.ar_cmd(
     pattern="التحديثات (تشغيل|ايقاف)$",
