@@ -263,7 +263,7 @@ async def upstream(event):
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            f"⌔ :  لتحديث سورس جمثون ارسل :`.تحديث الان` "
+            f"⌔ :  لتحديث سورس جمثون ارسل : `.تحديث الان` "
         )
 
     if force_update:
@@ -271,6 +271,6 @@ async def upstream(event):
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
     if conf == "الان":
-        await event.edit(" ⌔︙ جار تحديث سورس جمثون انتظر قليلا رجـاءا")
+        await event.edit("** ⌔︙ جار تحـديـث سـورس جـمثـون انـتـظـر قـليـلا 🔨**")
         await update(event, repo, ups_rem, ac_br)
     return
