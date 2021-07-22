@@ -73,7 +73,7 @@ async def _(event):
     output = await _cattools.media_to_pic(event, reply)
     if output[1] is None:
         return await edit_delete(
-            output[0], "⌔︙ غـير قـادر على استـخراج الصوة من هـذا الـرد ⚠️"
+            output[0], "⌔︙ غـير قـادر على تحويل الملصق إلى صورة من هـذا الـرد ⚠️"
         )
     meme_file = convert_toimage(output[1])
     await event.client.send_file(
