@@ -1,3 +1,6 @@
+#file written by @t7ttt7
+# code by  @t7ttt7
+
 import json
 import math
 import os
