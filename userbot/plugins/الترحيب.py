@@ -147,8 +147,8 @@ async def save_welcome(event):
 
 
 @jmthon.ar_cmd(
-    pattern="حذف ترحيب$",
-    command=("حذف ترحيب", plugin_category),
+    pattern="حذف الترحيبات$",
+    command=("حذف الترحيبات", plugin_category),
     info={
         "الامر": ".حذف ترحيب",
         "الشرح": "لحذف  الترحيب",
@@ -158,7 +158,7 @@ async def save_welcome(event):
 async def del_welcome(event):
     "To turn off welcome message"
     if rm_welcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "⌔︙ تم حذف الترحيب بنجاح ✅.")
+        await edit_or_reply(event, "⌔︙ تم حذف الترحيبات بنجاح ✅.")
     else:
         await edit_or_reply(event, "⌔︙ ليـس لـدي اي تـرحيبـات بالأصـل")
 
