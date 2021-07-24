@@ -392,17 +392,17 @@ async def inline_handler(event):  # sourcery no-metrics
                 ],
                 [    
                     Button.inline(
-                        text=f"{EMOJI} [السـورس](https://github.com/JMTHON-AR/JMTHON-PACK)"
+                        text=f"{EMOJI} الوقت : {uptime} "
                     ),
                 ],
                 [
                     Button.inline(
-                        text=f"{EMOJI} الوقت : {uptime}"
+                        text=f"{EMOJI} المالك : {Config.ALIVE_NAME}"
                     ),
                 ],
                 [   
                     Button.inline(
-                        text=f"{EMOJI} المالك : {Config.ALIVE_NAME}"
+                        text=f"{EMOJI} المطور : @JMTHON "
                     ),
                 ],
             ]
