@@ -394,7 +394,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 ],
                 [    
                     Button.inline(
-                        text=f"{EMOJI} البايثون : {python_version()}"
+                        text=f"{EMOJI} السورس : https://github.com/JMTHON-AR/JMTHON-PACK"
                     ),
                 ],
                 [
