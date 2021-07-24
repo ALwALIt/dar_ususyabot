@@ -402,7 +402,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 ],
                 [   
                     Button.inline(
-                        text=f"المطور": JMTHON@"
+                        text=f"- المطور: JMTHON@"
                     ),
                 ],
             ]
