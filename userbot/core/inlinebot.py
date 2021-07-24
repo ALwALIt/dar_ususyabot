@@ -370,7 +370,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))
-        elif string == "ialive":
+        elif string == "السورس":
             EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
             _, check_sgnirts = check_data_base_heal_th()
             CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "𓆩 بوت جمثون يعمل بنجاح  𓆪"
@@ -410,7 +410,7 @@ async def inline_handler(event):  # sourcery no-metrics
             ]
             await event.answer([
                 builder.article(
-                    title="Ialive", 
+                    title="السورس", 
                     description="Alive MSG", 
                     text=CUSTOM_ALIVE_TEXT, 
                     thumb=InputWebDocument(url=CAT_IMG, size=42, mime_type="image/jpeg", attributes=[]) if CAT_IMG else None, 
