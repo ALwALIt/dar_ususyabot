@@ -402,7 +402,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 ],
                 [   
                     Button.inline(
-                        text=f"{EMOJI} المطور : @JMTHON "
+                        text=f"رابط السورس", "https://github.com/JMTHON-AR/JM-THON" 
                     ),
                 ],
             ]
