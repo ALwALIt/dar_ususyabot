@@ -11,16 +11,16 @@ plugin_category = "extra"
     pattern="كورونا(?:\s|$)([\s\S]*)",
     command=("كورونا", plugin_category),
     info={
-        "header": "To get latest information about covid-19.",
-        "description": "Get information about covid-19 data in the given country/state(only Indian States).",
-        "usage": "{tr}covid <state_name/country_name>",
-        "examples": ["{tr}covid andhra pradesh", "{tr}covid india", "{tr}covid world"],
+        "header": "للحصول على أحدث المعلومات حول كورونا.",
+        "description": "الوصف": "احصل على معلومات حول بيانات covid-19 في البلد / الولاية المحددة (الولايات الهندية فقط).",
+        "usage": "{tr}كورونا + الدولة",
+        "examples": "{tr}كورونا + الدولة"
     },
 )
 async def corona(event):
-    "To get latest information about covid-19."
+    "للحصول على المعلومات حول كورونا."
     input_str = event.pattern_match.group(1)
-    country = (input_str).title() if input_str else "World"
+    country = (input_str).title() if input_str else "العالم"
     catevent = await edit_or_reply(event, "⌔︙ يتـم سـحب الـمعلومات")
     covid = Covid(source="worldometers")
     try:
