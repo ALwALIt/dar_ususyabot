@@ -13,7 +13,7 @@ from ..core.managers import edit_or_reply
 from ..helpers.utils import _format
 from . import BOTLOG, BOTLOG_CHATID, extract_time, get_user_from_event
 
-plugin_category = "اوامر الادمن"
+plugin_category = "admin"
 
 # =================== CONSTANT ===================
 NO_ADMIN = "**⌔︙  عذرا انا لست مشرف في المجموعة ❕**"
