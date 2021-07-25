@@ -1,4 +1,5 @@
-# pm and tagged messages logger for catuserbot by @mrconfused (@sandy1709)
+# ملف التخزين بواسطه  @RRRD7
+#@JMTHON
 import asyncio
 
 from userbot import jmthon
@@ -65,55 +66,24 @@ async def monito_p_m_s(event):  # sourcery no-metrics
                 LOG_CHATS_.COUNT += 1
             except Exception as e:
                 LOGS.warn(str(e))
-
 @jmthon.ar_cmd(
-    pattern="حفظ(?:\s|$)([\s\S]*)",
-    command=("حفظ", plugin_category),
-    info={
-        "header": "To log the replied message to bot log group so you can check later.",
-        "description": "Set PRIVATE_GROUP_BOT_API_ID in vars for functioning of this",
-        "usage": [
-            "{tr}حفظ",
-        ],
-    },
-)
-async def log(log_text):
-    "To log the replied message to bot log group"
-    if BOTLOG:
-        if log_text.reply_to_msg_id:
-            reply_msg = await log_text.get_reply_message()
-            await reply_msg.forward_to(BOTLOG_CHATID)
-        elif log_text.pattern_match.group(1):
-            user = f"#LOG / Chat ID: {log_text.chat_id}\n\n"
-            textx = user + log_text.pattern_match.group(1)
-            await log_text.client.send_message(BOTLOG_CHATID, textx)
-        else:
-            await log_text.edit("`What am I supposed to log?`")
-            return
-        await log_text.edit("`Logged Successfully`")
-    else:
-        await log_text.edit("`This feature requires Logging to be enabled!`")
-    await asyncio.sleep(2)
-    await log_text.delete()
-
-@jmthon.ar_cmd(
-    pattern="خ تسجيل (on|off)$",
-    command=("خ تسجيل", plugin_category),
+    pattern="تخزين الخاص (تشغيل|ايقاف)$",
+    command=("تخزين الخاص", plugin_category),
     info={
         "header": "To turn on or turn off logging of Private messages in pmlogger group.",
         "description": "Set PM_LOGGER_GROUP_ID in vars to work this",
         "usage": [
-            "{tr}خ تسجيل on",
-            "{tr}خ تسجيل off",
+            "{tr}تخزين الخاص تشغيل",
+            "{tr}تخزين الخاص ايقاف",
         ],
     },
 )
 async def set_pmlog(event):
-    "To turn on or turn off logging of Private messages"
+    "لتشغـيل او ايقـاف تخـزين رسائل الـخاص"
     input_str = event.pattern_match.group(1)
-    if input_str == "off":
+    if input_str == "ايقاف:
         h_type = False
-    elif input_str == "on":
+    elif input_str == "تشغيل":
         h_type = True
     if gvarstatus("PMLOG") and gvarstatus("PMLOG") == "false":
         PMLOG = False
@@ -121,20 +91,20 @@ async def set_pmlog(event):
         PMLOG = True
     if PMLOG:
         if h_type:
-            await event.edit("`Pm logging is already enabled`")
+            await event.edit("⌔︙  تـخزين رسـائل الخـاص بالفـعل مُمكـنة ✅")
         else:
             addgvar("PMLOG", h_type)
-            await event.edit("`Pm logging is disabled`")
+            await event.edit("**⌔︙  تـم تعـطيل تخـزين رسائل الـخاص بنـجاح ✅**")
     elif h_type:
         addgvar("PMLOG", h_type)
-        await event.edit("`Pm logging is enabled`")
+        await event.edit("**⌔︙  تـم تفعيل تخـزين رسائل الـخاص بنـجاح ✅**")
     else:
-        await event.edit("`Pm logging is already disabled`")
+        await event.edit("⌔︙  تـخزين رسـائل الخـاص بالفـعل معـطلة ✅")
 
 
 @jmthon.ar_cmd(
-    pattern="ك تسجيل (on|off)$",
-    command=("ك تسجيل", plugin_category),
+    pattern="تخزين الكروبات (تشغيل|ايقاف)$",
+    command=("تخزين الكروبات", plugin_category),
     info={
         "header": "To turn on or turn off group tags logging in pmlogger group.",
         "description": "Set PM_LOGGER_GROUP_ID in vars to work this",
@@ -145,11 +115,11 @@ async def set_pmlog(event):
     },
 )
 async def set_grplog(event):
-    "To turn on or turn off group tags logging"
+    "لتشغـيل او ايقـاف تخـزين رسائل الكروبات"
     input_str = event.pattern_match.group(1)
-    if input_str == "off":
+    if input_str == "ايقاف":
         h_type = False
-    elif input_str == "on":
+    elif input_str == "تشغيل":
         h_type = True
     if gvarstatus("GRPLOG") and gvarstatus("GRPLOG") == "false":
         GRPLOG = False
@@ -157,12 +127,12 @@ async def set_grplog(event):
         GRPLOG = True
     if GRPLOG:
         if h_type:
-            await event.edit("`Group logging is already enabled`")
+            await event.edit("⌔︙  تـخزين رسـائل الكروبات بالفـعل مُمكـنة ✅")
         else:
             addgvar("GRPLOG", h_type)
-            await event.edit("`Group logging is disabled`")
+            await event.edit("**⌔︙  تـم تعـطيل تخـزين رسائل الكروبات بنـجاح ✅**")
     elif h_type:
         addgvar("GRPLOG", h_type)
-        await event.edit("`Group logging is enabled`")
+        await event.edit("**⌔︙  تـم تفعيل تخـزين رسائل الكروبات بنـجاح ✅**")
     else:
-        await event.edit("`Group logging is already disabled`")
+        await event.edit("⌔︙  تـخزين رسـائل الكروبات بالفـعل معـطلة ✅")
