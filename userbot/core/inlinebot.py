@@ -401,7 +401,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     ),
                 ],
                 [   
-                    Button.url("السورس", "https://github.com/JMTHON-AR/JM-THON"
+                    Button.url("المطور", "T.ME/JMTHON"
                     ),
                 ],
             ]
