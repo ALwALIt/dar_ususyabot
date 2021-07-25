@@ -20,7 +20,7 @@ plugin_category = "extra"
 async def corona(event):
     "للحصول على المعلومات حول كورونا."
     input_str = event.pattern_match.group(1)
-    country = (input_str).title() if input_str else "العالم"
+    country = (input_str).title() if input_str else "world"
     catevent = await edit_or_reply(event, "⌔︙ يتـم سـحب الـمعلومات")
     covid = Covid(source="worldometers")
     try:
