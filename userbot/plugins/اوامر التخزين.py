@@ -81,7 +81,7 @@ async def monito_p_m_s(event):  # sourcery no-metrics
 async def set_pmlog(event):
     "لتشغـيل او ايقـاف تخـزين رسائل الـخاص"
     input_str = event.pattern_match.group(1)
-    if input_str == "ايقاف:
+    if input_str == "ايقاف":
         h_type = False
     elif input_str == "تشغيل":
         h_type = True
