@@ -5,7 +5,7 @@ from userbot import jmthon
 from ..core.managers import edit_or_reply
 from ..sql_helper import warns_sql as sql
 
-plugin_category = "اوامر الادمن"
+plugin_category = "admin"
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
