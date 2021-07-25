@@ -1,7 +1,3 @@
-"""
-idea from lynda and rose bot
-made by @mrconfused
-"""
 from telethon.errors import BadRequestError
 from telethon.errors.rpcerrorlist import UserAdminInvalidError, UserIdInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
