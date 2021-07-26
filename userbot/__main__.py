@@ -1,7 +1,6 @@
 import sys
 
 import userbot
-from telethon import functions
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 
 from .Config import Config
@@ -19,14 +18,14 @@ from .utils import (
 LOGS = logging.getLogger("JMTHON")
 
 print(userbot.__copyright__)
-print("جمـيع الـحقوق محـفوظة " + userbot.__license__)
+print("Licensed under the terms of the " + userbot.__license__)
 
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("يتـم بدء بـوت جـمثوت")
+    LOGS.info("Starting Userbot")
     jmthon.loop.run_until_complete(setup_bot())
-    LOGS.info("اكتـمل بدء بـوت جـمثون")
+    LOGS.info("TG Bot Startup Completed")
 except Exception as e:
     LOGS.error(f"{str(e)}")
     sys.exit()
@@ -49,10 +48,10 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("⌔︙ تهانينا لقد قمت بتنصيب بوت جمثون بدون اخطـاء ")
+    print("⌔︙ بـوت جـمثون يعـمل بـنجاح ")
     print(
-        f"الان ارسل  •  {cmdhr}الاوامر  • لـرؤيـة اوامر البـوت\
-        \nللمسـاعدة تواصـل  https://t.me/JMTHON"
+        f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
+        \nللمسـاعدة تواصـل  https://t.me/jmthon"
     )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
@@ -63,26 +62,9 @@ async def startup_process():
     Catcheck.sucess = True
     return
 
+
 jmthon.loop.run_until_complete(startup_process())
-def start_bot():
-	try:
-		jmthon.loop.run_until_complete(jmthon(
-			functions.channels.JoinChannelRequest("JMTHON")
-		))
-		jmthon.loop.run_until_complete(jmthon(
-			functions.channels.JoinChannelRequest("JJMTO")
-		))
-		jmthon.loop.run_until_complete(jmthon(
-			functions.channels.JoinChannelRequest("JJOTT")
-		))
-	except Exception as e:
-		print(e)
-		return False
-Checker = start_bot()
-if Checker == False:
-    print("⌔︙ يجب الاشتراك هنا اولا @JMTHON - @JJOTT - @JJMTO")
-    jmthon.disconnect()
-    sys.exit()
+
 if len(sys.argv) not in (1, 3, 4):
     jmthon.disconnect()
 elif not Catcheck.sucess:
