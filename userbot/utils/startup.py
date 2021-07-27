@@ -235,6 +235,16 @@ async def verifyLoggerGroup():
                 "⌔︙ حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n"
                 + str(e)
             )
+    else:
+        descript = "- لا تحذف او تغير اي شي في هذا البوت \n  - @JMTHON"
+        _, groupid = await create_supergroup(
+            "كـروب مـساعده جمثون", jmthon, Config.TG_BOT_USERNAME, descript
+        )
+        addgvar("PM_LOGGER_GROUP_ID", groupid)
+        print(
+            "تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه."
+        )
+        flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
         args = [executable, "-m", "userbot"]
