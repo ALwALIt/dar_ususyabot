@@ -173,7 +173,7 @@ async def _(event):
 async def _(event):
     "To unban all banned users from group."
     catevent = await edit_or_reply(
-        event, "__Unbanning all banned accounts in this group.__"
+        event, "**⌔︙ يتـم الـغاء حـظر الجـميع فـي هذه الـدردشـة**"
     )
     succ = 0
     total = 0
