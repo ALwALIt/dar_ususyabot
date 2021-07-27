@@ -236,9 +236,9 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "- لا تحذف او تغير اي شي في هذا البوت \n  - @JMTHON"
+        descript = "⌔︙  وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JMTHON"
         _, groupid = await create_supergroup(
-            "كـروب مـساعده جمثون", jmthon, Config.TG_BOT_USERNAME, descript
+            "كـروب تخزين الخاص", jmthon, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print(
