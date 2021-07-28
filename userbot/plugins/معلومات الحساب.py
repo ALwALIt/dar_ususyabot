@@ -105,10 +105,10 @@ async def stats(event):  # sourcery no-metrics
     response += f"**⌔︙ المجـموعـات :** {groups} \n"
     response += f"**⌔︙ القنـوات  :** {broadcast_channels} \n"
     response += f"**⌔︙ المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
-    response += f"**⌔︙ المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups}` \n"
+    response += f"**⌔︙ المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups} \n"
     response += f"**⌔︙ القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
     response += (
-        f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels}` \n"
+        f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
     )
     response += f"**⌔︙ المحـادثـات الغيـر مقـروء  :** {unread} \n"
     response += f"**⌔︙ الـتاكـات الغيـر مقـروء :** {unread_mentions} \n"
