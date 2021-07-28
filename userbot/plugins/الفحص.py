@@ -59,19 +59,22 @@ async def amireallyalive(event):
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
-    CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "⇝ WELCOME TO JMTHON 𝄵 ⇜"
-    CAT_IMG = gvarstatus("ALIVE_PIC")
+    CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or " SOURCE JMTHON "
+    CAT_IMG = gvarstatus("ALIVE_PIC") or " https://telegra.ph/file/794e7311e8e3aadcf8dff.jpg "
     if CAT_IMG:
         CAT = [x for x in CAT_IMG.split()]
         A_IMG = list(CAT)
         PIC = random.choice(A_IMG)
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-        cat_caption += f"**{EMOJI} قاعدۿ البيانات :** `تـعمل بنـجاح`\n"
-        cat_caption += f"**{EMOJI} نسخۿ تليثون :** `{version.__version__}\n`"
+        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
+        cat_caption += f"**{EMOJI} قاعدة البيانات :** تـعمل بنجـاح\n"
+        cat_caption += f"**{EMOJI} نسخـۿ التليثون  :** `{version.__version__}\n`"
         cat_caption += f"**{EMOJI} نسخـۿ جـمثون :** `{catversion}`\n"
         cat_caption += f"**{EMOJI} نسخـۿ البايثون :** `{python_version()}\n`"
-        cat_caption += f"**{EMOJI} الوقت :** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} المنشئ:** {mention}\n"
+        cat_caption += f"**{EMOJI} مدة التشغيل :** `{uptime}\n`"
+        cat_caption += f"**{EMOJI} المستخدم:** {mention}\n"
+        cat_caption += f"**{EMOJI}**  **[مطور السورس]**(t.me/JMTHON)   \n"
+        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
         await event.client.send_file(
             event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
         )
