@@ -100,8 +100,8 @@ async def stats(event):  # sourcery no-metrics
     full_name = inline_mention(await event.client.get_me())
     response = f"𓍹———————×———————𓍻 \n"
     response += f"**⌔︙ الدردشات الخاصة ️  :** {private_chats} \n"
-    response += f"**⌔︙ المستخـدمين : {private_chats - bots}` \n"
-    response += f"**⌔︙ الـبوتـات **: {bots}` \n"
+    response += f"**⌔︙ المستخـدمين : {private_chats - bots} \n"
+    response += f"**⌔︙ الـبوتـات :** {bots} \n"
     response += f"**⌔︙ المجـموعـات :** {groups} \n"
     response += f"**⌔︙ القنـوات  :** {broadcast_channels} \n"
     response += f"**⌔︙ المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
