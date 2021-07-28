@@ -301,7 +301,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
-        name = f"𖠜 {HM} | "
+        name = f" {HM} - "
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -317,7 +317,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         DMY = time.strftime("%Y.%m.%d")
         HM = time.strftime("%I:%M:%S")
-        bio = f" {DEFAULTUSERBIO} - {DMY}"
+        bio = f" {DEFAULTUSERBIO} - {HM}"
         LOGS.info(bio)
         try:
             await jmthon(functions.account.UpdateProfileRequest(about=bio))
