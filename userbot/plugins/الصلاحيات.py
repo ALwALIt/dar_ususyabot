@@ -15,7 +15,7 @@ from ..sql_helper.locks_sql import get_locks, is_locked, update_lock
 from ..utils import is_admin
 from . import BOTLOG, get_user_from_event
 
-plugin_category = "اوامر الادمن"
+plugin_category = "admin" 
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
