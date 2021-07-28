@@ -72,7 +72,7 @@ async def get_user_from_event(
                 )
             return None, None
     except Exception as e:
-        LOGS.error(str(e)
+        LOGS.error(str(e))
     if not noedits:
         await edit_delete(catevent, "⌔︙  يجـب الـرد علـى رسالة اولا")
     return None, None
