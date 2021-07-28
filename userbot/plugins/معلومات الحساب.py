@@ -16,11 +16,11 @@ plugin_category = "utils"
 # =========================================================== #
 STAT_INDICATION = "**⌔︙ جـاري جـمـع الإحصـائيـات انتـظـر ⏱ **"
 CHANNELS_STR = "**⌔︙ قائمة القنوات التي أنت فيها موجودة هنا\n\n"
-CHANNELS_ADMINSTR = "**⌔︙ قائمة القنوات التي انت مشـرف بهـا  **\n\n"
-CHANNELS_OWNERSTR = "**⌔︙ قائمة القنوات التي تـكون انت مالكـها **\n\n"
-GROUPS_STR = "**⌔︙ قائمة المجموعات التي أنت فيها موجود فيـها **\n\n"
-GROUPS_ADMINSTR = "**⌔︙ قائمة المجموعات التي تكون مشـرف بهـا **\n\n"
-GROUPS_OWNERSTR = "**⌔︙ قائمة المجموعات التي تـكون انت مالكـها **\n\n"
+CHANNELS_ADMINSTR = "**⌔︙ قائمة القنوات التي انت مشـرف بهـا **\n\n"
+CHANNELS_OWNERSTR = "**⌔︙ قائمة القنوات التي تـكون انت مالكـها**\n\n"
+GROUPS_STR = "**⌔︙ قائمة المجموعات التي أنت فيها موجود فيـها**\n\n"
+GROUPS_ADMINSTR = "**⌔︙ قائمة المجموعات التي تكون مشـرف بهـا**\n\n"
+GROUPS_OWNERSTR = "**⌔︙ قائمة المجموعات التي تـكون انت مالكـها**\n\n"
 # =========================================================== #
 #                                                             #
 # =========================================================== #
@@ -116,8 +116,8 @@ async def stats(event):  # sourcery no-metrics
     await cat.edit(response)
         
 @jmthon.ar_cmd(
-    pattern="معلومات(?:\s|$)([\s\S]*)",
-    command=("معلومات", plugin_category),
+    pattern="كروباته(?:\s|$)([\s\S]*)",
+    command=("كروباته", plugin_category),
     info={
         "header": "To get list of public groups of repled person or mentioned person.",
         "usage": "{tr}ustat <reply/userid/username>",
