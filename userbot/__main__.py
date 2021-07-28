@@ -1,7 +1,6 @@
 import sys
 
 import userbot
-from telethon import functions
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 
 from .Config import Config
@@ -19,14 +18,14 @@ from .utils import (
 LOGS = logging.getLogger("JMTHON")
 
 print(userbot.__copyright__)
-print("المرخصة بموجب شروط " + userbot.__license__)
+print("Licensed under the terms of the " + userbot.__license__)
 
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("بدء تنزيل جـمثون")
+    LOGS.info("Starting Userbot")
     jmthon.loop.run_until_complete(setup_bot())
-    LOGS.info("بدء تشغيل البوت")
+    LOGS.info("TG Bot Startup Completed")
 except Exception as e:
     LOGS.error(f"{str(e)}")
     sys.exit()
@@ -48,13 +47,13 @@ async def startup_process():
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    print("➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖")
-    print("حسنا لقد تم تنصيب جـمثون ")
+    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
+    print("⌔︙ بـوت جـمثون يعـمل بـنجاح ")
     print(
-        f"⌔︙ا  تهانينا ، الان ارسل -  .الاوامر  - لرؤية اوامر البوت \
-        \nقم بتوجه الى القناه لمعرفه الاوامر وباقي معلومات https://t.me/jmthon"
+        f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
+        \nللمسـاعدة تواصـل  https://t.me/jmthon"
     )
-    print("➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖")
+    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
@@ -63,23 +62,9 @@ async def startup_process():
     Catcheck.sucess = True
     return
 
+
 jmthon.loop.run_until_complete(startup_process())
-def start_bot():
-	try:
-		jmthon.loop.run_until_complete(jmthon(
-			functions.channels.JoinChannelRequest("JMTHON")
-		))
-		jmthon.loop.run_until_complete(jmthon(
-			functions.channels.JoinChannelRequest("JJMTO")
-		))
-	except Exception as e:
-		print(e)
-		return False
-Checker = start_bot()
-if Checker == False:
-    print("اشترك اولا @JMTHON - @JJMTO")
-    jmthon.disconnect()
-    sys.exit()
+
 if len(sys.argv) not in (1, 3, 4):
     jmthon.disconnect()
 elif not Catcheck.sucess:
