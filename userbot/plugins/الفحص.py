@@ -66,7 +66,7 @@ async def amireallyalive(event):
         A_IMG = list(CAT)
         PIC = random.choice(A_IMG)
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
+        cat_caption += f"𓍹———————×———————————𓍻\n"
         cat_caption += f"**{EMOJI} قاعدة البيانات :** تـعمل بنجـاح\n"
         cat_caption += f"**{EMOJI} نسخـۿ التليثون  :** `{version.__version__}\n`"
         cat_caption += f"**{EMOJI} نسخـۿ جـمثون :** `{catversion}`\n"
@@ -74,7 +74,7 @@ async def amireallyalive(event):
         cat_caption += f"**{EMOJI} مدة التشغيل :** `{uptime}\n`"
         cat_caption += f"**{EMOJI} المستخدم:** {mention}\n"
         cat_caption += f"**{EMOJI}**  **[مطور السورس]**(t.me/JMTHON)   \n"
-        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
+        cat_caption += f"𓍹———————×———————————𓍻\n"
         await event.client.send_file(
             event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
         )
