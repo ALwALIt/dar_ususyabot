@@ -111,7 +111,7 @@ async def stats(event):  # sourcery no-metrics
         f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
     )
     response += f"**⌔︙ المحـادثـات الغيـر مقـروء  :** {unread} \n"
-    response += f"**⌔︙ الـتاكـات الغيـر مقـروء :** {unread_mentions} \n"
+    response += f"**⌔︙ الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
     response += f"𓍹———————×———————𓍻\n"
     await cat.edit(response)
         
