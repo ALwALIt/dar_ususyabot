@@ -34,8 +34,8 @@ oldvars = {
 
 
 @jmthon.ar_cmd(
-    pattern="(set|get|del)dv(?: |$)([\s\S]*)",
-    command=("dv", plugin_category),
+    pattern="(اضف_|معلومات_|حذف_)فار(?: |$)([\s\S]*)",
+    command=("فار", plugin_category),
     info={
         "header": "Set vars in database or Check or Delete",
         "description": "Set , Fetch or Delete values or vars directly in database without restart or heroku vars.\n\nYou can set multiple pics by giving space after links in alive, ialive, pm permit.",
@@ -76,7 +76,7 @@ async def bad(event):  # sourcery no-metrics
     if vname in vlist:
         if vname in oldvars:
             vname = oldvars[vname]
-        if cmd == "set":
+        if cmd == "اضف_":
             if not vinfo:
                 return await edit_delete(
                     event, f"** يجب وضع اسم المتغير اولا لاستخدامه لـ **{vname}**"
@@ -89,12 +89,12 @@ async def bad(event):  # sourcery no-metrics
             await edit_delete(
                 event, f"📑 القيـمة لـ **{vname}** \n تـم تغييـرها لـ :- `{vinfo}`", time=20
             )
-        if cmd == "get":
+        if cmd == "معلومات_":
             var_data = gvarstatus(vname)
             await edit_delete(
                 event, f"📑 قيـمة الـ **{vname}** \n هي  `{var_data}`", time=20
             )
-        elif cmd == "del":
+        elif cmd == "حذف_":
             delgvar(vname)
             await edit_delete(
                 event,
