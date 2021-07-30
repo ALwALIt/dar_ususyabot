@@ -98,7 +98,7 @@ async def stats(event):  # sourcery no-metrics
         unread += dialog.unread_count
     stop_time = time.time() - start_time
     full_name = inline_mention(await event.client.get_me())
-    response = f"𓍹———————×———————𓍻 \n"
+    response = f"✛━━━━━━━━━━━━━✛ \n"
     response += f"**⌔︙ الدردشات الخاصة ️  :** {private_chats} \n"
     response += f"**⌔︙ المستخـدمين : {private_chats - bots} \n"
     response += f"**⌔︙ الـبوتـات :** {bots} \n"
@@ -110,9 +110,9 @@ async def stats(event):  # sourcery no-metrics
     response += (
         f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
     )
-    response += f"**⌔︙ المحـادثـات الغيـر مقـروء  :** {unread} \n"
+    response += f"**⌔︙ المحـادثـات الغيـر مقـروء**: {unread} \n"
     response += f"**⌔︙ الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
-    response += f"𓍹———————×———————𓍻\n"
+    response += f"✛━━━━━━━━━━━━━✛\n"
     await cat.edit(response)
         
 @jmthon.ar_cmd(
