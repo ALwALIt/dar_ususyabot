@@ -1,4 +1,3 @@
-#JMTHON
 import json
 import math
 import os
@@ -6,17 +5,16 @@ import random
 import re
 import time
 from uuid import uuid4
-from platform import python_version
 
-from telethon import Button, types, version
+from telethon import Button, types
 from telethon.errors import QueryIdInvalidError
 from telethon.events import CallbackQuery, InlineQuery
 from youtubesearchpython import VideosSearch
 
-from userbot import jmthon, catversion, StartTime
+from userbot import jmthon
 
 from ..Config import Config
-from ..helpers.functions import rand_key, catalive, check_data_base_heal_th, get_readable_time
+from ..helpers.functions import rand_key
 from ..helpers.functions.utube import (
     download_button,
     get_yt_video_id,
@@ -32,8 +30,9 @@ from .logger import logging
 LOGS = logging.getLogger(__name__)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
-CATLOGO = "https://telegra.ph/file/9c1863041429d5163bf97.jpg"
+CATLOGO = "https://telegra.ph/file/7e1ed8587bf4fd1d920dc.jpg"
 tr = Config.COMMAND_HAND_LER
+
 
 def getkey(val):
     for key, value in GRP_INFO.items():
@@ -54,53 +53,52 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    print(GRP_INFO)
-    text = f"جـمثون الـعربي\
-        \nمالـك البـوت {mention}"
+    text = f"اوامـر سـورس جـمثون\
+        \nالأوامـر لـك {mention}"
     buttons = [
         (
             Button.inline(
-                f"ℹ️ المـعلومات",
+                f"ℹ️ Info",
                 data="check",
             ),
         ),
         (
             Button.inline(
-                f"👮‍♂️ اوامر الادمن ({len(GRP_INFO['admin'])})",
+                f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})",
                 data=f"admin_menu",
             ),
             Button.inline(
-                f"🤖 اوامر البوت ({len(GRP_INFO['bot'])})",
+                f"🤖 Bot ({len(GRP_INFO['bot'])})",
                 data=f"bot_menu",
             ),
         ),
         (
             Button.inline(
-                f"🎨 اوامر التسلية ({len(GRP_INFO['fun'])})",
+                f"🎨 Fun ({len(GRP_INFO['fun'])})",
                 data=f"fun_menu",
             ),
             Button.inline(
-                f"🧩 اوامر الثانوية ({len(GRP_INFO['misc'])})",
+                f"🧩 Misc ({len(GRP_INFO['misc'])})",
                 data=f"misc_menu",
             ),
         ),
         (
             Button.inline(
-                f"🧰 اوامر الحساب ({len(GRP_INFO['tools'])})",
+                f"🧰 Tools ({len(GRP_INFO['tools'])})",
                 data=f"tools_menu",
             ),
             Button.inline(
-                f"🗂 اوامر الادارة ({len(GRP_INFO['utils'])})",
+                f"🗂 Utils ({len(GRP_INFO['utils'])})",
                 data=f"utils_menu",
             ),
         ),
         (
             Button.inline(
-                f"➕ اوامر الحفظ ({len(GRP_INFO['extra'])})",
+                f"➕ Extra ({len(GRP_INFO['extra'])})",
                 data=f"extra_menu",
             ),
             Button.inline(
-                f"🔒 اغلاق القائمةالقائم",
+                f"🔒 Close Menu",
                 data=f"close",
             ),
         ),
@@ -197,12 +195,12 @@ def paginate_help(
             ] + [
                 (
                     Button.inline("⌫", data=f"{prefix}_prev({modulo_page})_plugin"),
-                    Button.inline("⚙️ القائمة الرئيسية", data="mainmenu"),
+                    Button.inline("⚙️ Main Menu", data="mainmenu"),
                     Button.inline("⌦", data=f"{prefix}_next({modulo_page})_plugin"),
                 )
             ]
         else:
-            pairs = pairs + [(Button.inline("⚙️ القائمة الرئيسية", data="mainmenu"),)]
+            pairs = pairs + [(Button.inline("⚙️ Main Menu", data="mainmenu"),)]
     elif len(pairs) > number_of_rows:
         pairs = pairs[
             modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
@@ -213,7 +211,7 @@ def paginate_help(
                     data=f"{prefix}_prev({modulo_page})_command_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
-                    "⬅️ رجوع ",
+                    "⬅️ Back ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
@@ -226,7 +224,7 @@ def paginate_help(
         pairs = pairs + [
             (
                 Button.inline(
-                    "⬅️ رجوع",
+                    "⬅️ Back ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
             )
@@ -247,11 +245,11 @@ async def inline_handler(event):  # sourcery no-metrics
     if query_user_id == Config.OWNER_ID or query_user_id in Config.SUDO_USERS:
         hmm = re.compile("secret (.*) (.*)")
         match = re.findall(hmm, query)
-        if query.startswith("جـمثون"):
+        if query.startswith("**جمثون"):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
-                    Button.url("CH", "https://T.ME/JMTHON"),
+                    Button.url("Repo", "https://t.me/JMTHON"),
                 )
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
@@ -334,12 +332,12 @@ async def inline_handler(event):  # sourcery no-metrics
                 try:
                     u = await event.client.get_entity(u)
                     if u.username:
-                        jasme = f"@{u.username}"
+                        sandy = f"@{u.username}"
                     else:
-                        jasme = f"[{u.first_name}](tg://user?id={u.id})"
+                        sandy = f"[{u.first_name}](tg://user?id={u.id})"
                 except ValueError:
                     # ValueError: Could not find the input entity
-                    jasme = f"[user](tg://user?id={u})"
+                    sandy = f"[user](tg://user?id={u})"
             except ValueError:
                 # if u is username
                 try:
@@ -347,19 +345,19 @@ async def inline_handler(event):  # sourcery no-metrics
                 except ValueError:
                     return
                 if u.username:
-                    jasme = f"@{u.username}"
+                    sandy = f"@{u.username}"
                 else:
-                    jasme = f"[{u.first_name}](tg://user?id={u.id})"
+                    sandy = f"[{u.first_name}](tg://user?id={u.id})"
                 u = int(u.id)
             except Exception:
                 return
             timestamp = int(time.time() * 2)
             newsecret = {str(timestamp): {"userid": u, "text": txct}}
 
-            buttons = [Button.inline("إظـهار الـرسالة 🔐", data=f"همسة_{timestamp}")]
+            buttons = [Button.inline("show message 🔐", data=f"secret_{timestamp}")]
             result = builder.article(
-                title="همسـة سريـة",
-                text=f"🔒 هذه الـهمسه السرية الـى {jasme}, فقـط هو يستطيع مشاهدتها",
+                title="secret message",
+                text=f"🔒 A whisper message to {sandy}, Only he/she can open it.",
                 buttons=buttons,
             )
             await event.answer([result] if result else None)
@@ -368,58 +366,11 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))
-        elif string == "السورس":
-            EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
-            _, check_sgnirts = check_data_base_heal_th()
-            CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "𓆩 بوت جمثون يعمل بنجاح  𓆪"
-            uptime = await get_readable_time((time.time() - StartTime))
-            CAT_IMG = gvarstatus("ALIVE_PIC")
-            alive_buttons = [
-                [
-                    Button.inline(
-                        text=f"- قاعدة البيانات : ✅"
-                    ),
-                ], 
-                [
-                    Button.inline(
-                        text=f"- الأصدار : {catversion}"
-                    ),
-                ],
-                [
-                    Button.inline(
-                        text=f"- التيليثون : {version.__version__}"
-                    ),
-                ],
-                [    
-                    Button.inline(
-                        text=f"- الوقت : {uptime} "
-                    ),
-                ],
-                [
-                    Button.inline(
-                        text=f"- المالك : {Config.ALIVE_NAME}"
-                    ),
-                ],
-                [   
-                    Button.url("- المطور", "T.ME/JMTHON"
-                    ),
-                ],
-            ]
-            await event.answer([
-                builder.article(
-                    title="السورس", 
-                    description="Alive MSG", 
-                    text=CUSTOM_ALIVE_TEXT, 
-                    thumb=InputWebDocument(url=CAT_IMG, size=42, mime_type="image/jpeg", attributes=[]) if CAT_IMG else None, 
-                    buttons=alive_buttons, 
-                    parse_mode="md"
-                ),
-            ])
         elif string == "help":
             _result = main_menu()
             result = builder.article(
-                title="© فريق جمثون",
-                description="قائمة المساعدة لبوت جمثون",
+                title="© JMTHON Help",
+                description="Help menu for JMTHON",
                 text=_result[0],
                 buttons=_result[1],
                 link_preview=False,
@@ -443,11 +394,11 @@ async def inline_handler(event):  # sourcery no-metrics
                             data=f"ytdl_next_{key_}_1",
                         ),
                         Button.inline(
-                            "📜  قائمـة الكل",
+                            "📜  List all",
                             data=f"ytdl_listall_{key_}_1",
                         ),
                         Button.inline(
-                            "⬇️  تنزيل",
+                            "⬇️  Download",
                             data=f'ytdl_download_{outdata[1]["video_id"]}_0',
                         ),
                     ]
@@ -468,7 +419,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     id=str(uuid4()),
                     type="photo",
                     title=link,
-                    description="⬇️ اضغط للتنـزيل",
+                    description="⬇️ Click to Download",
                     thumb=photo,
                     content=photo,
                     send_message=types.InputBotInlineMessageMediaAuto(
@@ -477,9 +428,9 @@ async def inline_handler(event):  # sourcery no-metrics
                 )
             else:
                 result = builder.article(
-                    title="لا يـوجد",
-                    text=f"⌔︙ تعـذر ايـجاد نتـيجة لـ `{str_y[1]}`",
-                    description="خطـأ",
+                    title="Not Found",
+                    text=f"No Results found for `{str_y[1]}`",
+                    description="INVALID",
                 )
             try:
                 await event.answer([result] if result else None)
@@ -487,16 +438,16 @@ async def inline_handler(event):  # sourcery no-metrics
                 await event.answer(
                     [
                         builder.article(
-                            title="لا يـوجد",
-                            text=f"⌔︙ تعـذر ايـجاد نتـيجة لـ `{str_y[1]}`",
-                            description="خطـأ",
+                            title="Not Found",
+                            text=f"No Results found for `{str_y[1]}`",
+                            description="INVALID",
                         )
                     ]
                 )
         elif string == "age_verification_alert":
             buttons = [
-                Button.inline(text="عـمري هو اكثـر مـن 18", data="age_verification_true"),
-                Button.inline(text="لا أنـا صغـير", data="age_verification_false"),
+                Button.inline(text="Yes I'm 18+", data="age_verification_true"),
+                Button.inline(text="No I'm Not", data="age_verification_false"),
             ]
             markup = event.client.build_reply_markup(buttons)
             photo = types.InputWebDocument(
@@ -521,7 +472,7 @@ async def inline_handler(event):  # sourcery no-metrics
             await event.answer([result] if result else None)
         elif string == "pmpermit":
             buttons = [
-                Button.inline(text="اظـهار الخيـارات", data="show_pmpermit_options"),
+                Button.inline(text="اظهار الخيارات", data="show_pmpermit_options"),
             ]
             PM_PIC = gvarstatus("pmpermit_pic")
             if PM_PIC:
@@ -567,14 +518,14 @@ async def inline_handler(event):  # sourcery no-metrics
             url=CATLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "نصـب بـوت جـمثون مجـاني.", "md"
+            "نصـب جـمثون بـنفسمك ", "md"
         )
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
-            title="جـمثـون",
-            description="نـصب بـنفـسك",
-            url="https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FJMTHON-AR%2FJMTHON-PACK&template=https%3A%2F%2Fgithub.com%2FJMTHON-AR%2FJMTHON-PACK",
+            title="JMTHON",
+            description="قـناة السـورس",
+            url="https://T.ME/JMTHON",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(
@@ -588,9 +539,9 @@ async def inline_handler(event):  # sourcery no-metrics
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     buttons = [
-        (Button.inline("فتح القائمة", data="mainmenu"),),
+        (Button.inline("Open Menu", data="mainmenu"),),
     ]
-    await event.edit("اغلاق القائمة", buttons=buttons)
+    await event.edit("Menu Closed", buttons=buttons)
 
 
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"check")))
@@ -726,7 +677,7 @@ async def on_plug_in_callback_query_handler(event):
     buttons = [
         (
             Button.inline(
-                "⬅️ رجـوع ",
+                "⬅️ Back ",
                 data=f"back_command_{category}_{pgno}_{category_plugins}_{category_pgno}",
             ),
             Button.inline("⚙️ Main Menu", data="mainmenu"),
