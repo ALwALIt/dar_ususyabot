@@ -29,7 +29,7 @@ def resize_image(image):
 
 
 @jmthon.ar_cmd(
-    pattern="(ت(ل)?ك(راف)?) ?(م|ن|ميديا|نص)(?:\s|$)([\s\S]*)",
+    pattern="(ت(ل)?ك(راف)?) ?(m|t|ميديا|نص)(?:\s|$)([\s\S]*)",
     command=("تلكراف", plugin_category),
     info={
         "header": "⌔︙ للحصـول على رابـط تليڪـراف  :",
@@ -63,7 +63,7 @@ async def _(event):
     start = datetime.now()
     r_message = await event.get_reply_message()
     input_str = (event.pattern_match.group(4)).strip()
-    if input_str in ["ميديا", "م"]:
+    if input_str in ["ميديا", "m"]:
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
@@ -84,7 +84,7 @@ async def _(event):
                     \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي.`",
                 link_preview=True,
             )
-    elif input_str in ["نص", "ن"]:
+    elif input_str in ["نص", "t"]:
         user_object = await event.client.get_entity(r_message.sender_id)
         title_of_page = get_display_name(user_object)
         # apparently, all Users do not have last_name field
