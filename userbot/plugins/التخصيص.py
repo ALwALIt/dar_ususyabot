@@ -39,8 +39,8 @@ oldvars = {
 
 
 @jmthon.ar_cmd(
-    pattern="(set|get|del)dv(?: |$)([\s\S]*)",
-    command=("dv", plugin_category),
+    pattern="(ضع_|get|حذف_)dv(?: |$)([\s\S]*)",
+    command=("متغير", plugin_category),
     info={
         "header": "Set vars in database or Check or Delete",
         "description": "Set , Fetch or Delete values or vars directly in database without restart or heroku vars.\n\nYou can set multiple pics by giving space after links in alive, ialive, pm permit.",
@@ -70,7 +70,7 @@ async def bad(event):  # sourcery no-metrics
     vnlist = "".join(f"{i}. `{each}`\n" for i, each in enumerate(vlist, start=1))
     if not vname:
         return await edit_delete(
-            event, f"**📑 يجب وضع اسم الفار الصحيح من هذه القائمه :\n\n**{vnlist}", time=60
+            event, f"**📑 يجب وضع اسم المتغير الصحيح من هذه القائمه :\n\n**{vnlist}", time=60
         )
     vinfo = None
     if " " in vname:
@@ -84,7 +84,7 @@ async def bad(event):  # sourcery no-metrics
         if cmd == "set":
             if not vinfo:
                 return await edit_delete(
-                    event, f"** يجب وضع اسم الفار اولا لاستخدامه لـ **{vname}**"
+                    event, f"** يجب وضع اسم المتغير اولا لاستخدامه لـ **{vname}**"
                 )
             check = vinfo.split(" ")
             for i in check:
@@ -108,7 +108,7 @@ async def bad(event):  # sourcery no-metrics
             )
     else:
         await edit_delete(
-            event, f"**📑 يـجب وضع الفار الصحـيح من هذه الـقائمة :\n\n**{vnlist}", time=60
+            event, f"**📑 يـجب وضع المتغير الصحـيح من هذه الـقائمة :\n\n**{vnlist}", time=60
         )
 #ملف التخصيص لسورس جمثون 
 
