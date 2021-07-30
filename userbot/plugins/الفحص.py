@@ -65,7 +65,7 @@ async def amireallyalive(event):
         CAT = [x for x in CAT_IMG.split()]
         A_IMG = list(CAT)
         PIC = random.choice(A_IMG)
-        cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
+        cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
         cat_caption += f"✛━━━━━━━━━━━━━✛\n"
         cat_caption += f"**{EMOJI} قاعدة البيانات ›** تـعمل بنجـاح\n"
         cat_caption += f"**{EMOJI} نسخـۿ التليثون  ›** `{version.__version__}\n`"
