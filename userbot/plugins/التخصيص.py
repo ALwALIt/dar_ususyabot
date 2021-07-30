@@ -17,18 +17,13 @@ vlist = [
     "ALIVE_PIC",
     "ALIVE_EMOJI",
     "ALIVE_TEXT",
-    "ALLOW_NSFW",
-    "HELP_EMOJI",
-    "HELP_TEXT",
-    "IALIVE_PIC",
     "PM_PIC",
     "PM_TEXT",
     "PM_BLOCK",
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
-    "NO_OF_ROWS_IN_HELP",
-    "NO_OF_COLUMNS_IN_HELP",
     "CUSTOM_STICKER_PACKNAME",
+    "- BY  @JMTHON  ",
 ]
 #ملف التخصيص لسورس جمثون
 oldvars = {
