@@ -22,26 +22,6 @@ from . import mention
 
 plugin_category = "utils"
 
-
-@jmthon.ar_cmd(
-    pattern="السورس$",
-    command=("السورس", plugin_category),
-    info={
-        "header": "To check bot's alive status",
-        "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
-        "usage": [
-            "{tr}alive",
-        ],
-    },
-)
-async def amireallyalive(event):
-    "A kind of showing bot details"
-    reply_to_id = await reply_id(event)
-    results = await event.client.inline_query(Config.TG_BOT_USERNAME, 'السورس')
-    await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
-    await event.delete()
-
-
 @jmthon.ar_cmd(
     pattern="فحص$",
     command=("فحص", plugin_category),
