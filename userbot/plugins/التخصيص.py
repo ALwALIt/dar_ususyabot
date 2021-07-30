@@ -39,8 +39,8 @@ oldvars = {
 
 
 @jmthon.ar_cmd(
-    pattern="(ضع_|كشف_|حذف_)متغير(?: |$)([\s\S]*)",
-    command=("متغير", plugin_category),
+    pattern="(set|get|del)dv(?: |$)([\s\S]*)",
+    command=("dv", plugin_category),
     info={
         "header": "Set vars in database or Check or Delete",
         "description": "Set , Fetch or Delete values or vars directly in database without restart or heroku vars.\n\nYou can set multiple pics by giving space after links in alive, ialive, pm permit.",
