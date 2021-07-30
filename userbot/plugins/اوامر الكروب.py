@@ -411,7 +411,7 @@ async def _(event):  # sourcery no-metrics
         await et.edit(required_string.format(c, p, d, y, m, w, o, q, r, b, n))
         await sleep(5)
     await et.edit(
-        """مـجموع: {} المـستخدمين
+        """: {} مـجموع المـستخدمين
 الحـسابـات المـحذوفة: {}
 حـالة المستـخدم الفـارغه: {}
 اخر ظهور منذ شـهر: {}
