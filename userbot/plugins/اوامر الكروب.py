@@ -28,7 +28,7 @@ from ..helpers import readable_time
 from . import BOTLOG, BOTLOG_CHATID
 
 LOGS = logging.getLogger(__name__)
-plugin_category = "اوامر الادمن"
+plugin_category = "admin"
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -159,8 +159,8 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الغاء الحظر للكل$",
-    command=("الغاء الحظر للكل", plugin_category),
+    pattern="حذف المحظورين$",
+    command=("حذف المحظورين", plugin_category),
     info={
         "header": "To unban all banned users from group.",
         "usage": [
@@ -278,8 +278,8 @@ async def rm_deletedacc(show):
 
 
 @jmthon.ar_cmd(
-    pattern="ikuck ?([\s\S]*)",
-    command=("ikuck", plugin_category),
+    pattern="احصائيات الاعضاء ?([\s\S]*)",
+    command=("احصائيات الاعضاء", plugin_category),
     info={
         "header": "To get breif summary of members in the group",
         "description": "To get breif summary of members in the group . Need to add some features in future.",
@@ -295,7 +295,7 @@ async def _(event):  # sourcery no-metrics
     if input_str:
         chat = await event.get_chat()
         if not chat.admin_rights and not chat.creator:
-            await edit_or_reply(event, "`انت لست مشرف هنا ⌔︙`")
+            await edit_or_reply(event, " انت لست مشرف هنا ⌔︙")
             return False
     p = 0
     b = 0
