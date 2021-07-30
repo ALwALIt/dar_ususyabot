@@ -39,7 +39,7 @@ oldvars = {
 
 
 @jmthon.ar_cmd(
-    pattern="(ضع_|get|حذف_)dv(?: |$)([\s\S]*)",
+    pattern="(ضع_|كشف_|حذف_)dv(?: |$)([\s\S]*)",
     command=("متغير", plugin_category),
     info={
         "header": "Set vars in database or Check or Delete",
