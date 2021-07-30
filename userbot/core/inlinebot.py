@@ -377,31 +377,31 @@ async def inline_handler(event):  # sourcery no-metrics
             alive_buttons = [
                 [
                     Button.inline(
-                        text=f"{EMOJI} قاعدة البيانات : ✅"
+                        text=f"- قاعدة البيانات : ✅"
                     ),
                 ], 
                 [
                     Button.inline(
-                        text=f"{EMOJI} الأصدار : {catversion}"
+                        text=f"- الأصدار : {catversion}"
                     ),
                 ],
                 [
                     Button.inline(
-                        text=f"{EMOJI} التيليثون : {version.__version__}"
+                        text=f"- التيليثون : {version.__version__}"
                     ),
                 ],
                 [    
                     Button.inline(
-                        text=f"{EMOJI} الوقت : {uptime} "
+                        text=f"- الوقت : {uptime} "
                     ),
                 ],
                 [
                     Button.inline(
-                        text=f"{EMOJI} المالك : {Config.ALIVE_NAME}"
+                        text=f"- المالك : {Config.ALIVE_NAME}"
                     ),
                 ],
                 [   
-                    Button.url("المطور", "T.ME/JMTHON"
+                    Button.url("- المطور", "T.ME/JMTHON"
                     ),
                 ],
             ]
