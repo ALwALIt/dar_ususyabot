@@ -74,7 +74,7 @@ async def set_not_afk(event):
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "⌔︙ انتهـاء امر السليب \n"
-                + "تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
+                + "` تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
                 + endtime
                 + "`",
             )
