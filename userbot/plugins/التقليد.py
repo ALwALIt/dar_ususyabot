@@ -90,8 +90,8 @@ async def echo(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الغاء تقليد( -a)?",
-    command=("الغاء تلقيد", plugin_category),
+    pattern="الغاء التقليد( -a)?",
+    command=("الغاء التقليد", plugin_category),
     info={
         "header": "To delete echo in this chat.",
         "description": "To stop echoing users messages of all enabled users in the paticular chat or all chats.",
