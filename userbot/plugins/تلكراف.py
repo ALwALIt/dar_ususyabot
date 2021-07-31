@@ -67,7 +67,7 @@ async def _(event):
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
-        await catevent.edit(f"**⌔︙ تـم التحميـل إلى**  {downloaded_file_name}`")
+        await catevent.edit(f"**⌔︙ تـم التحميـل إلى**  `{downloaded_file_name}`")
         if downloaded_file_name.endswith((".webp")):
             resize_image(downloaded_file_name)
         try:
@@ -81,7 +81,7 @@ async def _(event):
             os.remove(downloaded_file_name)
             await catevent.edit(
                  f"**⌔︙ الرابـط ☍ : ** [اضغـط هـنا](https://telegra.ph{media_urls[0]})\
-                    \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي.`",
+                    \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي`",
                 link_preview=True,
             )
     elif input_str in ["نص", "t"]:
@@ -118,6 +118,6 @@ async def _(event):
         cat = f"https://telegra.ph/{response['path']}"
         await catevent.edit(
             f"**⌔︙ الرابـط ☍ : ** [اضغـط هـنا]({cat})\
-                 \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي.`",
+                 \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي`",
             link_preview=True,
         )
