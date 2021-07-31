@@ -23,7 +23,7 @@ vlist = [
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
     "CUSTOM_STICKER_PACKNAME",
-    "BY  @JMTHON  ",
+    "PING_PIC",
 ]
 #ملف التخصيص لسورس جمثون
 oldvars = {
