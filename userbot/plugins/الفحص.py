@@ -38,37 +38,37 @@ async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
-    EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
-    CUSTOM_ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "**- JMTHON USERBOT.**"
-    CAT_IMG = gvarstatus("ALIVE_PIC") or " https://telegra.ph/file/794e7311e8e3aadcf8dff.jpg "
-    if CAT_IMG:
-        CAT = [x for x in CAT_IMG.split()]
-        A_IMG = list(CAT)
+    JMTHON = gvarstatus("ALIVE_EMOJI") or "  - "
+    JMTHON_TEXT = gvarstatus("ALIVE_TEXT") or "**- JMTHON USERBOT.**"
+    JMTHON_IMG = gvarstatus("ALIVE_PIC") or " https://telegra.ph/file/794e7311e8e3aadcf8dff.jpg "
+    if JMTHON_IMG:
+        RRRD7 = [x for x in JMTHON_IMG.split()]
+        A_IMG = list(RRRD7)
         PIC = random.choice(A_IMG)
-        cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
-        cat_caption += f"✛━━━━━━━━━━━━━✛\n"
-        cat_caption += f"**{EMOJI} قاعدة البيانات ›** تـعمل بنجـاح\n"
-        cat_caption += f"**{EMOJI} نسخـۿ التليثون  ›** `{version.__version__}\n`"
-        cat_caption += f"**{EMOJI} نسخـۿ جـمثون ›** `{catversion}`\n"
-        cat_caption += f"**{EMOJI} نسخـۿ البايثون ›** `{python_version()}\n`"
-        cat_caption += f"**{EMOJI} مدة التشغيل ›** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} المستخدم ›** {mention}\n"
-        cat_caption += f"**{EMOJI}**  **[مطور السورس]**(t.me/JMTHON)   \n"
-        cat_caption += f"✛━━━━━━━━━━━━━✛\n"
+        RRRD7_caption = f"**{JMTHON_TEXT}**\n"
+        RRRD7_caption += f"✛━━━━━━━━━━━━━✛\n"
+        RRRD7_caption += f"**{JMTHON} قاعدة البيانات ›** تـعمل بنجـاح\n"
+        RRRD7_caption += f"**{JMTHON} نسخـۿ التليثون  ›** {version.__version__}\n"
+        RRRD7_caption += f"**{JMTHON} نسخـۿ جـمثون ›** {catversion}\n"
+        RRRD7_caption += f"**{JMTHON} نسخـۿ البايثون ›** {python_version()}\n"
+        RRRD7_caption += f"**{JMTHON} مدة التشغيل ›** {uptime}\n"
+        RRRD7_caption += f"**{JMTHON} المستخدم ›** {mention}\n"
+        RRRD7_caption += f"**{JMTHON}**  **[مطور السورس]**(t.me/JMTHON)   \n"
+        RRRD7_caption += f"✛━━━━━━━━━━━━━✛\n"
         await event.client.send_file(
-            event.chat_id, PIC, caption=cat_caption, reply_to=reply_to_id
+            event.chat_id, PIC, caption=RRRD7_caption, reply_to=reply_to_id
         )
         await event.delete()
     else:
         await edit_or_reply(
             event,
-            f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-            f"**{EMOJI} قاعدۿ البيانات ›** `تـعمل بنجـاح`\n"
-            f"**{EMOJI} نسخۿ تليثون ›** `{version.__version__}\n`"
-            f"**{EMOJI} نسخـۿ جـمثون ›** `{catversion}`\n"
-            f"**{EMOJI} نسخـۿ البايثون ›** `{python_version()}\n`"
-            f"**{EMOJI} الوقت ›** `{uptime}\n`"
-            f"**{EMOJI} المنشئ›** {mention}\n",
+            f"**{JMTHON_TEXT}**\n\n"
+            f"**{JMTHON} قاعدۿ البيانات ›** `تـعمل بنجـاح`\n"
+            f"**{JMTHON} نسخۿ تليثون ›** `{version.__version__}\n`"
+            f"**{JMTHON} نسخـۿ جـمثون ›** `{catversion}`\n"
+            f"**{JMTHON} نسخـۿ البايثون ›** `{python_version()}\n`"
+            f"**{JMTHON} الوقت ›** `{uptime}\n`"
+            f"**{JMTHON} المنشئ›** {mention}\n",
         )
 
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"stats")))
