@@ -100,11 +100,11 @@ async def on_afk(event):  # sourcery no-metrics
         s = time
         endtime = ""
         if d > 0:
-            endtime += f"{d}d {h}h {m}m {s}s"
+            endtime += f"{d}الايام {h}الساعات {m}الدقائق {s}الثواني"
         elif h > 0:
-            endtime += f"{h}h {m}m {s}s"
+            endtime += f"{h}الساعات {m}الدقائق {s}الثواني"
         else:
-            endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
+            endtime += f"{m}الدقائق {s}الثواني" if m > 0 else f"{s}الثواني"
     current_message_text = event.message.message.lower()
     if "afk" in current_message_text or "#afk" in current_message_text:
         return False
@@ -155,7 +155,7 @@ async def on_afk(event):  # sourcery no-metrics
             resalt += f"\n<b>⌔︙ نـوع الـرسالـة  : </b><code>{messaget}</code>"
         else:
             resalt += f"\n<b>⌔︙ الـرسالـة  : </b>{event.message.message}"
-        resalt += f"\n<b>⌔︙ رابـط الـرسالـة   : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> link</a>"
+        resalt += f"\n<b>⌔︙ رابـط الـرسالـة   : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> اضغـط هـنا</a>"
         if not event.is_private:
             await event.client.send_message(
                 Config.PM_LOGGER_GROUP_ID,
