@@ -94,7 +94,7 @@ def main_menu():
         ),
         (
             Button.inline(
-                f"➕ اوامـر الحـفظ ({len(GRP_INFO['extra'])})",
+                f"➕ اوامـر الاضافية ({len(GRP_INFO['extra'])})",
                 data=f"extra_menu",
             ),
             Button.inline(
