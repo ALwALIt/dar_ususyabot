@@ -64,41 +64,41 @@ def main_menu():
         ),
         (
             Button.inline(
-                f"👮‍♂️ أوامـر الأدمـن ({len(GRP_INFO['admin'])})",
+                f"👮‍♂️ الأدمـن ({len(GRP_INFO['admin'])})",
                 data=f"admin_menu",
             ),
             Button.inline(
-                f"🤖 أوامـر البوت ({len(GRP_INFO['bot'])})",
+                f"🤖 البوت ({len(GRP_INFO['bot'])})",
                 data=f"bot_menu",
             ),
         ),
         (
             Button.inline(
-                f"🎨 أوامـر التـسليـة ({len(GRP_INFO['fun'])})",
+                f"🎨 التـسليـة ({len(GRP_INFO['fun'])})",
                 data=f"fun_menu",
             ),
             Button.inline(
-                f"🧩 اوامـر العـشوائـية ({len(GRP_INFO['misc'])})",
+                f"🧩 عشـوائيات ({len(GRP_INFO['misc'])})",
                 data=f"misc_menu",
             ),
         ),
         (
             Button.inline(
-                f"🧰 أوامـر الأدوات ({len(GRP_INFO['tools'])})",
+                f"🧰 الأدوات ({len(GRP_INFO['tools'])})",
                 data=f"tools_menu",
             ),
             Button.inline(
-                f"🗂 أوامـر الادارة ({len(GRP_INFO['utils'])})",
+                f"🗂 الادارة ({len(GRP_INFO['utils'])})",
                 data=f"utils_menu",
             ),
         ),
         (
             Button.inline(
-                f"➕ اوامـر الاضافية ({len(GRP_INFO['extra'])})",
+                f"➕ الحـفظ ({len(GRP_INFO['extra'])})",
                 data=f"extra_menu",
             ),
             Button.inline(
-                f"🔒 اغـلاق الـقائمـة",
+                f"🔒 اغـلاق",
                 data=f"close",
             ),
         ),
@@ -366,7 +366,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))
-        elif string == "help":
+        elif string == "مساعدة":
             _result = main_menu()
             result = builder.article(
                 title="© JMTHON Help",
@@ -539,9 +539,9 @@ async def inline_handler(event):  # sourcery no-metrics
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     buttons = [
-        (Button.inline("Open Menu", data="mainmenu"),),
+        (Button.inline("فتـح الـقائمة", data="mainmenu"),),
     ]
-    await event.edit("Menu Closed", buttons=buttons)
+    await event.edit("اغـلاق القائمـة", buttons=buttons)
 
 
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"check")))
@@ -560,9 +560,9 @@ async def on_plugin_callback_query_handler(event):
 async def on_plug_in_callback_query_handler(event):
     category = str(event.pattern_match.group(1).decode("UTF-8"))
     buttons = paginate_help(0, GRP_INFO[category], category)
-    text = f"**Category: **{category}\
-        \n**Total plugins :** {len(GRP_INFO[category])}\
-        \n**Total Commands:** {command_in_category(category)}"
+    text = f"**⌔︙ الـفئـة: **`{category}`\
+            \n**⌔︙ جـميع الـملفات :** {len(GRP_INFO[category])}\
+            \n**⌔ ︙ جـميع الأوامـر :** {command_in_category(category)}"
     await event.edit(text, buttons=buttons)
 
 
@@ -578,9 +578,9 @@ async def on_plug_in_callback_query_handler(event):
     pgno = int(event.pattern_match.group(3).decode("UTF-8"))
     if mtype == "plugin":
         buttons = paginate_help(pgno, GRP_INFO[category], category)
-        text = f"**Category: **`{category}`\
-            \n**Total plugins :** __{len(GRP_INFO[category])}__\
-            \n**Total Commands:** __{command_in_category(category)}__"
+        text = f"**⌔︙ الـفئـة: **`{category}`\
+            \n**⌔︙ جـميع الـملفات :** {len(GRP_INFO[category])}\
+            \n**⌔ ︙ جـميع الأوامـر :** {command_in_category(category)}"
     else:
         category_plugins = str(event.pattern_match.group(4).decode("UTF-8"))
         category_pgno = int(event.pattern_match.group(5).decode("UTF-8"))
@@ -592,9 +592,9 @@ async def on_plug_in_callback_query_handler(event):
             category_plugins=category_plugins,
             category_pgno=category_pgno,
         )
-        text = f"**Plugin: **`{category}`\
-                \n**Category: **__{getkey(category)}__\
-                \n**Total Commands:** __{len(PLG_INFO[category])}__"
+        text = f"**⌔︙ الـملف: **`{category}`\
+                \n**⌔︙ الـفئة: **__{getkey(category)}__\
+                \n**⌔︙ جـميع الأوامـر:** __{len(PLG_INFO[category])}__"
     await event.edit(text, buttons=buttons)
 
 
@@ -626,9 +626,9 @@ async def on_plug_in_callback_query_handler(event):
             category_plugins=category_plugins,
             category_pgno=category_pgno,
         )
-        text = f"**Plugin: **`{category}`\
-                \n**Category: **__{getkey(category)}__\
-                \n**Total Commands:** __{len(PLG_INFO[category])}__"
+        text = f"⌔︙ المـلف: **`{category}`\
+                \n**⌔︙ الفـئة: **__{getkey(category)}__\
+                \n**⌔︙ جـميع الأوامـر :** __{len(PLG_INFO[category])}__"
         try:
             return await event.edit(text, buttons=buttons)
         except Exception:
@@ -683,8 +683,8 @@ async def on_plug_in_callback_query_handler(event):
             Button.inline("⚙️ Main Menu", data="mainmenu"),
         )
     ]
-    text = f"**Command :** `{tr}{cmd}`\
-        \n**Plugin :** `{category}`\
-        \n**Category :** `{category_plugins}`\
-        \n\n**✘ Intro :**\n{CMD_INFO[cmd][0]}"
+    text = f"**الأمـر :** `{tr}{cmd}`\
+        \n**الـملف :** `{category}`\
+        \n**الـفئة :** `{category_plugins}`\
+        \n\n**✘ الـمقدمة :**\n{CMD_INFO[cmd][0]}"
     await event.edit(text, buttons=buttons)
