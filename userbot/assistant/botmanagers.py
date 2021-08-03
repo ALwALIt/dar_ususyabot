@@ -63,10 +63,10 @@ async def ban_user_from_bot(user, reason, reply_to=None):
     except Exception as e:
         LOGS.error(str(e))
     banned_msg = (
-        f"**تم حظرك من ااستخدام هذا البوت\nالسبب** : {reason}"
+        f"*نتا مبلوكي من هاد البوت\nالسبب** : {reason}"
     )
     await jmthon.tgbot.send_message(user.id, banned_msg)
-    info = f"**#المستخدمين_المحظورين**\
+    info = f"**#المستخدمين_المبلوكيين**\
             \n\n👤 {_format.mentionuser(get_display_name(user) , user.id)}\
             \n**الاسم الاول:** {user.first_name}\
             \n**الايدي:** `{user.id}`\
@@ -81,11 +81,11 @@ async def unban_user_from_bot(user, reason, reply_to=None):
         rem_user_from_bl(user.id)
     except Exception as e:
         LOGS.error(str(e))
-    banned_msg = f"**تم الغاء حظرك من البوت يمكنك التواصل مع مالك البوت.**"
+    banned_msg = f"**مول البوت ديبلوكاك.**"
     if reason is not None:
         banned_msg += f"\n**السبب:** __{reason}__"
     await jmthon.tgbot.send_message(user.id, banned_msg)
-    info = f"**#المستخدمين_غير_المحظورين**\
+    info = f"**#المستخدمين_المامبلوكيينش**\
             \n\n👤 {_format.mentionuser(get_display_name(user) , user.id)}\
             \n**الأسم الاول:** {user.first_name}\
             \n**الايدي:** `{user.id}`"
