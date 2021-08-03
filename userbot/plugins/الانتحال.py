@@ -1,5 +1,5 @@
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RRRD7 & @QHR_1
 import html
 
 from telethon.tl import functions
@@ -59,7 +59,7 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(about=user_bio))
     pfile = await event.client.upload_file(profile_pic)
     await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
-    await edit_delete(event, "⌔︙ تـم نسـخ الـحساب بـنجاح ✅")
+    await edit_delete(event, "⌔︙ تـم انتحـال الحسـاب بنجـاح ✅")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
