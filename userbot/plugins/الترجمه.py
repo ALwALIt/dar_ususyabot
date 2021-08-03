@@ -12,6 +12,7 @@ plugin_category = "utils"
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
+# TRANSLATED TO MA BY @QHR_1
 
 async def getTranslate(text, **kwargs):
     translator = Translator()
@@ -49,7 +50,7 @@ async def _(event):
         lan, text = input_str.split(";")
     else:
         return await edit_delete(
-            event, "⌔︙ للترجمه يجـب الـرد على الرساله واكتب .ترجمه ar", time=5
+            event, "⌔︙ للترجمه خـاص تـريبوندي علـى المسـاج و كـتب .ترجمه ar", time=5
         )
     text = deEmojify(text.strip())
     lan = lan.strip()
