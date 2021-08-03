@@ -22,7 +22,7 @@ plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 
 # =========================================================== #
-#                           VARS                           #
+#                     JMTHON - QHR_1 - RRRD7                  #
 # =========================================================== #
 SONG_SEARCH_STRING = "⌔︙ جاري البحث عن الاغنية إنتظر رجاءًا  🎧"
 SONG_NOT_FOUND = "⌔︙ لم أستطع إيجاد هذه الأغنية  ⚠️"
@@ -46,7 +46,7 @@ SONG_SENDING_STRING = "⌔︙ قم بإلغاء حظر البوت  🚫"
     },
 )
 async def _(event):
-    "⌔︙ للبحث عن أغاني  🎧"
+    "⌔︙ للبحث على الأغاني  🎧"
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
     if event.pattern_match.group(2):
@@ -55,13 +55,13 @@ async def _(event):
         if reply.message:
             query = reply.message
     else:
-        return await edit_or_reply(event, "**⌔ ︙ما الذي تريد أن أبحث عنه  **")
+        return await edit_or_reply(event, "**⌔︙ شنو بيتي تبحث عليه  **")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**⌔︙ جاري تحميل إنتظر قليلا  **")
+    catevent = await edit_or_reply(event, "**⌔︙ جاري التحميل تسنا شوية  **")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
-            f"**⌔︙ عـذرًا لم استطيع ايجاد المقطع الصوتي  أو الفيديو لـ ** `{query}`"
+            f"**⌔︙ عـذرًا ملقيتش الفيديو ولا الاوديو لـ ** `{query}`"
         )
     cmd = event.pattern_match.group(1)
     q = "320k" if cmd == "320" else "128k"
@@ -86,9 +86,9 @@ async def _(event):
     song_file = Path(f"{catname}.mp3")
     if not os.path.exists(song_file):
         return await catevent.edit(
-            f"**⌔︙ عـذرًا لم أستطع إيجاد الأغنية أو الفيديو لـ  ** `{query}`"
+            f"**⌔︙ عـذرًا ملقيتش الفيديو ولا الاوديو لـ ** `{query}`"
         )
-    await catevent.edit("**⌔︙  المطلوب لقد وجدت إنتظر قليلا  ⏱**")
+    await catevent.edit("**⌔︙ المطلوب وجدات تسنا شوية ⏱**")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
@@ -139,13 +139,13 @@ async def _(event):
         if reply.message:
             query = reply.messag
     else:
-        return await edit_or_reply(event, "**⌔︙ يجـب وضـع  الأمر وبجانبه إسم الأغنية  ")
+        return await edit_or_reply(event, "**⌔︙ خـاصك تديـر الامـر حداه اسـم الاغنيـة ")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**⌔︙ لقـد وجدت الفيديو المطلوب إنتظر قليلا  ")
+    catevent = await edit_or_reply(event, "**⌔︙ لقيـت الفيـديو المطـلوب تسنـا شـوية ")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
-            f"**⌔︙ عـذرًا لم أستطع إيجاد أي فيديو او صوت متعلق بـ ** `{query}`"
+            f"**⌔︙ عذرا ملقيـتش الفيـديو المطـلوب لـ ** `{query}`"
         )
     # thumb_cmd = thumb_dl.format(video_link=video_link)
     name_cmd = name_dl.format(video_link=video_link)
@@ -170,9 +170,9 @@ async def _(event):
         vsong_file = Path(f"{catname}.mkv")
     elif not os.path.exists(vsong_file):
         return await catevent.edit(
-            f"**⌔︙ عـذرًا لم أستطع إيجاد أي فيديو او صوت متعلق بـ ** `{query}`"
+            f"**⌔︙ عـذرًا مقدرتش نلقا اي فيديو ولا اوديو متعلق بـ ** `{query}`"
         )
-    await catevent.edit("**⌔︙لقد وجدت الفديو المطلوب انتظر قليلا  **")
+    await catevent.edit("**⌔︙ لقيت الفديو المطلوب تسنا شوية **")
     catthumb = Path(f"{catname}.jpg")
     if not os.path.exists(catthumb):
         catthumb = Path(f"{catname}.webp")
@@ -208,7 +208,7 @@ async def shazamcmd(event):
     mediatype = media_type(reply)
     if not reply or not mediatype or mediatype not in ["Voice", "Audio"]:
         return await edit_delete(
-            event, "⌔︙ قم بالرد على الرسالة الصوتية لعكس البحث عن هذه الأغنية  "
+            event, "⌔︙ ريبوندي على الاوديو باش تعكس البحث على الاغنية "
         )
     catevent = await edit_or_reply(event, "⌔︙جاري تحميل المقطع الصوتي  ")
     try:
@@ -228,7 +228,7 @@ async def shazamcmd(event):
     except Exception as e:
         LOGS.error(e)
         return await edit_delete(
-            catevent, f"**⌔︙هناك خطأ عند محاولة البحث عن الأغنية   :**\n__{str(e)}__"
+            catevent, f"**⌔︙كاين خطأ فالمحاولة ديال البحث عن الأغنية   :**\n__{str(e)}__"
         )
     image = track["images"]["background"]
     song = track["share"]["subject"]
