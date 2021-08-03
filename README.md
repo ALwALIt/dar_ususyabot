@@ -1,4 +1,4 @@
-⚜️ تنـصـيـب سـورس جـمـثـون الـعـربـي ⚜️
+⚜️ تنـصـيـب سـورس جـمـثـون الفـرع الـمغـربـي ⚜️
 
 
 
@@ -8,7 +8,7 @@
 `https://signup.heroku.com/login`
 
 ⚜️ رابـط السـورس  ⚜️
-`https://heroku.com/deploy?template=https://github.com/JMTHON-AR/JMTHON-PACK`
+`https://heroku.com/deploy?template=https://github.com/Leo-Ilys/JMTHON-PACK`
 
 ⚜️ رابط استـخراج الايبيات من مـوقع الـشركة  ⚜️
 `https://my.telegram.org`
