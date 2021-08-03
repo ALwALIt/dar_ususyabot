@@ -30,12 +30,12 @@ from ..sql_helper.mute_sql import is_muted, mute, unmute
 from . import BOTLOG, BOTLOG_CHATID
 
 # =================== STRINGS ============
-PP_TOO_SMOL = "**⌔︙ الصورة صغيرة جدًا** "
+PP_TOO_SMOL = "**⌔︙ الصورة صغيرة بزاف** "
 PP_ERROR = "**⌔︙ فشل أثناء معالجة الصورة** "
-NO_ADMIN = "**⌔︙ أنا لست مشرف هنا!!** "
-NO_PERM = "**⌔︙ ليس لدي أذونات كافية!** "
+NO_ADMIN = "**⌔︙ أنا ماشي ادمين هنا!!** "
+NO_PERM = "**⌔︙ معنديش أذونات كافية!** "
 CHAT_PP_CHANGED = "**⌔︙ تم تغيير صورة الدردشة بنجاح ✅**"
-INVALID_MEDIA = "**⌔︙ ملحق غير صالح** "
+INVALID_MEDIA = "**⌔︙ ملحق مصالحش** "
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
