@@ -20,8 +20,8 @@ bot = jmthon
 StartTime = time.time()
 catversion = "4.0.0"
 
-if Config.UPSTREAM_REPO == "Jmthon-iq":
-    UPSTREAM_REPO_URL = "https://github.com/JMTHON-AR/JM-THON"
+if Config.UPSTREAM_REPO == "Morocco":
+    UPSTREAM_REPO_URL = "https://github.com/Leo_ilys/JM-THON"
 elif Config.UPSTREAM_REPO == "goodcat":
     UPSTREAM_REPO_URL = "https://github.com/sandy1709/catuserbot"
 else:
