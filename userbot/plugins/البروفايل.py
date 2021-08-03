@@ -18,9 +18,9 @@ plugin_category = "utils"
 
 
 # ====================== CONSTANT ===============================
-INVALID_MEDIA = "⌔︙ امتدا هذه الصورة غير صالح.```"
+INVALID_MEDIA = "⌔︙ امتدا هاذ الصورة مصالحاش.```"
 PP_CHANGED = "⌔︙**  تم تغير صورة حسابك بنجاح ⌁،**"
-PP_TOO_SMOL = "** ⌔︙ هذه الصوره صغيره جدا قم بختيار صوره اخرى  ⌁،**"
+PP_TOO_SMOL = "** ⌔︙ هاذ الصورة صغيرة بزاف ختار شي صورة خرا ⌁،**"
 PP_ERROR = "** ⌔︙ حدث خطا اثناء معالجه الصوره  ⌁**"
 BIO_SUCCESS = "** ⌔︙ تم تغير بايو حسابك بنجاح ⌁،**"
 NAME_OK = "** ⌔︙ تم تغير اسم حسابك بنجاح ⌁**"
@@ -103,7 +103,7 @@ async def _(event):
                 # https://t.me/tgbetachat/324694
                 size = os.stat(photo).st_size
                 if size > 2097152:
-                    await catevent.edit("⌔︙ يجب ان يكون الحجم اقل من 2 ميغا ✅")
+                    await catevent.edit("⌔︙ خاص يكون الحجم اقل من 2 ميغا ✅")
                     os.remove(photo)
                     return
                 catpic = None
