@@ -9,6 +9,7 @@ plugin_category = "admin"
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
+# TRANSLATED TO MA BY @QHR_1
 
 @jmthon.ar_cmd(
     pattern="تحذير(?:\s|$)([\s\S]*)",
@@ -23,7 +24,7 @@ async def _(event):
     "To warn a user"
     warn_reason = event.pattern_match.group(1)
     if not warn_reason:
-        warn_reason = "بـدون سبـب"
+        warn_reason = "بـلا سبـب"
     reply_message = await event.get_reply_message()
     limit, soft_warn = sql.get_warn_setting(event.chat_id)
     num_warns, reasons = sql.warn_user(
@@ -42,7 +43,7 @@ async def _(event):
                 limit, reply_message.sender_id
             )
     else:
-        reply = "⌔︙ [المـستخدم](tg://user?id={}) لـديه {}/{} من التحذيـرات ".format(
+        reply = "⌔︙ [المـستخدم](tg://user?id={}) عندو {}/{} من التحذيـرات ".format(
             reply_message.sender_id, num_warns, limit
         )
         if warn_reason:
@@ -63,18 +64,18 @@ async def _(event):
     reply_message = await event.get_reply_message()
     result = sql.get_warns(reply_message.sender_id, event.chat_id)
     if not result or result[0] == 0:
-        return await edit_or_reply(event, "⌔︙ هذا الشخص ليس لديه اي تحذيرات")
+        return await edit_or_reply(event, "⌔︙ هاذ الشخص عندوش اي تحذيرات")
     num_warns, reasons = result
     limit, soft_warn = sql.get_warn_setting(event.chat_id)
     if not reasons:
         return await edit_or_reply(
             event,
-            "⌔︙ هـذا الـمستخدم {} / {} من الـتحذيرات و بـدون اي سبب ".format(
+            "⌔︙ هـاد الـمستخدم {} / {} من الـتحذيرات و بلا اي سبب ".format(
                 num_warns, limit
             ),
         )
 
-    text = "⌔︙ هـذا الـمستخدم {}/{} من الـتحذيرات, للأسـباب التاليـة:".format(
+    text = "⌔︙ هـاد الـمستخدم {}/{} من الـتحذيرات, للأسـباب التاليـة:".format(
         num_warns, limit
     )
     text += "\r\n"
