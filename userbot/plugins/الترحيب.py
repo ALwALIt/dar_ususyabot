@@ -1,5 +1,7 @@
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
+# TRANSLATED TO MA BY @QHR_1
+
 from telethon import events
 
 from userbot import jmthon
@@ -35,7 +37,7 @@ async def _(event):  # sourcery no-metrics
         a_user = await event.get_user()
         chat = await event.get_chat()
         me = await event.client.get_me()
-        title = chat.title or "لـهذه الـدردشـة"
+        title = chat.title or "لـهاد الـدردشـة"
         participants = await event.client.get_participants(chat)
         count = len(participants)
         mention = "<a href='tg://user?id={}'>{}</a>".format(
@@ -89,27 +91,27 @@ async def _(event):  # sourcery no-metrics
     command=("ترحيب", plugin_category),
     info={
         "الامر": ".ضع ترحيب",
-        "الشرح": "امر الترحيب يقوم بالتحريب بجميع الاشخاص الذين يدخلون للمجموعه",
+        "الشرح": "امر الترحيب كيقوم بالترحيب بجميع الناس اللي كيدخلو للقروب",
         "الاضافات": {
-            "{mention}": "عمل تاك للمستخدم",
-            "{title}": "لوضع اسم الدردشه مع الاسم",
-            "{count}": "لوضع عدد الاعضاء",
-            "{first}": "لوضع الاسم الاول للمستخدم ",
-            "{last}": "لوضع الاسك الثاني للمستخدم",
-            "{fullname}": "لوضع الاسم الكامل للمستخدم",
-            "{userid}": "لوضع ايدي الشخص",
-            "{username}": "لوضع معرف الشخص",
-            "{my_first}": "لوضع الاسم الاول الخاص بك",
-            "{my_fullname}": "لوضع الاسم الكامل الخاص بك",
-            "{my_last}": "لوضع الاسم الثاني الخاص بك",
-            "{my_mention}": "لعمل تاك لنفسك ",
-            "{my_username}": "لاستخدام معرفك.",
+            "{mention}": "تاق للمستخدم",
+            "{title}": "باش تدير اسم القروب مع الاسم",
+            "{count}": "باش دير عدد الاعضاء",
+            "{first}": "باش دير الاسم الاول للمستخدم ",
+            "{last}": "باش دير الاسم الثاني للمستخدم",
+            "{fullname}": "باش دير الاسم الكامل للمستخدم",
+            "{userid}": "باش دير ايدي الشخص",
+            "{username}": "باش دير يوزر الشخص",
+            "{my_first}": "باش دير الاسم الاول ديالك",
+            "{my_fullname}": "باش دير الاسم الكامل ديالك",
+            "{my_last}": "باش دير الاسم الثاني ديالك",
+            "{my_mention}": "باش تطاقي راسك",
+            "{my_username}": "باش تدير اليوزر ديالك.",
         },
         "الاستخدام": [
             "{tr}ترحيب <رسالة الترحيب>",
-            "قم بالرد {tr}ترحيب على الرسالة او الصوره لوضعها رساله ترحيبيه",
+            " ريبوندي {tr}ترحيب على الرسالة او الصوره باش دير رساله ترحيبيه",
         ],
-        "الامثلة": "{tr} ههلا نورت  .",
+        "الامثلة": "{tr} مرحبا نورتي  .",
     },
 )
 async def save_welcome(event):
@@ -143,7 +145,7 @@ async def save_welcome(event):
     rm_welcome_setting(event.chat_id)
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("تم الـتحديث"))
-    await edit_or_reply("⌔︙ هـنالك خـطأ في وضـع الـترحيب هـنا")
+    await edit_or_reply("⌔︙ كايـن خـطأ في وضـع الـترحيب هـنا")
 
 
 @jmthon.ar_cmd(
@@ -160,7 +162,7 @@ async def del_welcome(event):
     if rm_welcome_setting(event.chat_id) is True:
         await edit_or_reply(event, "⌔︙ تم حذف الترحيبات بنجاح ✅.")
     else:
-        await edit_or_reply(event, "⌔︙ ليـس لـدي اي تـرحيبـات بالأصـل")
+        await edit_or_reply(event, "⌔︙ معنديـش اي تـرحيبـات فالأصـل")
 
 
 @jmthon.ar_cmd(
@@ -175,18 +177,18 @@ async def show_welcome(event):
     "To show current welcome message in group"
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        return await edit_or_reply(event, "⌔︙ لم يتم حفظ اي ترحيب هنا !")
+        return await edit_or_reply(event, "⌔︙  متحفظش اي ترحيب هنـا !")
     if cws.f_mesg_id:
         msg_o = await event.client.get_messages(
             entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
         )
         await edit_or_reply(
-            event, "⌔︙ أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة"
+            event, "⌔︙ أنا دب كنرحب بالمستخدمين جداد بهاد الرسالة"
         )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws.reply:
         await edit_or_reply(
-            event, "⌔︙ أنا الان اقوم بالترحيب بالمستخدمين الجدد مع هذه الرسالة"
+            event, "⌔︙ أنا دب كنرحب بالمستخدمين جداد بهاد الرسالة"
         )
         await event.reply(cws.reply)
 
@@ -200,19 +202,19 @@ async def show_welcome(event):
     },
 )
 async def del_welcome(event):
-    "⌔︙ لإيقاف أو تشغيل حذف رسالة الترحيب السابقة ."
+    "⌔︙ لإيقاف أولا تشغيل حذف رسالة الترحيب اللي دازت ."
     input_str = event.pattern_match.group(1)
     if input_str == "تشغيل":
         if gvarstatus("clean_welcome") is None:
-            return await edit_delete(event, "**⌔︙تم تشغيلها بالفعل ✅**")
+            return await edit_delete(event, "**⌔︙تم مشعولة ديجا ✅**")
         delgvar("clean_welcome")
         return await edit_delete(
             event,
-            "**⌔︙ من الآن رسالة الترحيب السابقة سيتم حذفها وسيتم إرسال رسالة الترحيب الجديدة **",
+            "**⌔︙ من دب رسالة الترحيب اللي دازت غتمحا وغادي تتصافط رسالة الترحيب الجديدة **",
         )
     if gvarstatus("clean_welcome") is None:
         addgvar("clean_welcome", "false")
         return await edit_delete(
-            event, "**⌔︙ من الآن لن يتم حذف رسالة الترحيب السابقة **"
+            event, "**⌔︙ من دب مغديش تتمحا رسالة الترحيب اللي دازت **"
         )
-    await edit_delete(event, "**⌔︙ تم إيقافها بالفعل ✅")
+    await edit_delete(event, "**⌔︙ تم مطفية ديجا ✅")
