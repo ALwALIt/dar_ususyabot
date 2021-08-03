@@ -86,7 +86,7 @@ async def pin(event):
     "To pin a message in chat"
     to_pin = event.reply_to_msg_id
     if not to_pin:
-        return await edit_delete(event, "⌔︙ يـجب الـرد على الـرسالة التي تـريد تـثبيـتها ", 5)
+        return await edit_delete(event, "⌔︙ 5 ,"خـاص تريبـوندي علـى المسـاج لـي بيتـي تثبـتو)
     options = event.pattern_match.group(1)
     is_silent = bool(options)
     try:
@@ -126,7 +126,7 @@ async def pin(event):
     if not to_unpin and options != "all":
         return await edit_delete(
             event,
-            "⌔︙ يرجى الرد على الرسالة التي تريد تثبيتها استخدم `.الغاء التثبيت للكل`  لالغاء تثبيت جميع الرسائل  📍",
+            "⌔︙ خاصك تريبوندي على الرسالة اللي بيتي تثبيها استخدم `.الغاء التثبيت للكل` لالغاء تثبيت كامل الرسائل  📍",
             5,
         )
     try:
@@ -136,7 +136,7 @@ async def pin(event):
             await event.client.unpin_message(event.chat_id)
         else:
             return await edit_delete(
-                event, "⌔︙ يرجى الرد على الرسالة التي تريد تثبيتها استخدم `.الغاء التثبيت للكل`  لالغاء تثبيت جميع الرسائل  📍", 5
+                event, "⌔︙ يرجى تريبوندي على الرسالة اللي بيتي تثبتها استخدم `.الغاء التثبيت للكل`  لالغاء تثبيت كامل الرسائل  📍", 5
             )
     except BadRequestError:
         return await edit_delete(event, NO_PERM, 5)
@@ -187,7 +187,7 @@ async def _iundlt(event):  # sourcery no-metrics
     adminlog = await event.client.get_admin_log(
         event.chat_id, limit=lim, edit=False, delete=True
     )
-    deleted_msg = f"⌔︙ اخـر {lim} رسـائل مـحذوفة فـي الـدردشة :"
+    deleted_msg = f"⌔︙ اخـر {lim} رسـائل الممحية فـي الـدردشة :"
     if not flag:
         for msg in adminlog:
             ruser = (
@@ -195,9 +195,9 @@ async def _iundlt(event):  # sourcery no-metrics
             ).user
             _media_type = media_type(msg.old)
             if _media_type is None:
-                deleted_msg += f"\n {msg.old.message} \n ⌔︙ تم ارسالها بـواسطة {_format.mentionuser(ruser.first_name ,ruser.id)}"
+                deleted_msg += f"\n {msg.old.message} \n ⌔︙ صيفطها {_format.mentionuser(ruser.first_name ,ruser.id)}"
             else:
-                deleted_msg += f"\n {_media_type} \n ⌔︙ ارسلت بـواسطـة {_format.mentionuser(ruser.first_name ,ruser.id)}"
+                deleted_msg += f"\n {_media_type} \n ⌔︙ تصيفطات بـواسطـة {_format.mentionuser(ruser.first_name ,ruser.id)}"
         await edit_or_reply(catevent, deleted_msg)
     else:
         main_msg = await edit_or_reply(catevent, deleted_msg)
@@ -208,12 +208,13 @@ async def _iundlt(event):  # sourcery no-metrics
             _media_type = media_type(msg.old)
             if _media_type is None:
                 await main_msg.reply(
-                    f"{msg.old.message}\n⌔︙ ارسلت بواسطه {_format.mentionuser(ruser.first_name ,ruser.id)}"
+                    f"{msg.old.message}\n⌔︙ تصيفطات بواسطه {_format.mentionuser(ruser.first_name ,ruser.id)}"
                 )
             else:
                 await main_msg.reply(
-                    f"{msg.old.message}\n⌔︙ ارسلت بواسطه {_format.mentionuser(ruser.first_name ,ruser.id)}",
+                    f"{msg.old.message}\n⌔︙ تصيفطات بواسطه {_format.mentionuser(ruser.first_name ,ruser.id)}",
                     file=msg.old.media,
                 )
 #admin plugin for  jmthon
 # by  @RRRD7
+# translated by @QHR_1
