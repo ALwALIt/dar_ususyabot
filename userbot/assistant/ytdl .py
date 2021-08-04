@@ -49,12 +49,12 @@ plugin_category = "bot"
     command=("تنزيل", plugin_category),
     info={
         "header": "التـنزيل باسـتخدام وضـع الانلايـن",
-        "الشـرح": "للبحث عن الاغاني او الفيديوهات وتنزيلها عبر وضع انلاين ",
-        "الاستخدام": "{tr}تنزيل ( رابط / نص  ) او ( بالرد على الرابط او النص  )",
+        "الشـرح": "للبحث عن الاغاني او الفيديوهات وتنزيلها عبر وضع انلاين.",
+        "الاستخدام": "{tr}تنزيل [رابط / نص] او [باارد على الرابط او النص ]",
     },
 )
 async def iytdl_inline(event):
-    "التـنزيل باسـتخدام وضـع الانلايـن"
+    "ytdl with inline buttons."
     reply = await event.get_reply_message()
     reply_to_id = await reply_id(event)
     input_str = event.pattern_match.group(1)
