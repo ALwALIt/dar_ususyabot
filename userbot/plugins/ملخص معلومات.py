@@ -13,14 +13,16 @@ plugin_category = "utils"
 
 
 TYPES = [
-    "الصـور",
-    "الأغانـي",
-    "الفـيديو",
-    "الـملفـات",
-    "المـلصـقات",
-    "المـتحـركة",
-    "الصـوتية",
+    "Photo",
+    "Audio",
+    "Video",
+    "Document",
+    "Sticker",
+    "Gif",
+    "Voice",
+    "Round Video",
 ]
+
 
 
 def weird_division(n, d):
