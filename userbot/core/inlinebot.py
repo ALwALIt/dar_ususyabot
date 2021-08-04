@@ -30,7 +30,7 @@ from .logger import logging
 LOGS = logging.getLogger(__name__)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
-CATLOGO = "https://telegra.ph/file/6405429b7ec14eb2a51b9.jpg"
+CATLOGO = "https://telegra.ph/file/7e1ed8587bf4fd1d920dc.jpg"
 tr = Config.COMMAND_HAND_LER
 
 
@@ -53,52 +53,52 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"مـساعـد جـمثون\
-        \nالاوامـر لـ {mention}"
+    text = f"اوامـر سـورس جـمثون\
+        \nالأوامـر لـك {mention}"
     buttons = [
         (
             Button.inline(
-                f"ℹ️ Info",
+                f"ℹ️ الـمعلومات",
                 data="check",
             ),
         ),
         (
             Button.inline(
-                f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})",
+                f"👮‍♂️ الأدمـن ({len(GRP_INFO['admin'])})",
                 data=f"admin_menu",
             ),
             Button.inline(
-                f"🤖 Bot ({len(GRP_INFO['bot'])})",
+                f"🤖 البوت ({len(GRP_INFO['bot'])})",
                 data=f"bot_menu",
             ),
         ),
         (
             Button.inline(
-                f"🎨 Fun ({len(GRP_INFO['fun'])})",
+                f"🎨 التـسليـة ({len(GRP_INFO['fun'])})",
                 data=f"fun_menu",
             ),
             Button.inline(
-                f"🧩 Misc ({len(GRP_INFO['misc'])})",
+                f"🧩 عشـوائيات ({len(GRP_INFO['misc'])})",
                 data=f"misc_menu",
             ),
         ),
         (
             Button.inline(
-                f"🧰 Tools ({len(GRP_INFO['tools'])})",
+                f"🧰 الأدوات ({len(GRP_INFO['tools'])})",
                 data=f"tools_menu",
             ),
             Button.inline(
-                f"🗂 Utils ({len(GRP_INFO['utils'])})",
+                f"🗂 الادارة ({len(GRP_INFO['utils'])})",
                 data=f"utils_menu",
             ),
         ),
         (
             Button.inline(
-                f"➕ Extra ({len(GRP_INFO['extra'])})",
+                f"➕ الحـفظ ({len(GRP_INFO['extra'])})",
                 data=f"extra_menu",
             ),
             Button.inline(
-                f"🔒 Close Menu",
+                f"🔒 اغـلاق",
                 data=f"close",
             ),
         ),
@@ -245,7 +245,7 @@ async def inline_handler(event):  # sourcery no-metrics
     if query_user_id == Config.OWNER_ID or query_user_id in Config.SUDO_USERS:
         hmm = re.compile("secret (.*) (.*)")
         match = re.findall(hmm, query)
-        if query.startswith("**Catuserbot"):
+        if query.startswith("**جمثون"):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
@@ -369,8 +369,8 @@ async def inline_handler(event):  # sourcery no-metrics
         elif string == "help":
             _result = main_menu()
             result = builder.article(
-                title="© JMTHONBOT Help",
-                description="Help menu for JMTHON ",
+                title="© JMTHON Help",
+                description="Help menu for JMTHON",
                 text=_result[0],
                 buttons=_result[1],
                 link_preview=False,
@@ -472,7 +472,7 @@ async def inline_handler(event):  # sourcery no-metrics
             await event.answer([result] if result else None)
         elif string == "pmpermit":
             buttons = [
-                Button.inline(text="Show Options.", data="show_pmpermit_options"),
+                Button.inline(text="اظهار الخيارات", data="show_pmpermit_options"),
             ]
             PM_PIC = gvarstatus("pmpermit_pic")
             if PM_PIC:
@@ -506,10 +506,10 @@ async def inline_handler(event):  # sourcery no-metrics
     else:
         buttons = [
             (
-                Button.url("Source code", "https://github.com/JMTHON-AR/JM-THON"),
+                Button.url("Source channel ", "https://t.me/JMTHON"),
                 Button.url(
                     "Deploy",
-                    "T.ME/JMTHON",
+                    "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FJMTHON-AR%2FJMTHON-PACK&template=https%3A%2F%2Fgithub.com%2FJMTHON-AR%2FJMTHON-PACK",
                 ),
             )
         ]
@@ -518,13 +518,13 @@ async def inline_handler(event):  # sourcery no-metrics
             url=CATLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "DEPLOY YOUR OWN JMTHON BOT.", "md"
+            "نصـب جـمثون بـنفسمك ", "md"
         )
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
             title="JMTHON",
-            description="Deploy yourself",
+            description="قـناة السـورس",
             url="https://T.ME/JMTHON",
             thumb=photo,
             content=photo,
@@ -539,9 +539,9 @@ async def inline_handler(event):  # sourcery no-metrics
 @check_owner
 async def on_plug_in_callback_query_handler(event):
     buttons = [
-        (Button.inline("Open Menu", data="mainmenu"),),
+        (Button.inline("فتـح الـقائمة", data="mainmenu"),),
     ]
-    await event.edit("Menu Closed", buttons=buttons)
+    await event.edit("اغـلاق القائمـة", buttons=buttons)
 
 
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"check")))
@@ -560,9 +560,9 @@ async def on_plugin_callback_query_handler(event):
 async def on_plug_in_callback_query_handler(event):
     category = str(event.pattern_match.group(1).decode("UTF-8"))
     buttons = paginate_help(0, GRP_INFO[category], category)
-    text = f"**Category: **{category}\
-        \n**Total plugins :** {len(GRP_INFO[category])}\
-        \n**Total Commands:** {command_in_category(category)}"
+    text = f"**⌔︙ الـفئـة: **`{category}`\
+            \n**⌔︙ جـميع الـملفات :** {len(GRP_INFO[category])}\
+            \n**⌔ ︙ جـميع الأوامـر :** {command_in_category(category)}"
     await event.edit(text, buttons=buttons)
 
 
@@ -578,9 +578,9 @@ async def on_plug_in_callback_query_handler(event):
     pgno = int(event.pattern_match.group(3).decode("UTF-8"))
     if mtype == "plugin":
         buttons = paginate_help(pgno, GRP_INFO[category], category)
-        text = f"**Category: **`{category}`\
-            \n**Total plugins :** __{len(GRP_INFO[category])}__\
-            \n**Total Commands:** __{command_in_category(category)}__"
+        text = f"**⌔︙ الـفئـة: **`{category}`\
+            \n**⌔︙ جـميع الـملفات :** {len(GRP_INFO[category])}\
+            \n**⌔ ︙ جـميع الأوامـر :** {command_in_category(category)}"
     else:
         category_plugins = str(event.pattern_match.group(4).decode("UTF-8"))
         category_pgno = int(event.pattern_match.group(5).decode("UTF-8"))
@@ -592,9 +592,9 @@ async def on_plug_in_callback_query_handler(event):
             category_plugins=category_plugins,
             category_pgno=category_pgno,
         )
-        text = f"**Plugin: **`{category}`\
-                \n**Category: **__{getkey(category)}__\
-                \n**Total Commands:** __{len(PLG_INFO[category])}__"
+        text = f"**⌔︙ الـملف: **`{category}`\
+                \n**⌔︙ الـفئة: **__{getkey(category)}__\
+                \n**⌔︙ جـميع الأوامـر:** __{len(PLG_INFO[category])}__"
     await event.edit(text, buttons=buttons)
 
 
@@ -626,9 +626,9 @@ async def on_plug_in_callback_query_handler(event):
             category_plugins=category_plugins,
             category_pgno=category_pgno,
         )
-        text = f"**Plugin: **`{category}`\
-                \n**Category: **__{getkey(category)}__\
-                \n**Total Commands:** __{len(PLG_INFO[category])}__"
+        text = f"⌔︙ المـلف: **`{category}`\
+                \n**⌔︙ الفـئة: **__{getkey(category)}__\
+                \n**⌔︙ جـميع الأوامـر :** __{len(PLG_INFO[category])}__"
         try:
             return await event.edit(text, buttons=buttons)
         except Exception:
@@ -683,8 +683,8 @@ async def on_plug_in_callback_query_handler(event):
             Button.inline("⚙️ Main Menu", data="mainmenu"),
         )
     ]
-    text = f"**Command :** `{tr}{cmd}`\
-        \n**Plugin :** `{category}`\
-        \n**Category :** `{category_plugins}`\
-        \n\n**✘ Intro :**\n{CMD_INFO[cmd][0]}"
+    text = f"**الأمـر :** `{tr}{cmd}`\
+        \n**الـملف :** `{category}`\
+        \n**الـفئة :** `{category_plugins}`\
+        \n\n**✘ الـمقدمة :**\n{CMD_INFO[cmd][0]}"
     await event.edit(text, buttons=buttons)
