@@ -67,7 +67,7 @@ async def _(event):  # sourcery no-metrics
         link = f"<a href='tg://user?id={chatdata.id}'>{chatdata.first_name}</a>"
     catevent = await edit_or_reply(
         event,
-        f"<code>عـدد الملفات وحـجم الـملف من </code><b>{link}</b>\n<code>This may take some time also depends on number of group messages</code>",
+        f"<code>عـدد الملفات وحـجم الـملف من </code><b>{link}</b>\n<code>قـد تـأخذ بـعض الـوقت انهـا تعتـمد عـلى عـدد الرسـائـل</code>",
         parse_mode="HTML",
     )
     media_dict = {
@@ -188,7 +188,7 @@ async def _(event):  # sourcery no-metrics
         link = f"<a href='tg://user?id={chatdata.id}'>{chatdata.first_name}</a>"
     catevent = await edit_or_reply(
         event,
-        f"<code>Counting files and file size by </code>{_format.htmlmentionuser(userdata.first_name,userdata.id)}<code> in Group </code><b>{link}</b>\n<code>This may take some time also depends on number of user messages</code>",
+        f"<code>عدد الملفات وحجم الملف من </code>{_format.htmlmentionuser(userdata.first_name,userdata.id)}<code> فـي الـكروب </code><b>{link}</b>\n<code>ربـما تأخـذ بعـض الوقـت تعـتمد عـلى عـدد رسـائل المـستـخدم</code>",
         parse_mode="HTML",
     )
 
