@@ -49,8 +49,8 @@ plugin_category = "bot"
     command=("تنزيل", plugin_category),
     info={
         "header": "التـنزيل باسـتخدام وضـع الانلايـن",
-        "description": "To search and download youtube videos by inline buttons.",
-        "usage": "{tr}iytdl [URL / Text] or [Reply to URL / Text]",
+        "الشـرح": "للبحث عن الاغاني او الفيديوهات وتنزيلها عبر وضع انلاين.",
+        "الاستخدام": "{tr}تنزيل [رابط / نص] او [باارد على الرابط او النص ]",
     },
 )
 async def iytdl_inline(event):
