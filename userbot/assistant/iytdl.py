@@ -48,7 +48,7 @@ plugin_category = "bot"
     pattern="تنزيل(?:\s|$)([\s\S]*)",
     command=("تنزيل", plugin_category),
     info={
-        "header": "ytdl with inline buttons.",
+        "header": "التـنزيل باسـتخدام وضـع الانلايـن",
         "description": "To search and download youtube videos by inline buttons.",
         "usage": "{tr}iytdl [URL / Text] or [Reply to URL / Text]",
     },
