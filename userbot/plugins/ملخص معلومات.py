@@ -2,7 +2,7 @@ import time
 
 from prettytable import PrettyTable
 
-from userbot import Jmthon
+from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
@@ -28,7 +28,7 @@ def weird_division(n, d):
     return n / d if d else 0
 
 
-@Jmthon.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تخزين الكروب(?:\s|$)([\s\S]*)",
     command=("تخزين الكروب", plugin_category),
     info={
@@ -130,7 +130,7 @@ async def _(event):  # sourcery no-metrics
     await catevent.edit(result, parse_mode="HTML", link_preview=False)
 
 
-@Jmthon.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تخزين المستخدم(?:\s|$)([\s\S]*)",
     command=("تخزين المستخدم", plugin_category),
     info={
@@ -172,13 +172,13 @@ async def _(event):  # sourcery no-metrics
         chatdata = await event.client.get_entity(entity)
     except Exception as e:
         return await edit_delete(
-            event, f"<b>خـطأ : </b><code>{str(e)}</code>", 5, parse_mode="HTML"
+            event, f"<b>Error : </b><code>{str(e)}</code>", 5, parse_mode="HTML"
         )
     try:
         userdata = await event.client.get_entity(userentity)
     except Exception as e:
         return await edit_delete(
-            event, f"<b>خـطأ : </b><code>{str(e)}</code>", time=5, parse_mode="HTML"
+            event, f"<b>Error : </b><code>{str(e)}</code>", time=5, parse_mode="HTML"
         )
     if type(chatdata).__name__ == "Channel":
         if chatdata.username:
@@ -229,9 +229,9 @@ async def _(event):  # sourcery no-metrics
             largest += f"  •  <b><a href='{media_dict[mediax]['max_file_link']}'>{mediax}</a>  : </b><code>{humanbytes(media_dict[mediax]['max_size'])}</code>\n"
     endtime = int(time.monotonic())
     if endtime - starttime >= 120:
-        runtime = str(round(((endtime - starttime) / 60), 2)) + " مـن الـدقائـق"
+        runtime = str(round(((endtime - starttime) / 60), 2)) + " minutes"
     else:
-        runtime = str(endtime - starttime) + " مـن الـثواني"
+        runtime = str(endtime - starttime) + " seconds"
     avghubytes = humanbytes(weird_division(totalsize, totalcount))
     avgruntime = (
         str(round((weird_division((endtime - starttime), totalcount)) * 1000, 2))
