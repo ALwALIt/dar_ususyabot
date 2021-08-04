@@ -162,7 +162,7 @@ async def nekobot(cat):
     text = re.sub("&", "", text)
     reply_to_id = await reply_id(cat)
 
-    reply = await message()
+    reply = await cat.get_reply_message()
     if not text:
         if cat.is_reply and not reply.media:
             text = reply.message
