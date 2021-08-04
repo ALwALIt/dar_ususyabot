@@ -87,8 +87,8 @@ async def nekobot(cat):
 
 
 @jmthon.ar_cmd(
-    pattern="غير عقلي(?:\s|$)([\s\S]*)",
-    command=("غير عقلي", plugin_category),
+    pattern="بنر(?:\s|$)([\s\S]*)",
+    command=("بنر", plugin_category),
     info={
         "header": "Change my mind banner with given custom text",
         "usage": "{tr}غير عقلي <text>",
