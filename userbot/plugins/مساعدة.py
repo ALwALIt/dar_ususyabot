@@ -12,15 +12,14 @@ cmdprefix = Config.COMMAND_HAND_LER
 plugin_category = "tools"
 
 hemojis = {
-    "admin": "👮‍♂️",
-    "bot": "🤖",
-    "fun": "🎨",
-    "misc": "🧩",
-    "tools": "🧰",
-    "utils": "🗂",
-    "extra": "➕",
+    "أوامـر الأدمـن": "👮‍♂️",
+    "أوامـر البوت": "🤖",
+    "أوامـر التـسليـة": "🎨",
+    "اوامـر العـشوائـية": "🧩",
+    "أوامـر الأدوات": "🧰",
+    "أوامـر الادارة": "🗂",
+    "أوامـر الاضافية": "➕",
 }
-
 
 def get_key(val):
     for key, value in PLG_INFO.items():
@@ -47,24 +46,24 @@ async def cmdinfo(input_str, event, plugin=False):
         if plugin:
             await edit_delete(
                 event,
-                f"**There is no plugin or command as **`{input_str}`** in your bot.**",
+                f"**⌔︙ لا يـوجد هـكذا ملـف او امـر في سـورس جـمثون **",
             )
             return None
         await edit_delete(
-            event, f"**There is no command as **`{input_str}`** in your bot.**"
+            event, f"**⌔︙ لا يـوجد هـكذا ملـف او امـر في سـورس جـمثون **",
         )
         return None
     except Exception as e:
-        await edit_delete(event, f"**Error**\n`{str(e)}`")
+        await edit_delete(event, f"**⌔︙ خـطأ**\n`{str(e)}`")
         return None
-    outstr = f"**Command :** `{cmdprefix}{input_str}`\n"
+    outstr = f"**⌔︙ الأمـر :** `{cmdprefix}{input_str}`\n"
     plugin = get_key(input_str)
     if plugin is not None:
-        outstr += f"**Plugin :** `{plugin}`\n"
+        outstr += f"**⌔︙ الـملـف  :** `{plugin}`\n"
         category = getkey(plugin)
         if category is not None:
-            outstr += f"**Category :** `{category}`\n\n"
-    outstr += f"**✘  Intro :**\n{about[0]}"
+            outstr += f"**⌔︙ الـفـئة :** `{category}`\n\n"
+    outstr += f"**⌔︙ الـمقـدمـة :**\n{about[0]}"
     return outstr
 
 
@@ -75,30 +74,30 @@ async def plugininfo(input_str, event, flag):
         outstr = await cmdinfo(input_str, event, plugin=True)
         return outstr
     except Exception as e:
-        await edit_delete(event, f"**Error**\n`{str(e)}`")
+        await edit_delete(event, f"**خـطأ**\n`{str(e)}`")
         return None
     if len(cmds) == 1 and (flag is None or (flag and flag != "-p")):
         outstr = await cmdinfo(cmds[0], event, plugin=False)
         return outstr
-    outstr = f"**Plugin : **`{input_str}`\n"
-    outstr += f"**Commands Available :** `{len(cmds)}`\n"
+    outstr = f"**⌔︙ الـمـلف : **`{input_str}`\n"
+    outstr += f"**⌔︙ الأوامـر المـتاحـة :** `{len(cmds)}`\n"
     category = getkey(input_str)
     if category is not None:
-        outstr += f"**Category :** `{category}`\n\n"
+        outstr += f"**⌔︙ الفـئة :** `{category}`\n\n"
     for cmd in cmds:
-        outstr += f"•  **cmd :** `{cmdprefix}{cmd}`\n"
+        outstr += f"⌔︙ **الأمـر :** `{cmdprefix}{cmd}`\n"
         try:
-            outstr += f"•  **info :** `{CMD_INFO[cmd][1]}`\n\n"
+            outstr += f"⌔︙ **معـلومات :** `{CMD_INFO[cmd][1]}`\n\n"
         except IndexError:
-            outstr += f"•  **info :** `None`\n\n"
-    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <command name>`\
+            outstr += f"⌔︙  **معـلومات :** `None`\n\n"
+    outstr += f"**⌔︙ الأستـخـدام : ** `{cmdprefix}help <command name>`\
         \n**Note : **If command name is same as plugin name then use this `{cmdprefix}help -c <command name>`."
     return outstr
 
 
 async def grpinfo():
-    outstr = "**Plugins in Catuserbot are:**\n\n"
-    outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <plugin name>`\n\n"
+    outstr = "**⌔︙ مـلفـات سـورس جـمـثـون:**\n\n"
+    outstr += f"**⌔︙ الأستـخـدام : ** `{cmdprefix}مساعدة <اسم الملف>`\n\n"
     category = ["admin", "bot", "fun", "misc", "tools", "utils", "extra"]
     for cat in category:
         plugins = GRP_INFO[cat]
@@ -126,8 +125,8 @@ async def cmdlist():
 
 
 @jmthon.ar_cmd(
-    pattern="help ?(-c|-p|-t)? ?([\s\S]*)?",
-    command=("help", plugin_category),
+    pattern="مساعدة ?(-س|-p|-t)? ?([\s\S]*)?",
+    command=("مساعدة", plugin_category),
     info={
         "header": "To get guide for catuserbot.",
         "description": "To get information or guide for the command or plugin",
