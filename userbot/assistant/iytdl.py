@@ -35,7 +35,7 @@ from ..helpers.functions.utube import (
 )
 from ..plugins import BOTLOG_CHATID
 
-LOGS = logging.getLogger(__name__)
+LOGS = logging.getLogger(name)
 BASE_YT_URL = "https://www.youtube.com/watch?v="
 YOUTUBE_REGEX = re.compile(
     r"(?:youtube\.com|youtu\.be)/(?:[\w-]+\?v=|embed/|v/|shorts/)?([\w-]{11})"
@@ -49,12 +49,12 @@ plugin_category = "bot"
     command=("تنزيل", plugin_category),
     info={
         "header": "التـنزيل باسـتخدام وضـع الانلايـن",
-        "الشـرح": "للبحث عن الاغاني او الفيديوهات وتنزيلها عبر وضع انلاين.",
-        "الاستخدام": "{tr}تنزيل [رابط / نص] او [باارد على الرابط او النص ]",
+        "الشـرح": "للبحث عن الاغاني او الفيديوهات وتنزيلها عبر وضع انلاين ",
+        "الاستخدام": "{tr}تنزيل ( رابط / نص  ) او ( بالرد على الرابط او النص  )",
     },
 )
 async def iytdl_inline(event):
-    "ytdl with inline buttons."
+    "التـنزيل باسـتخدام وضـع الانلايـن"
     reply = await event.get_reply_message()
     reply_to_id = await reply_id(event)
     input_str = event.pattern_match.group(1)
