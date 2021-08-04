@@ -2,7 +2,7 @@ import time
 
 from prettytable import PrettyTable
 
-from userbot import jmthon
+from userbot import Jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
@@ -13,14 +13,13 @@ plugin_category = "utils"
 
 
 TYPES = [
-    "Photo",
-    "Audio",
-    "Video",
-    "Document",
-    "Sticker",
-    "Gif",
-    "Voice",
-    "Round Video",
+    "الصـور",
+    "الأغانـي",
+    "الفـيديو",
+    "الـملفـات",
+    "المـلصـقات",
+    "المـتحـركة",
+    "الصـوتية",
 ]
 
 
@@ -28,7 +27,7 @@ def weird_division(n, d):
     return n / d if d else 0
 
 
-@jmthon.ar_cmd(
+@Jmthon.ar_cmd(
     pattern="تخزين الكروب(?:\s|$)([\s\S]*)",
     command=("تخزين الكروب", plugin_category),
     info={
@@ -50,7 +49,7 @@ async def _(event):  # sourcery no-metrics
     starttime = int(time.monotonic())
     x = PrettyTable()
     totalcount = totalsize = msg_count = 0
-    x.title = "File Summary"
+    x.title = "مـلخص الـمستخدم"
     x.field_names = ["Media", "Count", "File size"]
     largest = "   <b>اكـبـر حـجـم</b>\n"
     try:
@@ -130,7 +129,7 @@ async def _(event):  # sourcery no-metrics
     await catevent.edit(result, parse_mode="HTML", link_preview=False)
 
 
-@jmthon.ar_cmd(
+@Jmthon.ar_cmd(
     pattern="تخزين المستخدم(?:\s|$)([\s\S]*)",
     command=("تخزين المستخدم", plugin_category),
     info={
@@ -165,20 +164,20 @@ async def _(event):  # sourcery no-metrics
     starttime = int(time.monotonic())
     x = PrettyTable()
     totalcount = totalsize = msg_count = 0
-    x.title = "File Summary"
+    x.title = "مـلخص الـمستخدم"
     x.field_names = ["Media", "Count", "File size"]
     largest = "   <b>اكبـر حـجـم</b>\n"
     try:
         chatdata = await event.client.get_entity(entity)
     except Exception as e:
         return await edit_delete(
-            event, f"<b>Error : </b><code>{str(e)}</code>", 5, parse_mode="HTML"
+            event, f"<b>خـطأ : </b><code>{str(e)}</code>", 5, parse_mode="HTML"
         )
     try:
         userdata = await event.client.get_entity(userentity)
     except Exception as e:
         return await edit_delete(
-            event, f"<b>Error : </b><code>{str(e)}</code>", time=5, parse_mode="HTML"
+            event, f"<b>خـطأ : </b><code>{str(e)}</code>", time=5, parse_mode="HTML"
         )
     if type(chatdata).__name__ == "Channel":
         if chatdata.username:
@@ -229,25 +228,25 @@ async def _(event):  # sourcery no-metrics
             largest += f"  •  <b><a href='{media_dict[mediax]['max_file_link']}'>{mediax}</a>  : </b><code>{humanbytes(media_dict[mediax]['max_size'])}</code>\n"
     endtime = int(time.monotonic())
     if endtime - starttime >= 120:
-        runtime = str(round(((endtime - starttime) / 60), 2)) + " minutes"
+        runtime = str(round(((endtime - starttime) / 60), 2)) + " من الدقائق"
     else:
-        runtime = str(endtime - starttime) + " seconds"
+        runtime = str(endtime - starttime) + " من الثوانـي"
     avghubytes = humanbytes(weird_division(totalsize, totalcount))
     avgruntime = (
         str(round((weird_division((endtime - starttime), totalcount)) * 1000, 2))
         + " ms"
     )
-    totalstring = f"<code><b> ⌔︙ إجمالـي الملفـات ☆ : </b>       | {str(totalcount)}\
-                  \n <b> ⌔︙ الحجـم الإجمالـي للملـف ☆ : </b>   | {humanbytes(totalsize)}\
-                  \n <b> ⌔︙ حجم الملف  : </b>    | {avghubytes}\
+    totalstring = f"<code> ⌔︙ إجمالـي الملفـات ☆ :    | {str(totalcount)}\
+                  \n ⌔︙ الحجـم الإجمالـي للملـف ☆ :   | {humanbytes(totalsize)}\
+                  \n ⌔︙ حجم الملف  :  | {avghubytes}\
                   \n</code>"
-    runtimestring = f"<code><b> ⌔︙ وقـت التشغيـل ☆ :</b>            | {runtime}\
-                    \n <b> وقـت التشغيـل لـكـل ملـف ☆ :</b>   | {avgruntime}\
+    runtimestring = f"<code> ⌔︙ وقـت التشغيـل ☆ :            | {runtime}\
+                    \n وقـت التشغيـل لـكـل ملـف ☆ : | {avgruntime}\
                     \n</code>"
     line = "<code>+--------------------+-----------+</code>\n"
-    result = f"<b>⌔︙ المجموعـة ☆ : {link}\nUser : {_format.htmlmentionuser(userdata.first_name,userdata.id)}\n\n"
-    result += f"<code><b>⌔︙ مجمـوع الرسائـل ☆ :</b> {msg_count}</code>\n"
-    result += "<b>⌔︙ملخـص الملـف ☆ : </b>\n"
+    result = f"⌔︙ المجموعـة ☆ : {link}\nUser : {_format.htmlmentionuser(userdata.first_name,userdata.id)}\n\n"
+    result += f"<code>⌔︙ مجمـوع الرسائـل ☆ : {msg_count}</code>\n"
+    result += "⌔︙ملخـص الملـف ☆ :\n"
     result += f"<code>{str(x)}</code>\n"
     result += f"{largest}"
     result += line + totalstring + line + runtimestring + line
