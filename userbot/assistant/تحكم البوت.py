@@ -121,9 +121,9 @@ async def bot_broadcast(event):
     pattern=f"المستخدمين$",
     command=("المستخدمين", plugin_category),
     info={
-        "header": "To get users list who started bot.",
-        "description": "To get compelete list of users who started your bot",
-        "usage": "{tr}bot_users",
+        "header": "للحصول على مستخدمين البوت",
+        "description": "لعـرض قـائمة المـستخدمين الـذي قـاموا بتـشغيل بـوتك",
+        "usage": "{tr}المستخدمين",
     },
 )
 async def ban_starters(event):
@@ -201,15 +201,15 @@ async def ban_botpms(event):
 
 @jmthon.ar_cmd(
     pattern=f"المحظورين$",
-    command=("bblist", plugin_category),
+    command=("المحظورين", plugin_category),
     info={
-        "header": "To get users list who are banned in bot.",
-        "description": "To get list of users who are banned in bot.",
-        "usage": "{tr}bblist",
+        "header": "لـعـرض قـائمـة الـمستخـدمين الـمحظوريـن فـي بـوتك.",
+        "الـشـرح": "لعـرض قـائمـة الـمستخـدمين الـمحظوريـن فـي بـوتك",
+        "الاستـخـدام": "{tr}المحظورين",
     },
 )
 async def ban_starters(event):
-    "To get list of users who are banned in bot."
+    "لـعـرض قـائمـة الـمستخـدمين الـمحظوريـن فـي بـوتك"
     ulist = get_all_bl_users()
     if len(ulist) == 0:
         return await edit_delete(event, "** لا يوجـد شخص محـظور في البـوت الـى الان**")
@@ -220,26 +220,26 @@ async def ban_starters(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"bot_antif (on|off)$",
-    command=("bot_antif", plugin_category),
+    pattern=f"وضع_التكرار (تشغيل|تعطيل)$",
+    command=("وضع_تكرار", plugin_category),
     info={
-        "header": "To enable or disable bot antiflood.",
-        "description": "if it was turned on then after 10 messages or 10 edits of same messages in less time then your bot auto loacks them.",
-        "usage": [
-            "{tr}bot_antif on",
-            "{tr}bot_antif off",
+        "header": "لتشغيل او تعطيل التكرار في بوتك",
+        "الشـرح": "اذا قـام المسـتخدم بـتكرار او تعـديـل 10 رسـائل سيـقوم الـبوت بحـظره",
+        "الاسـتخـدام": [
+            "{tr}وضع_تكرار تشغيل",
+            "{tr}وضع_تكرار تعطيل",
         ],
     },
 )
 async def ban_antiflood(event):
-    "To enable or disable bot antiflood."
+    "لتشغيل او تعطيل التكرار في بوتك."
     input_str = event.pattern_match.group(1)
-    if input_str == "on":
+    if input_str == "تشغيل":
         if gvarstatus("bot_antif") is not None:
             return await edit_delete(event, "`Bot Antiflood was already enabled.`")
         addgvar("bot_antif", True)
         await edit_delete(event, "`Bot Antiflood Enabled.`")
-    elif input_str == "off":
+    elif input_str == "تعطيل":
         if gvarstatus("bot_antif") is None:
             return await edit_delete(event, "`Bot Antiflood was already disabled.`")
         delgvar("bot_antif")
