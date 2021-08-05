@@ -41,6 +41,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC
+RRRD7 = gvarstatus("ALIVE_EMOJI") or ""
 #كتابة فريق جمثون  على التليكرام
 
 @bot.on(admin_cmd(pattern="الحدث ?(.*)"))
@@ -284,7 +285,7 @@ async def bloom_pfploop():
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
         ofnt = ImageFont.truetype(FONT_FILE_TO_USE, 250)
         drawn_text.text((95, 250), current_time, font=fnt, fill=(FR, FG, FB))
-        drawn_text.text((95, 250), " 𓆰", font=ofnt, fill=(FR, FG, FB))
+        drawn_text.text((95, 250), " ", font=ofnt, fill=(FR, FG, FB))
         img.save(autophoto_path)
         file = await jmthon.upload_file(autophoto_path)
         try:
@@ -301,7 +302,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
-        name = f" {HM} - "
+        name = f"{RRRD7} {HM} - "
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
