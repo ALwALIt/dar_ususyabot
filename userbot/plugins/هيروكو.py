@@ -25,26 +25,13 @@ HEROKU_API_KEY = Config.HEROKU_API_KEY
 
 
 @jmthon.ar_cmd(
-    pattern="(set|get|del) var ([\s\S]*)",
-    command=("var", plugin_category),
+    pattern="(اضف|معلومات|حذف) فار ([\s\S]*)",
+    command=("فار", plugin_category),
     info={
         "header": "To manage heroku vars.",
-        "flags": {
-            "set": "To set new var in heroku or modify the old var",
-            "get": "To show the already existing var value.",
-            "del": "To delete the existing value",
-        },
-        "usage": [
-            "{tr}set var <var name> <var value>",
-            "{tr}get var <var name>",
-            "{tr}del var <var name>",
-        ],
-        "examples": [
-            "{tr}get var ALIVE_NAME",
-        ],
     },
 )
-async def variable(var):  # sourcery no-metrics
+async def variable(var):
     """
     Manage most of ConfigVars setting, set new var, get current var, or delete var...
     """
@@ -56,7 +43,7 @@ async def variable(var):  # sourcery no-metrics
     app = Heroku.app(Config.HEROKU_APP_NAME)
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
-    if exe == "get":
+    if exe == "معلومات":
         cat = await edit_or_reply(var, "⌔︙ يـتم سـحب المعـلومـات")
         await asyncio.sleep(1.0)
         try:
@@ -82,7 +69,7 @@ async def variable(var):  # sourcery no-metrics
                     "================================",
                 )
             os.remove("configs.json")
-    elif exe == "set":
+    elif exe == "اضف":
         variable = "".join(var.text.split(maxsplit=2)[2:])
         cat = await edit_or_reply(var, "⌔︙ يتم سحب المعلومات")
         if not variable:
@@ -99,7 +86,7 @@ async def variable(var):  # sourcery no-metrics
                 f"⌔︙ `{variable}`  تم بنجاح اضافه القيمة مع \n   ⌔︙ `{value}`"
             )
         heroku_var[variable] = value
-    elif exe == "del":
+    elif exe == "حذف":
         cat = await edit_or_reply(var, "⌔︙ يتم سحب المعلومات انتظر")
         try:
             variable = var.pattern_match.group(2).split()[0]
