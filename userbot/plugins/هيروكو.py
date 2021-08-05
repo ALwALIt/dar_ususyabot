@@ -73,11 +73,11 @@ async def variable(var):
         variable = "".join(var.text.split(maxsplit=2)[2:])
         cat = await edit_or_reply(var, "⌔︙ يتم سحب المعلومات")
         if not variable:
-            return await cat.edit("⌔︙ `.set var <كود الفار> <القيمة>`")
+            return await cat.edit("⌔︙ `.ضع فار <كود الفار> <القيمة>`")
         value = "".join(variable.split(maxsplit=1)[1:])
         variable = "".join(variable.split(maxsplit=1)[0])
         if not value:
-            return await cat.edit("⌔︙ `.set var <كود الفار> <القيمة>`")
+            return await cat.edit("⌔︙ `.ضع فار <كود الفار> <القيمة>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
             await cat.edit(f"⌔︙ `{variable}`  تم بنجاح التغيير الى  \n  ⌔︙ `{value}`")
