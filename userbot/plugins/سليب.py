@@ -52,11 +52,11 @@ async def set_not_afk(event):
         s = time
         endtime = ""
         if d > 0:
-            endtime += f"{d}d {h}h {m}m {s}s"
+            endtime += f"{d} الايام {h} الساعات {m} الدقائق {s} الثواني"
         elif h > 0:
-            endtime += f"{h}h {m}m {s}s"
+            endtime += f"{h} الساعات {m} الدقائق {s} الثواني"
         else:
-            endtime += f"{m}m {s}s" if m > 0 else f"{s}s"
+            endtime += f"{m} الدقائق {s} الثواني" if m > 0 else f"{s} الثواني"
     current_message = event.message.message
     if (("afk" not in current_message) or ("#afk" not in current_message)) and (
         "on" in AFK_.USERAFK_ON
@@ -74,7 +74,7 @@ async def set_not_afk(event):
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "⌔︙ انتهـاء امر السليب \n"
-                + "` تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
+                + "`⌔︙ تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
                 + endtime
                 + "`",
             )
@@ -100,13 +100,13 @@ async def on_afk(event):  # sourcery no-metrics
         s = time
         endtime = ""
         if d > 0:
-            endtime += f"{d}الايام {h}الساعات {m}الدقائق {s}الثواني"
+            endtime += f"{d} الايام {h} الساعات {m} الدقائق {s} الثواني"
         elif h > 0:
-            endtime += f"{h}الساعات {m}الدقائق {s}الثواني"
+            endtime += f"{h} الساعات {m} الدقائق {s} الثواني"
         else:
-            endtime += f"{m}الدقائق {s}الثواني" if m > 0 else f"{s}الثواني"
+            endtime += f"{m} الدقائق {s} الثواني" if m > 0 else f"{s} الثواني"
     current_message_text = event.message.message.lower()
-    if "afk" in current_message_text or "#afk" in current_message_text:
+    if "afk" in current_message_text or "#سليب" in current_message_text:
         return False
     if not await event.get_sender():
         return
@@ -221,13 +221,13 @@ async def _(event):
             else:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f"**⌔︙ امـر السليـب 💤 :** \n **تم تشغيل الامر بدون شكر السبب ❕**",
+                    f"**⌔︙ امـر السليـب 💤 :** \n **تم تشغيل الامر بدون ذكـر السبب ❕**",
                 )
 
 
 @jmthon.ar_cmd(
-    pattern="mafk(?:\s|$)([\s\S]*)",
-    command=("mafk", plugin_category),
+    pattern="سليب_ميديا(?:\s|$)([\s\S]*)",
+    command=("سليب_ميديا", plugin_category),
     info={
         "header": "Enables afk for your account",
         "description": "When you are in afk if any one tags you then your bot will reply as he is offline.\
@@ -246,11 +246,11 @@ async def _(event):
     media_t = media_type(reply)
     if media_t == "Sticker" or not media_t:
         return await edit_or_reply(
-            event, "`You haven't replied to any media to activate media afk`"
+            event, "⌔︙ امـر السـليب : المرجـو قم بالـرد علـى الصورة بالامـر "
         )
     if not BOTLOG:
         return await edit_or_reply(
-            event, "`To use media afk you need to set PRIVATE_GROUP_BOT_API_ID config`"
+            event, "⌔︙ لإستخـدام هذا الامر يجـب اضافـة متغيـر PRIVATE_GROUP_BOT_API_ID "
         )
     AFK_.USERAFK_ON = {}
     AFK_.afk_time = None
@@ -272,18 +272,18 @@ async def _(event):
         AFK_.USERAFK_ON = f"on: {AFK_.reason}"
         if AFK_.reason:
             await edit_delete(
-                event, f"`I shall be Going afk! because ~` {AFK_.reason}", 5
+                event, f"⌔︙ انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا بسـبب  {AFK_.reason} ️", 5
             )
         else:
-            await edit_delete(event, f"`I shall be Going afk! `", 5)
+            await edit_delete(event, f"**⌔︙ انا الان في وضعيه عدم الاتصال يرجـى المراسلة لاحقـا 💤 ️**", 5)
         AFK_.media_afk = await reply.forward_to(BOTLOG_CHATID)
         if AFK_.reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#AFKTRUE \nSet AFK mode to True, and Reason is {AFK_.reason}",
+                f"**⌔︙ امـر السليـب 💤 :** \n **تم تشغيل الوضع بسبب مع السبب ️** {AFK_.reason}",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"#AFKTRUE \nSet AFK mode to True, and Reason is Not Mentioned",
+                f"**⌔︙ امـر السليـب 💤 :** \n **تم تشغيل الامر بدون ذكـر السبب ❕**",
             )
