@@ -111,7 +111,7 @@ async def _(event):
     await output[0].delete()
 
 @jmthon.ar_cmd(
-    pattern="تحويل (mp3|voice)",
+    pattern="تحويل (mp3|voice)$",
     command=("تحويل", plugin_category),
     info={
         "header": "Converts the required media file to voice or mp3 file.",
