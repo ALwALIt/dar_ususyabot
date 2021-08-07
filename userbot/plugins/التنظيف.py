@@ -355,7 +355,7 @@ async def fastpurger(event):  # sourcery no-metrics
         if msgs:
             await event.client.delete_messages(chat, msgs)
     else:
-        error += "\n⌔︙ لم يتـم تحـديد سي يـرج ارسال  (`.الاوامر`) و رؤية اوامر التنظيف"
+        error += "\n⌔︙ لم يتـم تحـديد اضافـة يرجى ارسال  (`.اوامر التنظيف`) و رؤية اوامر التنظيف"
     if msgs:
         await event.client.delete_messages(chat, msgs)
     if count > 0:
