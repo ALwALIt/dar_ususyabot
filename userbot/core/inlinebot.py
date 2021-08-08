@@ -233,7 +233,7 @@ def paginate_help(
 
 
 @jmthon.tgbot.on(InlineQuery)
-async def inline_handler(event):  # sourcery no-metrics
+async def inline_handler(event): 
     builder = event.builder
     result = None
     query = event.text
@@ -245,7 +245,7 @@ async def inline_handler(event):  # sourcery no-metrics
     if query_user_id == Config.OWNER_ID or query_user_id in Config.SUDO_USERS:
         hmm = re.compile("secret (.*) (.*)")
         match = re.findall(hmm, query)
-        if query.startswith("**Catuserbot"):
+        if query.startswith("**جـمثـون**"):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
@@ -394,11 +394,11 @@ async def inline_handler(event):  # sourcery no-metrics
                             data=f"ytdl_next_{key_}_1",
                         ),
                         Button.inline(
-                            "📜  List all",
+                            "📜  قـائمـة الـكل",
                             data=f"ytdl_listall_{key_}_1",
                         ),
                         Button.inline(
-                            "⬇️  Download",
+                            "⬇️  تـنـزيـل",
                             data=f'ytdl_download_{outdata[1]["video_id"]}_0',
                         ),
                     ]
@@ -419,7 +419,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     id=str(uuid4()),
                     type="photo",
                     title=link,
-                    description="⬇️ Click to Download",
+                    description="⬇️ اضغــط للـتنزيـل",
                     thumb=photo,
                     content=photo,
                     send_message=types.InputBotInlineMessageMediaAuto(
@@ -428,9 +428,9 @@ async def inline_handler(event):  # sourcery no-metrics
                 )
             else:
                 result = builder.article(
-                    title="Not Found",
-                    text=f"No Results found for `{str_y[1]}`",
-                    description="INVALID",
+                    title="لـم يـتم الـعثور",
+                    text=f"لا تـوجـد اي نـتيجـة لـ  : `{str_y[1]}`",
+                    description="خـطـأ",
                 )
             try:
                 await event.answer([result] if result else None)
@@ -472,7 +472,7 @@ async def inline_handler(event):  # sourcery no-metrics
             await event.answer([result] if result else None)
         elif string == "pmpermit":
             buttons = [
-                Button.inline(text="Show Options.", data="show_pmpermit_options"),
+                Button.inline(text="عـرض الـخيارات", data="show_pmpermit_options"),
             ]
             PM_PIC = gvarstatus("pmpermit_pic")
             if PM_PIC:
