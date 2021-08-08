@@ -34,7 +34,7 @@ async def img_sampler(event):
         query = str(event.pattern_match.group(2))
     if not query:
         return await edit_or_reply(
-            event, "يجب كـتابة نـص او بالـرد عـلى نـص اولا ⌬"
+            event, "يجب كـتابة نـص او بالـرد عـلى نـص اولا ⌬**"
         )
     cat = await edit_or_reply(event, "**⌔︙ يـتم الـتعـرف انتـظر قلـيلا ⏱")
     if event.pattern_match.group(1) != "":
