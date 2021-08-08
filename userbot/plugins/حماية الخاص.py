@@ -604,7 +604,7 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الحماية (on|off)$",
+    pattern="الحماية (تشغيل|تعطيل)$",
     command=("الحماية", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
@@ -614,7 +614,7 @@ async def on_plug_in_callback_query_handler(event):
 async def pmpermit_on(event):
     "Turn on/off pmpermit."
     input_str = event.pattern_match.group(1)
-    if input_str == "on":
+    if input_str == "تشغيل":
         if gvarstatus("pmpermit") is None:
             addgvar("pmpermit", "true")
             await edit_delete(
@@ -632,7 +632,7 @@ async def pmpermit_on(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الحماية (on|off)$",
+    pattern="الحماية (تشغيل|تعطيل)$",
     command=("الحماية", plugin_category),
     info={
         "header": "To turn on or turn off pmmenu.",
@@ -642,7 +642,7 @@ async def pmpermit_on(event):
 async def pmpermit_on(event):
     "Turn on/off pmmenu."
     input_str = event.pattern_match.group(1)
-    if input_str == "off":
+    if input_str == "تعطيل":
         if gvarstatus("pmmenu") is None: #ترجمه وكتابة فريق جمثون 
             addgvar("pmmenu", "false")
             await edit_delete(
@@ -680,7 +680,7 @@ async def approve_p_m(event):  # sourcery no-metrics
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌔︙ يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
+            f"⌔︙ يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -759,7 +759,7 @@ async def disapprove_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌔︙ يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
+            f"⌔︙ يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -863,7 +863,7 @@ async def unblock_pm(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌔︙ يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
+            f"⌔︙ يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
