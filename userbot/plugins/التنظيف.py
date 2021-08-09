@@ -104,7 +104,7 @@ async def purgeme(event):
     message = event.text
     count = int(message[9:])
     i = 1
-    async for message in event.client.iter_messages(event.chat_id, from_user="رسائلي"):
+    async for message in event.client.iter_messages(event.chat_id, from_user="لي"):
         if i > count + 1:
             break
         i += 1
