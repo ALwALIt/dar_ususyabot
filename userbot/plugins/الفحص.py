@@ -71,6 +71,30 @@ async def amireallyalive(event):
             f"**{JMTHON} المنشئ›** {mention}\n",
         )
 
+@jmthon.ar_cmd(
+    pattern="ialive$",
+    command=("ialive", plugin_category),
+    info={
+        "header": "To check bot's alive status via inline mode",
+        "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
+        "usage": [
+            "{tr}alive",
+        ],
+    },
+)
+async def amireallyalive(event):
+    "A kind of showing bot details by your inline bot"
+    reply_to_id = await reply_id(event)
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
+    cat_caption = f"**سـورس جـمثـون يعـمل بـنجاح ✅**\n"
+    cat_caption += f"**{EMOJI} نسخـۿ التليثون :** `{version.__version__}\n`"
+    cat_caption += f"**{EMOJI} نسخـۿ جـمثون :** `{catversion}`\n"
+    cat_caption += f"**{EMOJI} نسخـۿ البايثون :** `{python_version()}\n`"
+    cat_caption += f"**{EMOJI} المستخدم :** {mention}\n"
+    results = await event.client.inline_query(Config.TG_BOT_USERNAME, cat_caption)
+    await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
+    await event.delete()
+
 @jmthon.tgbot.on(CallbackQuery(data=re.compile(b"stats")))
 async def on_plug_in_callback_query_handler(event):
     statstext = await catalive(StartTime)
