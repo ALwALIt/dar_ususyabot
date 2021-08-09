@@ -249,7 +249,7 @@ async def inline_handler(event):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
-                    Button.url("Repo", "https://t.me/JMTHON"),
+                    Button.url("Ch", "https://t.me/JMTHON"),
                 )
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
