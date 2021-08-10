@@ -318,7 +318,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         DMY = time.strftime("%Y.%m.%d")
         HM = time.strftime("%I:%M:%S")
-        bio = f" {DEFAULTUSERBIO} - {HM}"
+        bio = f" {DEFAULTUSERBIO} - {DMY}"
         LOGS.info(bio)
         try:
             await jmthon(functions.account.UpdateProfileRequest(about=bio))
