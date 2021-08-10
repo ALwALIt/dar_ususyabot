@@ -216,7 +216,7 @@ async def set_pmlog(event):
         await event.edit("**⌔︙  تـخزين رسـائل الخـاص بالفـعل معـطلة ✅**")
 
 
-@jmthon.ar_cmd=(
+@jmthon.ar_cmd(
     pattern="تخزين الكروبات (تشغيل|ايقاف)$",
     command=("تخزين الكروبات", plugin_category),
     info={
