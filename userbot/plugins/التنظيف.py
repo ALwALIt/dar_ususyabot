@@ -90,7 +90,7 @@ async def delete_it(event):
 
 
 @jmthon.ar_cmd(
-    pattern="حذف رسائلي",
+    pattern="حذف رسائلي$",
     command=("حذف رسائلي", plugin_category),
     info={
         "header": "To purge your latest messages.",
