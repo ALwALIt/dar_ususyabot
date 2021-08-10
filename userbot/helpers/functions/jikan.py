@@ -20,7 +20,7 @@ async def formatJSON(outData):
     jsonData = json.loads(outData)
     res = list(jsonData.keys())
     if "errors" in res:
-        msg += f"**Error** : `{jsonData['errors'][0]['message']}`"
+        msg += f"**خـطـأ** : `{jsonData['errors'][0]['message']}`"
         return msg
     jsonData = jsonData["data"]["Media"]
     if "bannerImage" in jsonData.keys():
@@ -30,16 +30,15 @@ async def formatJSON(outData):
     title = jsonData["title"]["romaji"]
     link = f"https://anilist.co/anime/{jsonData['id']}"
     msg += f"[{title}]({link})"
-    msg += f"\n\n**Type** : {jsonData['format']}"
-    msg += f"\n**Genres** : "
+    msg += f"\n\n**الـنوع** : {jsonData['format']}"
+    msg += f"\n**الانـواع** : "
     for g in jsonData["genres"]:
         msg += g + " "
-    msg += f"\n**Status** : {jsonData['status']}"
-    msg += f"\n**Episode** : {jsonData['episodes']}"
-    msg += f"\n**Year** : {jsonData['startDate']['year']}"
-    msg += f"\n**Score** : {jsonData['averageScore']}"
-    msg += f"\n**Duration** : {jsonData['duration']} min\n\n"
-    # https://t.me/catuserbot_support/19496
+    msg += f"\n**الـحـالة** : {jsonData['status']}"
+    msg += f"\n**الـحـلقة** : {jsonData['episodes']}"
+    msg += f"\n**الـسـنة** : {jsonData['startDate']['year']}"
+    msg += f"\n**التقـيـيم** : {jsonData['averageScore']}"
+    msg += f"\n**المـدة** : {jsonData['duration']} min\n\n"
     cat = f"{jsonData['description']}"
     msg += " __" + re.sub("<br>", "\n", cat) + "__"
     msg = re.sub("<b>", "__**", msg)
@@ -51,9 +50,9 @@ def shorten(description, info="anilist.co"):
     msg = ""
     if len(description) > 700:
         description = description[0:200] + "....."
-        msg += f"\n**Description**:\n{description} [Read More]({info})"
+        msg += f"\n**الوصـف**:\n{description} [Read More]({info})"
     else:
-        msg += f"\n**Description**: \n   {description}"
+        msg += f"\n**الوصـف**: \n   {description}"
     return (
         msg.replace("<br>", "")
         .replace("</br>", "")
@@ -208,9 +207,9 @@ def get_anime_manga(mal_id, search_type, _user_id):  # sourcery no-metrics
         result = jikan.anime(mal_id)
         trailer = result["trailer_url"]
         if trailer:
-            LOL = f"<a href='{trailer}'>Trailer</a>"
+            LOL = f"<a href='{trailer}'>تيـرلـر</a>"
         else:
-            LOL = "<i>No Trailer Available</i>"
+            LOL = "<i>لا يـوجد تيـرلر مـتاح</i>"
         image = getBannerLink(mal_id)
         studio_string = ", ".join(
             studio_info["name"] for studio_info in result["studios"]
@@ -232,7 +231,7 @@ def get_anime_manga(mal_id, search_type, _user_id):  # sourcery no-metrics
     alternative_names.extend(result["title_synonyms"])
     if alternative_names:
         alternative_names_string = ", ".join(alternative_names)
-        caption += f"\n<b>Also known as</b>: <i>{alternative_names_string}</i>"
+        caption += f"\n<b>أيـضا تعــرف بـ</b>: <i>{alternative_names_string}</i>"
     genre_string = ", ".join(genre_info["name"] for genre_info in result["genres"])
     if result["synopsis"] is not None:
         synopsis = result["synopsis"].split(" ", 60)
@@ -249,30 +248,30 @@ def get_anime_manga(mal_id, search_type, _user_id):  # sourcery no-metrics
     if search_type == "anime_anime":
         caption += textwrap.dedent(
             f"""
-        🆎 <b>Type</b>: <i>{result['type']}</i>
-        📡 <b>Status</b>: <i>{result['status']}</i>
-        🎙️ <b>Aired</b>: <i>{result['aired']['string']}</i>
-        🔢 <b>Episodes</b>: <i>{result['episodes']}</i>
-        💯 <b>Score</b>: <i>{result['score']}</i>
-        🌐 <b>Premiered</b>: <i>{result['premiered']}</i>
-        ⌛ <b>Duration</b>: <i>{result['duration']}</i>
-        🎭 <b>Genres</b>: <i>{genre_string}</i>
-        🎙️ <b>Studios</b>: <i>{studio_string}</i>
-        💸 <b>Producers</b>: <i>{producer_string}</i>
-        🎬 <b>Trailer:</b> {LOL}
-        📖 <b>Synopsis</b>: <i>{synopsis_string}</i> <a href='{result['url']}'>Read More</a>
+        🆎 <b>الـنـوع</b>: <i>{result['type']}</i>
+        📡 <b>الـحالة</b>: <i>{result['status']}</i>
+        🎙️ <b>الـبث</b>: <i>{result['aired']['string']}</i>
+        🔢 <b>الـحلقـات</b>: <i>{result['episodes']}</i>
+        💯 <b>الـتقييـم</b>: <i>{result['score']}</i>
+        🌐 <b>العـرض الأول</b>: <i>{result['premiered']}</i>
+        ⌛ <b>الـمدة</b>: <i>{result['duration']}</i>
+        🎭 <b>الاسـلوب</b>: <i>{genre_string}</i>
+        🎙️ <b>الاسـتوديو</b>: <i>{studio_string}</i>
+        💸 <b>الـمنتجـين</b>: <i>{producer_string}</i>
+        🎬 <b>التيـرلر:</b> {LOL}
+        📖 <b>الـملخـص</b>: <i>{synopsis_string}</i> <a href='{result['url']}'>Read More</a>
         """
         )
     elif search_type == "anime_manga":
         caption += textwrap.dedent(
             f"""
-        🆎 <b>Type</b>: <i>{result['type']}</i>
-        📡 <b>Status</b>: <i>{result['status']}</i>
+        🆎 <b>الـنـوع</b>: <i>{result['type']}</i>
+        📡 <b>الـحالة</b>: <i>{result['status']}</i>
         🔢 <b>Volumes</b>: <i>{result['volumes']}</i>
-        📃 <b>Chapters</b>: <i>{result['chapters']}</i>
-        💯 <b>Score</b>: <i>{result['score']}</i>
-        🎭 <b>Genres</b>: <i>{genre_string}</i>
-        📖 <b>Synopsis</b>: <i>{synopsis_string}</i>
+        📃 <b>الـفصـل</b>: <i>{result['chapters']}</i>
+        💯 <b>الـتقييـم</b>: <i>{result['score']}</i>
+        🎭 <b>الـتقييـم</b>: <i>{genre_string}</i>
+        📖 <b>الـملخـص</b>: <i>{synopsis_string}</i>
         """
         )
     return caption, image
