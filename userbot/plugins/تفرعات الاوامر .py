@@ -1,4 +1,4 @@
-# WRITE  BY @QHR_1 - @RRRD7
+# WRITE  BY @VUUZZ - @RR9R7
 # PLUGIN FOR JMTHON USERBOT
 # @JMTHON
 
@@ -280,6 +280,16 @@ async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit(
          "قائمة اوامر التسـلية 7 :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌔︙ اختر احدى هذه القوائم\n\n- ( `.تراش` بالرد على ملصق/صورة )\n- ( `.تهديد` بالرد على ملصق/صورة )\n- ( `.فخ`  بالرد على ملصق/صورة + الاسم1 ; الاسم2 )\n- ( `.بورن`  بالرد على ملصق/صورة + المعرف ; النص )\n- ( `.تويت` + المعرف ; النص )\n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
+           )
+#@VUUZZ  -  @RRRD7
+@jmthon.ar_cmd(
+    pattern="تسلية 8$",
+    command=("تسلية 8", plugin_category),
+               )
+async def _(event):
+     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+        await event.edit(
+         "قائمة اوامر التسـلية 8 :\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌔︙ اختر احدى هذه القوائم\n\n- ( `.نص` + النص )\n- ( `.ستيكر` + النص )\n- ( `.هونك` + النص )\n- ( `.تغريد` + النص )\n- ( `.غلاكس` + النص )\n- ( `.دوغي` + النص )\n\n➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JMTHON"
            )
 #@VUUZZ  -  @RRRD7
 @jmthon.ar_cmd(
