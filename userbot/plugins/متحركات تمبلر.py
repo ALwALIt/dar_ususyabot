@@ -49,11 +49,11 @@ async def tmgif(event):
         return
     leo = await reply_id(event)
     if tmb2:
-        RR9R7 = f"**{RR9R7}**\n"
-        RR9R7 += f"✛━━━━━━━━━━━━━✛\n"
-        RR9R7 += f"**الـمتحـرڪـة الـثـانيـة **\n"
-        RR9R7 += f"✛━━━━━━━━━━━━━✛"
-        await event.client.send_file(event.chat_id, tmb2, caption=RR9R7, reply_to=leo)
+        RAZAN = f"**{RR9R7}**\n"
+        RAZAN += f"✛━━━━━━━━━━━━━✛\n"
+        RAZAN += f"**الـمتحـرڪـة الـثـانيـة **\n"
+        RAZAN += f"✛━━━━━━━━━━━━━✛"
+        await event.client.send_file(event.chat_id, tmb2, caption=RAZAN, reply_to=leo)
 
 #edit  ~ @RR9R7 for Jmthon 
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
@@ -65,7 +65,7 @@ async def tmgif(event):
 async def tmgif(event):
     if event.fwd_from:
         return
-    sic_id = await reply_id(i)
+    sic_id = await reply_id(event)
     if tmb3:
         RAZAN = f"**{RR9R7}**\n"
         RAZAN += f"✛━━━━━━━━━━━━━✛\n"
