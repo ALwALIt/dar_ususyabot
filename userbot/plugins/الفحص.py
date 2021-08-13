@@ -1,9 +1,10 @@
 import random
 import re
 import time
+from datetime import datetime
 from platform import python_version
 
-from telethon import version, Button
+from telethon import version
 from telethon.errors.rpcerrorlist import (
     MediaEmptyError,
     WebpageCurlFailedError,
@@ -22,80 +23,60 @@ from . import mention
 
 plugin_category = "utils"
 
+#كتـابة وتعـديل:  @RR9R7
+
 @jmthon.ar_cmd(
     pattern="فحص$",
-    command=("فحص", plugin_category),
-    info={
-        "header": "To check bot's alive status",
-        "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
-        "usage": [
-            "{tr}alive",
-        ],
-    },
-)
+    command=("فحص", plugin_category), )
+    
 async def amireallyalive(event):
-    "A kind of showing bot details"
+    "للتـأكد من ان البـوت يعـمـل"
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
+    start = datetime.now()
+    await edit_or_reply(event, "** ⌔︙ يتـم التـأكـد انتـظر قليلا رجاءا**")
+    end = datetime.now()
+    ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
-    JMTHON = gvarstatus("ALIVE_EMOJI") or "  - "
-    JMTHON_TEXT = gvarstatus("ALIVE_TEXT") or "**- JMTHON USERBOT.**"
-    JMTHON_IMG = gvarstatus("ALIVE_PIC") or " https://telegra.ph/file/794e7311e8e3aadcf8dff.jpg "
-    if JMTHON_IMG:
-        RRRD7 = [x for x in JMTHON_IMG.split()]
-        A_IMG = list(RRRD7)
-        PIC = random.choice(A_IMG)
-        RRRD7_caption = f"**{JMTHON_TEXT}**\n"
-        RRRD7_caption += f"✛━━━━━━━━━━━━━✛\n"
-        RRRD7_caption += f"**{JMTHON} قاعدة البيانات ›** تـعمل بنجـاح\n"
-        RRRD7_caption += f"**{JMTHON} نسخـۿ التليثون  ›** {version.__version__}\n"
-        RRRD7_caption += f"**{JMTHON} نسخـۿ جـمثون ›** {catversion}\n"
-        RRRD7_caption += f"**{JMTHON} نسخـۿ البايثون ›** {python_version()}\n"
-        RRRD7_caption += f"**{JMTHON} مدة التشغيل ›** {uptime}\n"
-        RRRD7_caption += f"**{JMTHON} المستخدم ›** {mention}\n"
-        RRRD7_caption += f"**{JMTHON}**  **[مطور السورس]**(t.me/JMTHON)   \n"
-        RRRD7_caption += f"✛━━━━━━━━━━━━━✛\n"
-        await event.client.send_file(
-            event.chat_id, PIC, caption=RRRD7_caption, reply_to=reply_to_id
-        )
-        await event.delete()
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جـمثـون يعـمل بنـجـاح **"
+    RR7_IMG = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/cc9c443bdd5b0003fa8c6.jpg"
+    jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
+    caption = jmthon_caption.format(
+        ALIVE_TEXT=ALIVE_TEXT,
+        EMOJI=EMOJI,
+        mention=mention,
+        uptime=uptime,
+        telever=version.__version__,
+        jmver=catversion,
+        pyver=python_version(),
+        dbhealth=check_sgnirts,
+        ping=ms,
+    )
+    if RR7_IMG:
+        RR7 = [x for x in RR7_IMG.split()]
+        PIC = random.choice(RR7)
+        try:
+            await event.client.send_file(
+                event.chat_id, PIC, caption=caption, reply_to=reply_to_id
+            )
+            await event.delete()
+        except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
+            return await edit_or_reply(
+                event,
+                f"**الميـديا خـطأ **\nغـير الرابـط بأستـخدام الأمـر  \n `.اضف_فار ALIVE_PIC رابط صورتك`\n\n**لا يمـكن الحـصول عـلى صـورة من الـرابـط :-** `{PIC}`",
+            )
     else:
         await edit_or_reply(
             event,
-            f"**{JMTHON_TEXT}**\n\n"
-            f"**{JMTHON} قاعدۿ البيانات ›** `تـعمل بنجـاح`\n"
-            f"**{JMTHON} نسخۿ تليثون ›** `{version.__version__}\n`"
-            f"**{JMTHON} نسخـۿ جـمثون ›** `{catversion}`\n"
-            f"**{JMTHON} نسخـۿ البايثون ›** `{python_version()}\n`"
-            f"**{JMTHON} الوقت ›** `{uptime}\n`"
-            f"**{JMTHON} المنشئ›** {mention}\n",
+            caption,
         )
 
-@jmthon.ar_cmd(
-    pattern="ialive$",
-    command=("ialive", plugin_category),
-    info={
-        "header": "To check bot's alive status via inline mode",
-        "options": "To show media in this cmd you need to set ALIVE_PIC with media link, get this by replying the media by .tgm",
-        "usage": [
-            "{tr}alive",
-        ],
-    },
-)
-async def amireallyalive(event):
-    "A kind of showing bot details by your inline bot"
-    reply_to_id = await reply_id(event)
-    EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
-    cat_caption = f"**سـورس جـمثـون يعـمل بـنجاح ✅**\n"
-    cat_caption += f"**{EMOJI} نسخـۿ التليثون :** `{version.__version__}\n`"
-    cat_caption += f"**{EMOJI} نسخـۿ جـمثون :** `{catversion}`\n"
-    cat_caption += f"**{EMOJI} نسخـۿ البايثون :** `{python_version()}\n`"
-    cat_caption += f"**{EMOJI} المستخدم :** {mention}\n"
-    results = await event.client.inline_query(Config.TG_BOT_USERNAME, cat_caption)
-    await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
-    await event.delete()
 
-@jmthon.tgbot.on(CallbackQuery(data=re.compile(b"stats")))
-async def on_plug_in_callback_query_handler(event):
-    statstext = await catalive(StartTime)
-    await event.answer(statstext, cache_time=0, alert=True)
+temp = """- {ALIVE_TEXT}
+**{EMOJI} قاعدۿ البيانات :** `{dbhealth}`
+**{EMOJI} أصـدار التـيليثون :** `{telever}`
+**{EMOJI} أصـدار جـمثون :** `{jmver}`
+**{EMOJI} أصدار البـايثون :** `{pyver}`
+**{EMOJI} الوقـت :** `{uptime}`
+**{EMOJI} المسـتخدم:** {mention}"""
