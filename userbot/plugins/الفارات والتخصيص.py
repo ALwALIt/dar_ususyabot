@@ -7,6 +7,7 @@ from userbot.core.logger import logging
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
+from . import BOTLOG_CHATID
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
@@ -16,16 +17,17 @@ extractor = URLExtract()
 vlist = [
     "ALIVE_PIC",
     "ALIVE_EMOJI",
+    "ALIVE_TEMPLATE",
     "ALIVE_TEXT",
+    "ALLOW_NSFW",
     "PM_PIC",
     "PM_TEXT",
     "PM_BLOCK",
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
     "CUSTOM_STICKER_PACKNAME",
-    "PING_PIC",
 ]
-#ملف التخصيص لسورس جمثون
+
 oldvars = {
     "PM_PIC": "pmpermit_pic",
     "PM_TEXT": "pmpermit_txt",
@@ -39,33 +41,16 @@ oldvars = {
     info={
         "header": "Set vars in database or Check or Delete",
         "description": "Set , Fetch or Delete values or vars directly in database without restart or heroku vars.\n\nYou can set multiple pics by giving space after links in alive, ialive, pm permit.",
-        "flags": {
-            "set": "To set new var in database or modify the old var",
-            "get": "To show the already existing var value.",
-            "del": "To delete the existing value",
-        },
-        "var name": "[list of vars](https://catuserbot.gitbook.io/catuserbot/data-vars-setup)",
-        "usage": [
-            "{tr}setdv <var name> <var value>",
-            "{tr}getdv <var name>",
-            "{tr}deldv <var name>",
-        ],
-        "examples": [
-            "{tr}setdv ALIVE_PIC <pic link>",
-            "{tr}setdv ALIVE_PIC <pic link 1> <pic link 2>",
-            "{tr}getdv ALIVE_PIC",
-            "{tr}deldv ALIVE_PIC",
-        ],
-    },
+   },
 )
-async def bad(event):  # sourcery no-metrics
+async def bad(event):  
     "To manage vars in database"
     cmd = event.pattern_match.group(1).lower()
     vname = event.pattern_match.group(2)
     vnlist = "".join(f"{i}. `{each}`\n" for i, each in enumerate(vlist, start=1))
     if not vname:
         return await edit_delete(
-            event, f"**📑 يجب وضع اسم المتغير الصحيح من هذه القائمه :\n\n**{vnlist}", time=60
+            event, f"**📑 يـجب وضع المتغير الصحـيح من هـنا :\n\n**{vnlist}", time=60
         )
     vinfo = None
     if " " in vname:
@@ -77,35 +62,50 @@ async def bad(event):  # sourcery no-metrics
         if vname in oldvars:
             vname = oldvars[vname]
         if cmd == "اضف_":
+            if not vinfo and vname == "ALIVE_TEMPLATE":
+                return await edit_delete(event, f"تابع @JJOTT")
             if not vinfo:
                 return await edit_delete(
-                    event, f"** يجب وضع اسم المتغير اولا لاستخدامه لـ **{vname}**"
+                    event, f" ⌔︙ يـجب وضع القـيمـة الصحـيح اولا**"
                 )
             check = vinfo.split(" ")
             for i in check:
                 if (("PIC" in vname) or ("pic" in vname)) and not url(i):
-                    return await edit_delete(event, "**قم بوضع رابط صحيح او وضع رابط تلكراف**")
+                    return await edit_delete(event, "** ⌔︙ يـجـب وضـع رابـط صحـيح اولا**")
             addgvar(vname, vinfo)
+            if BOTLOG_CHATID:
+                await event.client.send_message(
+                    BOTLOG_CHATID,
+                    f" ⌔︙ وضع فـار\
+                    \n**{vname}** هـذا الـفار تـم تـحديثـه",
+                )
+                await event.client.send_message(BOTLOG_CHATID, vinfo, silent=True)
             await edit_delete(
-                event, f"📑 القيـمة لـ **{vname}** \n تـم تغييـرها لـ :- `{vinfo}`", time=20
+                event, f"📑 القـيمة **{vname}**\n تـم تغييـرها لـ :- `{vinfo}`", time=20
             )
         if cmd == "معلومات_":
             var_data = gvarstatus(vname)
             await edit_delete(
-                event, f"📑 قيـمة الـ **{vname}** \n هي  `{var_data}`", time=20
+                event, f"📑 القيـمة لـ **{vname}** هـي  `{var_data}`", time=20
             )
         elif cmd == "حذف_":
             delgvar(vname)
+            if BOTLOG_CHATID:
+                await event.client.send_message(
+                    BOTLOG_CHATID,
+                    f" ⌔︙ حـذف فـار \
+                    \n**{vname}** تـم حـذف هـذا الفـار",
+                )
             await edit_delete(
                 event,
-                f"📑 قيـمة الـ **{vname}** \n تم حذفها ووضع القيمه الاصلية لها",
+                f"📑 الـقيـمة لـ **{vname}** \n تم حذفها ووضع القيمه الاصلية لها",
                 time=20,
             )
     else:
         await edit_delete(
             event, f"**📑 يـجب وضع المتغير الصحـيح من هذه الـقائمة :\n\n**{vnlist}", time=60
         )
-#ملف التخصيص لسورس جمثون 
+
 
 @jmthon.ar_cmd(
     pattern="تخصيص (pmpermit|pmpic|pmblock|startmsg)$",
@@ -146,8 +146,8 @@ async def custom_catuserbot(event):
     text = None
     if reply:
         text = reply.text
-    if not reply and text:
-        return await edit_delete(event, "⌔︙ قم بالرد على الكتابة او الرابط اولا ")
+    if text is None:
+        return await edit_delete(event, "⌔︙ قم بالرد على الكتابة او الرابط اولا")
     input_str = event.pattern_match.group(1)
     if input_str == "pmpermit":
         addgvar("pmpermit_txt", text)
@@ -159,8 +159,16 @@ async def custom_catuserbot(event):
         urls = extractor.find_urls(reply.text)
         if not urls:
             return await edit_delete(event, "⌔︙ الرابط المـرسل غيـر مدعـوم ❕", 5)
-        addgvar("pmpermit_pic", urls)
-    await edit_or_reply(event, f"⌔︙ تم تحـديث التخصـيص الخاص بنك بـنجاح ✅ ")
+        text = " ".join(urls)
+        addgvar("pmpermit_pic", text)
+    await edit_or_reply(event, f"⌔︙ تم تحـديث التخصـيص الخاص بنك بـنجاح ✅")
+    if BOTLOG_CHATID:
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            f"#SET_DATAVAR\
+                    \n**{input_str}** is updated newly in database as below",
+        )
+        await event.client.send_message(BOTLOG_CHATID, text, silent=True)
 
 
 @jmthon.ar_cmd(
@@ -204,3 +212,9 @@ async def custom_catuserbot(event):
     await edit_or_reply(
         event, f"⌔︙  تم بنجاح ازالة هذا التخصيص ✅"
     )
+    if BOTLOG_CHATID:
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            f" ⌔︙ حـذف فـار\
+                    \n**{input_str}** تـم حـذف هـذا الفـار",
+        )
