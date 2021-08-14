@@ -279,7 +279,7 @@ async def bloom_pfploop():
         image = Image.open(autophoto_path)
         image.paste((R, G, B), [0, 0, image.size[0], image.size[1]])
         image.save(autophoto_path)
-        current_time = datetime.now().strftime("\n 𖥻  %I:%M:%S")
+        current_time = datetime.now().strftime("\n   %I:%M:%S")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
@@ -317,8 +317,8 @@ async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
         DMY = time.strftime("%Y.%m.%d")
-        HM = time.strftime("%I:%M:%S")
-        bio = f" {DEFAULTUSERBIO} - {DMY}"
+        HM = time.strftime("%I:%M")
+        bio = f" {DEFAULTUSERBIO} 𓆩{HM}𓆪"
         LOGS.info(bio)
         try:
             await jmthon(functions.account.UpdateProfileRequest(about=bio))
