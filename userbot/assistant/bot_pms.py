@@ -289,10 +289,7 @@ async def handler(event):
                 LOGS.error(str(e))
 
 
-@jmthon.bot_cmd(
-    pattern=f"^/uinfo$",
-    from_users=Config.OWNER_ID,
-)
+@jmthon.bot_cmd(pattern="^/معلومات$", from_users=Config.OWNER_ID)
 async def bot_start(event):
     reply_to = await reply_id(event)
     if not reply_to:
@@ -343,8 +340,10 @@ async def send_flood_alert(user_) -> None:
         except Exception as e:
             if BOTLOG:
                 await jmthon.tgbot.send_message(
-                    BOTLOG_CHATID, f"**Error:**\nWhile updating flood count\n`{str(e)}`"
+                    BOTLOG_CHATID,
+                    f"**Error:**\nWhile updating flood count\n`{e}`",
                 )
+
         flood_count = FloodConfig.ALERT[user_.id]["count"]
     else:
         flood_count = FloodConfig.ALERT[user_.id]["count"] = 1
@@ -414,7 +413,7 @@ async def bot_pm_ban_cb(c_q: CallbackQuery):
     try:
         user = await jmthon.get_entity(user_id)
     except Exception as e:
-        await c_q.answer(f"Error:\n{str(e)}")
+        await c_q.answer(f"Error:\n{e}")
     else:
         await c_q.answer(f"Banning UserID -> {user_id} ...", alert=False)
         await ban_user_from_bot(user, "Spamming Bot")
@@ -453,9 +452,9 @@ def is_flood(uid: int) -> Optional[bool]:
 @check_owner
 async def settings_toggle(c_q: CallbackQuery):
     if gvarstatus("bot_antif") is None:
-        return await c_q.answer(f"بوت قفل التكرار بالفعل معطل.", alert=False)
+        return await c_q.answer("بوت قفل التكرار بالفعل معطل.", alert=False)
     delgvar("bot_antif")
-    await c_q.answer(f"Bot Antiflood disabled.", alert=False)
+    await c_q.answer("Bot Antiflood disabled.", alert=False)
     await c_q.edit("قفل التكرار تم تعطيله الان !")
 
 
@@ -470,9 +469,9 @@ async def antif_on_msg(event):
     user_id = chat.id
     if check_is_black_list(user_id):
         raise StopPropagation
-    elif await is_flood(user_id):
+    if await is_flood(user_id):
         await send_flood_alert(chat)
         FloodConfig.BANNED_USERS.add(user_id)
         raise StopPropagation
-    elif user_id in FloodConfig.BANNED_USERS:
+    if user_id in FloodConfig.BANNED_USERS:
         FloodConfig.BANNED_USERS.remove(user_id)
