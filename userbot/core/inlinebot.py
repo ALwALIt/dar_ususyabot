@@ -30,7 +30,7 @@ from .logger import logging
 LOGS = logging.getLogger(__name__)
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
-CATLOGO = "https://telegra.ph/file/6405429b7ec14eb2a51b9.jpg"
+CATLOGO = "https://telegra.ph/file/493268c1f5ebedc967eba.jpg"
 tr = Config.COMMAND_HAND_LER
 
 
@@ -53,56 +53,28 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"مـساعـد جـمثون\
-        \nالاوامـر لـ {mention}"
+    text = f"البـوت الـمساعـد\
+        \nخصـيصا الـيك {mention}"
     buttons = [
+        (Button.inline("ℹ️ Info", data="check"),),
         (
-            Button.inline(
-                f"ℹ️ Info",
-                data="check",
-            ),
+            Button.inline(f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})", data="admin_menu"),
+            Button.inline(f"🤖 Bot ({len(GRP_INFO['bot'])})", data="bot_menu"),
         ),
         (
-            Button.inline(
-                f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})",
-                data=f"admin_menu",
-            ),
-            Button.inline(
-                f"🤖 Bot ({len(GRP_INFO['bot'])})",
-                data=f"bot_menu",
-            ),
+            Button.inline(f"🎨 Fun ({len(GRP_INFO['fun'])})", data="fun_menu"),
+            Button.inline(f"🧩 Misc ({len(GRP_INFO['misc'])})", data="misc_menu"),
         ),
         (
-            Button.inline(
-                f"🎨 Fun ({len(GRP_INFO['fun'])})",
-                data=f"fun_menu",
-            ),
-            Button.inline(
-                f"🧩 Misc ({len(GRP_INFO['misc'])})",
-                data=f"misc_menu",
-            ),
+            Button.inline(f"🧰 Tools ({len(GRP_INFO['tools'])})", data="tools_menu"),
+            Button.inline(f"🗂 Utils ({len(GRP_INFO['utils'])})", data="utils_menu"),
         ),
         (
-            Button.inline(
-                f"🧰 Tools ({len(GRP_INFO['tools'])})",
-                data=f"tools_menu",
-            ),
-            Button.inline(
-                f"🗂 Utils ({len(GRP_INFO['utils'])})",
-                data=f"utils_menu",
-            ),
-        ),
-        (
-            Button.inline(
-                f"➕ Extra ({len(GRP_INFO['extra'])})",
-                data=f"extra_menu",
-            ),
-            Button.inline(
-                f"🔒 Close Menu",
-                data=f"close",
-            ),
+            Button.inline(f"➕ Extra ({len(GRP_INFO['extra'])})", data="extra_menu"),
+            Button.inline("🔒 Close Menu", data="close"),
         ),
     ]
+
     return text, buttons
 
 
@@ -124,15 +96,11 @@ def paginate_help(
 ):  # sourcery no-metrics
     try:
         number_of_rows = int(gvarstatus("NO_OF_ROWS_IN_HELP") or 5)
-    except ValueError:
-        number_of_rows = 5
-    except TypeError:
+    except (ValueError, TypeError):
         number_of_rows = 5
     try:
         number_of_cols = int(gvarstatus("NO_OF_COLUMNS_IN_HELP") or 2)
-    except ValueError:
-        number_of_cols = 2
-    except TypeError:
+    except (ValueError, TypeError):
         number_of_cols = 2
     HELP_EMOJI = gvarstatus("HELP_EMOJI") or " "
     helpable_plugins = [p for p in loaded_plugins if not p.startswith("_")]
@@ -190,6 +158,7 @@ def paginate_help(
     modulo_page = page_number % max_num_pages
     if plugins:
         if len(pairs) > number_of_rows:
+
             pairs = pairs[
                 modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
             ] + [
@@ -202,6 +171,8 @@ def paginate_help(
         else:
             pairs = pairs + [(Button.inline("⚙️ Main Menu", data="mainmenu"),)]
     elif len(pairs) > number_of_rows:
+        if category_pgno < 0:
+            category_pgno = len(pairs) + category_pgno
         pairs = pairs[
             modulo_page * number_of_rows : number_of_rows * (modulo_page + 1)
         ] + [
@@ -221,6 +192,8 @@ def paginate_help(
             )
         ]
     else:
+        if category_pgno < 0:
+            category_pgno = len(pairs) + category_pgno
         pairs = pairs + [
             (
                 Button.inline(
@@ -233,7 +206,7 @@ def paginate_help(
 
 
 @jmthon.tgbot.on(InlineQuery)
-async def inline_handler(event): 
+async def inline_handler(event):  # sourcery no-metrics
     builder = event.builder
     result = None
     query = event.text
@@ -243,13 +216,17 @@ async def inline_handler(event):
     string.split()
     query_user_id = event.query.user_id
     if query_user_id == Config.OWNER_ID or query_user_id in Config.SUDO_USERS:
-        hmm = re.compile("secret (.*) (.*)")
+        hmm = re.compile("troll (.*) (.*)")
         match = re.findall(hmm, query)
-        if query.startswith("**جـمثـون**"):
+        inf = re.compile("secret (.*) (.*)")
+        match2 = re.findall(inf, query)
+        hid = re.compile("hide (.*)")
+        match3 = re.findall(hid, query)
+        if query.startswith("**Catuserbot"):
             buttons = [
                 (
                     Button.inline("Stats", data="stats"),
-                    Button.url("Ch", "https://t.me/JMTHON"),
+                    Button.url("Repo", "https://github.com/JMTHON-AR/JM-THON"),
                 )
             ]
             ALIVE_PIC = gvarstatus("ALIVE_PIC")
@@ -321,6 +298,56 @@ async def inline_handler(event):
             query = query[7:]
             user, txct = query.split(" ", 1)
             builder = event.builder
+            troll = os.path.join("./userbot", "troll.txt")
+            try:
+                jsondata = json.load(open(troll))
+            except Exception:
+                jsondata = False
+            try:
+                # if u is user id
+                u = int(user)
+                try:
+                    u = await event.client.get_entity(u)
+                    if u.username:
+                        sandy = f"@{u.username}"
+                    else:
+                        sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                    u = int(u.id)
+                except ValueError:
+                    # ValueError: Could not find the input entity
+                    sandy = f"[user](tg://user?id={u})"
+            except ValueError:
+                # if u is username
+                try:
+                    u = await event.client.get_entity(user)
+                except ValueError:
+                    return
+                if u.username:
+                    sandy = f"@{u.username}"
+                else:
+                    sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                u = int(u.id)
+            except Exception:
+                return
+            timestamp = int(time.time() * 2)
+            newtroll = {str(timestamp): {"userid": u, "text": txct}}
+
+            buttons = [Button.inline("show message 🔐", data=f"troll_{timestamp}")]
+            result = builder.article(
+                title="Troll Message",
+                text=f"Only {sandy} cannot access this message!",
+                buttons=buttons,
+            )
+            await event.answer([result] if result else None)
+            if jsondata:
+                jsondata.update(newtroll)
+                json.dump(jsondata, open(troll, "w"))
+            else:
+                json.dump(newtroll, open(troll, "w"))
+        elif match2:
+            query = query[7:]
+            user, txct = query.split(" ", 1)
+            builder = event.builder
             secret = os.path.join("./userbot", "secrets.txt")
             try:
                 jsondata = json.load(open(secret))
@@ -335,6 +362,7 @@ async def inline_handler(event):
                         sandy = f"@{u.username}"
                     else:
                         sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                    u = int(u.id)
                 except ValueError:
                     # ValueError: Could not find the input entity
                     sandy = f"[user](tg://user?id={u})"
@@ -366,11 +394,34 @@ async def inline_handler(event):
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))
+        elif match3:
+            query = query[5:]
+            builder = event.builder
+            hide = os.path.join("./userbot", "hide.txt")
+            try:
+                jsondata = json.load(open(hide))
+            except Exception:
+                jsondata = False
+            timestamp = int(time.time() * 2)
+            newhide = {str(timestamp): {"text": query}}
+
+            buttons = [Button.inline("Read Message ", data=f"hide_{timestamp}")]
+            result = builder.article(
+                title="Hidden Message",
+                text=f"✖✖✖",
+                buttons=buttons,
+            )
+            await event.answer([result] if result else None)
+            if jsondata:
+                jsondata.update(newhide)
+                json.dump(jsondata, open(hide, "w"))
+            else:
+                json.dump(newhide, open(hide, "w"))
         elif string == "help":
             _result = main_menu()
             result = builder.article(
-                title="© JMTHONBOT Help",
-                description="Help menu for JMTHON ",
+                title="© CatUserbot Help",
+                description="Help menu for CatUserbot",
                 text=_result[0],
                 buttons=_result[1],
                 link_preview=False,
@@ -394,11 +445,11 @@ async def inline_handler(event):
                             data=f"ytdl_next_{key_}_1",
                         ),
                         Button.inline(
-                            "📜  قـائمـة الـكل",
+                            "📜  List all",
                             data=f"ytdl_listall_{key_}_1",
                         ),
                         Button.inline(
-                            "⬇️  تـنـزيـل",
+                            "⬇️  Download",
                             data=f'ytdl_download_{outdata[1]["video_id"]}_0',
                         ),
                     ]
@@ -419,7 +470,7 @@ async def inline_handler(event):
                     id=str(uuid4()),
                     type="photo",
                     title=link,
-                    description="⬇️ اضغــط للـتنزيـل",
+                    description="⬇️ Click to Download",
                     thumb=photo,
                     content=photo,
                     send_message=types.InputBotInlineMessageMediaAuto(
@@ -428,9 +479,9 @@ async def inline_handler(event):
                 )
             else:
                 result = builder.article(
-                    title="لـم يـتم الـعثور",
-                    text=f"لا تـوجـد اي نـتيجـة لـ  : `{str_y[1]}`",
-                    description="خـطـأ",
+                    title="Not Found",
+                    text=f"No Results found for `{str_y[1]}`",
+                    description="INVALID",
                 )
             try:
                 await event.answer([result] if result else None)
@@ -472,7 +523,7 @@ async def inline_handler(event):
             await event.answer([result] if result else None)
         elif string == "pmpermit":
             buttons = [
-                Button.inline(text="عـرض الـخيارات", data="show_pmpermit_options"),
+                Button.inline(text="أظهـار الـخيارات", data="show_pmpermit_options"),
             ]
             PM_PIC = gvarstatus("pmpermit_pic")
             if PM_PIC:
@@ -509,7 +560,7 @@ async def inline_handler(event):
                 Button.url("Source code", "https://github.com/JMTHON-AR/JM-THON"),
                 Button.url(
                     "Deploy",
-                    "T.ME/JMTHON",
+                    "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FMr-confused%2Fcatpack&template=https%3A%2F%2Fgithub.com%2FMr-confused%2Fcatpack",
                 ),
             )
         ]
@@ -518,14 +569,14 @@ async def inline_handler(event):
             url=CATLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "DEPLOY YOUR OWN JMTHON BOT.", "md"
+            "نـصب جـمثـون بنـفسـك ", "md"
         )
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
-            title="JMTHON",
+            title="JmThOn",
             description="Deploy yourself",
-            url="https://T.ME/JMTHON",
+            url="https://github.com/JMTHON-AR/JM-THON",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(
@@ -568,7 +619,7 @@ async def on_plug_in_callback_query_handler(event):
 
 @jmthon.tgbot.on(
     CallbackQuery(
-        data=re.compile(b"back_([a-z]+)_([a-z]+)_([0-9]+)_?([a-z]+)?_?([0-9]+)?")
+        data=re.compile(b"back_([a-z]+)_([a-z1-9]+)_([0-9]+)_?([a-z1-9]+)?_?([0-9]+)?")
     )
 )
 @check_owner
@@ -579,8 +630,8 @@ async def on_plug_in_callback_query_handler(event):
     if mtype == "plugin":
         buttons = paginate_help(pgno, GRP_INFO[category], category)
         text = f"**Category: **`{category}`\
-            \n**Total plugins :** {len(GRP_INFO[category])}\
-            \n**Total Commands:** {command_in_category(category)}"
+            \n**Total plugins :** __{len(GRP_INFO[category])}__\
+            \n**Total Commands:** __{command_in_category(category)}__"
     else:
         category_plugins = str(event.pattern_match.group(4).decode("UTF-8"))
         category_pgno = int(event.pattern_match.group(5).decode("UTF-8"))
@@ -593,8 +644,8 @@ async def on_plug_in_callback_query_handler(event):
             category_pgno=category_pgno,
         )
         text = f"**Plugin: **`{category}`\
-                \n**Category: **{getkey(category)}\
-                \n**Total Commands:** {len(PLG_INFO[category])}"
+                \n**Category: **__{getkey(category)}__\
+                \n**Total Commands:** __{len(PLG_INFO[category])}__"
     await event.edit(text, buttons=buttons)
 
 
@@ -627,12 +678,12 @@ async def on_plug_in_callback_query_handler(event):
             category_pgno=category_pgno,
         )
         text = f"**Plugin: **`{category}`\
-                \n**Category: **{getkey(category)}\
-                \n**Total Commands:** {len(PLG_INFO[category])}"
+                \n**Category: **__{getkey(category)}__\
+                \n**Total Commands:** __{len(PLG_INFO[category])}__"
         try:
             return await event.edit(text, buttons=buttons)
-        except Exception:
-            pass
+        except Exception as e:
+            LOGS.error(str(e))
     await event.edit(buttons=buttons)
 
 
@@ -665,7 +716,9 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.tgbot.on(
-    CallbackQuery(data=re.compile(b"(.*)_cmdhelp_([a-z]+)_([0-9]+)_([a-z]+)_([0-9]+)"))
+    CallbackQuery(
+        data=re.compile(b"(.*)_cmdhelp_([a-z1-9]+)_([0-9]+)_([a-z]+)_([0-9]+)")
+    )
 )
 @check_owner
 async def on_plug_in_callback_query_handler(event):
