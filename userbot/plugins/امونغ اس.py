@@ -115,9 +115,9 @@ async def _(event):
     stcr3 = await event.client.send_file(
         event.chat_id, "CAADAQADOwADnjOcH77v3Ap51R7gAg"
     )
-    text4 = await event.reply(f"**- الاخـرين :** أيــن??? ")
+    text4 = await event.reply("**- الاخـرين :** أيــن??? ")
     await asyncio.sleep(2)
-    await text4.edit(f"**- الاخـرين :** مــن ?? ")
+    await text4.edit("**- الاخـرين :** مــن ?? ")
     await asyncio.sleep(2)
     await text4.edit(
         f"**[{ALIVE_NAME}]({USERNAME}) :** أنـه {name} , لقـد شاهـدت {name}  يستـخدم الفيـنت ,"
