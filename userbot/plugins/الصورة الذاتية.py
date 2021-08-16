@@ -9,7 +9,7 @@ async def oho(event):
   pic = await rr9r7.download_media()
   await bot.send_file(event.chat_id, pic, caption=f"""
 - CH ~ @JMTHON
-- DEV ~  @RR9R7
+- DEV ~ @RR9R7
   """)
   await event.delete()
 
