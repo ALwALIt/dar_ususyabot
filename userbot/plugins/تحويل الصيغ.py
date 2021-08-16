@@ -1,5 +1,5 @@
 #Copyright  By  @JMTHON  © 2021
-#WRITE BY  @RRRD7  
+#WRITE BY  @RR9R7 - @GGGNE
 
 import asyncio
 import base64
@@ -54,8 +54,8 @@ thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 #WRITE BY  @RRRD7  
 
 @jmthon.ar_cmd(
-    pattern="تحويل صورة$",
-    command=("تحويل صورة", plugin_category),
+    pattern="تحويل_صورة$",
+    command=("تحويل_صورة", plugin_category),
     info={
         "header": "Reply this command to a sticker to get image.",
         "description": "This also converts every media to image. that is if video then extracts image from that video.if audio then extracts thumb.",
@@ -83,8 +83,8 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="تحويل ملصق$",
-    command=("تحويل ملصق", plugin_category),
+    pattern="تحويل_ملصق$",
+    command=("تحويل_ملصق", plugin_category),
     info={
         "header": "Reply this command to image to get sticker.",
         "description": "This also converts every media to sticker. that is if video then extracts image from that video. if audio then extracts thumb.",
@@ -224,8 +224,8 @@ async def _(event):
 #WRITE BY  @RRRD7
 
 @jmthon.ar_cmd(
-    pattern="تحويل متحركة ?([0-9.]+)?$",
-    command=("تحويل متحركة", plugin_category),
+    pattern="تحويل_متحركة ?([0-9.]+)?$",
+    command=("تحويل_متحركة", plugin_category),
     info={
         "header": "Reply this command to a video to convert it to gif.",
         "description": "By default speed will be 1x",
