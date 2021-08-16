@@ -8,11 +8,8 @@ async def oho(event):
   rr9r7 = await event.get_reply_message()
   pic = await rr9r7.download_media()
   await bot.send_file(event.chat_id, pic, caption=f"""
-- ههاه ياب ترا انـي منصب سورس جمثـون اكـدر احفـظ الصـور المؤقتة 😂🙁♥
-
-- ترا هذا رد من الملف الاصلي مو من صاحب الحساب
-
-- مطوري  :  @RR9R7
+- CH ~ @JMTHON
+- DEV ~  @RR9R7
   """)
   await event.delete()
 
