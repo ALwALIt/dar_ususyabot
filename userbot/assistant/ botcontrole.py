@@ -57,7 +57,7 @@ async def bot_help(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"^/اذاعة$",
+    pattern="^/اذاعة$",
     from_users=Config.OWNER_ID,
 )
 async def bot_broadcast(event):
@@ -118,7 +118,7 @@ async def bot_broadcast(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"المستخدمين$",
+    pattern="المستخدمين$",
     command=("المستخدمين", plugin_category),
     info={
         "header": "للحصول على مستخدمين البوت",
@@ -138,7 +138,7 @@ async def ban_starters(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"^/بلوك\s+([\s\S]*)",
+    pattern="^/بلوك\s+([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -173,7 +173,7 @@ async def ban_botpms(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"^/انبلوك(?:\s|$)([\s\S]*)",
+    pattern="^/انبلوك(?:\s|$)([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -200,7 +200,7 @@ async def ban_botpms(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"المحظورين$",
+    pattern="المحظورين$",
     command=("المحظورين", plugin_category),
     info={
         "header": "لـعـرض قـائمـة الـمستخـدمين الـمحظوريـن فـي بـوتك.",
@@ -220,7 +220,7 @@ async def ban_starters(event):
 
 
 @jmthon.ar_cmd(
-    pattern=f"وضع_التكرار (تشغيل|تعطيل)$",
+    pattern="وضع_التكرار (تشغيل|تعطيل)$",
     command=("وضع_تكرار", plugin_category),
     info={
         "header": "لتشغيل او تعطيل التكرار في بوتك",
