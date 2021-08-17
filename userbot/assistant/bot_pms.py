@@ -105,15 +105,10 @@ async def bot_start(event):
         else:
             start_msg = f"مرحبا عزيزي ! ⚕️ {mention},\
                         \nانا البوت المساعد لـ {my_mention} .\
-                        \nيمكنك التواصل مع مالك الحساب من هنا.\
-                        \n\nتم التطوير بواسطة  [جـمثون](https://t.me/JMTHON)"
+                        \nيمكنك التواصل مع مالك الحساب من هنا"
         buttons = [
             (
-                Button.url("الدعم", "https://T.me/JMTHON"),
-                Button.url(
-                    "للـتنصيب",
-                    "https://T.ME/JMTHON",
-                ),
+                Button.url("CH", "https://T.me/JMTHON")
             )
         ]
     else:
