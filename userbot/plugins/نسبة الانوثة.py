@@ -45,8 +45,12 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
+    if user.id == 1694386561:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور زلمة وعلى راسك**")
+    if user.id == 1657933680:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور زلمة وعلى راسك**")
+    if user.id == 1715051616:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور زلمة وعلى راسك**")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sos = random.choice(rr7)
     await edit_or_reply(mention, f"⌔︙ نسبة الانوثة لـ [{tag}](tg://user?id={user.id}) هـي {sos} 🥵🖤")
