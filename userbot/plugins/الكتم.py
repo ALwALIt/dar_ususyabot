@@ -79,19 +79,17 @@ async def startgmute(event):
     if event.is_private:
         await event.edit("⌔︙ قد تحدث مشاكل او اخطاء غير متوقعة ")
         await asyncio.sleep(5)
+        reason = event.pattern_match.group(1)
+    else:
+        user, reason = await get_user_from_event(event)
+        if not user:
+            return
         if user.id == 1715051616:
             return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
         if user.id == 1694386561:
             return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
         if user.id == 1657933680:
             return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
-        reason = event.pattern_match.group(1)
-    else:
-        user, reason = await get_user_from_event(event)
-        if not user:
-            return
-        if user.id == jmthon.uid:
-            return await edit_or_reply(event, "**⌔︙- عذرا لايمكنني كتم نفسي ⚠️**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
