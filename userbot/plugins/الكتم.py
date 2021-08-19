@@ -146,7 +146,7 @@ async def startgmute(event):
 async def endgmute(event):
     "To remove gmute on that person."
     if event.is_private:
-        await event.edit("قد تحدث مشاكل او اخطاء غير متوقعة !")
+        await event.edit("⌔︙ قد تحدث مشاكل او اخطاء غير متوقعة ")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -155,12 +155,12 @@ async def endgmute(event):
         if not user:
             return
         if user.id == jmthon.uid:
-            return await edit_or_reply(event, "**⌔︙ عذرا لا يمكنني كتم نفسي ⚠️**")
+            return await edit_or_reply(event, "** لا استـطيع كـم نفسـي هـل انت غـبي؟**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "**⌔︙ آسف أنا غير قادر على حظـر المستخدم ⚠️**")
+        return await edit_or_reply(event, "غـير قـادر عـلى الـتعرف عـلى المسـتخدم")
 
     if not is_muted(userid, "gmute"):
         return await edit_or_reply(
