@@ -24,7 +24,3 @@ async def _(event):
                     str(event.chat_id), str(r_msg.sender_id)
                 ),
             )
-    else:
-        await bot.send_message(
-            event.chat_id, "**ايـدي الـدردشة الـحالي هـو:** `{}`".format(str(event.chat_id))
-        )
