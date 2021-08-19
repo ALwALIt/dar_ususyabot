@@ -75,8 +75,6 @@ async def detail(replied_user, event):
     if username:
       caption += f"<b>➥ المعـرف:</b> <i>{username}</i> \n"
     caption += f'<b>➥ رابط الحساب:</b> <i><a href="tg://user?id={user_id}">Perma Link</a></i>'
-    if user_id in kimo:
-        caption += "\n<b>╚⊶⊶⊶⊶⊶ هـذا مطـوري ;) ⊷⊷⊷⊷⊷╝</b>"
     if not event.sender_id == boy:
        if user_id == boy:
         caption += "\n<b>╚⊶⊶⊶⊶⊶ هـذا مالـك الـبوت ⊷⊷⊷⊷⊷╝</b>"
