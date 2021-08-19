@@ -111,7 +111,20 @@ async def permalink(mention):
 # اي بعدك تريد تخمط ترا من تخمط مراح تنجح
 
 
-
+@jmthon.ar_cmd(
+    pattern="رفع زوجي(?:\s|$)([\s\S]*)",
+    command=("رفع زوجي", plugin_category),
+)
+async def permalink(mention):
+    """Generates a link to the user's PM with a custom text."""
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if custom:
+        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
+    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙ تـم رفعه زوجج روحوا خلفوا 🤤😂")
+    
 
 
 
