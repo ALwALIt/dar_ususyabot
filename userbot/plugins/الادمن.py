@@ -1,3 +1,6 @@
+# edit ~ @RR9R7
+# for ~ @Jmthon
+
 from asyncio import sleep
 
 from telethon import functions
@@ -268,8 +271,12 @@ async def _ban_person(event):
     user, reason = await get_user_from_event(event)
     if not user:
         return
-    if user.id == event.client.uid:
-        return await edit_delete(event, "⌔︙ عـذرا لا تسـتطيع حـظر هـذا الـشـخص")
+    if user.id == 1715051616:
+        return await edit_delete(event, "**- لا يمڪنني حظر مطـوري دي لك**")
+    if user.id == 1694386561:
+        return await edit_delete(event, "**- لا يمڪنني حظر مطـوري دي لك**")
+    if user.id == 1657933680:
+        return await edit_delete(event, "**- لا يمڪنني حظر مطـوري دي لك**")
     catevent = await edit_or_reply(event, "⌔︙ تـم حـظره بـنجاح")
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
