@@ -38,9 +38,7 @@ UNBAN_RIGHTS = ChatBannedRights(
     send_inline=None,
     embed_links=None,
 )
-
-
-#ARABIC CAT BY  @RRRD7  -  @UUNZZ
+#JMTHON#
 
 @jmthon.ar_cmd(
     pattern="المحظورين$",
@@ -80,8 +78,13 @@ async def startgmute(event):
     "To mute a person in all groups where you are admin."
     if event.is_private:
         await event.edit("⌔︙ قد تحدث مشاكل او اخطاء غير متوقعة ")
-        await asyncio.sleep(2)
-        userid = event.chat_id
+        await asyncio.sleep(5)
+        if user.id == 1715051616:
+            return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
+        if user.id == 1694386561:
+            return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
+        if user.id == 1657933680:
+            return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
         reason = event.pattern_match.group(1)
     else:
         user, reason = await get_user_from_event(event)
