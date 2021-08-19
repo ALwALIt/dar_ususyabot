@@ -6,7 +6,7 @@ from telethon.tl.types import MessageEntityMentionName
 import os
 
 
-@asst_cmd("ايدي")
+@admin_cmd("ايدي")
 @owner
 async def who(event):
     replied_user = await get_user(event)
