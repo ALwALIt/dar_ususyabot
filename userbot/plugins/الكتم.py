@@ -1,19 +1,21 @@
+import base64
 import asyncio
 from datetime import datetime
 
 from telethon.errors import BadRequestError
-from telethon.tl.functions.users import GetFullUserReques
-from telethon.utils import get_display_name
+from telethon.tl.functions.channels import EditBannedRequest
+from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import ChatBannedRights
 
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
+from ..sql_helper import gban_sql_helper as gban_sql
 from ..sql_helper.mute_sql import is_muted, mute, unmute
 from . import BOTLOG, BOTLOG_CHATID, admin_groups, get_user_from_event
 
 plugin_category = "admin"
-
 
 #=================== الكـــــــــــــــتم  ===================  #
 
@@ -33,7 +35,7 @@ async def startgmute(event):
         if not user:
             return
         if user.id == jmthon.uid:
-            return await edit_or_reply(event, "**𖡛... لمـاذا تࢪيـد كتم نفسـك؟ ...𖡛**")
+            return await edit_or_reply(event, "**𖡛... . لمـاذا تࢪيـد كتم نفسـك؟  ...𖡛**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
@@ -52,26 +54,26 @@ async def startgmute(event):
         if reason:
             await edit_or_reply(
                 event,
-                f"**𖤏 تـم كـتم الـمستخـدم بـنجاح  🔕 **",
+                f"** تـم كـتم الـمستخـدم بـنجاح  ،🔕 **",
             )
         else:
             await edit_or_reply(
                 event,
-                f"**𖤏 تـم كـتم الـمستخـدم بـنجاح  🔕 **",
+                f"** تـم كـتم الـمستخـدم بـنجاح  ،🔕 **",
             )
     if BOTLOG:
         reply = await event.get_reply_message()
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "𖤏 الـكتم\n"
+                " الـكتم\n"
                 f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n"
                 f"**السبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "𖤏 الـكتم\n"
+                " الـكتم\n"
                 f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
         if reply:
@@ -118,25 +120,25 @@ async def endgmute(event):
         if reason:
             await edit_or_reply(
                 event,
-                f"**𖤏 تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔 **",
+                f"** تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔، **",
             )
         else:
             await edit_or_reply(
                 event,
-                f"**𖤏 تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔 **",
+                f"** تـم الـغاء كتـم  الـمستخـدم بـنجاح  🔔، **",
             )
     if BOTLOG:
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "𖤏 الغـاء الـكتم\n"
+                "، الغـاء الـكتم\n"
                 f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n"
                 f"**السبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "𖤏 الغـاء الـكتم \n"
+                " الغـاء الـكتم \n"
                 f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
 
