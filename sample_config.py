@@ -39,7 +39,6 @@ class Config(object):
 
     # تعديلي 
     PING_PIC = os.environ.get("PING_PIC")
-    PING_TEXT = os.environ.get("PING_TEXT", None)
     TIME_JM = os.environ.get("TIME_JM", None)
 
     # Set this value with group id of private group(can be found this value by .id)
