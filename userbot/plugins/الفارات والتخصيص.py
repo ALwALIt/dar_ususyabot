@@ -65,8 +65,8 @@ async def bad(event):
         if cmd == "اضف_":
             if not vinfo and vname == "ALIVE_TEMPLATE":
                 return await edit_delete(event, f"تابع @JJOTT")
-            if not vinfo and vname == "TIME_JM":
-                return await edit_delete(event, f"تابع @JMTHON")
+            if not vinfo and vname == "PING_TEXT":
+                return await edit_delete(event, f"اكـتب الامـر بـشكل صحـيح  :  .اضف_فار PING_TEXT النص الخاص بك")
             if not vinfo:
                 return await edit_delete(
                     event, f" ⌔︙ يـجب وضع القـيمـة الصحـيح اولا**"
