@@ -48,7 +48,7 @@ def resize_image(image):
 )  # sourcery no-metrics
 async def _(event):
     "⌔︙ للحصـول على رابـط تلكراف  :."
-    razevnt = await edit_or_reply(event, "**⌔︙ جـاري المعالجـة **")
+    catevent = await edit_or_reply(event, "**⌔︙ جـاري المعالجـة **")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -56,7 +56,7 @@ async def _(event):
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
-        return await razevnt.edit(
+        return await catevent.edit(
             "**⌔︙ قـم بالـردّ على رسالـة للحصـول على رابـط صـورة تليجـراف ☍**",
         )
 
@@ -67,20 +67,21 @@ async def _(event):
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
-        await razevnt.edit(f"**⌔︙ تـم التحميـل إلى**  `{downloaded_file_name}`")
+        await catevent.edit(f"**⌔︙ تـم التحميـل إلى**  `{downloaded_file_name}`")
         if downloaded_file_name.endswith((".webp")):
             resize_image(downloaded_file_name)
         try:
             media_urls = upload_file(downloaded_file_name)
         except exceptions.TelegraphException as exc:
-            await razevnt.edit(f"**⌔︙ حـدث خـطأ مـا ✕ : **\n`{str(exc)}`")
+            await catevent.edit(f"**⌔︙ حـدث خـطأ مـا ✕ : **\n`{str(exc)}`")
             os.remove(downloaded_file_name)
         else:
             end = datetime.now()
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
-            await razevnt.edit(
-                 f"**- الرابـط  : ** [اضغـط هـنا](https://telegra.ph{media_urls[0]})",
+            await catevent.edit(
+                 f"**⌔︙ الرابـط ☍ : ** [اضغـط هـنا](https://telegra.ph{media_urls[0]})\
+                    \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي`",
                 link_preview=False,
             )
     elif input_str in ["نص", "t"]:
@@ -114,8 +115,9 @@ async def _(event):
             response = telegraph.create_page(title_of_page, html_content=page_content)
         end = datetime.now()
         ms = (end - start).seconds
-        razan = f"https://telegra.ph/{response['path']}"
-        await razevnt.edit(
-            f"**- الرابـط  : ** [اضغـط هـنا]({razan})",
+        cat = f"https://telegra.ph/{response['path']}"
+        await catevent.edit(
+            f"**⌔︙ الرابـط ☍ : ** [اضغـط هـنا]({cat})\
+                 \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي`",
             link_preview=False,
         )
