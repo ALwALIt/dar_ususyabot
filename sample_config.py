@@ -36,6 +36,8 @@ class Config(object):
     # BASIC and MAIN CONFIG VARS
     # for profile default name
     AUTONAME = os.environ.get("AUTONAME", None)
+    # اظهـار رمز مع الاسم الوقتي
+    TIME_JM = os.environ.get("TIME_JM", None)
     # Set this value with group id of private group(can be found this value by .id)
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)
     # Set this value same as PRIVATE_GROUP_BOT_API_ID if you need pmgaurd
