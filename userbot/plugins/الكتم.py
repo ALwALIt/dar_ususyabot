@@ -2,140 +2,85 @@ import asyncio
 from datetime import datetime
 
 from telethon.errors import BadRequestError
-from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import ChatBannedRights
+from telethon.tl.functions.users import GetFullUserReques
+from telethon.utils import get_display_name
 
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
-from ..sql_helper import gban_sql_helper as gban_sql
 from ..sql_helper.mute_sql import is_muted, mute, unmute
 from . import BOTLOG, BOTLOG_CHATID, admin_groups, get_user_from_event
 
 plugin_category = "admin"
 
-BANNED_RIGHTS = ChatBannedRights(
-    until_date=None,
-    view_messages=True,
-    send_messages=True,
-    send_media=True,
-    send_stickers=True,
-    send_gifs=True,
-    send_games=True,
-    send_inline=True,
-    embed_links=True,
-)
 
-UNBAN_RIGHTS = ChatBannedRights(
-    until_date=None,
-    send_messages=None,
-    send_media=None,
-    send_stickers=None,
-    send_gifs=None,
-    send_games=None,
-    send_inline=None,
-    embed_links=None,
-)
-#JMTHON#
+#=================== الكـــــــــــــــتم  ===================  #
 
 @jmthon.ar_cmd(
-    pattern="المحظورين$",
-    command=("المحظورين", plugin_category),
-    info={
-        "header": "Shows you the list of all gbanned users by you.",
-        "usage": "{tr}listgban",
-    },
-)
-async def gablist(event):
-    "Shows you the list of all gbanned users by you."
-    gbanned_users = gban_sql.get_all_gbanned()
-    GBANNED_LIST = "الـمستخدمين الـمحظورين\n"
-    if len(gbanned_users) > 0:
-        for a_user in gbanned_users:
-            if a_user.reason:
-                GBANNED_LIST += f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) لـ {a_user.reason}\n"
-            else:
-                GBANNED_LIST += (
-                    f"👉 [{a_user.chat_id}](tg://user?id={a_user.chat_id}) بـدون سبب\n"
-                )
-    else:
-        GBANNED_LIST = "⌔︙ لا يوجد مستخدمين محظورين ⚠️"
-    await edit_or_reply(event, GBANNED_LIST)
-
-
-@jmthon.ar_cmd(
-    pattern="كتم(?: |$)(.*)",
+    pattern="كتم(?:\s|$)([\s\S]*)",
     command=("كتم", plugin_category),
-    info={
-        "header": "To mute a person in all groups where you are admin.",
-        "description": "It doesnt change user permissions but will delete all messages sent by him in the groups where you are admin including in private messages.",
-        "usage": "{tr}gmute username/reply> <reason (optional)>",
-    },
 )
 async def startgmute(event):
     "To mute a person in all groups where you are admin."
     if event.is_private:
-        await event.edit("⌔︙ قد تحدث مشاكل او اخطاء غير متوقعة ")
-        await asyncio.sleep(5)
+        await event.edit("**𖡛... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...𖡛**")
+        await asyncio.sleep(2)
+        userid = event.chat_id
         reason = event.pattern_match.group(1)
     else:
         user, reason = await get_user_from_event(event)
         if not user:
             return
-        if user.id == 1715051616:
-            return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
-        if user.id == 1694386561:
-            return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
-        if user.id == 1657933680:
-            return await edit_or_reply(event, "**- لا يمڪنني كتم مطـوري دي لك**")
+        if user.id == jmthon.uid:
+            return await edit_or_reply(event, "**𖡛... لمـاذا تࢪيـد كتم نفسـك؟ ...𖡛**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "⌔︙ اسف انا غير قادر ع حظـر او كتم المستخدم ⚠️")
+        return await edit_or_reply(event, "**𖡛... غيـر قـادر عـلى جـلب مـعلومات الـشخص ...𖡛**")
     if is_muted(userid, "gmute"):
         return await edit_or_reply(
             event,
-            f"{_format.mentionuser(user.first_name ,user.id)}  مكتوم بالفعل ✅",
+            f"**𖡛... هـذا الشـخص مكـتوم بـنجاح ...𖡛**",
         )
     try:
         mute(userid, "gmute")
     except Exception as e:
-        await edit_or_reply(event, f"**خطـا**\n`{str(e)}`")
+        await edit_or_reply(event, f"**خـطأ**\n`{e}`")
     else:
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} تم كتـم المستخدم بنجاح ✅\n**الـسبب :** `{reason}`",
+                f"**𖤏 تـم كـتم الـمستخـدم بـنجاح  🔕 **",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} تم كتـم المستخدم بنجاح ✅",
+                f"**𖤏 تـم كـتم الـمستخـدم بـنجاح  🔕 **",
             )
     if BOTLOG:
         reply = await event.get_reply_message()
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#الكـتم\n"
-                f"**المستخدم 👱‍♂ :** {_format.mentionuser(user.first_name ,user.id)} \n"
-                f"**سبب :** `{reason}`",
+                "𖤏 الـكتم\n"
+                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n"
+                f"**السبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#الكـتم\n"
-                f"**المستخدم 👱‍♂ :** {_format.mentionuser(user.first_name ,user.id)} \n",
+                "𖤏 الـكتم\n"
+                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
         if reply:
             await reply.forward_to(BOTLOG_CHATID)
 
+#=================== الغـــــــــــــاء الكـــــــــــــــتم  ===================  #
 
 @jmthon.ar_cmd(
-    pattern="الغاء كتم(?: |$)(.*)",
+    pattern="الغاء كتم(?:\s|$)([\s\S]*)",
     command=("الغاء كتم", plugin_category),
     info={
         "header": "To unmute the person in all groups where you were admin.",
@@ -146,7 +91,7 @@ async def startgmute(event):
 async def endgmute(event):
     "To remove gmute on that person."
     if event.is_private:
-        await event.edit("⌔︙ قد تحدث مشاكل او اخطاء غير متوقعة ")
+        await event.edit("**𖡛... قـد تحـدث بعـض المـشاكـل أو الأخـطاء ...𖡛**")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -155,49 +100,51 @@ async def endgmute(event):
         if not user:
             return
         if user.id == jmthon.uid:
-            return await edit_or_reply(event, "** لا استـطيع كـم نفسـي هـل انت غـبي؟**")
+            return await edit_or_reply(event, "**𖡛... لمـاذا تࢪيـد كتم نفسـك؟ ...𖡛**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "غـير قـادر عـلى الـتعرف عـلى المسـتخدم")
-
+        return await edit_or_reply(event, "**𖡛... غيـࢪ قـادࢪ عـلى جـلب مـعلومات الـشخص ...𖡛**")
     if not is_muted(userid, "gmute"):
         return await edit_or_reply(
-            event, f"{_format.mentionuser(user.first_name ,user.id)} غير مكتوم 🔱"
+            event, f"**𖡛... هـذا الشـخص غيـࢪ مكـتوم اصلا  ...𖡛**"
         )
     try:
         unmute(userid, "gmute")
     except Exception as e:
-        await edit_or_reply(event, f"**خـطـا**\n`{str(e)}`")
+        await edit_or_reply(event, f"**خطـأ**\n`{e}`")
     else:
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} تم الغاء كتم المستخدم بنجاح ✅\n**الـسبب  :** `{reason}`",
+                f"**𖤏 تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔 **",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} **تم الغاء كتم المستخدم بنجاح 👨‍💻**",
+                f"**𖤏 تـم الغـاء كـتم الـمستخـدم بـنجاح  🔔 **",
             )
     if BOTLOG:
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#الـغاء_الـكتم\n"
-                f"**المستخدم 👨‍💻 :** {_format.mentionuser(user.first_name ,user.id)} \n"
-                f"**سبب :** `{reason}`",
+                "𖤏 الغـاء الـكتم\n"
+                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n"
+                f"**السبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#الـغاء_الـكتم\n"
-                f"**المستخدم 👨‍💻 :** {_format.mentionuser(user.first_name ,user.id)} \n",
+                "𖤏 الغـاء الـكتم \n"
+                f"**المستخدم :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
 
+# ===================================== # 
 
 @jmthon.ar_cmd(incoming=True)
 async def watcher(event):
     if is_muted(event.sender_id, "gmute"):
         await event.delete()
+
+#=====================================  #
