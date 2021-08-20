@@ -41,7 +41,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC
-RRRD7 = gvarstatus("TIME_JM") or " "
+RRRD7 = Config.TIME_JM or ""
 #كتابة فريق جمثون  على التليكرام
 
 @bot.on(admin_cmd(pattern="الحدث ?(.*)"))
