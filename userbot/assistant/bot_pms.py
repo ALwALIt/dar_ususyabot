@@ -31,7 +31,6 @@ LOGS = logging.getLogger(__name__)
 
 plugin_category = "bot"
 botusername = Config.TG_BOT_USERNAME
-JMTHON = os.environ.get("CH_JM") or "JMTHON"
 
 class FloodConfig:
     BANNED_USERS = set()
@@ -108,7 +107,7 @@ async def bot_start(event):
                         \nيمكنك التواصل مع مالك الحساب من هنا"
         buttons = [
             (
-                Button.url("CH", "https://T.me/{JMTHON}")
+                Button.url("CH", "https://T.me/JMTHON")
             )
         ]
     else:
