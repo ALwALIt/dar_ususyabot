@@ -18,7 +18,7 @@ LOGS = logging.getLogger("جـمثون")
 bot = jmthon
 
 StartTime = time.time()
-catversion = "4.0.0"
+JMVERSION = "4.0.0"
 
 if Config.UPSTREAM_REPO == "Jmthon-iq":
     UPSTREAM_REPO_URL = "https://github.com/JMTHON-AR/JM-THON"
