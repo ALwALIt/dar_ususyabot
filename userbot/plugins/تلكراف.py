@@ -45,9 +45,9 @@ def resize_image(image):
             "{tr}telegraph text <title(optional)>",
         ],
     },
-)  # sourcery no-metrics
+)
 async def _(event):
-    "⌔︙ للحصـول على رابـط تلكراف  :."
+    "To get telegraph link"
     catevent = await edit_or_reply(event, "**⌔︙ جـاري المعالجـة **")
     if BOTLOG:
         await event.client.send_message(
