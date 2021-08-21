@@ -31,7 +31,7 @@ LOGS = logging.getLogger(__name__)
 
 plugin_category = "bot"
 botusername = Config.TG_BOT_USERNAME
-JMTHON = os.environ.get(CH_JM) or "JMTHON"
+JMTHON = os.environ.get("CH_JM") or "JMTHON"
 
 class FloodConfig:
     BANNED_USERS = set()
