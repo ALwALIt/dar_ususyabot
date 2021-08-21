@@ -29,41 +29,27 @@ def resize_image(image):
 
 
 @jmthon.ar_cmd(
-    pattern="(ت(ل)?ك(راف)?) ?(m|t|ميديا|نص)(?:\s|$)([\s\S]*)",
+    pattern="(ت(ل)?ك(راف)?) ?(م|ن|ميديا|نص)(?:\s|$)([\s\S]*)",
     command=("تلكراف", plugin_category),
-    info={
-        "header": "⌔︙ للحصـول على رابـط تليڪـراف  :",
-        "description": "⌔︙ قـم بالـرد على نـص لتحـويله الى  تليڪـراف ڪما يمڪنك الإدخـال   مع الأمـر/ لغـرض تخصيـص عنـوان لهـذا التليڪـراف والـردّ على ملـف الوسائـط للحصـول على رابـط قابـل للمشـارڪة لتلك الوسائـط (يدعم 5 ميڪابايت تقريباً) 💡",
-        "options": {
-            "m or media": "⌔︙ للحصـول على رابـط تليڪـراف لـ (ملصـق/صـورة/فيديـو/متحرڪة)  :",
-            "t or text": "⌔︙ للحصـول على رابـط تليڪـراف للنّـص الـذي تـمّ الـردّ عليه، يمڪنك إستخـدام عنـوان مخصـص :",
-        },
-        "usage": [
-            "{tr}tgm",
-            "{tr}tgt <title(optional)>",
-            "{tr}telegraph media",
-            "{tr}telegraph text <title(optional)>",
-        ],
-    },
-)
+    )
 async def _(event):
     "To get telegraph link"
-    catevent = await edit_or_reply(event, "**⌔︙ جـاري المعالجـة **")
+    catevent = await edit_or_reply(event, "**⌔︙ جاري المعالجـة **")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"**⌔︙ تـمّ إنشـاء تليجـراف جديـد ✓ :** {auth_url} \n ** لا تقـم بإعطـاء هـذا الرابـط إلى أي أحـد، حتى وإن قـال بأنّـه مطـور لـدى تليڪـرام !**",
+            f"** تـم صـنع رابـط تليجـراف جديـد  :** {auth_url} \n **للجلسـة الحاليـة، لا تقـم بإعطـاء هـذا الرابـط إلى أي أحـد، حتى وإن قـال بأنّـه موظـف لـدى تليڪـرام !**",
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
         return await catevent.edit(
-            "**⌔︙ قـم بالـردّ على رسالـة للحصـول على رابـط صـورة تليجـراف ☍**",
+            "**⌔︙ قـم بالـردّ على رسالـة للحصـول على رابـط صـورة تليجـراف**",
         )
 
     start = datetime.now()
     r_message = await event.get_reply_message()
     input_str = (event.pattern_match.group(4)).strip()
-    if input_str in ["ميديا", "m"]:
+    if input_str in ["ميديا", "م"]:
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
@@ -73,18 +59,18 @@ async def _(event):
         try:
             media_urls = upload_file(downloaded_file_name)
         except exceptions.TelegraphException as exc:
-            await catevent.edit(f"**⌔︙ حـدث خـطأ مـا ✕ : **\n`{str(exc)}`")
+            await catevent.edit(f"**⌔︙ حـدث خـطأ مـا : **\n`{str(exc)}`")
             os.remove(downloaded_file_name)
         else:
             end = datetime.now()
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await catevent.edit(
-                 f"**⌔︙ الرابـط ☍ : ** [اضغـط هـنا](https://telegra.ph{media_urls[0]})\
-                    \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي`",
-                link_preview=False,
+                 f"**⌔︙ الرابـط  : ** [اضغط هنا](https://telegra.ph{media_urls[0]})\
+                    \n**⌔︙ الوقـت المستغـرق   : ** `{ms} الثوانـي.`",
+                link_preview=True,
             )
-    elif input_str in ["نص", "t"]:
+    elif input_str in ["نص", "ن"]:
         user_object = await event.client.get_entity(r_message.sender_id)
         title_of_page = get_display_name(user_object)
         # apparently, all Users do not have last_name field
@@ -117,7 +103,7 @@ async def _(event):
         ms = (end - start).seconds
         cat = f"https://telegra.ph/{response['path']}"
         await catevent.edit(
-            f"**⌔︙ الرابـط ☍ : ** [اضغـط هـنا]({cat})\
-                 \n**⌔︙ الوقـت المستغـرق ⏱  : ** `{ms} الثوانـي`",
-            link_preview=False,
+            f"**⌔︙ الرابـط  : **[اضغـط هـنا]({cat})\
+                 \n**⌔︙ الوقـت المستغـرق   : ** `{ms} الثوانـي.`",
+            link_preview=True,
         )
