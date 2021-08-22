@@ -1,1 +1,0 @@
-from Jmthon.razan import *
