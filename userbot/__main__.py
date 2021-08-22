@@ -47,6 +47,7 @@ async def startup_process():
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
+    await load_plugins("roz")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     print("⌔︙ بـوت جـمثون يعـمل بـنجاح ")
     print(
