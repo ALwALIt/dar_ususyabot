@@ -151,6 +151,22 @@ async def tmgif(event):
         await event.client.send_file(
             event.chat_id, sad8, caption=RAZAN, reply_to=reply_to_id
         )
+
+@jmthon.ar_cmd(
+    pattern="س9$",
+    command=("س9", plugin_category),
+           )
+async def tmgif(event):
+    if event.fwd_from:
+        return
+    reply_to_id = await reply_id(event)
+    if sad9:
+        RAZAN = f"**{RR9R7}**\n"
+        RAZAN += f"✛━━━━━━━━━━━━━✛\n"
+        RAZAN += f"**الـمتحـرڪـة التـاسعـة**\n"
+        await event.client.send_file(
+            event.chat_id, sad9, caption=RAZAN, reply_to=reply_to_id
+        )
       
 #edit  ~ @RR9R7 for Jmthon 
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
