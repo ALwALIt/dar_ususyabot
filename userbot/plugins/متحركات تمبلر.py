@@ -12,8 +12,8 @@ from . import *
 
 plugin_category = "extra"
 @jmthon.ar_cmd(
-    pattern="ت1$",
-    command=("ت1", plugin_category),
+    pattern="ك1$",
+    command=("ك1", plugin_category),
            )
 async def tmgif(event):
     if event.fwd_from:
@@ -22,16 +22,15 @@ async def tmgif(event):
     if cute:
         jmthon = f"**{RR9R7}**\n"
         jmthon += f"✛━━━━━━━━━━━━━✛\n"
-        jmthon += f"**الـمتحـرڪـة الأولـى **\n"
-        jmthon += f"✛━━━━━━━━━━━━━✛"
+        jmthon += f"**الـمتحـرڪـة الأولـى **"
         await event.client.send_file(event.chat_id, cute, caption=jmthon, reply_to=ROZ)
 
 #edit  ~ @RR9R7 for Jmthon 
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
-    pattern="ت2$",
-    command=("ت2", plugin_category),
+    pattern="ك2$",
+    command=("ك2", plugin_category),
            )
 async def tmgif(event):
     if event.fwd_from:
@@ -47,8 +46,8 @@ async def tmgif(event):
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
-    pattern="ت3$",
-    command=("ت3", plugin_category),
+    pattern="ك3$",
+    command=("ك3", plugin_category),
            )
 async def tmgif(event):
     if event.fwd_from:
@@ -64,8 +63,8 @@ async def tmgif(event):
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
-    pattern="ت4$",
-    command=("ت4", plugin_category),
+    pattern="ك4$",
+    command=("ك4", plugin_category),
            )
 async def tmgif(event):
     if event.fwd_from:
@@ -83,8 +82,8 @@ async def tmgif(event):
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
-    pattern="ت5$",
-    command=("ت5", plugin_category),
+    pattern="ك5$",
+    command=("ك5", plugin_category),
            )
 
 async def tmgif(event):
@@ -103,8 +102,8 @@ async def tmgif(event):
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
-    pattern="ت6$",
-    command=("ت6", plugin_category),
+    pattern="ك6$",
+    command=("ك6", plugin_category),
            )
 
 async def tmgif(event):
@@ -123,8 +122,8 @@ async def tmgif(event):
 #جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
-    pattern="ت7$",
-    command=("ت7", plugin_category),
+    pattern="ك7$",
+    command=("ك7", plugin_category),
            )
 async def tmgif(event):
     if event.fwd_from:
