@@ -16,7 +16,7 @@ sad9 = "https://telegra.ph/file/edf483bb182e4e328c5d4.mp4"
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━#
 
-RR9R7 = "˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰ𝖦𝗂𝖿 CْuٌTِeَ ."            #كيوت
+ROZA = "˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰ𝖦𝗂𝖿 CْuٌTِeَ ."            #كيوت
 cute = "https://telegra.ph/file/bf2d2cb360b0bc05dd7c2.mp4"
 cute2 = "https://telegra.ph/file/17c92862ca1283914a91f.mp4"
 cute3 = "https://telegra.ph/file/89dc704a356b4b0f6fe89.mp4"
