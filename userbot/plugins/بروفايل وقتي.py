@@ -96,8 +96,8 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
-        HI = time.strftime("%H:%I")
-        name = f"{RRRD7} {HI} "
+        HM = time.strftime("%H:%I")
+        name = f"{RRRD7} {HM} "
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -112,8 +112,8 @@ async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
-        HI = time.strftime("%H:%I")
-        bio = f"{DEFAULTUSERBIO} {HI}"
+        HM = time.strftime("%H:%I")
+        bio = f"{DEFAULTUSERBIO} {HM}"
         LOGS.info(bio)
         try:
             await jmthon(functions.account.UpdateProfileRequest(about=bio))
