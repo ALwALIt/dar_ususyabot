@@ -7,7 +7,7 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.utils import get_input_location
 
-from userbot import jmthon
+from userbot import jmthon, JMTHDEV
 
 from ..Config import Config
 from Jmthon.razan._fun import *
