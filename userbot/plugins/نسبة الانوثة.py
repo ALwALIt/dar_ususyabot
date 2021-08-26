@@ -57,3 +57,23 @@ async def permalink(mention):
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sos = random.choice(rr7)
     await edit_or_reply(mention, f"⌔︙ نسبة الانوثة لـ [{muh}](tg://user?id={user.id}) هـي {sos} 🥵🖤")
+
+@jmthon.ar_cmd(
+    pattern="نسبة الغباء(?:\s|$)([\s\S]*)",
+    command=("نسبة الغباء", plugin_category),
+)
+async def permalink(mention):
+    """Generates a link to the user's PM with a custom text."""
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if user.id == 1715051616:
+        return await edit_or_reply(mention, f"**0% ♥🙂**")
+    if user.id == 1694386561:
+        return await edit_or_reply(mention, f"**0% ♥🙂**")
+    if user.id == 1657933680:
+        return await edit_or_reply(mention, f"**0% ♥🙂**")
+    muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    rzona = random.choice(rr7)
+    await edit_or_reply(mention, f"نسبة الغباء لـ [{muh}](tg://user?id={user.id}) هـي {rzona} 😂💔")
+
