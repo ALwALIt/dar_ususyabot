@@ -7,7 +7,7 @@ from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.utils import get_input_location
 
-from userbot import jmthon, JMTHDEV
+from userbot import jmthon, LEO, RAZAN, JASEM
 
 from ..Config import Config
 from Jmthon.razan._fun import *
@@ -27,7 +27,11 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == JMTHDEV:
+    if user.id == LEO:
+        return await edit_or_reply(mention, f"**- انسـان بسـيط يحـب الكـل ويسـاعد الكـل 🖤،**")
+    if user.id == RAZAN:
+        return await edit_or_reply(mention, f"**- انسـان بسـيط يحـب الكـل ويسـاعد الكـل 🖤،**")
+    if user.id == JASEM:
         return await edit_or_reply(mention, f"**- انسـان بسـيط يحـب الكـل ويسـاعد الكـل 🖤،**")
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rza = random.choice(roz)
@@ -44,7 +48,11 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == JMTHDEV:
+    if user.id == LEO:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور زلمة وعلى راسك**")
+    if user.id == RAZAN:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور زلمة وعلى راسك**")
+    if user.id == JASEM:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور زلمة وعلى راسك**")
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     sos = random.choice(rr7)
