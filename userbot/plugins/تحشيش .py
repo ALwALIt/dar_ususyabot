@@ -27,12 +27,6 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 1694386561:
-        return await edit_or_reply(mention, f"**- انسـان بسـيط يحـب الكـل ويسـاعد الكـل 🖤،**")
-    if user.id == 1715051616:
-        return await edit_or_reply(mention, f"**- انسـان بسـيط يحـب الكـل ويسـاعد الكـل 🖤،**")
-    if user.id == 1657933680:
-        return await edit_or_reply(mention, f"**- انسـان بسـيط يحـب الكـل ويسـاعد الكـل 🖤،**")
     muh = user.first_name.replace("\u2060", "") if user.first_name else user.username
     rza = random.choice(roz)
     await edit_or_reply(mention, f"نـسـبتكم انـت و [{muh}](tg://user?id={user.id}) هـي {rza} 😔🖤")
