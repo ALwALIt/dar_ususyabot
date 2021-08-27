@@ -1,4 +1,6 @@
 #from here loaded islamic 
+from userbot.Config import roza_config 
+
 razan = 
 "«الحَمْدُ للهِ وَحْدَهُ ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى مَنْ لَا نَبِيَّ بَعْدَهُ»\n",,
 "-----------------------‐\n\n",,
