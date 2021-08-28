@@ -111,7 +111,7 @@ async def _(event):
     await output[0].delete()
 
 @jmthon.ar_cmd(
-    pattern="تحويل (اغنية|بصمة)$",
+    pattern="تحويل (mp3|voice)$",
     command=("تحويل", plugin_category),
     info={
         "header": "Converts the required media file to voice or mp3 file.",
@@ -155,7 +155,7 @@ async def _(event):
         command_to_run = []
         voice_note = False
         supports_streaming = False
-        if input_str == "بصمة":
+        if input_str == "voice":
             new_required_file_caption = "voice_" + str(round(time.time())) + ".opus"
             new_required_file_name = (
                 Config.TMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
@@ -176,7 +176,7 @@ async def _(event):
             ]
             voice_note = True
             supports_streaming = True
-        elif input_str == "اغنية":
+        elif input_str == "mp3":
             new_required_file_caption = "mp3_" + str(round(time.time())) + ".mp3"
             new_required_file_name = (
                 Config.TMP_DOWNLOAD_DIRECTORY + "/" + new_required_file_caption
