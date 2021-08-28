@@ -178,8 +178,8 @@ async def _(event):  # sourcery no-metrics
                     await event.client.get_profile_photos("me", limit=1)
                 )
             )
-            return await edit_delete(event, "**تم ايقاف  الاسم الوقتي بنـجاح ✅**")
-        return await edit_delete(event, "**لم يتم تفعيل الاسم الوقتي بالأصل 🧸♥**")
+            return await edit_delete(event, "**تم ايقاف الصورة الوقتية بنـجاح ✅**")
+        return await edit_delete(event, "**لم يتم تفعيل الصورة الوقتية بالأصل 🧸♥**")
     if input_str == "اسم وقتي":
         if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
             delgvar("autoname")
