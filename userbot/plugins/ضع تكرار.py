@@ -50,7 +50,7 @@ async def _(event):
             entity=event.chat_id,
             message=f"""**بـوت مـانع الـتكرار**
 [المستخدم](tg://user?id={event.message.sender_id}) \n قـام بتجاوز عدد الـتكرار
-لـذلك تـن تقيـيده""",
+لـذلك تـم تقيـيده""",
             reply_to=event.message.id,
         )
 
