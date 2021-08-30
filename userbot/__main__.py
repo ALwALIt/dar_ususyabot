@@ -1,7 +1,7 @@
 import sys
 
 import userbot
-from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
+from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 
 from .Config import Config
