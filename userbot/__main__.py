@@ -1,6 +1,7 @@
 import sys
 
 import userbot
+from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 
 from .Config import Config
@@ -62,6 +63,10 @@ async def startup_process():
     Catcheck.sucess = True
     return
 
+try:
+        await bot(JoinChannelRequest("@JMTHON"))
+    except BaseException:
+        pass
 
 jmthon.loop.run_until_complete(startup_process())
 
