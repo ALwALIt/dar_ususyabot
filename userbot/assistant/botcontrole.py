@@ -28,36 +28,11 @@ botusername = Config.TG_BOT_USERNAME
 cmhd = Config.COMMAND_HAND_LER
 
 
-@jmthon.ar_cmd(
-    pattern=f"^/help$",
-    from_users=Config.OWNER_ID,
-)
-async def bot_help(event):
-    await event.reply(
-        f"""اوامر البوت هي :
-**ملاحظة : **هذه الاوامر تعمل فقط في الـبوت {botusername}
 
-• **الامر : **/معلومات <بالرد على رسالة المستخدم>
-• **المعلومات : ** من خلال هذا الامر يمكنك معرف من الشخص الذي ارسل تاملصق او المتحركه للبوت  ،
-• **ملاحظة : **تعمل لجميع المستخدمين حتى الذين فعلاو خصوصية التحويل
-
-• **الامر : **/بلوك <السبب> او   /حظر <المعرف/ايدي المستخدم> <السبب>
-• **المعلومات : ** قم بالرد على الرسالة مع السبب ليتم حظره وتبليغك لاحقا بإنه محظور
-• **ملاحظة : ** السبب مطلوب بدون السبب الامر لا يشتغل
-
-• **الامر : **/انبلوك <السبب> او   /الغاء حظر <المعرف/الايدي>
-• **المعلومات : **قم بالرد على المستخدم مع السبب او ارسل فقط الامر مع الايدي او المعرف
-• **ملاحظة : ** للتأكد من قائمة المحظورين ارسل  `{cmhd}المحظورين`.
-
-• **الامر : **/اذاعة
-• **المعلومات : ** لعمل اذاعة لجميع المستخدمين بالرد على الرسالة ولرؤية مستخدمين البوت ارسل  `{cmhd}المستخدمين`.
-• **ملاحظة : ** اذا الشخص قام بايقاف البوت او حظره الرسائل لم تصل اليه بسبب ارتباط قاعده البيانات
-"""
-    )
 
 
 @jmthon.ar_cmd(
-    pattern="^/اذاعة$",
+    pattern="^/broadcast$",
     from_users=Config.OWNER_ID,
 )
 async def bot_broadcast(event):
@@ -118,8 +93,8 @@ async def bot_broadcast(event):
 
 
 @jmthon.ar_cmd(
-    pattern="المستخدمين$",
-    command=("المستخدمين", plugin_category),
+    pattern="usera$",
+    command=("users", plugin_category),
     info={
         "header": "للحصول على مستخدمين البوت",
         "description": "لعـرض قـائمة المـستخدمين الـذي قـاموا بتـشغيل بـوتك",
@@ -138,7 +113,7 @@ async def ban_starters(event):
 
 
 @jmthon.ar_cmd(
-    pattern="^/بلوك\s+([\s\S]*)",
+    pattern="^/block\s+([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
@@ -173,7 +148,7 @@ async def ban_botpms(event):
 
 
 @jmthon.ar_cmd(
-    pattern="^/انبلوك(?:\s|$)([\s\S]*)",
+    pattern="^/unblock(?:\s|$)([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
 async def ban_botpms(event):
