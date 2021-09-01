@@ -63,78 +63,12 @@ async def check_bot_started_users(user, event):
         await event.client.send_message(BOTLOG_CHATID, notification)
 
 
-@jmthon.bot_cmd(
-    pattern=f"^/start({botusername})?([\s]+)?$",
-    incoming=True,
-    func=lambda e: e.is_private,
-)
-async def bot_start(event):
-    chat = await event.get_chat()
-    user = await jmthon.get_me()
-    if check_is_black_list(chat.id):
-        return
-    reply_to = await reply_id(event)
-    mention = f"[{chat.first_name}](tg://user?id={chat.id})"
-    my_mention = f"[{user.first_name}](tg://user?id={user.id})"
-    first = chat.first_name
-    last = chat.last_name
-    fullname = f"{first} {last}" if last else first
-    username = f"@{chat.username}" if chat.username else mention
-    userid = chat.id
-    my_first = user.first_name
-    my_last = user.last_name
-    my_fullname = f"{my_first} {my_last}" if my_last else my_first
-    my_username = f"@{user.username}" if user.username else my_mention
-    if chat.id != Config.OWNER_ID:
-        customstrmsg = gvarstatus("START_TEXT") or None
-        if customstrmsg is not None:
-            start_msg = customstrmsg.format(
-                mention=mention,
-                first=first,
-                last=last,
-                fullname=fullname,
-                username=username,
-                userid=userid,
-                my_first=my_first,
-                my_last=my_last,
-                my_fullname=my_fullname,
-                my_username=my_username,
-                my_mention=my_mention,
-            )
-        else:
-            start_msg = f"مرحبا عزيزي ! ⚕️ {mention},\
-                        \nانا البوت المساعد لـ {my_mention} .\
-                        \nيمكنك التواصل مع مالك الحساب من هنا"
-        buttons = [
-            (
-                Button.url("CH", "https://T.me/JMTHON")
-            )
-        ]
-    else:
-        start_msg = "اهلا بك يا مطوري \
-            \nيمكنني مساعدتك ولعرض اوامر البوت ارسل  /help"
-        buttons = None
-    try:
-        await event.client.send_message(
-            chat.id,
-            start_msg,
-            link_preview=False,
-            buttons=buttons,
-            reply_to=reply_to,
-        )
-    except Exception as e:
-        if BOTLOG:
-            await event.client.send_message(
-                BOTLOG_CHATID,
-                f"**خطأ**\nكان هناك خطأ اثناء بدء البوت بواسطه احد المستخدمين.\
-                \n`{str(e)}`",
-            )
-    else:
-        await check_bot_started_users(chat, event)
+
+
 
 
 @jmthon.bot_cmd(incoming=True, func=lambda e: e.is_private)
-async def bot_pms(event):  # sourcery no-metrics
+async def bot_pms(event): 
     chat = await event.get_chat()
     if check_is_black_list(chat.id):
         return
@@ -284,7 +218,7 @@ async def handler(event):
 
 
 @jmthon.bot_cmd(
-    pattern=f"^/uinfo$",
+    pattern=f"^/info$",
     from_users=Config.OWNER_ID,
 )
 async def bot_start(event):
