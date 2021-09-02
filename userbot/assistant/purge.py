@@ -30,12 +30,12 @@ async def purge(event):
     msgs = []
 
     if not await is_administrator(user_id=event.sender_id, message=event):
-        await event.reply("**انـت لسـت ادمـن!**")
+        await event.reply("انـت لسـت ادمـن!")
         return
 
     msg = await event.get_reply_message()
     if not msg:
-        await event.reply("** قـم بالـرد على الـرسالة التـي تريـد حذف الـرسائل التـي تحـتها**")
+        await event.reply("قـم بالـرد على الـرسالة التـي تريـد حذف الـرسائل التـي تحـتها.")
         return
 
     try:
@@ -59,13 +59,6 @@ async def purge(event):
         await asyncio.sleep(4)
         await del_res.delete()
 
-    except MessageDeleteForbiddenError:
-        text = "خـطأ في حـذف الـرسائل.\n"
-        text += "الـرساله قد تكون قديمة او ليسـت لديـك صلاحـيات الـحذف"
-        del_res = await respond(text, parse_mode="md")
-        await asyncio.sleep(5)
-        await del_res.delete()
-
 
 @tgbot.on(events.NewMessage(pattern="^/del$"))
 async def delete_msg(event):
@@ -83,6 +76,3 @@ async def delete_msg(event):
     chat = await event.get_input_chat()
     rm = [msg, to_delete]
     await tgbot.delete_messages(chat, rm)
-
-#JMTHON 
-#for ~ @RR9R7
