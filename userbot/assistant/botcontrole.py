@@ -31,7 +31,7 @@ cmhd = Config.COMMAND_HAND_LER
 
 
 
-@jmthon.ar_cmd(
+@jmthon.bot_cmd(
     pattern="^/broadcast$",
     from_users=Config.OWNER_ID,
 )
@@ -92,8 +92,8 @@ async def bot_broadcast(event):
     await br_cast.edit(b_info, parse_mode="html")
 
 
-@jmthon.ar_cmd(
-    pattern="usera$",
+@jmthon.bot_cmd(
+    pattern="users$",
     command=("users", plugin_category),
     info={
         "header": "للحصول على مستخدمين البوت",
@@ -112,7 +112,7 @@ async def ban_starters(event):
     await edit_or_reply(event, msg)
 
 
-@jmthon.ar_cmd(
+@jmthon.bot_cmd(
     pattern="^/block\s+([\s\S]*)",
     from_users=Config.OWNER_ID,
 )
@@ -174,7 +174,7 @@ async def ban_botpms(event):
     await event.reply(msg)
 
 
-@jmthon.ar_cmd(
+@jmthon.bot_cmd(
     pattern="المحظورين$",
     command=("المحظورين", plugin_category),
     info={
@@ -194,7 +194,7 @@ async def ban_starters(event):
     await edit_or_reply(event, msg)
 
 
-@jmthon.ar_cmd(
+@jmthon.bot_cmd(
     pattern="وضع_التكرار (تشغيل|تعطيل)$",
     command=("وضع_تكرار", plugin_category),
     info={
