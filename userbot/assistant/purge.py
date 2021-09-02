@@ -59,6 +59,13 @@ async def purge(event):
         await asyncio.sleep(4)
         await del_res.delete()
 
+    except MessageDeleteForbiddenError:
+        text = "خـطأ في حـذف الـرسائل.\n"
+        text += "الـرساله قد تكون قديمة او ليسـت لديـك صلاحـيات الـحذف"
+        del_res = await event.reply(text, parse_mode="md")
+        await asyncio.sleep(5)
+        await del_res.delete()
+
 
 @tgbot.on(events.NewMessage(pattern="^/del$"))
 async def delete_msg(event):
