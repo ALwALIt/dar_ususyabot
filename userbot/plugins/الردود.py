@@ -13,6 +13,7 @@ from ..sql_helper.filter_sql import (
 from . import BOTLOG, BOTLOG_CHATID
 
 plugin_category = "utils"
+ROZTEXT = "عـذرا لا يمكـنك اضافـة رد هـنا" 
 
 
 @jmthon.ar_cmd(incoming=True)
@@ -115,6 +116,13 @@ async def add_new_filter(new_handler):
     "To save the filter"
     keyword = new_handler.pattern_match.group(1)
     string = new_handler.text.partition(keyword)[2]
+    if event.chat_id == -1001161919602:
+        return await edit_or_reply(
+            event,
+            ROZTEXT,
+            15,
+        )
+
     msg = await new_handler.get_reply_message()
     msg_id = None
     if msg and msg.media and not string:
