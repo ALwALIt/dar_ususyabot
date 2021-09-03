@@ -40,6 +40,8 @@ class Config(object):
     # تعديلي 
     PING_PIC = os.environ.get("PING_PIC")
     TIME_JM = os.environ.get("TIME_JM", None)
+    LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
+    JMTHON_START = os.environ.get("JMTHON_START", None)
 
     # Set this value with group id of private group(can be found this value by .id)
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)
