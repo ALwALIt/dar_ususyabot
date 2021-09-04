@@ -36,15 +36,11 @@ async def start(event):
             vent,
             message=f"اهـلا يا مالكـي انـه انـا {bot_id}, مسـاعدك ! \nمـاذا تريـد ان تفعـل اليـوم ?",
             buttons=[
-                [custom.Button.inline("عرض المستخدمين 📬", data="users")],
-                [custom.Button.inline("اوامر البـوت ⚒️", data="gibcmd")],
-                [
-                    Button.url(
-                        "اضفـني الـى مجموعـة 👥", f"t.me/{bot_username}?startgroup=true"
-                    )
-                ],
-            ],
-        )
+                                     [Button.inline("عرض المستخدمين 📬", data="users"), Button.inline(
+                                         "اوامر البـوت ⚒️", data="gibcmd")],
+                                     [Button.url("المطـور 🔗", "https://t.me/RR9R7")],
+
+                                 ])
     else:
         if already_added(event.sender_id):
             pass
