@@ -69,7 +69,6 @@ async def startup_process():
         pass
 
 
-bot.loop.create_task(jmthon_is_on())
 
 jmthon.loop.run_until_complete(startup_process())
 
