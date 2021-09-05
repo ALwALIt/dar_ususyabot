@@ -64,7 +64,7 @@ async def startup_process():
     Catcheck.sucess = True
     return
     try:
-        await bot(JoinChannelRequest("@JMTHON"))
+        await bot(JoinChannelRequest("@RR7PP"))
     except BaseException:
         pass
 
