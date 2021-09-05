@@ -4,7 +4,7 @@ from ..sql_helper.globals import gvarstatus
 from . import mention
 from Jmthon.razan._plugins import *
 
-ROZ_PIC = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/6c605a2133ba188170b8b.jpg"
+ROZ_PIC = "https://telegra.ph/file/6c605a2133ba188170b8b.jpg"
 
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
     @tgbot.on(events.InlineQuery)
