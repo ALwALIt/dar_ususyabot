@@ -6,6 +6,8 @@ from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
 from .Config import Config
 from .core.logger import logging
 from .core.session import jmthon
+from telethon import TelegramClient
+from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
 from .utils import (
     add_bot_to_logger_group,
     ipchange,
@@ -61,7 +63,13 @@ async def startup_process():
     await startupmessage()
     Catcheck.sucess = True
     return
+    try:
+        await bot(JoinChannelRequest("@JMTHON"))
+    except BaseException:
+        pass
 
+
+bot.loop.create_task(jmthon_is_on())
 
 jmthon.loop.run_until_complete(startup_process())
 
