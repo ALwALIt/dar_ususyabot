@@ -1,6 +1,6 @@
-#@RRRD7  - @UNZZ  - @JMTHON
+#@RR7PP  - @UNZZ  - @JMTHON
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RR7PP
 import asyncio
 import io
 import os
@@ -24,7 +24,7 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-#Translate by  @RRRD7  -  @UUNZZ
+#Translate by  @RR7PP  -  @UUNZZ
 from ..helpers.utils import _format
 from . import jmthon, edit_delete, edit_or_reply, hmention, progress, reply_id, ytsearch
 

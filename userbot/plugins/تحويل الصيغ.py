@@ -51,7 +51,7 @@ PATH = os.path.join("./temp", "temp_vid.mp4")
 thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
 #Copyright  By  @JMTHON  © 2021
-#WRITE BY  @RRRD7  
+#WRITE BY  @RR7PP  
 
 @jmthon.ar_cmd(
     pattern="تحويل صورة$",
@@ -221,7 +221,7 @@ async def _(event):
             await event.delete()
             
 #Copyright  By  @JMTHON  © 2021
-#WRITE BY  @RRRD7
+#WRITE BY  @RR7PP
 
 @jmthon.ar_cmd(
     pattern="تحويل متحركة ?([0-9.]+)?$",

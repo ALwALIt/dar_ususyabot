@@ -3,7 +3,7 @@ import random, re
 from userbot.utils import admin_cmd
 import asyncio 
 
-# Wespr File by  @RRRD7
+# Wespr File by  @RR7PP
 # Copyright (C) 2021 JMTHON TEAM
 @borg.on(
     admin_cmd(pattern="همسة ?(.*)")
@@ -27,14 +27,14 @@ async def _(event):
 @borg.on(admin_cmd("الهمسة"))
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
-        await event.edit("**⌯︙شـرح كيـفية كـتابة همـسة سـرية**\n⌯︙اولا اكتب الامر  .همسة  بعدها الرسالة بعدها اكتب معرف الشخص\n⌯︙مـثال  :   `.همسة ههلا @RRRD7`")
+        await event.edit("**⌯︙شـرح كيـفية كـتابة همـسة سـرية**\n⌯︙اولا اكتب الامر  .همسة  بعدها الرسالة بعدها اكتب معرف الشخص\n⌯︙مـثال  :   `.همسة ههلا @RR7PP`")
         
 @borg.on(
     admin_cmd(
        pattern="اكس او$"
     )
 )
-# كتابة وتعديل فريق جمثون  #@RRRD7
+# كتابة وتعديل فريق جمثون  #@RR7PP
 async def gamez(event):
     if event.fwd_from:
         return

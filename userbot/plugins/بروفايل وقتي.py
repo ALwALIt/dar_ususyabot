@@ -52,7 +52,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-RRRD7 = Config.TIME_JM or ""
+RR7PP = Config.TIME_JM or ""
 
 
 async def digitalpicloop():
@@ -97,7 +97,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HI = time.strftime("%I:%M")
-        name = f"{RRRD7} {HI} "
+        name = f"{RR7PP} {HI} "
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))

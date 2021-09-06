@@ -1,5 +1,5 @@
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RR7PP
 import asyncio
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
@@ -28,7 +28,7 @@ plugin_category = "utils"
         "examples": "{tr}sg @missrose_bot",
     },
 )
-async def _(event):  #   : @RRRD7
+async def _(event):  #   : @RR7PP
     "To get name/username history."
     input_str = "".join(event.text.split(maxsplit=1)[1:])
     reply_message = await event.get_reply_message()

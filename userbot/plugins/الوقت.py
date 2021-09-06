@@ -110,7 +110,7 @@ async def time_func(tdata):
             f"({time_zone} timezone).`",
         )
 
-#كـتابة  @RRRD7
+#كـتابة  @RR7PP
 #تعديل وترتيب  @KiNGBrlin
 @jmthon.ar_cmd(
     pattern="الوقت(?:\s|$)([\s\S]*)",

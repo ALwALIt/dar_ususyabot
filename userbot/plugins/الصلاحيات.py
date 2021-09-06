@@ -18,7 +18,7 @@ from . import BOTLOG, get_user_from_event
 plugin_category = "admin" 
 
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RR7PP
 
 @jmthon.ar_cmd(
     pattern="قفل (.*)",
@@ -311,7 +311,7 @@ async def _(event):  # sourcery no-metrics
                     event, "⌯︙ارسال الانلاين مسموح في هذه الدردشه ⌁"
                 )
             ainline = False
-            locktype = "الانلاين"  # BY  @RRRD7  -  @UUNZZ
+            locktype = "الانلاين"  # BY  @RR7PP  -  @UUNZZ
         elif input_str == "التصويت":  
             if not gpoll:
                 return await edit_delete(
@@ -395,7 +395,7 @@ async def _(event):  # sourcery no-metrics
                 time=5,
             )
 
-# BY  @RRRD7  -  @UUNZZ
+# BY  @RR7PP  -  @UUNZZ
 @jmthon.ar_cmd(
     pattern="الصلاحيات$",
     command=("الصلاحيات", plugin_category),
@@ -1139,4 +1139,4 @@ async def _(event):
                     users_added_by
                 )
             )
-#THIS FILE WRITTEN BY  @RRRD7
+#THIS FILE WRITTEN BY  @RR7PP

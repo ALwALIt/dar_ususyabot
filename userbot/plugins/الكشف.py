@@ -177,7 +177,7 @@ async def who(event):
         await cat.delete()
     except TypeError:
         await cat.edit(caption, parse_mode="html")
-#كـتابة  @RRRD7
+#كـتابة  @RR7PP
 #تعديل وترتيب  @SBB_B
 @jmthon.ar_cmd(
     pattern="رابط الحساب(?:\s|$)([\s\S]*)",

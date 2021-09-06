@@ -8,7 +8,7 @@ from ..sql_helper import warns_sql as sql
 plugin_category = "admin"
 
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RR7PP
 
 @jmthon.ar_cmd(
     pattern="تحذير(?:\s|$)([\s\S]*)",

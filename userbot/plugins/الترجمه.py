@@ -11,7 +11,7 @@ from . import BOTLOG, BOTLOG_CHATID, deEmojify
 plugin_category = "utils"
 
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RR7PP
 
 async def getTranslate(text, **kwargs):
     translator = Translator()

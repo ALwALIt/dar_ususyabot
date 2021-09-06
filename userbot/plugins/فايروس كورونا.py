@@ -1,5 +1,5 @@
 # Copyright (C) 2021 JMTHON TEAM
-# FILES WRITTEN BY  @RRRD7
+# FILES WRITTEN BY  @RR7PP
 from covid import Covid
 
 from . import jmthon, covidindia, edit_delete, edit_or_reply
