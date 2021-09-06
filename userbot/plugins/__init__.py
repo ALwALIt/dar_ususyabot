@@ -14,6 +14,7 @@ from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from ..core.session import jmthon
+from userbot.RR7PP import *
 from ..helpers import *
 from ..helpers.utils import _cattools, _catutils, _format, install_pip, reply_id
 from Jmthon.razan.resources.Gif import *
