@@ -3,7 +3,6 @@
 from telethon import events
 from userbot.utils import admin_cmd
 from userbot import jmthon
-from Jmthon.razan._gif import *
 from . import *
 
 #edit  ~ @RR9R7 for Jmthon 
