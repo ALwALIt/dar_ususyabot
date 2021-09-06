@@ -18,9 +18,9 @@ jobs:
 
         with:
 
-          find: "⌔︙ "
+          find: "sandy"
 
-          replace: "⌯︙"
+          replace: "RR7PP"
 
       - name: Create Pull Request
 
