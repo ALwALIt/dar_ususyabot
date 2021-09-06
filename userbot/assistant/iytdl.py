@@ -63,7 +63,7 @@ async def iytdl_inline(event):
     elif reply and reply.text:
         input_url = (reply.text).strip()
     if not input_url:
-        return await edit_delete(event, " ⌔︙ يجـب وضـع اسـم المـوضوع او بالـرد عـلـى الـرابـط")
+        return await edit_delete(event, " ⌯︙يجـب وضـع اسـم المـوضوع او بالـرد عـلـى الـرابـط")
     catevent = await edit_or_reply(event, f"🔎 يتـم البـحث في اليـوتيـوب عـن : `'{input_url}'`")
     flag = True
     cout = 0
@@ -83,7 +83,7 @@ async def iytdl_inline(event):
         await catevent.delete()
         await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
     else:
-        await catevent.edit("**⌔︙ عـذرا لـم استـطيع ايـجاد اي نتـيـجة**")
+        await catevent.edit("**⌯︙عـذرا لـم استـطيع ايـجاد اي نتـيـجة**")
 
 
 @jmthon.tgbot.on(
@@ -111,13 +111,13 @@ async def ytdl_download_callback(c_q: CallbackQuery):  # sourcery no-metrics
     if str(choice_id).isdigit():
         choice_id = int(choice_id)
         if choice_id == 0:
-            await c_q.answer(" ⌔︙ يتـم الـمعـالجـة 🔄  ", alert=False)
+            await c_q.answer(" ⌯︙يتـم الـمعـالجـة 🔄  ", alert=False)
             await c_q.edit(buttons=(await download_button(yt_code)))
             return
     startTime = time()
     choice_str, disp_str = get_choice_by_id(choice_id, downtype)
     media_type = "الفيديـو" if downtype == "v" else "المقـطع صـوتـي"
-    callback_continue = f" ⌔︙ يتـم تـحـميـل  {media_type} الــرجاء الانتـظار"
+    callback_continue = f" ⌯︙يتـم تـحـميـل  {media_type} الــرجاء الانتـظار"
     callback_continue += f"\n\nFormat Code : {disp_str}"
     await c_q.answer(callback_continue, alert=True)
     upload_msg = await c_q.client.send_message(BOTLOG_CHATID, "Uploading...")
@@ -140,7 +140,7 @@ async def ytdl_download_callback(c_q: CallbackQuery):  # sourcery no-metrics
         else:
             _fpath = _path
     if not _fpath:
-        await edit_delete(upload_msg, "** ⌔︙ لم يتـم الـعثـور عـلى اي شيئ !")
+        await edit_delete(upload_msg, "** ⌯︙لم يتـم الـعثـور عـلى اي شيئ !")
         return
     if not thumb_pic and downtype == "v":
         thumb_pic = str(await pool.run_in_thread(download)(await get_ytthumb(yt_code)))

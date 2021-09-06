@@ -35,4 +35,4 @@ async def _(event):
     except Exception as e:
         await event.edit(f"**خـطأ:**\n`{str(e)}`")
     else:
-        await event.edit("⌔︙ تم نقل المـلكية بنـجاح ✅")
+        await event.edit("⌯︙تم نقل المـلكية بنـجاح ✅")

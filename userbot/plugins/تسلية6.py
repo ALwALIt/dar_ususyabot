@@ -44,8 +44,8 @@ async def nekobot(cat):
         if cat.is_reply and not reply.media:
             text = reply.message
         else:
-            return await edit_delete(cat, "⌔︙ يجب ان تكتب نص اولا", 5)
-    cate = await edit_or_reply(cat, "⌔︙ جار طلب تغريدة من ترامب...")
+            return await edit_delete(cat, "⌯︙يجب ان تكتب نص اولا", 5)
+    cate = await edit_or_reply(cat, "⌯︙جار طلب تغريدة من ترامب...")
     text = deEmojify(text)
     await asyncio.sleep(2)
     catfile = await trumptweet(text)
@@ -75,8 +75,8 @@ async def nekobot(cat):
         if cat.is_reply and not reply.media:
             text = reply.message
         else:
-            return await edit_delete(cat, "**⌔︙ يجـب كـتابة نـص اولا", 5)
-    cate = await edit_or_reply(cat, "⌔︙ جاري طلب تغريدة من مودي...")
+            return await edit_delete(cat, "**⌯︙يجـب كـتابة نـص اولا", 5)
+    cate = await edit_or_reply(cat, "⌯︙جاري طلب تغريدة من مودي...")
     text = deEmojify(text)
     await asyncio.sleep(2)
     catfile = await moditweet(text)
@@ -105,8 +105,8 @@ async def nekobot(cat):
         if cat.is_reply and not reply.media:
             text = reply.message
         else:
-            return await edit_delete(cat, "⌔︙ اعـطيني نص اولا", 5)
-    cate = await edit_or_reply(cat, "⌔︙ يتـم عـمل البـنر انتـظر...`")
+            return await edit_delete(cat, "⌯︙اعـطيني نص اولا", 5)
+    cate = await edit_or_reply(cat, "⌯︙يتـم عـمل البـنر انتـظر...`")
     text = deEmojify(text)
     await asyncio.sleep(2)
     catfile = await changemymind(text)
@@ -136,8 +136,8 @@ async def nekobot(cat):
         if cat.is_reply and not reply.media:
             text = reply.message
         else:
-            return await edit_delete(cat, "⌔︙ اوني شان ما ذا تريد ان اكتب", 5)
-    cate = await edit_or_reply(cat, "⌔︙ كانا تشان تكتب نصك...")
+            return await edit_delete(cat, "⌯︙اوني شان ما ذا تريد ان اكتب", 5)
+    cate = await edit_or_reply(cat, "⌯︙كانا تشان تكتب نصك...")
     text = deEmojify(text)
     await asyncio.sleep(2)
     catfile = await kannagen(text)
@@ -169,7 +169,7 @@ async def nekobot(cat):
         else:
             return await edit_delete(
                 cat,
-                "⌔︙ **يجـب كتـابة الامـر بشكـل صحـيح**\n `.تويت المعرف ; النص` ",
+                "⌯︙**يجـب كتـابة الامـر بشكـل صحـيح**\n `.تويت المعرف ; النص` ",
                 5,
             )
     if ";" in text:
@@ -177,11 +177,11 @@ async def nekobot(cat):
     else:
         await edit_delete(
             cat,
-            "⌔︙ **يجـب كتـابة الامـر بشكـل صحـيح**\n`.تويت المعرف ; النص`",
+            "⌯︙**يجـب كتـابة الامـر بشكـل صحـيح**\n`.تويت المعرف ; النص`",
             5,
         )
         return
-    cate = await edit_or_reply(cat, f"⌔︙ جار الطلب من {username} للتغريد...")
+    cate = await edit_or_reply(cat, f"⌯︙جار الطلب من {username} للتغريد...")
     text = deEmojify(text)
     await asyncio.sleep(2)
     catfile = await tweets(text, username)

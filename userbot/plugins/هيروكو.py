@@ -38,13 +38,13 @@ async def variable(var):
     if (Config.HEROKU_API_KEY is None) or (Config.HEROKU_APP_NAME is None):
         return await edit_delete(
             var,
-            "⌔︙ يجـب وضع الـفارات المطـلوبة لاستخدام الأمر \n ⌔︙ يجب وضع `HEROKU_API_KEY` و `HEROKU_APP_NAME",
+            "⌯︙يجـب وضع الـفارات المطـلوبة لاستخدام الأمر \n ⌯︙يجب وضع `HEROKU_API_KEY` و `HEROKU_APP_NAME",
         )
     app = Heroku.app(Config.HEROKU_APP_NAME)
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
     if exe == "معلومات":
-        cat = await edit_or_reply(var, "⌔︙ يـتم سـحب المعـلومـات")
+        cat = await edit_or_reply(var, "⌯︙يـتم سـحب المعـلومـات")
         await asyncio.sleep(1.0)
         try:
             variable = var.pattern_match.group(2).split()[0]
@@ -71,32 +71,32 @@ async def variable(var):
             os.remove("configs.json")
     elif exe == "اضف":
         variable = "".join(var.text.split(maxsplit=2)[2:])
-        cat = await edit_or_reply(var, "⌔︙ يتم سحب المعلومات")
+        cat = await edit_or_reply(var, "⌯︙يتم سحب المعلومات")
         if not variable:
-            return await cat.edit("⌔︙ `.ضع فار <كود الفار> <القيمة>`")
+            return await cat.edit("⌯︙`.ضع فار <كود الفار> <القيمة>`")
         value = "".join(variable.split(maxsplit=1)[1:])
         variable = "".join(variable.split(maxsplit=1)[0])
         if not value:
-            return await cat.edit("⌔︙ `.ضع فار <كود الفار> <القيمة>`")
+            return await cat.edit("⌯︙`.ضع فار <كود الفار> <القيمة>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await cat.edit(f"⌔︙ `{variable}`  تم بنجاح التغيير الى  \n  ⌔︙ `{value}`")
+            await cat.edit(f"⌯︙`{variable}`  تم بنجاح التغيير الى  \n  ⌯︙`{value}`")
         else:
             await cat.edit(
-                f"⌔︙ `{variable}`  تم بنجاح اضافه القيمة مع \n   ⌔︙ `{value}`"
+                f"⌯︙`{variable}`  تم بنجاح اضافه القيمة مع \n   ⌯︙`{value}`"
             )
         heroku_var[variable] = value
     elif exe == "حذف":
-        cat = await edit_or_reply(var, "⌔︙ يتم سحب المعلومات انتظر")
+        cat = await edit_or_reply(var, "⌯︙يتم سحب المعلومات انتظر")
         try:
             variable = var.pattern_match.group(2).split()[0]
         except IndexError:
-            return await cat.edit("⌔︙ يرجـى تحديد الفار التي تريد حذفه")
+            return await cat.edit("⌯︙يرجـى تحديد الفار التي تريد حذفه")
         await asyncio.sleep(1.5)
         if variable not in heroku_var:
-            return await cat.edit(f"⌔︙ `{variable}`  لا يوجد")
+            return await cat.edit(f"⌯︙`{variable}`  لا يوجد")
 
-        await cat.edit(f"⌔︙ `{variable}`  تم الحذف بنجاح")
+        await cat.edit(f"⌯︙`{variable}`  تم الحذف بنجاح")
         del heroku_var[variable]
 
 
@@ -115,9 +115,9 @@ async def dyno_usage(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(
             dyno,
-            "⌔︙ يجـب وضع الـفارات المطـلوبة لاستخدام الأمر \n ⌔︙ يجب وضع `HEROKU_API_KEY` و `HEROKU_APP_NAME",
+            "⌯︙يجـب وضع الـفارات المطـلوبة لاستخدام الأمر \n ⌯︙يجب وضع `HEROKU_API_KEY` و `HEROKU_APP_NAME",
         )
-    dyno = await edit_or_reply(dyno, "⌔︙ يـتم الـحساب")
+    dyno = await edit_or_reply(dyno, "⌯︙يـتم الـحساب")
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -133,7 +133,7 @@ async def dyno_usage(dyno):
     r = requests.get(heroku_api + path, headers=headers)
     if r.status_code != 200:
         return await dyno.edit(
-            "⌔︙ خـطأ : يبـدو ان هـنالك خـطأ ما حـدث\n\n" f">.`{r.reason}`\n"
+            "⌯︙خـطأ : يبـدو ان هـنالك خـطأ ما حـدث\n\n" f">.`{r.reason}`\n"
         )
     result = r.json()
     quota = result["account_quota"]
@@ -160,11 +160,11 @@ async def dyno_usage(dyno):
     await asyncio.sleep(1.5)
     return await dyno.edit(
         "**اسـتخدام الـدينو**:\n\n"
-        f" ⌔︙ مـدة الاستخـدام لديـك  **{Config.HEROKU_APP_NAME}**:\n"
+        f" ⌯︙مـدة الاستخـدام لديـك  **{Config.HEROKU_APP_NAME}**:\n"
         f"     •  `{AppHours}`**سـاعات**  `{AppMinutes}`**دقـائق**  "
         f"**|**  [`{AppPercentage}`**%**]"
         "\n\n"
-        " ⌔︙ الساعات المتبقية لهذا الشهر :\n"
+        " ⌯︙الساعات المتبقية لهذا الشهر :\n"
         f"     •  `{hours}`**سـاعات**  `{minutes}`**دقـائق**  "
         f"**|**  [`{percentage}`**%**]"
     )
@@ -183,18 +183,18 @@ async def _(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(
             dyno,
-            "⌔︙ يجـب وضع الـفارات المطـلوبة لاستخدام الأمر \n ⌔︙ يجب وضع `HEROKU_API_KEY` و `HEROKU_APP_NAME",
+            "⌯︙يجـب وضع الـفارات المطـلوبة لاستخدام الأمر \n ⌯︙يجب وضع `HEROKU_API_KEY` و `HEROKU_APP_NAME",
         )
     try:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
         app = Heroku.app(HEROKU_APP_NAME)
     except BaseException:
         return await dyno.reply(
-            "⌔︙  عذرا لا يمكنك استخدام اوامر الفارات وهيروكو الا بعد اضافة كود هيروكو الى الفارات شرح الاضافة [اضغط هنا](https://t.me/Jmthon_tools/151)"
+            "⌯︙ عذرا لا يمكنك استخدام اوامر الفارات وهيروكو الا بعد اضافة كود هيروكو الى الفارات شرح الاضافة [اضغط هنا](https://t.me/Jmthon_tools/151)"
         )
     data = app.get_log()
     await edit_or_reply(
-        dyno, data, deflink=True, linktext="⌔︙ هـذه اخـر 100 سـطر في هيـروكو: **"
+        dyno, data, deflink=True, linktext="⌯︙هـذه اخـر 100 سـطر في هيـروكو: **"
     )
 
 

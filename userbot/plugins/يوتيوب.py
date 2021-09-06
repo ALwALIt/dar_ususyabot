@@ -67,25 +67,25 @@ video_opts = {
 
 async def ytdl_down(event, opts, url):
     try:
-        await event.edit("⌔︙ - يتم جلب البيانات انتظر قليلا")
+        await event.edit("⌯︙- يتم جلب البيانات انتظر قليلا")
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url)
     except DownloadError as DE:
         await event.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await event.edit("⌔︙ - عذرا هذا المحتوى قصير جدا لتنزيله ⚠️")
+        await event.edit("⌯︙- عذرا هذا المحتوى قصير جدا لتنزيله ⚠️")
         return None
     except GeoRestrictedError:
         await event.edit(
-            "⌔︙ - الفيديو غير متاح من موقعك الجغرافي بسبب القيود الجغرافية التي يفرضها موقع الويب ❕"
+            "⌯︙- الفيديو غير متاح من موقعك الجغرافي بسبب القيود الجغرافية التي يفرضها موقع الويب ❕"
         )
         return None
     except MaxDownloadsReached:
-        await event.edit("⌔︙ - تم الوصول إلى الحد الأقصى لعدد التنزيلات ❕")
+        await event.edit("⌯︙- تم الوصول إلى الحد الأقصى لعدد التنزيلات ❕")
         return None
     except PostProcessingError:
-        await event.edit("⌔︙ كان هناك خطأ أثناء المعالجة")
+        await event.edit("⌯︙كان هناك خطأ أثناء المعالجة")
         return None
     except UnavailableVideoError:
         await event.edit("`الوسائط غير متوفرة بالتنسيق المطلوب`")
@@ -94,10 +94,10 @@ async def ytdl_down(event, opts, url):
         await event.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return None
     except ExtractorError:
-        await event.edit("⌔︙ حدث خطأ أثناء استخراج المعلومات يرجى وضعها بشكل صحيح ⚠️")
+        await event.edit("⌯︙حدث خطأ أثناء استخراج المعلومات يرجى وضعها بشكل صحيح ⚠️")
         return None
     except Exception as e:
-        await event.edit(f"⌔︙ حدث خطا : \n__{str(e)}__")
+        await event.edit(f"⌯︙حدث خطا : \n__{str(e)}__")
         return None
     return ytdl_data
 
@@ -175,17 +175,17 @@ async def download_audio(event):
         myString = rmsg.text
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
     if not url:
-        return await edit_or_reply(event, "⌔︙ - يجب وضع رابط لتحميله ❕")
-    catevent = await edit_or_reply(event, "⌔︙ يتم الاعداد انتظر")
+        return await edit_or_reply(event, "⌯︙- يجب وضع رابط لتحميله ❕")
+    catevent = await edit_or_reply(event, "⌯︙يتم الاعداد انتظر")
     reply_to_id = await reply_id(event)
     ytdl_data = await ytdl_down(catevent, audio_opts, url)
     if ytdl_data is None:
 
         return
     await catevent.edit(
-        f"⌔︙ يتم لتحميل الأغنية:\
-        \n⌔︙ {ytdl_data['title']}\
-        \nبواسطة ⌔︙ {ytdl_data['uploader']}"
+        f"⌯︙يتم لتحميل الأغنية:\
+        \n⌯︙{ytdl_data['title']}\
+        \nبواسطة ⌯︙{ytdl_data['uploader']}"
     )
     f = pathlib.Path(f"{ytdl_data['title']}.mp3".replace("|", "_"))
     catthumb = pathlib.Path(f"{ytdl_data['title']}.mp3.jpg".replace("|", "_"))
@@ -243,8 +243,8 @@ async def download_video(event):
         myString = rmsg.text
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
     if not url:
-        return await edit_or_reply(event, "⌔︙ عـليك وضع رابـط اولا ليتـم تنـزيله")
-    catevent = await edit_or_reply(event, "⌔︙ يتم التحميل انتظر قليلا")
+        return await edit_or_reply(event, "⌯︙عـليك وضع رابـط اولا ليتـم تنـزيله")
+    catevent = await edit_or_reply(event, "⌯︙يتم التحميل انتظر قليلا")
     reply_to_id = await reply_id(event)
     ytdl_data = await ytdl_down(catevent, video_opts, url)
     if ytdl_down is None:
@@ -256,8 +256,8 @@ async def download_video(event):
     if not os.path.exists(catthumb):
         catthumb = None
     await catevent.edit(
-        f"⌔︙ التحضيـر للـرفع انتظر:\
-        \n⌔︙ {ytdl_data['title']}\
+        f"⌯︙التحضيـر للـرفع انتظر:\
+        \n⌯︙{ytdl_data['title']}\
         \nبـواسطة *{ytdl_data['uploader']}*"
     )
     ul = io.open(f, "rb")
@@ -309,9 +309,9 @@ async def yt_search(event):
         query = str(event.pattern_match.group(2))
     if not query:
         return await edit_delete(
-            event, "⌔︙  يرجى الرد على الرسالة او كتابة الرابط اولا"
+            event, "⌯︙ يرجى الرد على الرسالة او كتابة الرابط اولا"
         )
-    video_q = await edit_or_reply(event, "⌔︙ يتم البحث عن المطلوب انتظر")
+    video_q = await edit_or_reply(event, "⌯︙يتم البحث عن المطلوب انتظر")
     if event.pattern_match.group(1) != "":
         lim = int(event.pattern_match.group(1))
         if lim <= 0:
@@ -322,7 +322,7 @@ async def yt_search(event):
         full_response = await ytsearch(query, limit=lim)
     except Exception as e:
         return await edit_delete(video_q, str(e), time=10, parse_mode=_format.parse_pre)
-    reply_text = f"⌔︙ • البحث :\n`{query}`\n\n⌔︙ •  نتائج :\n{full_response}"
+    reply_text = f"⌯︙• البحث :\n`{query}`\n\n⌯︙•  نتائج :\n{full_response}"
     await edit_or_reply(video_q, reply_text)
 
 
@@ -343,11 +343,11 @@ async def kakashi(event):
     link = event.pattern_match.group(1)
     if "www.instagram.com" not in link:
         await edit_or_reply(
-            event, "⌔︙ - يجب كتابة رابط من الانستغرام لتحميله ❕"
+            event, "⌯︙- يجب كتابة رابط من الانستغرام لتحميله ❕"
         )
     else:
         start = datetime.now()
-        catevent = await edit_or_reply(event, "⌔︙ جار التحميل انتظر قليلا 🔍")
+        catevent = await edit_or_reply(event, "⌯︙جار التحميل انتظر قليلا 🔍")
     async with event.client.conversation(chat) as conv:
         try:
             msg_start = await conv.send_message("/start")
@@ -357,7 +357,7 @@ async def kakashi(event):
             details = await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit(" ⌔︙ قـم بفتح الحظر ع بوت @instasavegrambot")
+            await catevent.edit(" ⌯︙قـم بفتح الحظر ع بوت @instasavegrambot")
             return
         await catevent.delete()
         cat = await event.client.send_file(

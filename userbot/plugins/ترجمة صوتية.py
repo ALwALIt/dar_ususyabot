@@ -42,10 +42,10 @@ async def _(event):
         lan = input_str or "en"
     else:
         if not input_str:
-            return await edit_or_reply(event, "⌔︙ عـذرا هـذا النص خـطأ")
+            return await edit_or_reply(event, "⌯︙عـذرا هـذا النص خـطأ")
         text = input_str
         lan = "en"
-    catevent = await edit_or_reply(event, "⌔︙ يـتم الـتسجيل أنتـظر")
+    catevent = await edit_or_reply(event, "⌯︙يـتم الـتسجيل أنتـظر")
     text = deEmojify(text.strip())
     lan = lan.strip()
     if not os.path.isdir("./temp/"):

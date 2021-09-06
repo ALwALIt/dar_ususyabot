@@ -49,7 +49,7 @@ EMOJI_SEN = [
 ]
 
 KANGING_STR = [
-    "**⌔︙ انتظر يتم صنع الملصق*",
+    "**⌯︙انتظر يتم صنع الملصق*",
 ]
 
 def verify_cond(catarray, text):
@@ -212,7 +212,7 @@ async def add_to_pack(
     rsp = await conv.get_response()
     if not verify_cond(EMOJI_SEN, rsp.text):
         await catevent.edit(
-            f"⌔︙ فشل اضافة الملصق ، استخدم بوت الملصقات @Stickers لأضافة الملصق يدويا.\n**خطأ :**{rsp}"
+            f"⌯︙فشل اضافة الملصق ، استخدم بوت الملصقات @Stickers لأضافة الملصق يدويا.\n**خطأ :**{rsp}"
         )
         return
     await conv.send_message(emoji)
@@ -281,10 +281,10 @@ async def kang(args):  # sourcery no-metrics
             is_anim = True
             photo = 1
         else:
-            await edit_delete(args, "⌔︙ الملف غير مدعوم")
+            await edit_delete(args, "⌯︙الملف غير مدعوم")
             return
     else:
-        await edit_delete(args, "⌔︙ لايمكنني اخذ هاذا")
+        await edit_delete(args, "⌯︙لايمكنني اخذ هاذا")
         return
     if photo:
         splat = ("".join(args.text.split(maxsplit=1)[1:])).split()
@@ -341,7 +341,7 @@ async def kang(args):  # sourcery no-metrics
             await edit_delete(
                 catevent,
                 f"تـم اخذ الملصق بنـجاح\
-                    \n ⌔︙ حزمة ملصقاتك هنا  [اضغط هنا](t.me/addstickers/{packname}) *",
+                    \n ⌯︙حزمة ملصقاتك هنا  [اضغط هنا](t.me/addstickers/{packname}) *",
                 parse_mode="md",
                 time=10,
             )
@@ -363,8 +363,8 @@ async def kang(args):  # sourcery no-metrics
             if otherpack:
                 await edit_delete(
                     catevent,
-                    f"⌔︙ تم صنع الملصق لحزمه مختلفه !\
-                    \n⌔︙ والحزمة التي تم إنشاؤها حديثًا هي` [اضغط هنا](t.me/addstickers/{packname}) `  استخدم  {emoji}` للعثور على الملصقات المصنوعه",
+                    f"⌯︙تم صنع الملصق لحزمه مختلفه !\
+                    \n⌯︙والحزمة التي تم إنشاؤها حديثًا هي` [اضغط هنا](t.me/addstickers/{packname}) `  استخدم  {emoji}` للعثور على الملصقات المصنوعه",
                     parse_mode="md",
                     time=10,
                 )
@@ -406,7 +406,7 @@ async def pack_kang(event):  # sourcery no-metrics
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     if not reply or media_type(reply) is None or media_type(reply) != "Sticker":
         return await edit_delete(
-            event, "**⌔︙ يجب الرد على الملصق لإرسال جميع الملصقات في تلك الحزمة**"
+            event, "**⌯︙يجب الرد على الملصق لإرسال جميع الملصقات في تلك الحزمة**"
         )
     try:
         stickerset_attr = reply.document.attributes[1]
@@ -566,19 +566,19 @@ async def get_pack_info(event):
     rep_msg = await event.get_reply_message()
     if not rep_msg.document:
         return await edit_delete(
-            event, "**⌔︙ هاذا ليس ملصق يجب الرد على الملصق اولا**", 5
+            event, "**⌯︙هاذا ليس ملصق يجب الرد على الملصق اولا**", 5
         )
     try:
         stickerset_attr = rep_msg.document.attributes[1]
         catevent = await edit_or_reply(
-            event, "**⌔︙ إحضار تفاصيل حزمة الملصقات ، يُرجى الانتظار**`"
+            event, "**⌯︙إحضار تفاصيل حزمة الملصقات ، يُرجى الانتظار**`"
         )
     except BaseException:
         return await edit_delete(
-            event, "**⌔︙ هذا ليس ملصق يجب الرد على الملصق اولا**", 5
+            event, "**⌯︙هذا ليس ملصق يجب الرد على الملصق اولا**", 5
         )     
     if not isinstance(stickerset_attr, DocumentAttributeSticker):
-        return await catevent.edit("**⌔︙ هذا ليس ملصق يجب الرد على الملصق اولا.**")
+        return await catevent.edit("**⌯︙هذا ليس ملصق يجب الرد على الملصق اولا.**")
     get_stickerset = await event.client(
         GetStickerSetRequest(
             InputStickerSetID(
@@ -592,11 +592,11 @@ async def get_pack_info(event):
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
     OUTPUT = (
-        f"**⌔︙ عنوان الملصق:** `{get_stickerset.set.title}\n`"
-        f"**⌔︙ الاسم القصير للملصق:** `{get_stickerset.set.short_name}`\n"
-        f"**⌔︙ المـسؤل:** `{get_stickerset.set.official}`\n"
-        f"**⌔︙ الارشيف:** `{get_stickerset.set.archived}`\n"
-        f"**⌔︙ حزمة الملصق:** `{get_stickerset.set.count}`\n"
-        f"**⌔︙ الايموجي المستخدم:**\n{' '.join(pack_emojis)}"
+        f"**⌯︙عنوان الملصق:** `{get_stickerset.set.title}\n`"
+        f"**⌯︙الاسم القصير للملصق:** `{get_stickerset.set.short_name}`\n"
+        f"**⌯︙المـسؤل:** `{get_stickerset.set.official}`\n"
+        f"**⌯︙الارشيف:** `{get_stickerset.set.archived}`\n"
+        f"**⌯︙حزمة الملصق:** `{get_stickerset.set.count}`\n"
+        f"**⌯︙الايموجي المستخدم:**\n{' '.join(pack_emojis)}"
     )
     await catevent.edit(OUTPUT)

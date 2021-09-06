@@ -34,7 +34,7 @@ async def install(event):
                 load_module(shortname.replace(".py", ""))
                 await edit_delete(
                     event,
-                    f"⌔︙ تـم تثبيـت المـلف `{os.path.basename(downloaded_file_name)}`",
+                    f"⌯︙تـم تثبيـت المـلف `{os.path.basename(downloaded_file_name)}`",
                     10,
                 )
             else:
@@ -64,7 +64,7 @@ async def unload(event):
     path = Path(f"userbot/plugins/{shortname}.py")
     if not os.path.exists(path):
         return await edit_delete(
-            event, f"⌔︙ لا يوجد هكذا ملف مع المسار {path} لحذفه"
+            event, f"⌯︙لا يوجد هكذا ملف مع المسار {path} لحذفه"
         )
     os.remove(path)
     if shortname in CMD_LIST:
@@ -75,6 +75,6 @@ async def unload(event):
         CMD_HELP.pop(shortname)
     try:
         remove_plugin(shortname)
-        await edit_or_reply(event, f"⌔︙ {shortname} تم الغاء تثبيت الملف بنجاح")
+        await edit_or_reply(event, f"⌯︙{shortname} تم الغاء تثبيت الملف بنجاح")
     except Exception as e:
-        await edit_or_reply(event, f"⌔︙ تم الغاء التثبيت بنجاح {shortname}\n{str(e)}")
+        await edit_or_reply(event, f"⌯︙تم الغاء التثبيت بنجاح {shortname}\n{str(e)}")

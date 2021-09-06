@@ -14,13 +14,13 @@ plugin_category = "utils"
 # =========================================================== #
 #                           الثـوابت                           #
 # =========================================================== #
-STAT_INDICATION = "**⌔︙ جـاري جـمـع الإحصـائيـات انتـظـر ⏱ **"
-CHANNELS_STR = "**⌔︙ قائمة القنوات التي أنت فيها موجودة هنا\n\n"
-CHANNELS_ADMINSTR = "**⌔︙ قائمة القنوات التي انت مشـرف بهـا **\n\n"
-CHANNELS_OWNERSTR = "**⌔︙ قائمة القنوات التي تـكون انت مالكـها**\n\n"
-GROUPS_STR = "**⌔︙ قائمة المجموعات التي أنت فيها موجود فيـها**\n\n"
-GROUPS_ADMINSTR = "**⌔︙ قائمة المجموعات التي تكون مشـرف بهـا**\n\n"
-GROUPS_OWNERSTR = "**⌔︙ قائمة المجموعات التي تـكون انت مالكـها**\n\n"
+STAT_INDICATION = "**⌯︙جـاري جـمـع الإحصـائيـات انتـظـر ⏱ **"
+CHANNELS_STR = "**⌯︙قائمة القنوات التي أنت فيها موجودة هنا\n\n"
+CHANNELS_ADMINSTR = "**⌯︙قائمة القنوات التي انت مشـرف بهـا **\n\n"
+CHANNELS_OWNERSTR = "**⌯︙قائمة القنوات التي تـكون انت مالكـها**\n\n"
+GROUPS_STR = "**⌯︙قائمة المجموعات التي أنت فيها موجود فيـها**\n\n"
+GROUPS_ADMINSTR = "**⌯︙قائمة المجموعات التي تكون مشـرف بهـا**\n\n"
+GROUPS_OWNERSTR = "**⌯︙قائمة المجموعات التي تـكون انت مالكـها**\n\n"
 # =========================================================== #
 #                                                             #
 # =========================================================== #
@@ -99,19 +99,19 @@ async def stats(event):  # sourcery no-metrics
     stop_time = time.time() - start_time
     full_name = inline_mention(await event.client.get_me())
     response = f"✛━━━━━━━━━━━━━✛ \n"
-    response += f"**⌔︙ الدردشات الخاصة ️  :** {private_chats} \n"
-    response += f"**⌔︙ المستخـدمين : {private_chats - bots} \n"
-    response += f"**⌔︙ الـبوتـات :** {bots} \n"
-    response += f"**⌔︙ المجـموعـات :** {groups} \n"
-    response += f"**⌔︙ القنـوات  :** {broadcast_channels} \n"
-    response += f"**⌔︙ المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
-    response += f"**⌔︙ المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups} \n"
-    response += f"**⌔︙ القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
+    response += f"**⌯︙الدردشات الخاصة ️  :** {private_chats} \n"
+    response += f"**⌯︙المستخـدمين : {private_chats - bots} \n"
+    response += f"**⌯︙الـبوتـات :** {bots} \n"
+    response += f"**⌯︙المجـموعـات :** {groups} \n"
+    response += f"**⌯︙القنـوات  :** {broadcast_channels} \n"
+    response += f"**⌯︙المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
+    response += f"**⌯︙المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups} \n"
+    response += f"**⌯︙القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
     response += (
-        f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
+        f"**⌯︙صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
     )
-    response += f"**⌔︙ المحـادثـات الغيـر مقـروء**: {unread} \n"
-    response += f"**⌔︙ الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
+    response += f"**⌯︙المحـادثـات الغيـر مقـروء**: {unread} \n"
+    response += f"**⌯︙الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
     response += f"✛━━━━━━━━━━━━━✛\n"
     await cat.edit(response)
         
@@ -130,7 +130,7 @@ async def _(event):
     if not input_str and not reply_message:
         return await edit_delete(
             event,
-            "⌔︙ يجـب وضع ايدي الشخـص او معـرفه او بالرد عليه"
+            "⌯︙يجـب وضع ايدي الشخـص او معـرفه او بالرد عليه"
          )
     if input_str:
         try:
@@ -140,7 +140,7 @@ async def _(event):
                 u = await event.client.get_entity(input_str)
             except ValueError:
                 await edit_delete(
-                    event, "⌔︙ يجـب وضع ايدي الشخـص او معـرفه اولا"
+                    event, "⌯︙يجـب وضع ايدي الشخـص او معـرفه اولا"
                 )
             uid = u.id
     else:

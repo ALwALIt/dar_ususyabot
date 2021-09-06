@@ -58,7 +58,7 @@ async def _(event):  # sourcery no-metrics
         chatdata = await event.client.get_entity(entity)
     except Exception as e:
         return await edit_delete(
-            event, f"<b>⌔︙ خـطـأ : </b><code>{str(e)}</code>", time=5, parse_mode="HTML"
+            event, f"<b>⌯︙خـطـأ : </b><code>{str(e)}</code>", time=5, parse_mode="HTML"
         )
     if type(chatdata).__name__ == "Channel":
         if chatdata.username:
@@ -114,17 +114,17 @@ async def _(event):  # sourcery no-metrics
         str(round((weird_division((endtime - starttime), totalcount)) * 1000, 2))
         + " ms"
     )
-    totalstring = f"<code><b>⌔︙ جمـيع الـملفات ☆ </b>       | {str(totalcount)}\
-                  \n⌔︙ حجـم الـملف الكـلي ☆    | {humanbytes(totalsize)}\
-                  \n⌔︙ حـجم الـملف ☆    | {avghubytes}\
+    totalstring = f"<code><b>⌯︙جمـيع الـملفات ☆ </b>       | {str(totalcount)}\
+                  \n⌯︙حجـم الـملف الكـلي ☆    | {humanbytes(totalsize)}\
+                  \n⌯︙حـجم الـملف ☆    | {avghubytes}\
                   \n</code>"
-    runtimestring = f"<code>⌔︙ وقـت الـتشغيل ☆            | {runtime}\
-                    \n⌔︙ وقـت الـتشغيل لـكل مـلف ☆    | {avgruntime}\
+    runtimestring = f"<code>⌯︙وقـت الـتشغيل ☆            | {runtime}\
+                    \n⌯︙وقـت الـتشغيل لـكل مـلف ☆    | {avgruntime}\
                     \n</code>"
     line = "<code>+--------------------+-----------+</code>\n"
-    result = f"<b>⌔︙ الـكـروب : {link}</b>\n\n"
-    result += f"<code>⌔︙ جـميـع الـرسائـل: {msg_count}</code>\n"
-    result += "<b>⌔︙ مـلخص الـملف : </b>\n"
+    result = f"<b>⌯︙الـكـروب : {link}</b>\n\n"
+    result += f"<code>⌯︙جـميـع الـرسائـل: {msg_count}</code>\n"
+    result += "<b>⌯︙مـلخص الـملف : </b>\n"
     result += f"<code>{str(x)}</code>\n"
     result += f"{largest}"
     result += line + totalstring + line + runtimestring + line
@@ -238,16 +238,16 @@ async def _(event):  # sourcery no-metrics
         str(round((weird_division((endtime - starttime), totalcount)) * 1000, 2))
         + " ms"
     )
-    totalstring = f"<code> ⌔︙ إجمالـي الملفـات ☆ :    | {str(totalcount)}\
-                  \n ⌔︙ الحجـم الإجمالـي للملـف ☆ :   | {humanbytes(totalsize)}\
-                  \n ⌔︙ حجم الملف  :  | {avghubytes}\
+    totalstring = f"<code> ⌯︙إجمالـي الملفـات ☆ :    | {str(totalcount)}\
+                  \n ⌯︙الحجـم الإجمالـي للملـف ☆ :   | {humanbytes(totalsize)}\
+                  \n ⌯︙حجم الملف  :  | {avghubytes}\
                   \n</code>"
-    runtimestring = f"<code> ⌔︙ وقـت التشغيـل ☆ :            | {runtime}\
+    runtimestring = f"<code> ⌯︙وقـت التشغيـل ☆ :            | {runtime}\
                     \n وقـت التشغيـل لـكـل ملـف ☆ : | {avgruntime}\
                     \n</code>"
     line = "<code>+--------------------+-----------+</code>\n"
-    result = f"⌔︙ المجموعـة ☆ : {link}\nUser : {_format.htmlmentionuser(userdata.first_name,userdata.id)}\n\n"
-    result += f"<code>⌔︙ مجمـوع الرسائـل ☆ : {msg_count}</code>\n"
+    result = f"⌯︙المجموعـة ☆ : {link}\nUser : {_format.htmlmentionuser(userdata.first_name,userdata.id)}\n\n"
+    result += f"<code>⌯︙مجمـوع الرسائـل ☆ : {msg_count}</code>\n"
     result += "⌔︙ملخـص الملـف ☆ :\n"
     result += f"<code>{str(x)}</code>\n"
     result += f"{largest}"

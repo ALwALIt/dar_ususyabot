@@ -19,10 +19,10 @@ async def gcast(event):
         return await edit_or_reply(event, "هـذا الامـر مقـيد للسـودو")
     xx = event.pattern_match.group(1)
     if not xx:
-        return edit_or_reply(event, "** ⌔︙ يجـب وضـع نـص مع الامـر للتوجيـه**")
+        return edit_or_reply(event, "** ⌯︙يجـب وضـع نـص مع الامـر للتوجيـه**")
     tt = event.text
     msg = tt[6:]
-    event = await edit_or_reply(event, "** ⌔︙ يتـم الـتوجيـة للـمجموعـات انتـظر قليلا**")
+    event = await edit_or_reply(event, "** ⌯︙يتـم الـتوجيـة للـمجموعـات انتـظر قليلا**")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
@@ -45,10 +45,10 @@ async def gucast(event):
         return await edit_or_reply(event, "هـذا الامـر مقـيد للسـودو")
     xx = event.pattern_match.group(1)
     if not xx:
-        return edit_or_reply(event, "** ⌔︙ يجـب وضـع نـص مع الامـر للتوجيـه**")
+        return edit_or_reply(event, "** ⌯︙يجـب وضـع نـص مع الامـر للتوجيـه**")
     tt = event.text
     msg = tt[7:]
-    kk = await edit_or_reply(event, "** ⌔︙ يتـم الـتوجيـة للخـاص انتـظر قليلا**")
+    kk = await edit_or_reply(event, "** ⌯︙يتـم الـتوجيـة للخـاص انتـظر قليلا**")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():

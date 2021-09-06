@@ -35,14 +35,14 @@ async def _(event):  #   : @RRRD7
     if not input_str and not reply_message:
         await edit_delete( #ترجمه فريق جمثون على التيلكرام
             event,
-            "⌔︙  يـجب الـرد على الشخـص او كتـابة معـرفه مع الأمـر لأظـهار تواريـخ اسمـه",
+            "⌯︙ يـجب الـرد على الشخـص او كتـابة معـرفه مع الأمـر لأظـهار تواريـخ اسمـه",
         )
     user, rank = await get_user_from_event(event, secondgroup=True)
     if not user:
         return
     uid = user.id
     chat = "@SangMataInfo_bot"
-    catevent = await edit_or_reply(event, "⌔︙ انتظر قليلا..")
+    catevent = await edit_or_reply(event, "⌯︙انتظر قليلا..")
     async with event.client.conversation(chat) as conv:
         try:
             await conv.send_message(f"/search_id {uid}")
@@ -57,9 +57,9 @@ async def _(event):  #   : @RRRD7
             responses.append(response.text)
         await event.client.send_read_acknowledge(conv.chat_id)
     if not responses:
-        await edit_delete(catevent, "⌔︙ لم يتم ايجاد اي نتيجـة")
+        await edit_delete(catevent, "⌯︙لم يتم ايجاد اي نتيجـة")
     if "No records found" in responses:
-        await edit_delete(catevent, "⌔︙ هـذا المـستخدم لـيس لديـه اي سـجل")
+        await edit_delete(catevent, "⌯︙هـذا المـستخدم لـيس لديـه اي سـجل")
     names, usernames = await sanga_seperator(responses)
     cmd = event.pattern_match.group(1)
     jasem = None

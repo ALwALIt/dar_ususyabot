@@ -33,12 +33,12 @@ from ..sql_helper.mute_sql import is_muted, mute, unmute
 from . import BOTLOG, BOTLOG_CHATID
 
 # =================== STRINGS ============
-PP_TOO_SMOL = "**⌔︙ الصورة صغيرة جدًا** "
-PP_ERROR = "**⌔︙ فشل أثناء معالجة الصورة** "
-NO_ADMIN = "**⌔︙ أنا لست مشرف هنا!!** "
-NO_PERM = "**⌔︙ ليس لدي أذونات كافية!** "
-CHAT_PP_CHANGED = "**⌔︙ تم تغيير صورة الدردشة بنجاح ✅**"
-INVALID_MEDIA = "**⌔︙ ملحق غير صالح** "
+PP_TOO_SMOL = "**⌯︙الصورة صغيرة جدًا** "
+PP_ERROR = "**⌯︙فشل أثناء معالجة الصورة** "
+NO_ADMIN = "**⌯︙أنا لست مشرف هنا!!** "
+NO_PERM = "**⌯︙ليس لدي أذونات كافية!** "
+CHAT_PP_CHANGED = "**⌯︙تم تغيير صورة الدردشة بنجاح ✅**"
+INVALID_MEDIA = "**⌯︙ملحق غير صالح** "
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -75,13 +75,13 @@ plugin_category = "aadmin"
     pattern="الصورة( -وضع| -حذف)$",
     command=("الصورة", plugin_category),
     info={
-        "⌔︙ الأسـتخدام": "For changing group display pic or deleting display pic",
-        "⌔︙ الشـرح": "Reply to Image for changing display picture",
+        "⌯︙الأسـتخدام": "For changing group display pic or deleting display pic",
+        "⌯︙الشـرح": "Reply to Image for changing display picture",
         "flags": {
             "-s": "To set group pic",
             "-d": "To delete group pic",
         },
-        "⌔︙ الأمـر": [
+        "⌯︙الأمـر": [
             "{tr}الصورة -وضع <reply to image>",
             "{tr}gpic -حذف",
         ],
@@ -123,7 +123,7 @@ async def set_group_photo(event):  # sourcery no-metrics
         except Exception as e:
             return await edit_delete(event, f"**خـطأ : **`{str(e)}`")
         process = "deleted"
-        await edit_delete(event, "**⌔︙ تـم حذف الـصورة بنـجاح ✅")
+        await edit_delete(event, "**⌯︙تـم حذف الـصورة بنـجاح ✅")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -137,9 +137,9 @@ async def set_group_photo(event):  # sourcery no-metrics
     pattern="رفع مشرف(?:\s|$)([\s\S]*)",
     command=("رفع مشرف", plugin_category),
     info={
-        "الامر": "⌔︙ لرفع الشخص مشرف مع صلاحيات",
-        "الشرح": "⌔︙ لرفع الشخص مشرف بالمجموعه قم بالرد على الشخص\
-            \n⌔︙ تـحتاج الصلاحـيات لـهذا الأمـر",
+        "الامر": "⌯︙لرفع الشخص مشرف مع صلاحيات",
+        "الشرح": "⌯︙لرفع الشخص مشرف بالمجموعه قم بالرد على الشخص\
+            \n⌯︙تـحتاج الصلاحـيات لـهذا الأمـر",
         "الاستخدام": [
             "{tr}رفع مشرف <ايدي/معرف/بالرد عليه>",
             "{tr}رفع مشرف <ايدي/معرف/بالرد عليه> ",
@@ -149,7 +149,7 @@ async def set_group_photo(event):  # sourcery no-metrics
     require_admin=True,
 )#admin plugin for  jmthon
 async def promote(event):
-    "⌔︙ لـرفع مستـخدم مشـرف في الـكروب"
+    "⌯︙لـرفع مستـخدم مشـرف في الـكروب"
     new_rights = ChatAdminRights(
         add_admins=False,
         invite_users=True,
@@ -182,9 +182,9 @@ async def promote(event):
     pattern="تك(?:\s|$)([\s\S]*)",
     command=("تك", plugin_category),
     info={
-        "الامر": "⌔︙ لتنزيل الشخص كن الاشراف",
-        "الشرح": "⌔︙ يقوم هذا الامر بحذف جميع صلاحيات المشرف\
-            \n⌔︙ ملاحظه :**لازم تكون انت الشخص الي رفعه او تكون مالك المجموعه حتى تنزله**",
+        "الامر": "⌯︙لتنزيل الشخص كن الاشراف",
+        "الشرح": "⌯︙يقوم هذا الامر بحذف جميع صلاحيات المشرف\
+            \n⌯︙ملاحظه :**لازم تكون انت الشخص الي رفعه او تكون مالك المجموعه حتى تنزله**",
         "الاستخدام": [
             "{tr}تك <الايدي/المعرف/بالرد عليه>",
             "{tr}تك <الايدي/المعرف/بالرد عليه>",
@@ -194,11 +194,11 @@ async def promote(event):
     require_admin=True,
 )
 async def demote(event):
-    "⌔︙ لـتنزيـل شـخص من الأشـراف"
+    "⌯︙لـتنزيـل شـخص من الأشـراف"
     user, _ = await get_user_from_event(event)
     if not user:
         return
-    catevent = await edit_or_reply(event, "**⌔︙ يـتم التنزيل من الاشراف**")
+    catevent = await edit_or_reply(event, "**⌯︙يـتم التنزيل من الاشراف**")
     newrights = ChatAdminRights(
         add_admins=None,
         invite_users=None,
@@ -212,7 +212,7 @@ async def demote(event):
         await event.client(EditAdminRequest(event.chat_id, user.id, newrights, rank))
     except BadRequestError:
         return await catevent.edit(NO_PERM)
-    await catevent.edit("**⌔︙ تـم تنزيله من قائمه الادمنيه بنجاح ✅**")
+    await catevent.edit("**⌯︙تـم تنزيله من قائمه الادمنيه بنجاح ✅**")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -224,10 +224,10 @@ async def demote(event):
     pattern="طرد(?:\s|$)([\s\S]*)",
     command=("طرد", plugin_category),
     info={
-        "⌔︙ الأسـتخدام": "لـطرد شـخض من الـكروب",
-        "⌔︙ الشـرح": "لـطرد شخص من المـجموعة يستطيع الأنضـمام مرة اخـرى.\
-        \n⌔︙ تـحتاج الصلاحـيات لـهذا الأمـر.",
-        "⌔︙ الأمـر": [
+        "⌯︙الأسـتخدام": "لـطرد شـخض من الـكروب",
+        "⌯︙الشـرح": "لـطرد شخص من المـجموعة يستطيع الأنضـمام مرة اخـرى.\
+        \n⌯︙تـحتاج الصلاحـيات لـهذا الأمـر.",
+        "⌯︙الأمـر": [
             "{tr}طرد <الايدي/المعرف/بالرد عليه>",
             "{tr}طرد <الايدي/المعرف/بالرد عليه> <السبب> ",
         ],
@@ -240,25 +240,25 @@ async def endmute(event):
     user, reason = await get_user_from_event(event)
     if not user:
         return
-    catevent = await edit_or_reply(event, "⌔︙ يـتم طـرد الـمستخدم أنتـظر")
+    catevent = await edit_or_reply(event, "⌯︙يـتم طـرد الـمستخدم أنتـظر")
     try:
         await event.client.kick_participant(event.chat_id, user.id)
     except Exception as e:
         return await catevent.edit(NO_PERM + f"\n{str(e)}")
     if reason:
         await catevent.edit(
-            f"⌔︙ الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌔︙ تـم طرده بنجاح ✅ \n⌔︙ السـبب : {reason}"
+            f"⌯︙الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌯︙تـم طرده بنجاح ✅ \n⌯︙السـبب : {reason}"
         )
     else:
-        await catevent.edit(f"⌔︙ الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌔︙ تـم طرده بنجاح ✅ ")
+        await catevent.edit(f"⌯︙الـمستخدم [{user.first_name}](tg://user?id={user.id})\n ⌯︙تـم طرده بنجاح ✅ ")
 @jmthon.ar_cmd(
     pattern="حظر(?:\s|$)([\s\S]*)",
     command=("حظر", plugin_category),
     info={
-        "⌔︙ الاستخدام": "يقـوم بـحظر شخـص في الـكروب الءي اسـتخدمت فيـه الامر.",
-        "⌔︙ الشرح": "لحـظر شخـص من الكـروب ومـنعه من الأنـضمام مجـددا\
-            \n⌔︙ تـحتاج الصلاحـيات لـهذا الأمـر.",
-        "⌔︙ الامر": [
+        "⌯︙الاستخدام": "يقـوم بـحظر شخـص في الـكروب الءي اسـتخدمت فيـه الامر.",
+        "⌯︙الشرح": "لحـظر شخـص من الكـروب ومـنعه من الأنـضمام مجـددا\
+            \n⌯︙تـحتاج الصلاحـيات لـهذا الأمـر.",
+        "⌯︙الامر": [
             "{tr}حظر <الايدي/المعرف/بالرد عليه>",
             "{tr}حظر <الايدي/المعرف/بالرد عليه> <السبب>",
         ],
@@ -267,7 +267,7 @@ async def endmute(event):
     require_admin=True,
 )
 async def _ban_person(event):
-    "⌔︙ لحـظر شخص في كـروب مـعين"
+    "⌯︙لحـظر شخص في كـروب مـعين"
     user, reason = await get_user_from_event(event)
     if not user:
         return
@@ -277,7 +277,7 @@ async def _ban_person(event):
         return await edit_delete(event, "**- لا يمڪنني حظر مطـوري دي لك**")
     if user.id == 1657933680:
         return await edit_delete(event, "**- لا يمڪنني حظر مطـوري دي لك**")
-    catevent = await edit_or_reply(event, "⌔︙ تـم حـظره بـنجاح")
+    catevent = await edit_or_reply(event, "⌯︙تـم حـظره بـنجاح")
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
     except BadRequestError:
@@ -288,21 +288,21 @@ async def _ban_person(event):
             await reply.delete()
     except BadRequestError:
         return await catevent.edit(
-            "⌔︙ ليـس لـدي جـميع الصـلاحيـات لكـن سيـبقى محـظور"
+            "⌯︙ليـس لـدي جـميع الصـلاحيـات لكـن سيـبقى محـظور"
         )
     if reason:
         await catevent.edit(
-            f"⌔︙ المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n ⌔︙ تـم حـظره بنـجاح !!\n**⌔︙السبب : **`{reason}`"
+            f"⌯︙المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n ⌯︙تـم حـظره بنـجاح !!\n**⌔︙السبب : **`{reason}`"
         )
     else:
         await catevent.edit(
-            f"⌔︙ المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n ⌔︙ تـم حـظره بنـجاح ✅"
+            f"⌯︙المسـتخدم {_format.mentionuser(user.first_name ,user.id)} \n ⌯︙تـم حـظره بنـجاح ✅"
         )
     if BOTLOG:
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"⌔︙ الحـظر\
+                f"⌯︙الحـظر\
                 \nالمسـتخدم: [{user.first_name}](tg://user?id={user.id})\
                 \nالـدردشـة: {event.chat.title}\
                 \nايدي الكروب(`{event.chat_id}`)\
@@ -311,7 +311,7 @@ async def _ban_person(event):
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"⌔︙ الحـظر\
+                f"⌯︙الحـظر\
                 \nالمسـتخدم: [{user.first_name}](tg://user?id={user.id})\
                 \nالـدردشـة: {event.chat.title}\
                 \n ايـدي الكـروب: (`{event.chat_id}`)",
@@ -322,10 +322,10 @@ async def _ban_person(event):
     pattern="الغاء حظر(?:\s|$)([\s\S]*)",
     command=("الغاء حظر", plugin_category),
     info={
-        "⌔︙ الأسـتخدام": "يقـوم بـالغاء حـظر الشـخص في الـكروب الذي اسـتخدمت فيـه الامر.",
-        "⌔︙ الشرح": "لألـغاء حـظر شخـص من الكـروب والسـماح له من الأنـضمام مجـددا\
-            \n⌔︙ تـحتاج الصلاحـيات لـهذا الأمـر.",
-        "⌔︙ الأمـر": [
+        "⌯︙الأسـتخدام": "يقـوم بـالغاء حـظر الشـخص في الـكروب الذي اسـتخدمت فيـه الامر.",
+        "⌯︙الشرح": "لألـغاء حـظر شخـص من الكـروب والسـماح له من الأنـضمام مجـددا\
+            \n⌯︙تـحتاج الصلاحـيات لـهذا الأمـر.",
+        "⌯︙الأمـر": [
             "{tr}الغاء حظر <الايدي/المعرف/بالرد عليه>",
             "{tr}الغاء حظر <الايدي/المعرف/بالرد عليه> <السبب> ",
         ],
@@ -334,25 +334,25 @@ async def _ban_person(event):
     require_admin=True,
 )
 async def nothanos(event):
-    "⌔︙ لألـغاء الـحظر لـشخص في كـروب مـعين"
+    "⌯︙لألـغاء الـحظر لـشخص في كـروب مـعين"
     user, _ = await get_user_from_event(event)
     if not user:
         return
-    catevent = await edit_or_reply(event, "⌔︙ جـار الـغاء الـحظر أنتـظر رجـاءا")
+    catevent = await edit_or_reply(event, "⌯︙جـار الـغاء الـحظر أنتـظر رجـاءا")
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
         await catevent.edit(
-            f"⌔︙ الـمستخدم {_format.mentionuser(user.first_name ,user.id)}\n ⌔︙ تـم الـغاء حـظره بنـجاح "
+            f"⌯︙الـمستخدم {_format.mentionuser(user.first_name ,user.id)}\n ⌯︙تـم الـغاء حـظره بنـجاح "
         )
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "⌔︙ الـغاء الـحظر \n"
+                "⌯︙الـغاء الـحظر \n"
                 f"الـمستخدم: [{user.first_name}](tg://user?id={user.id})\n"
                 f"الـدردشـة: {event.chat.title}(`{event.chat_id}`)",
             )
     except UserIdInvalidError:
-        await catevent.edit("⌔︙ يـبدو أن هذه الـعمليـة تم إلغاؤهـا")
+        await catevent.edit("⌯︙يـبدو أن هذه الـعمليـة تم إلغاؤهـا")
     except Exception as e:
         await catevent.edit(f"**خـطأ :**\n`{e}`")
 

@@ -18,14 +18,14 @@ plugin_category = "utils"
 
 
 # ====================== CONSTANT ===============================
-INVALID_MEDIA = "⌔︙ امتدا هذه الصورة غير صالح.```"
+INVALID_MEDIA = "⌯︙امتدا هذه الصورة غير صالح.```"
 PP_CHANGED = "⌔︙**  تم تغير صورة حسابك بنجاح ⌁،**"
-PP_TOO_SMOL = "** ⌔︙ هذه الصوره صغيره جدا قم بختيار صوره اخرى  ⌁،**"
-PP_ERROR = "** ⌔︙ حدث خطا اثناء معالجه الصوره  ⌁**"
-BIO_SUCCESS = "** ⌔︙ تم تغير بايو حسابك بنجاح ⌁،**"
-NAME_OK = "** ⌔︙ تم تغير اسم حسابك بنجاح ⌁**"
-USERNAME_SUCCESS = "**⌔︙ تم تغير معرف حسابك بنجاح ⌁،**"
-USERNAME_TAKEN = "**⌔︙  هذا المعرف مستخدم ⌁ ،**"
+PP_TOO_SMOL = "** ⌯︙هذه الصوره صغيره جدا قم بختيار صوره اخرى  ⌁،**"
+PP_ERROR = "** ⌯︙حدث خطا اثناء معالجه الصوره  ⌁**"
+BIO_SUCCESS = "** ⌯︙تم تغير بايو حسابك بنجاح ⌁،**"
+NAME_OK = "** ⌯︙تم تغير اسم حسابك بنجاح ⌁**"
+USERNAME_SUCCESS = "**⌯︙تم تغير معرف حسابك بنجاح ⌁،**"
+USERNAME_TAKEN = "**⌯︙ هذا المعرف مستخدم ⌁ ،**"
 # ===============================================================
 
 
@@ -42,7 +42,7 @@ async def _(event):
     bio = event.pattern_match.group(1)
     try:
         await event.client(functions.account.UpdateProfileRequest(about=bio))
-        await edit_delete(event, "⌔︙ تـم تغـيير البـايو بنـجاح ✅")
+        await edit_delete(event, "⌯︙تـم تغـيير البـايو بنـجاح ✅")
     except Exception as e:
         await edit_or_reply(event, f"**خطأ:**\n`{str(e)}`")
 
@@ -68,7 +68,7 @@ async def _(event):
                 first_name=first_name, last_name=last_name
             )
         )
-        await edit_delete(event, "⌔︙ تـم تغيير الاسـم بـنجاح ✅")
+        await edit_delete(event, "⌯︙تـم تغيير الاسـم بـنجاح ✅")
     except Exception as e:
         await edit_or_reply(event, f"**خطأ:**\n`{str(e)}`")
 
@@ -98,12 +98,12 @@ async def _(event):
         await catevent.edit(str(e))
     else:
         if photo:
-            await catevent.edit("⌔︙ أنتـظر قلـيلا ")
+            await catevent.edit("⌯︙أنتـظر قلـيلا ")
             if photo.endswith((".mp4", ".MP4")):
                 # https://t.me/tgbetachat/324694
                 size = os.stat(photo).st_size
                 if size > 2097152:
-                    await catevent.edit("⌔︙ يجب ان يكون الحجم اقل من 2 ميغا ✅")
+                    await catevent.edit("⌯︙يجب ان يكون الحجم اقل من 2 ميغا ✅")
                     os.remove(photo)
                     return
                 catpic = None
@@ -121,7 +121,7 @@ async def _(event):
                 await catevent.edit(f"**خطأ:**\n`{str(e)}`")
             else:
                 await edit_or_reply(
-                    catevent, "⌔︙ تم تغيير الصـورة بنـجاح ✅"
+                    catevent, "⌯︙تم تغيير الصـورة بنـجاح ✅"
                 )
     try:
         os.remove(photo)
@@ -165,7 +165,7 @@ async def count(event):
     bc = 0
     b = 0
     result = ""
-    catevent = await edit_or_reply(event, "⌔︙ يتم الحساب انتـظر ")
+    catevent = await edit_or_reply(event, "⌯︙يتم الحساب انتـظر ")
     dialogs = await event.client.get_dialogs(limit=None, ignore_migrated=True)
     for d in dialogs:
         currrent_entity = d.entity
@@ -184,11 +184,11 @@ async def count(event):
         else:
             LOGS.info(d)
 
-    result += f"**⌔︙ الأشخاص:**\t**{u}**\n"
-    result += f"**⌔︙ الـمجموعات:**\t**{g}**\n"
-    result += f"**⌔︙ المجموعات الخارقه:**\t**{c}**\n"
-    result += f"**⌔︙ القنوات:**\t**{bc}**\n"
-    result += f"**⌔︙ البوتات:**\t**{b}**"
+    result += f"**⌯︙الأشخاص:**\t**{u}**\n"
+    result += f"**⌯︙الـمجموعات:**\t**{g}**\n"
+    result += f"**⌯︙المجموعات الخارقه:**\t**{c}**\n"
+    result += f"**⌯︙القنوات:**\t**{bc}**\n"
+    result += f"**⌯︙البوتات:**\t**{b}**"
 
     await catevent.edit(result)
 
@@ -224,7 +224,7 @@ async def remove_profilepic(delpfp):
     ]
     await delpfp.client(DeletePhotosRequest(id=input_photos))
     await edit_delete(
-        delpfp, f"⌔︙ تـم الحذف {len(input_photos)} من صور حسابك بنجاح ✅"
+        delpfp, f"⌯︙تـم الحذف {len(input_photos)} من صور حسابك بنجاح ✅"
     )
 
 
@@ -239,7 +239,7 @@ async def remove_profilepic(delpfp):
 async def _(event):
     "To list all public channels and groups."
     result = await event.client(GetAdminedPublicChannelsRequest())
-    output_str = "⌔︙ جميع القنوات والمجموعات التي قمت بأنشائها :\n"
+    output_str = "⌯︙جميع القنوات والمجموعات التي قمت بأنشائها :\n"
     output_str += "".join(
         f" - {channel_obj.title} @{channel_obj.username} \n"
         for channel_obj in result.chats

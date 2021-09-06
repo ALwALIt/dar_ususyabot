@@ -28,21 +28,21 @@ async def catbot(event):
     replied = await event.get_reply_message()
     catid = await reply_id(event)
     if not replied:
-        return await edit_or_reply(event, "⌔︙ قم بالرد على احد الصور")
+        return await edit_or_reply(event, "⌯︙قم بالرد على احد الصور")
     output = await _cattools.media_to_pic(event, replied)
     if output[1] is None:
         return await edit_delete(
-            output[0], "⌔︙ عدم الاستطاعة على الاستخراج من الرد الحالي"
+            output[0], "⌯︙عدم الاستطاعة على الاستخراج من الرد الحالي"
         )
     download_location = convert_toimage(output[1])
     size = os.stat(download_location).st_size
     if size > 5242880:
         os.remove(download_location)
         return await output[0].edit(
-            "⌔︙ الصورة/الملصق المردود عليه يجب يكون اقل من 5 ميغابايت"
+            "⌯︙الصورة/الملصق المردود عليه يجب يكون اقل من 5 ميغابايت"
         )
     await event.reply(file=download_location)
-    await output[0].edit("⌔︙ جار الصنع..")
+    await output[0].edit("⌯︙جار الصنع..")
     try:
         response = upload_file(download_location)
     except exceptions.TelegraphException as exc:
@@ -64,29 +64,29 @@ async def catbot(event):
     },
 )
 async def catbot(event):
-    "⌔︙ صانع الميمز."
+    "⌯︙صانع الميمز."
     replied = await event.get_reply_message()
     catid = await reply_id(event)
     if not replied:
-        return await edit_or_reply(event, "⌔︙ قم بالرد على احد الصور")
+        return await edit_or_reply(event, "⌯︙قم بالرد على احد الصور")
     output = await _cattools.media_to_pic(event, replied)
     if output[1] is None:
         return await edit_delete(
-            output[0], "⌔︙ عدم الاستطاعة على الاستخراج من الرد الحالي"
+            output[0], "⌯︙عدم الاستطاعة على الاستخراج من الرد الحالي"
         )
     download_location = convert_toimage(output[1])
     size = os.stat(download_location).st_size
     if size > 5242880:
         os.remove(download_location)
         return await output[0].edit(
-            "⌔︙ الصورة/الملصق المردود عليه يجب يكون اقل من 5 ميغابايت"
+            "⌯︙الصورة/الملصق المردود عليه يجب يكون اقل من 5 ميغابايت"
         )
-    await output[0].edit("⌔︙ جار الصنع..")
+    await output[0].edit("⌯︙جار الصنع..")
     try:
         response = upload_file(download_location)
     except exceptions.TelegraphException as exc:
         os.remove(download_location)
-        return await output[0].edit(f"**⌔︙ خطأ: **\n`{str(exc)}`")
+        return await output[0].edit(f"**⌯︙خطأ: **\n`{str(exc)}`")
     cat = f"https://telegra.ph{response[0]}"
     cat = await threats(cat)
     await output[0].delete()
@@ -104,7 +104,7 @@ async def catbot(event):
     },
 )
 async def catbot(event):
-    "⌔︙ صانع الميمز."
+    "⌯︙صانع الميمز."
     input_str = event.pattern_match.group(1)
     input_str = deEmojify(input_str)
     if ";" in input_str:
@@ -117,18 +117,18 @@ async def catbot(event):
     replied = await event.get_reply_message()
     catid = await reply_id(event)
     if not replied:
-        return await edit_or_reply(event, "⌔︙ قم بالرد على احد الصور")
+        return await edit_or_reply(event, "⌯︙قم بالرد على احد الصور")
     output = await _cattools.media_to_pic(event, replied)
     if output[1] is None:
         return await edit_delete(
-            output[0], "⌔︙ عدم الاستطاعة على الاستخراج من الرد الحالي"
+            output[0], "⌯︙عدم الاستطاعة على الاستخراج من الرد الحالي"
         )
     download_location = convert_toimage(output[1])
     size = os.stat(download_location).st_size
     if size > 5242880:
         os.remove(download_location)
         return await output[0].edit(
-            "⌔︙  الصورة/الملصق المردود عليه يجب يكون اقل من 5 ميغابايت "
+            "⌯︙ الصورة/الملصق المردود عليه يجب يكون اقل من 5 ميغابايت "
         )
     await output[0].edit("⌔︙جار الصنع..")
     try:
@@ -161,26 +161,26 @@ async def catbot(event):
     else:
         return await edit_or_reply(
             event,
-            "**⌔︙ يجـب الـرد على صورة/ملصق بـ\n `.بورن (المعرف);(النص)`",
+            "**⌯︙يجـب الـرد على صورة/ملصق بـ\n `.بورن (المعرف);(النص)`",
         )
     replied = await event.get_reply_message()
     catid = await reply_id(event)
     if not replied:
-        return await edit_or_reply(event, "⌔︙ قم بالرد على احد الصور")
+        return await edit_or_reply(event, "⌯︙قم بالرد على احد الصور")
     output = await _cattools.media_to_pic(event, replied)
     if output[1] is None:
         return await edit_delete(
-            output[0], "⌔︙ عدم الاستطاعة على الاستخراج من الرد الحالي"
+            output[0], "⌯︙عدم الاستطاعة على الاستخراج من الرد الحالي"
         )
     download_location = convert_toimage(output[1])
     size = os.stat(download_location).st_size
     if size > 5242880:
         os.remove(download_location)
         return await output[0].edit(
-            "⌔︙ الصورة/الملصق المردود عليه يجـب يكون اقل من 5 ميغابايت "
+            "⌯︙الصورة/الملصق المردود عليه يجـب يكون اقل من 5 ميغابايت "
         )
 
-    await output[0].edit("⌔︙ جار الصنع..")
+    await output[0].edit("⌯︙جار الصنع..")
     try:
         response = upload_file(download_location)
     except exceptions.TelegraphException as exc:

@@ -91,7 +91,7 @@ async def _(event):
     USERNAME = f"tg://user?id={event.client.uid}"
     name = event.pattern_match.group(2)
     cmd = event.pattern_match.group(1).lower()
-    text1 = await edit_or_reply(event, "⌔︙ هممم اكيـد اكو شـخص مات !!")
+    text1 = await edit_or_reply(event, "⌯︙هممم اكيـد اكو شـخص مات !!")
     await asyncio.sleep(2)
     await text1.delete()
     stcr1 = await event.client.send_file(
@@ -130,7 +130,7 @@ async def _(event):
     stcr4 = await event.client.send_file(
         event.chat_id, "CAADAQADLwADnjOcH-wxu-ehy6NRAg"
     )
-    catevent = await event.reply(f"**⌔︙  {name} تـم استـبعاده .......**")
+    catevent = await event.reply(f"**⌯︙ {name} تـم استـبعاده .......**")
     await asyncio.sleep(2)
     await catevent.edit("ඞㅤㅤㅤㅤ ㅤㅤㅤㅤ")
     await asyncio.sleep(0.5)

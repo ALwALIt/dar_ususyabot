@@ -162,7 +162,7 @@ def errors_handler(func):
             text += "إذا كنت تريد يمكنك الإبلاغ عن ذلك"
             text += f"- فقط قم بإعادة توجيه هذه الرسالة {link}.\n"
             text +="لا يتم تسجيل اي خطا فقط التاريخ والوقت\n\n"
-            text += f"**⌔︙ تقرير الخطأ : ** [{new['error']}]({pastelink})"
+            text += f"**⌯︙تقرير الخطأ : ** [{new['error']}]({pastelink})"
             await check.client.send_message(
                 Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
             )

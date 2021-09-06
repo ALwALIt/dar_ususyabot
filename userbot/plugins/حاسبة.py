@@ -22,7 +22,7 @@ plugin_category = "utils"
 async def calculator(event):
     "To solve basic mathematics equations."
     cmd = event.text.split(" ", maxsplit=1)[1]
-    event = await edit_or_reply(event, "⌔︙ يتـم الـحساب أنتـظر قـليلا")
+    event = await edit_or_reply(event, "⌯︙يتـم الـحساب أنتـظر قـليلا")
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
@@ -45,8 +45,8 @@ async def calculator(event):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "⌔︙ عـذرا لأ اسـتطيع ايجـاد حـل لهـكذا معـادلات"
-    final_output = "⌔︙ السـؤال: `{}` \n\n ⌔︙ الـحل: \n`{}` \n".format(
+        evaluation = "⌯︙عـذرا لأ اسـتطيع ايجـاد حـل لهـكذا معـادلات"
+    final_output = "⌯︙السـؤال: `{}` \n\n ⌯︙الـحل: \n`{}` \n".format(
         cmd, evaluation
     )
     await event.edit(final_output)

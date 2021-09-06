@@ -125,7 +125,7 @@ async def sticklet(event):
     },
 )
 async def honk(event):
-    " ⌔︙ اجعل هونك يقول اي شيء."
+    " ⌯︙اجعل هونك يقول اي شيء."
     text = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     bot_name = "@honka_says_bot"
@@ -134,7 +134,7 @@ async def honk(event):
             text = (await event.get_reply_message()).message
         else:
             return await edit_delete(
-                event, "** ⌔︙ ماذا يفترض أن يقول هونك أعطه نص**"
+                event, "** ⌯︙ماذا يفترض أن يقول هونك أعطه نص**"
             )
     text = deEmojify(text)
     await event.delete()
@@ -160,7 +160,7 @@ async def twt(event):
             text = (await event.get_reply_message()).message
         else:
             return await edit_delete(
-                event, "**⌔︙ ماذا يفترض بي ان اغرد اكتي نصا**"
+                event, "**⌯︙ماذا يفترض بي ان اغرد اكتي نصا**"
             )
     text = deEmojify(text)
     await event.delete()
@@ -186,7 +186,7 @@ async def doge(event):
             text = (await event.get_reply_message()).message
         else:
             return await edit_delete(
-                event, "⌔︙ ماذا يفترض بالكلب ان يقول اعطه نصا**"
+                event, "⌯︙ماذا يفترض بالكلب ان يقول اعطه نصا**"
             )
     text = deEmojify(text)
     await event.delete()
@@ -223,7 +223,7 @@ async def glax(event):
             text = (await event.get_reply_message()).message
         else:
             return await edit_delete(
-                event, " ⌔︙ ماذا يفترض بـ گلاكـس ان يقول اعطه نصا**"
+                event, " ⌯︙ماذا يفترض بـ گلاكـس ان يقول اعطه نصا**"
             ) # WRITED BY - @VUUZZ - @RRRD7
     text = deEmojify(text)
     await event.delete()

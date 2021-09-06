@@ -74,10 +74,10 @@ async def time_func(tdata):
     else:
         return await edit_or_reply(
             tdata,
-            f"⌔︙ الـساعة الآن {dt.now().strftime(t_form)}\n⌔︙ تـاريـخ اليوم{dt.now().strftime(d_form)}",
+            f"⌯︙الـساعة الآن {dt.now().strftime(t_form)}\n⌯︙تـاريـخ اليوم{dt.now().strftime(d_form)}",
         )
     if not timezones:
-        return await edit_or_reply(tdata,  "⌔︙ الـبلد غير صالح")
+        return await edit_or_reply(tdata,  "⌯︙الـبلد غير صالح")
     if len(timezones) == 1:
         time_zone = timezones[0]
     elif len(timezones) > 1:

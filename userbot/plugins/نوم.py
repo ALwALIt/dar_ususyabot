@@ -67,7 +67,7 @@ async def set_not_afk(event):
     ):
         shite = await event.client.send_message(
             event.chat_id,
-            "⌔︙ ** تم تعطيـل امر النـوم والـرجوع الى الوضع الطبيعي**",
+            "⌯︙** تم تعطيـل امر النـوم والـرجوع الى الوضع الطبيعي**",
         )
         AFK_.USERAFK_ON = {}
         AFK_.afk_time = None
@@ -77,8 +77,8 @@ async def set_not_afk(event):
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "⌔︙ انتهـاء امر النوم \n"
-                + "`⌔︙ تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
+                "⌯︙انتهـاء امر النوم \n"
+                + "`⌯︙تم تعطـيله والرجوع للوضع الطبيعي كان مفعل لـ"
                 + endtime
                 + "`",
             )
@@ -153,14 +153,14 @@ async def on_afk(event):  # sourcery no-metrics
         except Exception as e:
             LOGS.info(str(e))
         messaget = media_type(event)
-        resalt = f"<b>⌔︙ المجموعة : </b><code>{hmm.title}</code>"
+        resalt = f"<b>⌯︙المجموعة : </b><code>{hmm.title}</code>"
         if full is not None:
-            resalt += f"\n<b>⌔︙ المـرسل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
+            resalt += f"\n<b>⌯︙المـرسل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
         if messaget is not None:
-            resalt += f"\n<b>⌔︙ نـوع الـرسالـة  : </b><code>{messaget}</code>"
+            resalt += f"\n<b>⌯︙نـوع الـرسالـة  : </b><code>{messaget}</code>"
         else:
-            resalt += f"\n<b>⌔︙ الـرسالـة  : </b>{event.message.message}"
-        resalt += f"\n<b>⌔︙ رابـط الـرسالـة   : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> اضغـط هـنا</a>"
+            resalt += f"\n<b>⌯︙الـرسالـة  : </b>{event.message.message}"
+        resalt += f"\n<b>⌯︙رابـط الـرسالـة   : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> اضغـط هـنا</a>"
         if not event.is_private:
             await event.client.send_message(
                 Config.PM_LOGGER_GROUP_ID,
@@ -192,11 +192,11 @@ async def _(event):
     media_t = media_type(reply)
     if media_t == "Sticker" or not media_t:
         return await edit_or_reply(
-            event, "⌔︙ امـر النوم : المرجـو قم بالـرد علـى الصورة بالامـر "
+            event, "⌯︙امـر النوم : المرجـو قم بالـرد علـى الصورة بالامـر "
         )
     if not BOTLOG:
         return await edit_or_reply(
-            event, "⌔︙ لإستخـدام هذا الامر يجـب اضافـة متغيـر PRIVATE_GROUP_BOT_API_ID "
+            event, "⌯︙لإستخـدام هذا الامر يجـب اضافـة متغيـر PRIVATE_GROUP_BOT_API_ID "
         )
     AFK_.USERAFK_ON = {}
     AFK_.afk_time = None
@@ -218,20 +218,20 @@ async def _(event):
         AFK_.USERAFK_ON = f"on: {AFK_.reason}"
         if AFK_.reason:
             await edit_delete(
-                event, f"⌔︙ انا الان في وضعيه النوم يرجـى المراسلة ", 5
+                event, f"⌯︙انا الان في وضعيه النوم يرجـى المراسلة ", 5
             )
         else:
-            await edit_delete(event, f"**⌔︙ انا الان في وضعيه النوم يرجـى المراسلة لاحقـا ️**", 5)
+            await edit_delete(event, f"**⌯︙انا الان في وضعيه النوم يرجـى المراسلة لاحقـا ️**", 5)
         AFK_.media_afk = await reply.forward_to(BOTLOG_CHATID)
         if AFK_.reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"**⌔︙ امـر النوم 💤 :** \n **تم تشغيل الامر ️**",
+                f"**⌯︙امـر النوم 💤 :** \n **تم تشغيل الامر ️**",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"**⌔︙ امـر النوم 💤 :** \n **تم تشغيل الامر ❕**",
+                f"**⌯︙امـر النوم 💤 :** \n **تم تشغيل الامر ❕**",
             )
 #JMTHON - RR9R7 - GGGNE
 # L E O - M U H A M M E D

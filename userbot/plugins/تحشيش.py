@@ -37,7 +37,7 @@ async def permalink(mention):
     if user.id == 1715051616:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙  تـم رفعـه مـࢪتك مـشي نخـلف 😹🤤")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه مـࢪتك مـشي نخـلف 😹🤤")
 
 @jmthon.ar_cmd(
     pattern="رفع جلب(?:\s|$)([\s\S]*)",
@@ -55,7 +55,7 @@ async def permalink(mention):
     if user.id == 1715051616:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙  تـم رفعـه جلب خليه خله ينبح 😂🐶")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه جلب خليه خله ينبح 😂🐶")
 
 @jmthon.ar_cmd(
     pattern="رفع تاج(?:\s|$)([\s\S]*)",
@@ -69,7 +69,7 @@ async def permalink(mention):
     if custom:
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙  تـم رفعـه تاج 👑🔥")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه تاج 👑🔥")
 
 @jmthon.ar_cmd(
     pattern="رفع قرد(?:\s|$)([\s\S]*)",
@@ -87,7 +87,7 @@ async def permalink(mention):
     if user.id == 1715051616:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙  تـم رفعـه قرد واعطائه موزة 🐒🍌")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه قرد واعطائه موزة 🐒🍌")
 
 @jmthon.ar_cmd(
     pattern="رفع بكلبي(?:\s|$)([\s\S]*)",
@@ -101,7 +101,7 @@ async def permalink(mention):
     if custom:
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙  تـم رفعـه بڪلبك 🖤 ")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه بڪلبك 🖤 ")
     
     
 @jmthon.ar_cmd(
@@ -120,7 +120,7 @@ async def permalink(mention):
     if user.id == 1715051616:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙  تـم رفـعه مطي هـنا ")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفـعه مطي هـنا ")
     
 #كـتابة المـلف وتعديل.    :   محـمد الـزهيري.   اخمط وسمي روحك مطور فرخي 😂
 # اذا انت ابن حرام اخمط 😂
@@ -139,7 +139,7 @@ async def permalink(mention):
     if custom:
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙ المستخدم [{tag}](tg://user?id={user.id}) \n⌔︙ تـم رفعه زوجج روحوا خلفوا 🤤😂")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙تـم رفعه زوجج روحوا خلفوا 🤤😂")
     
 
 

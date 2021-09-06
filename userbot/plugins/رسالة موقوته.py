@@ -13,11 +13,11 @@ LOGS = logging.getLogger(__name__)
     info={
         "شـرح": "لأرسـال رسـالة موقوتة وحـذفها بعـد وقت معيـن انت تضعـه",
         "⌔︙أسـتخدام": "{tr}مؤقت [الوقت] [النص]",
-        "⌔︙ امثـلة": "{tr}مؤقت 10 ههلا",
+        "⌯︙امثـلة": "{tr}مؤقت 10 ههلا",
     },
 )
 async def selfdestruct(destroy):
-    "⌔︙ لأرسـال رسـالة مـوقوتة"
+    "⌯︙لأرسـال رسـالة مـوقوتة"
     cat = ("".join(destroy.text.split(maxsplit=1)[1:])).split(" ", 1)
     message = cat[1]
     ttl = int(cat[0])

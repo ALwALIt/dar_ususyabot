@@ -26,7 +26,7 @@ async def on_new_message(event):
             except Exception:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f"⌔︙ ليـس لدي صـلاحيات الـحذف في {get_display_name(await event.get_chat())}.\
+                    f"⌯︙ليـس لدي صـلاحيات الـحذف في {get_display_name(await event.get_chat())}.\
                      So removing blacklist words from this group",
                 )
                 for word in snips:
@@ -59,7 +59,7 @@ async def _(event):
         sql.add_to_blacklist(event.chat_id, trigger.lower())
     await edit_or_reply(
         event,
-        "⌔︙ تم اضافة {} الكلمة في قائمة المنع بنجاح".format(
+        "⌯︙تم اضافة {} الكلمة في قائمة المنع بنجاح".format(
             len(to_blacklist)
         ),
     )
@@ -90,7 +90,7 @@ async def _(event):
         for trigger in to_unblacklist
     )
     await edit_or_reply(
-        event, f"⌔︙ تم ازالة الكلمة {successful} / {len(to_unblacklist)} من قائمة المنع بنجاح"
+        event, f"⌯︙تم ازالة الكلمة {successful} / {len(to_unblacklist)} من قائمة المنع بنجاح"
     )
 
 
@@ -108,10 +108,10 @@ async def _(event):
 async def _(event):
     "To show the blacklist words in that specific chat"
     all_blacklisted = sql.get_chat_blacklist(event.chat_id)
-    OUT_STR = "⌔︙ قائمة المنع في الدردشة الحالية :\n"
+    OUT_STR = "⌯︙قائمة المنع في الدردشة الحالية :\n"
     if len(all_blacklisted) > 0:
         for trigger in all_blacklisted:
             OUT_STR += f"👈 {trigger} \n"
     else:
-        OUT_STR = " ⌔︙ لم تقم باضافة كلمات سوداء ارسل  `.منع` لمنع كلمة"
+        OUT_STR = " ⌯︙لم تقم باضافة كلمات سوداء ارسل  `.منع` لمنع كلمة"
     await edit_or_reply(event, OUT_STR)

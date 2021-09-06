@@ -69,17 +69,17 @@ async def bad(event):
                 return await edit_delete(event, f"اكـتب الامـر بـشكل صحـيح  :  .اضف_فار PING_TEXT النص الخاص بك")
             if not vinfo:
                 return await edit_delete(
-                    event, f" ⌔︙ يـجب وضع القـيمـة الصحـيح اولا**"
+                    event, f" ⌯︙يـجب وضع القـيمـة الصحـيح اولا**"
                 )
             check = vinfo.split(" ")
             for i in check:
                 if (("PIC" in vname) or ("pic" in vname)) and not url(i):
-                    return await edit_delete(event, "** ⌔︙ يـجـب وضـع رابـط صحـيح اولا**")
+                    return await edit_delete(event, "** ⌯︙يـجـب وضـع رابـط صحـيح اولا**")
             addgvar(vname, vinfo)
             if BOTLOG_CHATID:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f" ⌔︙ وضع فـار\
+                    f" ⌯︙وضع فـار\
                     \n**{vname}** هـذا الـفار تـم تـحديثـه",
                 )
                 await event.client.send_message(BOTLOG_CHATID, vinfo, silent=True)
@@ -96,7 +96,7 @@ async def bad(event):
             if BOTLOG_CHATID:
                 await event.client.send_message(
                     BOTLOG_CHATID,
-                    f" ⌔︙ حـذف فـار \
+                    f" ⌯︙حـذف فـار \
                     \n**{vname}** تـم حـذف هـذا الفـار",
                 )
             await edit_delete(
@@ -150,7 +150,7 @@ async def custom_catuserbot(event):
     if reply:
         text = reply.text
     if text is None:
-        return await edit_delete(event, "⌔︙ قم بالرد على الكتابة او الرابط اولا")
+        return await edit_delete(event, "⌯︙قم بالرد على الكتابة او الرابط اولا")
     input_str = event.pattern_match.group(1)
     if input_str == "pmpermit":
         addgvar("pmpermit_txt", text)
@@ -161,10 +161,10 @@ async def custom_catuserbot(event):
     if input_str == "pmpic":
         urls = extractor.find_urls(reply.text)
         if not urls:
-            return await edit_delete(event, "⌔︙ الرابط المـرسل غيـر مدعـوم ❕", 5)
+            return await edit_delete(event, "⌯︙الرابط المـرسل غيـر مدعـوم ❕", 5)
         text = " ".join(urls)
         addgvar("pmpermit_pic", text)
-    await edit_or_reply(event, f"⌔︙ تم تحـديث التخصـيص الخاص بنك بـنجاح ✅")
+    await edit_or_reply(event, f"⌯︙تم تحـديث التخصـيص الخاص بنك بـنجاح ✅")
     if BOTLOG_CHATID:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -196,28 +196,28 @@ async def custom_catuserbot(event):
     input_str = event.pattern_match.group(1)
     if input_str == "pmpermit":
         if gvarstatus("pmpermit_txt") is None:
-            return await edit_delete(event, "⌔︙ انت لم تقم بتخصيص رسالة التحذير")
+            return await edit_delete(event, "⌯︙انت لم تقم بتخصيص رسالة التحذير")
         delgvar("pmpermit_txt")
     if input_str == "pmblock":
         if gvarstatus("pmblock") is None:
-            return await edit_delete(event, "⌔︙ انت لم تقم بخصيص رسالة الحظر ❕")
+            return await edit_delete(event, "⌯︙انت لم تقم بخصيص رسالة الحظر ❕")
         delgvar("pmblock")
     if input_str == "pmpic":
         if gvarstatus("pmpermit_pic") is None:
-            return await edit_delete(event, "⌔︙ انت لم تقم بتخصيص صورة الحماية ❕")
+            return await edit_delete(event, "⌯︙انت لم تقم بتخصيص صورة الحماية ❕")
         delgvar("pmpermit_pic")
     if input_str == "startmsg":
         if gvarstatus("START_TEXT") is None:
             return await edit_delete(
-                event, "⌔︙ انت لم تقم بخصيص رسالة بدء بـوتك ❕"
+                event, "⌯︙انت لم تقم بخصيص رسالة بدء بـوتك ❕"
             )
         delgvar("START_TEXT")
     await edit_or_reply(
-        event, f"⌔︙  تم بنجاح ازالة هذا التخصيص ✅"
+        event, f"⌯︙ تم بنجاح ازالة هذا التخصيص ✅"
     )
     if BOTLOG_CHATID:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f" ⌔︙ حـذف فـار\
+            f" ⌯︙حـذف فـار\
                     \n**{input_str}** تـم حـذف هـذا الفـار",
         )

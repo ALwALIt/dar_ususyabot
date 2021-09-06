@@ -59,5 +59,5 @@ async def _(event):
     else:
         result = event.date
     await edit_or_reply(
-        event, f"**⌔︙ نـشـرت هـذه الـرسالة فـي  :** `{yaml_format(result)}`"
+        event, f"**⌯︙نـشـرت هـذه الـرسالة فـي  :** `{yaml_format(result)}`"
     )

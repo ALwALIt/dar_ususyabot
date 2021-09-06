@@ -86,7 +86,7 @@ async def scam(results, lim):
 )
 async def gsearch(q_event):
     "Google search command."
-    catevent = await edit_or_reply(q_event, "**⌔︙ جـاري البحـث انتـظر**")
+    catevent = await edit_or_reply(q_event, "**⌯︙جـاري البحـث انتـظر**")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"-p\d+", match)
     lim = re.findall(r"-l\d+", match)
@@ -120,7 +120,7 @@ async def gsearch(q_event):
             try:
                 gresults = await ysearch.async_search(*search_args)
             except Exception as e:
-                return await edit_delete(catevent, f"**⌔︙ خطـأ  :**\n`{str(e)}`", time=10)
+                return await edit_delete(catevent, f"**⌯︙خطـأ  :**\n`{str(e)}`", time=10)
     msg = ""
     for i in range(lim):
         if i > len(gresults["links"]):
@@ -134,15 +134,15 @@ async def gsearch(q_event):
             break
     await edit_or_reply(
         catevent,
-        "**⌔︙ نتـائج البحـث :**\n`" + match + "`\n\n**⌔︙ النتائـج  :**\n" + msg,
+        "**⌯︙نتـائج البحـث :**\n`" + match + "`\n\n**⌯︙النتائـج  :**\n" + msg,
         link_preview=False,
         aslink=True,
-        linktext=f"**⌔︙ نتائـج البحـث ** `{match}` :",
+        linktext=f"**⌯︙نتائـج البحـث ** `{match}` :",
     )
     if BOTLOG:
         await q_event.client.send_message(
             BOTLOG_CHATID,
-            "**⌔︙ نتـائج بحـث جـوجـل  **" + match + "**تم تنـفيذهـا بنجـاح **",
+            "**⌯︙نتـائج بحـث جـوجـل  **" + match + "**تم تنـفيذهـا بنجـاح **",
         )
 
 
@@ -158,9 +158,9 @@ async def gsearch(q_event):
 async def _(event):
     "Google Reverse Search"
     start = datetime.now()
-    OUTPUT_STR = "**⌔︙ يجـب الـرد على صـورة للـبحث عـنها **"
+    OUTPUT_STR = "**⌯︙يجـب الـرد على صـورة للـبحث عـنها **"
     if event.reply_to_msg_id:
-        catevent = await edit_or_reply(event, "**⌔︙ يـتم الـبحث عـن الـصورة انتـظر** ⏱")
+        catevent = await edit_or_reply(event, "**⌯︙يـتم الـبحث عـن الـصورة انتـظر** ⏱")
         previous_message = await event.get_reply_message()
         previous_message_text = previous_message.message
         BASE_URL = "http://www.google.com"
@@ -188,7 +188,7 @@ async def _(event):
             request_url = SEARCH_URL.format(BASE_URL, previous_message_text)
             google_rs_response = requests.get(request_url, allow_redirects=False)
             the_location = google_rs_response.headers.get("Location")
-        await catevent.edit("**⌔︙ تم العثـور على نتيجـة بحـث جـوجـل **")
+        await catevent.edit("**⌯︙تم العثـور على نتيجـة بحـث جـوجـل **")
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0"
         }
@@ -205,14 +205,14 @@ async def _(event):
             img_size = img_size_div.find_all("div")
         except Exception:
             return await edit_delete(
-                catevent, "**⌔︙ غيـر قـادر على إيجـاد صـور مـشابهـة **"
+                catevent, "**⌯︙غيـر قـادر على إيجـاد صـور مـشابهـة **"
             )
         end = datetime.now()
         ms = (end - start).seconds
         OUTPUT_STR = """{img_size}
-<b>⌔︙ امـكانيـة البـحث ذات الـصلة  : </b> <a href="{prs_url}">{prs_text}</a> 
-<b>⌔︙ مزيـد من المعلومـات  : </b> إفتـح هـذا  <a href="{the_location}">Link</a> 
-<i>⌔︙ تم الـتعـرف في {ms} من الـثواني ⏱</i>""".format(
+<b>⌯︙امـكانيـة البـحث ذات الـصلة  : </b> <a href="{prs_url}">{prs_text}</a> 
+<b>⌯︙مزيـد من المعلومـات  : </b> إفتـح هـذا  <a href="{the_location}">Link</a> 
+<i>⌯︙تم الـتعـرف في {ms} من الـثواني ⏱</i>""".format(
             **locals()
         )
     else:
@@ -239,13 +239,13 @@ async def google_search(event):
     reply_to_id = await reply_id(event)
     if not input_str:
         return await edit_delete(
-            event, "**⌔︙ يجـب إعطـاء معلومـات عن البحـث **"
+            event, "**⌯︙يجـب إعطـاء معلومـات عن البحـث **"
         )
     input_str = deEmojify(input_str).strip()
     if len(input_str) > 195 or len(input_str) < 1:
         return await edit_delete(
             event,
-            "**⌔︙ لقـد تجـاوز اسطر البحـث عـن 200 حـرف أو أن حروف البحـث فـارغه ️**",
+            "**⌯︙لقـد تجـاوز اسطر البحـث عـن 200 حـرف أو أن حروف البحـث فـارغه ️**",
         )
     query = "#12" + input_str
     results = await event.client.inline_query("@StickerizerBot", query)
