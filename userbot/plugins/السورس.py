@@ -1,7 +1,7 @@
 from telethon import events, Button
 from ..Config import Config
 from ..sql_helper.globals import gvarstatus
-from . import *
+from Jmthon.razan.resources.mybot import *
 
 ROZ_PIC = "https://telegra.ph/file/6c605a2133ba188170b8b.jpg"
 
