@@ -10,7 +10,7 @@ from telethon.utils import get_input_location
 from userbot import jmthon
 
 from ..Config import Config
-from Jmthon.razan._fun import *
+from userbot.RR7PP import *
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
