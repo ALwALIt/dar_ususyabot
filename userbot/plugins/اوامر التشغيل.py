@@ -31,7 +31,7 @@ async def _(event):
     "Restarts the bot !!"
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "**⌔︙إعـادة التشغيـل ↻** \n" "**⌯︙تم إعـادة تشغيـل البـوت ↻**")
-    sandy = await edit_or_reply(
+    RR7PP = await edit_or_reply(
         event,
         "**⌯︙جـاري إعـادة التشغيـل، قـد يستغـرق الأمـر 2-3 دقائـق لاتقم باعـادة التشغيـل مرة اخـرى مـره اخـرى انتـظـر ⏱**",
     )
@@ -43,7 +43,7 @@ async def _(event):
     except Exception as e:
         LOGS.error(e)
     try:
-        add_to_collectionlist("restart_update", [sandy.chat_id, sandy.id])
+        add_to_collectionlist("restart_update", [RR7PP.chat_id, RR7PP.id])
     except Exception as e:
         LOGS.error(e)
     try:

@@ -16,23 +16,23 @@ from . import BOTLOG, BOTLOG_CHATID
 plugin_category = "extra"
 
 
-async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=False):
+async def spam_function(event, RR7PP, cat, sleeptimem, sleeptimet, DelaySpam=False):
   
     counter = int(cat[0])
     if len(cat) == 2:
         spam_message = str(cat[1])
         for _ in range(counter):
             if event.reply_to_msg_id:
-                await sandy.reply(spam_message)
+                await RR7PP.reply(spam_message)
             else:
                 await event.client.send_message(event.chat_id, spam_message)
             await asyncio.sleep(sleeptimet)
-    elif event.reply_to_msg_id and sandy.media:
+    elif event.reply_to_msg_id and RR7PP.media:
         for _ in range(counter):
-            sandy = await event.client.send_file(
-                event.chat_id, sandy, caption=sandy.text
+            RR7PP = await event.client.send_file(
+                event.chat_id, RR7PP, caption=RR7PP.text
             )
-            await _catutils.unsavegif(event, sandy)
+            await _catutils.unsavegif(event, RR7PP)
             await asyncio.sleep(sleeptimem)
         if BOTLOG:
             if DelaySpam is not True:
@@ -61,11 +61,11 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
                     + f"**⌯︙تم تنفيذ التكرار الوقتي  بنجاح في ** {get_display_name(await event.get_chat())}(`{event.chat_id}`) **مـع** {counter} **عدد المرات مع الرسالة أدناه مع التأخير** {sleeptimet} ** الثوانـي **",
                 )
 
-            sandy = await event.client.send_file(BOTLOG_CHATID, sandy)
-            await _catutils.unsavegif(event, sandy)
+            RR7PP = await event.client.send_file(BOTLOG_CHATID, RR7PP)
+            await _catutils.unsavegif(event, RR7PP)
         return
-    elif event.reply_to_msg_id and sandy.text:
-        spam_message = sandy.text
+    elif event.reply_to_msg_id and RR7PP.text:
+        spam_message = RR7PP.text
         for _ in range(counter):
             await event.client.send_message(event.chat_id, spam_message)
             await asyncio.sleep(sleeptimet)
@@ -116,7 +116,7 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
 )
 async def spammer(event):
     "⌯︙ملـئ النـص في الدردشـة "
-    sandy = await event.get_reply_message()
+    RR7PP = await event.get_reply_message()
     cat = ("".join(event.text.split(maxsplit=1)[1:])).split(" ", 1)
     try:
         counter = int(cat[0])
@@ -131,7 +131,7 @@ async def spammer(event):
         sleeptimet = 0.1
         sleeptimem = 0.3
     await event.delete()
-    await spam_function(event, sandy, cat, sleeptimem, sleeptimet)
+    await spam_function(event, RR7PP, cat, sleeptimem, sleeptimet)
 
 
 @jmthon.ar_cmd(
