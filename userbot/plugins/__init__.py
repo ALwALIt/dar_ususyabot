@@ -17,7 +17,7 @@ from ..core.session import jmthon
 from ..helpers import *
 from ..helpers.utils import _cattools, _catutils, _format, install_pip, reply_id
 from Jmthon.razan.resources.Gif import *
-
+from Jmthon.razan.resources.plugins import *
 # =================== CONSTANT ===================
 bot = jmthon
 LOGS = logging.getLogger(__name__)
