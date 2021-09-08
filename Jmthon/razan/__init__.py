@@ -6,3 +6,9 @@ from .Jmthon.razan.resources.strings import *
 
 #alive 
 from .Jmthon.razan.resources.mybot import *
+
+#assistant 
+from .Jmthon.razan.resources.assistant import *
+
+#Gif
+from .Jmthon.razan.resources.Gif import *
