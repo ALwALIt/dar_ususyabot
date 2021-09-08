@@ -1,7 +1,8 @@
 from . import *
 from userbot import jmthon
 
-@jmthon.on(admin_cmd(pattern="(جلب الصورة|ج|)"))
+@jmthon.on(admin_cmd(pattern="ها"))
+@jmthon.on(admin_cmd(pattern="جلب الصورة"))
 async def oho(event):
   if not event.is_reply:
     return await event.edit('يجـب عـليك الـرد عـلى صـورة ذاتيـة الـتدمير')
