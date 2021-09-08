@@ -125,22 +125,9 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
 
 اختر احد الخيارات في الاسفل وانتظر الى ان اصبح متصلا بالانترنت ليتم الرد عليك ⬇️⬇️"""
     else:
-            if Config.PMPERMIT_TEXT_JMTHON:
-                USER_BOT_NO_WARN = Config.PMPERMIT_TEXT_JMTHON.format(
-                    mention=mention,
-                    first=first,
-                    last=last,
-                    fullname=fullname,
-                    username=username,
-                    userid=userid,
-                    my_first=my_first,
-                    my_last=my_last,
-                    my_fullname=my_fullname,
-                    my_username=my_username,
-                    my_mention=my_mention,
-                    totalwarns=totalwarns,
-                    warns=warns,
-                )
+            USER_BOT_NO_WARN = f"""ههلا بيك {mention} \n مالك الحساب غير موجود حاليا الرجاء الانتظار وعدم تكرار الرسائل. 
+لديك {warns}/{totalwarns} من التحذيرات لا تكرر حتى ما تنحظر من البوت.
+لا تـكرر اذكـر سبب مـجيئك فقـط"""
     addgvar("pmpermit_text", USER_BOT_NO_WARN)
     PM_WARNS[str(chat.id)] += 1
     try:
