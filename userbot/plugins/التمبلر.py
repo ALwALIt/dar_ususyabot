@@ -8,7 +8,7 @@ import asyncio
 from userbot import jmthon
 
 from ..core.managers import edit_or_reply
-from .Jmthon.razan.resources.strings import *
+from .Jmthon.razan.resources.strings._bio import *
 
 plugin_category = "extra" 
 
