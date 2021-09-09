@@ -324,7 +324,7 @@ async def kang(args):  # sourcery no-metrics
             "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
             not in htmlstr
         ):
-            async with args.client.conversation("Stickers") as conv:
+            async with args.client.conversation("@Stickers") as conv:
                 packname, emoji = await add_to_pack(
                     catevent,
                     conv,
@@ -347,7 +347,7 @@ async def kang(args):  # sourcery no-metrics
             )
         else:
             await catevent.edit("**- يتم احضار حزمة جديدة ⌔︙**")
-            async with args.client.conversation("Stickers") as conv:
+            async with args.client.conversation("@Stickers") as conv:
                 otherpack, packname, emoji = await newpacksticker(
                     catevent,
                     conv,
@@ -506,8 +506,8 @@ async def pack_kang(event):  # sourcery no-metrics
                 "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
                 in htmlstr
             ):
-                async with event.client.conversation("Stickers") as conv:
-                    pack, catpackname = await newpacksticker(
+                async with event.client.conversation("@Stickers") as conv:
+                    pack, RR7PP_PACK = await newpacksticker(
                         catevent,
                         conv,
                         cmd,
@@ -521,8 +521,8 @@ async def pack_kang(event):  # sourcery no-metrics
                         pkang=True,
                     )
             else:
-                async with event.client.conversation("Stickers") as conv:
-                    pack, catpackname = await add_to_pack(
+                async with event.client.conversation("@Stickers") as conv:
+                    pack, RR7PP_PACK = await add_to_pack(
                         catevent,
                         conv,
                         event,
@@ -536,8 +536,8 @@ async def pack_kang(event):  # sourcery no-metrics
                         cmd,
                         pkang=True,
                     )
-            if catpackname not in blablapacks:
-                blablapacks.append(catpackname)
+            if RR7PP_PACK not in blablapacks:
+                blablapacks.append(RR7PP_PACK)
                 blablapacknames.append(pack)
         kangst += 1
         await asyncio.sleep(2)
