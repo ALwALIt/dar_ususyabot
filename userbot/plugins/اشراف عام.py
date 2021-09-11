@@ -103,7 +103,7 @@ async def gben(userbot):
     else:
         await razan.edit(f"**▾∮ يجب عليك الرد على المستخدم اولا **")
     return await razan.edit(
-        f"**▾∮المستخدم [{user.first_name}](tg://user?id={user.id})\n▾∮ تم تنزيله في : {i} من المجموعات**"
+        f"**▾∮المستخدم [{user.first_name}](tg://user?id={user.id})\n▾∮ تم رفعه في : {i} من المجموعات**"
     )
 
 @jmthon.on(admin_cmd(pattern="نزل ?(.*)"))
