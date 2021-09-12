@@ -1,7 +1,6 @@
 from . import *
 from userbot import jmthon
 
-@jmthon.on(admin_cmd(pattern="ها"))
 @jmthon.on(admin_cmd(pattern="جلب الصورة"))
 async def oho(event):
   if not event.is_reply:
@@ -17,5 +16,4 @@ async def oho(event):
 
 #اخمط وسمي روحك مطور ما اوصيك
 # كتابة محمد الزهيري  
-#@RR9R7
-# تعديل  :  @x3raqe
+#@RR7PP
