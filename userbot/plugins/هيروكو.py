@@ -50,10 +50,12 @@ async def variable(var):
             variable = var.pattern_match.group(2).split()[0]
             if variable in heroku_var:
                 return await cat.edit(
-                    "**معلـومات الـفار**:" f"\n\n`{variable}` = `{heroku_var[variable]}`\n"
+                    "**معلـومات الـفار**:"
+                    f"\n\n`{variable}` = `{heroku_var[variable]}`\n"
                 )
             await cat.edit(
-                "**معلـومات الـفار**:" f"\n\nخـطأ:\n-> `{variable}` هـذا الـفار لم يـتم الـعثور عليـه"
+                "**معلـومات الـفار**:"
+                f"\n\nخـطأ:\n-> `{variable}` هـذا الـفار لم يـتم الـعثور عليـه"
             )
         except IndexError:
             configs = prettyjson(heroku_var.to_dict(), indent=2)

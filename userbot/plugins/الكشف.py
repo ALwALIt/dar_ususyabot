@@ -36,13 +36,13 @@ async def fetch_info(replied_user, event):
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception:
-        dc_id = "تعـذر جلـب ايدي الـديسي"
+        pass
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
     user_bio = replied_user.about
-    is_bot = replied_user.user.bot
-    restricted = replied_user.user.restricted
-    verified = replied_user.user.verified
+    replied_user.user.bot
+    replied_user.user.restricted
+    replied_user.user.verified
     photo = await event.client.download_profile_photo(
         user_id,
         Config.TMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg",
@@ -54,7 +54,9 @@ async def fetch_info(replied_user, event):
         else ("⌔︙ هذا المستخدم ليس لديه اسم اول")
     )
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
-    username = "@{}".format(username) if username else ("⌔︙ هـذا الشخص ليس لديـه معـرف ")
+    username = (
+        "@{}".format(username) if username else ("⌔︙ هـذا الشخص ليس لديـه معـرف ")
+    )
     user_bio = "⌔︙ هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
     caption = "✛━━━━━━━━━━━━━✛ \n\n"
     caption += f"<b>- الاسـم ›</b> {first_name} {last_name}\n"
@@ -83,7 +85,9 @@ async def _(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if not replied_user:
         return
-    catevent = await edit_or_reply(event, "⌔︙ جار إحضار معلومات المستخدم اننظر قليلا ⚒️")
+    catevent = await edit_or_reply(
+        event, "⌔︙ جار إحضار معلومات المستخدم اننظر قليلا ⚒️"
+    )
     replied_user = await event.client(GetFullUserRequest(replied_user.id))
     user_id = replied_user.user.id
     # some people have weird HTML in their names
@@ -160,7 +164,9 @@ async def who(event):
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        return await edit_or_reply(cat, "**⌔︙ لم يتم العثور على معلومات لهذا المستخدم **")
+        return await edit_or_reply(
+            cat, "**⌔︙ لم يتم العثور على معلومات لهذا المستخدم **"
+        )
     message_id_to_reply = await reply_id(event)
     try:
         await event.client.send_file(
@@ -177,8 +183,10 @@ async def who(event):
         await cat.delete()
     except TypeError:
         await cat.edit(caption, parse_mode="html")
-#كـتابة  @RRRD7
-#تعديل وترتيب  @SBB_B
+
+
+# كـتابة  @RRRD7
+# تعديل وترتيب  @SBB_B
 @jmthon.ar_cmd(
     pattern="رابط الحساب(?:\s|$)([\s\S]*)",
     command=("رابط الحساب", plugin_category),

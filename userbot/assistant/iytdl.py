@@ -63,8 +63,12 @@ async def iytdl_inline(event):
     elif reply and reply.text:
         input_url = (reply.text).strip()
     if not input_url:
-        return await edit_delete(event, " ⌔︙ يجـب وضـع اسـم المـوضوع او بالـرد عـلـى الـرابـط")
-    catevent = await edit_or_reply(event, f"🔎 يتـم البـحث في اليـوتيـوب عـن : `'{input_url}'`")
+        return await edit_delete(
+            event, " ⌔︙ يجـب وضـع اسـم المـوضوع او بالـرد عـلـى الـرابـط"
+        )
+    catevent = await edit_or_reply(
+        event, f"🔎 يتـم البـحث في اليـوتيـوب عـن : `'{input_url}'`"
+    )
     flag = True
     cout = 0
     results = None

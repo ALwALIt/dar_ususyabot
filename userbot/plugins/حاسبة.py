@@ -5,7 +5,7 @@ import io
 import sys
 import traceback
 
-from . import jmthon, edit_or_reply
+from . import edit_or_reply, jmthon
 
 plugin_category = "utils"
 
@@ -46,9 +46,7 @@ async def calculator(event):
         evaluation = stdout
     else:
         evaluation = "⌔︙ عـذرا لأ اسـتطيع ايجـاد حـل لهـكذا معـادلات"
-    final_output = "⌔︙ السـؤال: `{}` \n\n ⌔︙ الـحل: \n`{}` \n".format(
-        cmd, evaluation
-    )
+    final_output = "⌔︙ السـؤال: `{}` \n\n ⌔︙ الـحل: \n`{}` \n".format(cmd, evaluation)
     await event.edit(final_output)
 
 
