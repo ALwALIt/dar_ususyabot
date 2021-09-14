@@ -1,6 +1,6 @@
 import asyncio
 
-from . import ALIVE_NAME, jmthon, edit_or_reply
+from . import ALIVE_NAME, edit_or_reply, jmthon
 
 plugin_category = "fun"
 

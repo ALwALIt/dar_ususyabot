@@ -5,7 +5,7 @@ from telethon.tl.types import ChatBannedRights
 
 from ..sql_helper import antiflood_sql as sql
 from ..utils import is_admin
-from . import jmthon, edit_or_reply
+from . import edit_or_reply, jmthon
 
 plugin_category = "admin"
 CHAT_FLOOD = sql.__load_flood_settings()
@@ -81,5 +81,7 @@ async def _(event):
         await event.edit(f"تم تحديث عدد الـتكرار لـ {input_str} في الدردشه الحالية")
     except Exception as e:
         await event.edit(str(e))
+
+
 # For Catuserbot
 # Arabic Translate By  :  @RRRD7

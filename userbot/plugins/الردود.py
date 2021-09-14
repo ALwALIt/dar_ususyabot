@@ -101,8 +101,7 @@ async def filter_incoming_handler(handler):  # sourcery no-metrics
             "{userid}": "To use userid",
             "{username}": "To use user username",
             "{my_first}": "To use my first name",
-
-"{my_fullname}": "To use my full name",
+            "{my_fullname}": "To use my full name",
             "{my_last}": "To use my last name",
             "{my_mention}": "To mention myself",
             "{my_username}": "To use my username.",
