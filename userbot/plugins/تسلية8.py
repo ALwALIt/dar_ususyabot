@@ -38,7 +38,7 @@ async def get_font_file(client, channel_id, search_kw=""):
     },
 )
 async def waifu(animu):
-    " ⌔︙الأنمي الذي يجعل كتابتك ممتعة"
+    "⌔︙الأنمي الذي يجعل كتابتك ممتعة"
     text = animu.pattern_match.group(1)
     reply_to_id = await reply_id(animu)
     if not text:
@@ -65,9 +65,9 @@ async def waifu(animu):
         ],
         "examples": "{tr}stcr hello",
     },
-) # WRITED BY - @VUUZZ - @RRRD7
+)  # WRITED BY - @VUUZZ - @RRRD7
 async def sticklet(event):
-    " ⌔︙النص الخاص بك كملصق"
+    "⌔︙النص الخاص بك كملصق"
     R = random.randint(0, 256)
     G = random.randint(0, 256)
     B = random.randint(0, 256)
@@ -114,6 +114,7 @@ async def sticklet(event):
     except BaseException:
         pass
 
+
 # WRITED BY - @VUUZZ - @RRRD7
 @jmthon.ar_cmd(
     pattern="هونك(?:\s|$)([\s\S]*)",
@@ -125,7 +126,7 @@ async def sticklet(event):
     },
 )
 async def honk(event):
-    " ⌔︙ اجعل هونك يقول اي شيء."
+    "⌔︙ اجعل هونك يقول اي شيء."
     text = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     bot_name = "@honka_says_bot"
@@ -133,9 +134,7 @@ async def honk(event):
         if event.is_reply:
             text = (await event.get_reply_message()).message
         else:
-            return await edit_delete(
-                event, "** ⌔︙ ماذا يفترض أن يقول هونك أعطه نص**"
-            )
+            return await edit_delete(event, "** ⌔︙ ماذا يفترض أن يقول هونك أعطه نص**")
     text = deEmojify(text)
     await event.delete()
     await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
@@ -151,7 +150,7 @@ async def honk(event):
     },
 )
 async def twt(event):
-    " ⌔︙قم بعمل تغريدة رائعة من حسابك."
+    "⌔︙قم بعمل تغريدة رائعة من حسابك."
     text = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     bot_name = "@TwitterStatusBot"
@@ -159,9 +158,7 @@ async def twt(event):
         if event.is_reply:
             text = (await event.get_reply_message()).message
         else:
-            return await edit_delete(
-                event, "**⌔︙ ماذا يفترض بي ان اغرد اكتي نصا**"
-            )
+            return await edit_delete(event, "**⌔︙ ماذا يفترض بي ان اغرد اكتي نصا**")
     text = deEmojify(text)
     await event.delete()
     await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
@@ -175,9 +172,9 @@ async def twt(event):
         "usage": "{tr}doge <text/reply to msg>",
         "examples": "{tr}doge Gib money",
     },
-) # WRITED BY - @VUUZZ - @RRRD7
+)  # WRITED BY - @VUUZZ - @RRRD7
 async def doge(event):
-    " ⌔︙اصنع ستيكر كلب رائع."
+    "⌔︙اصنع ستيكر كلب رائع."
     text = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     bot_name = "@DogeStickerBot"
@@ -185,13 +182,14 @@ async def doge(event):
         if event.is_reply:
             text = (await event.get_reply_message()).message
         else:
-            return await edit_delete(
-                event, "⌔︙ ماذا يفترض بالكلب ان يقول اعطه نصا**"
-            )
+            return await edit_delete(event, "⌔︙ ماذا يفترض بالكلب ان يقول اعطه نصا**")
     text = deEmojify(text)
     await event.delete()
     await hide_inlinebot(event.client, bot_name, text, event.chat_id, reply_to_id)
+
+
 # WRITED BY - @VUUZZ - @RRRD7
+
 
 @jmthon.ar_cmd(
     pattern="غلاكس(|ر)(?:\s|$)([\s\S]*)",
@@ -210,9 +208,9 @@ async def doge(event):
             "{tr}glaxr Die you",
         ],
     },
-) # WRITED BY - @VUUZZ - @RRRD7
+)  # WRITED BY - @VUUZZ - @RRRD7
 async def glax(event):
-    " ⌔︙اجعل غلاكس التنين ينفخ نصك."
+    "⌔︙اجعل غلاكس التنين ينفخ نصك."
     cmd = event.pattern_match.group(1).lower()
     text = event.pattern_match.group(2)
     reply_to_id = await reply_id(event)
@@ -224,7 +222,7 @@ async def glax(event):
         else:
             return await edit_delete(
                 event, " ⌔︙ ماذا يفترض بـ گلاكـس ان يقول اعطه نصا**"
-            ) # WRITED BY - @VUUZZ - @RRRD7
+            )  # WRITED BY - @VUUZZ - @RRRD7
     text = deEmojify(text)
     await event.delete()
     await hide_inlinebot(

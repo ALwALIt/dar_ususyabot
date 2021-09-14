@@ -6,7 +6,6 @@ from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.tl.types import ChatBannedRights
 
-
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
@@ -15,10 +14,11 @@ from ..sql_helper.locks_sql import get_locks, is_locked, update_lock
 from ..utils import is_admin
 from . import BOTLOG, get_user_from_event
 
-plugin_category = "admin" 
+plugin_category = "admin"
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
+
 
 @jmthon.ar_cmd(
     pattern="قفل (.*)",
@@ -265,16 +265,12 @@ async def _(event):  # sourcery no-metrics
         changeinfo = chat_per.change_info
         if input_str == "الدردشه":
             if not msg:
-                return await edit_delete(
-                    event, "⌔︙ الدردشه مفتوحه في هذه المجموعه ⌁"
-                )
+                return await edit_delete(event, "⌔︙ الدردشه مفتوحه في هذه المجموعه ⌁")
             msg = False
             locktype = "الدردشه"
         elif input_str == "الوسائط":
             if not media:
-                return await edit_delete(
-                    event, "⌔︙ ارسال الوسائط مسموح في هذه الدردشه"
-                )
+                return await edit_delete(event, "⌔︙ ارسال الوسائط مسموح في هذه الدردشه")
             media = False
             locktype = "الوسائط"
         elif input_str == "الملصقات":
@@ -312,7 +308,7 @@ async def _(event):  # sourcery no-metrics
                 )
             ainline = False
             locktype = "الانلاين"  # BY  @RRRD7  -  @UUNZZ
-        elif input_str == "التصويت":  
+        elif input_str == "التصويت":
             if not gpoll:
                 return await edit_delete(
                     event, "⌔︙ ارسال التصويت مسموح في هذه الدردشه ⌁ "
@@ -395,6 +391,7 @@ async def _(event):  # sourcery no-metrics
                 time=5,
             )
 
+
 # BY  @RRRD7  -  @UUNZZ
 @jmthon.ar_cmd(
     pattern="الصلاحيات$",
@@ -415,7 +412,7 @@ async def _(event):  # sourcery no-metrics
         res = "⌔︙ ملـف الاوامر مقدم من سورس جمثـون: \n"
         ubots = "✗" if current_db_locks.bots else "✔"
         ucommands = "✗" if current_db_locks.commands else "✔"
-        uemail = "✗" if current_db_locks.email else "✔"
+        "✗" if current_db_locks.email else "✔"
         uforward = "✗" if current_db_locks.forward else "✔"
         uurl = "✗" if current_db_locks.url else "✔"
         res += f" البـوتات ☣️: `{ubots}`\n"
@@ -1139,4 +1136,6 @@ async def _(event):
                     users_added_by
                 )
             )
-#THIS FILE WRITTEN BY  @RRRD7
+
+
+# THIS FILE WRITTEN BY  @RRRD7
