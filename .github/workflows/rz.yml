@@ -18,9 +18,9 @@ jobs:
 
         with:
 
-          find: "GroupJmthon"
+          find: "JMTHON"
 
-          replace: "lMl10l"
+          replace: "JEEPTHON"
 
       - name: Create Pull Request
 
