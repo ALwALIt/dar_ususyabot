@@ -22,7 +22,7 @@ JMVERSION = "4.0.0"
 
 
 if Config.UPSTREAM_REPO == "Jeepthon":
-    UPSTREAM_REPO_URL = "https://github.com/JepThon/BOT"
+    UPSTREAM_REPO_URL = "https://github.com/JEPTHON1/BOT"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
