@@ -18,9 +18,9 @@ jobs:
 
         with:
 
-          find: "جمثون"
+          find: "GroupJmthon"
 
-          replace: "جـيبثون"
+          replace: "lMl10l"
 
       - name: Create Pull Request
 
