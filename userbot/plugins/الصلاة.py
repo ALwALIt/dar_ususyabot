@@ -46,5 +46,5 @@ async def get_adzan(adzan):
     "
     await edit_or_reply(adzan, jmthonresult, "html")
 
-# Copyright (C) 2021 JEEPTHON TEAM
+# Copyright (C) 2021 JepThon TEAM
 # FILES WRITTEN BY  @RR7PP

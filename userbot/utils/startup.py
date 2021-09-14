@@ -22,7 +22,7 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
 
-LOGS = logging.getLogger("JEEPTHON")
+LOGS = logging.getLogger("JepThon")
 cmdhr = Config.COMMAND_HAND_LER
 
 
@@ -64,7 +64,7 @@ async def startupmessage():
             Config.CATUBLOGO = await jmthon.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/e9cd63140ffaba419db6b.jpg",
-                caption="⌯︙**بــوت جيـبثون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JEEPTHON",
+                caption="⌯︙**بــوت جيـبثون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JepThon",
                 buttons=[(Button.url("مطور جيبثون", "https://t.me/lMl10l"),)],
             )
     except Exception as e:
@@ -236,7 +236,7 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JEEPTHON"
+        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JepThon"
         _, groupid = await create_supergroup(
             "كـروب تخزين الخاص", jmthon, Config.TG_BOT_USERNAME, descript
         )

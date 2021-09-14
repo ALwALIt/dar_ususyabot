@@ -1,4 +1,4 @@
-#JEEPTHON - @RR9R7 - @GGGNE
+#JepThon - @RR9R7 - @GGGNE
 # L E O - M U H A M M E D
 
 
@@ -19,7 +19,7 @@ from . import BOTLOG, BOTLOG_CHATID
 plugin_category = "utils"
 
 LOGS = logging.getLogger(__name__)
-#JEEPTHON - RR9R7 - GGGNE
+#JepThon - RR9R7 - GGGNE
 # L E O - M U H A M M E D
 
 class AFK:
@@ -82,7 +82,7 @@ async def set_not_afk(event):
                 + endtime
                 + "`",
             )
-#JEEPTHON - RR9R7 - GGGNE
+#JepThon - RR9R7 - GGGNE
 # L E O - M U H A M M E D
 
 @jmthon.ar_cmd(
@@ -168,7 +168,7 @@ async def on_afk(event):  # sourcery no-metrics
                 parse_mode="html",
                 link_preview=False,
             )
-#JEEPTHON - RR9R7 - GGGNE
+#JepThon - RR9R7 - GGGNE
 # L E O - M U H A M M E D
 
 @jmthon.ar_cmd(
@@ -233,5 +233,5 @@ async def _(event):
                 BOTLOG_CHATID,
                 f"**⌯︙امـر النوم 💤 :** \n **تم تشغيل الامر ❕**",
             )
-#JEEPTHON - RR9R7 - GGGNE
+#JepThon - RR9R7 - GGGNE
 # L E O - M U H A M M E D

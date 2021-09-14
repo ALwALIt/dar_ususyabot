@@ -18,9 +18,9 @@ plugin_category = "misc"
         "description": "To search images in google. By default will send 3 images.you can get more images(upto 10 only by changing limit value as shown in usage and examples.",
         "usage": ["{tr}img <1-10> <query>", "{tr}img <query>"],
         "examples": [
-            "{tr}img 10 JEEPTHON",
-            "{tr}img JEEPTHON ",
-            "{tr}img 7 JEEPTHON ",
+            "{tr}img 10 JepThon",
+            "{tr}img JepThon ",
+            "{tr}img 7 JepThon ",
         ],
     },
 )

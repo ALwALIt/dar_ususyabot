@@ -1,5 +1,5 @@
-#@RR7PP  - @UNZZ  - @JEEPTHON
-# Copyright (C) 2021 JEEPTHON TEAM
+#@RR7PP  - @UNZZ  - @JepThon
+# Copyright (C) 2021 JepThon TEAM
 # FILES WRITTEN BY  @RR7PP
 import asyncio
 import io
@@ -367,7 +367,7 @@ async def kakashi(event):
         end = datetime.now()
         ms = (end - start).seconds
         await cat.edit(
-            f"꙳ ¦ تم تنزيل بواسطة  : @JEEPTHON ",
+            f"꙳ ¦ تم تنزيل بواسطة  : @JepThon ",
             parse_mode="html",
         )
     await event.client.delete_messages(

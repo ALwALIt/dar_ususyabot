@@ -9,8 +9,8 @@ from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "4.0.0"
 __license__ = "كـتابة وتـعديل فريـق جـيبثون"
-__author__ = "جـيبثون <https://T.ME/JEEPTHON>"
-__copyright__ = "JEEPTHON TEAM (C) 2020 - 2021  " + __author__
+__author__ = "جـيبثون <https://T.ME/JepThon>"
+__copyright__ = "JepThon TEAM (C) 2020 - 2021  " + __author__
 
 jmthon.version = __version__
 jmthon.tgbot.version = __version__
@@ -22,7 +22,7 @@ JMVERSION = "4.0.0"
 
 
 if Config.UPSTREAM_REPO == "Jeepthon":
-    UPSTREAM_REPO_URL = "https://github.com/JEEPTHON/BOT"
+    UPSTREAM_REPO_URL = "https://github.com/JepThon/BOT"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
