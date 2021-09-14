@@ -571,7 +571,7 @@ async def inline_handler(event):  # sourcery no-metrics
             url=ROZLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "**[بـوت جـمثـون 🧸♥](https://t.me/Jmthon)**\
+            "**[بـوت جيـبثون 🧸♥](https://t.me/Jmthon)**\
             \n\
             \n❤ جيـبثون هـو بـوت بسـيط يدخـل الـى حسـابك لجعـلك تتحـكم به معـ اوامـر معينـة.\
             \n\
