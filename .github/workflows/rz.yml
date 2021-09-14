@@ -18,9 +18,9 @@ jobs:
 
         with:
 
-          find: "JMTHON"
+          find: "𝘑𝘔𝘛𝘏𝘖𝘕"
 
-          replace: "JEEPTHON"
+          replace: "𝘑𝘌𝘌𝘗𝘛𝘏𝘖𝘕"
 
       - name: Create Pull Request
 
