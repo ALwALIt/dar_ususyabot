@@ -6,7 +6,7 @@ from userbot import jmthon
 from . import *
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 
 plugin_category = "extra"
@@ -25,7 +25,7 @@ async def tmgif(event):
         await event.client.send_file(event.chat_id, cute, caption=jmthon, reply_to=ROZ)
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="ك2$",
@@ -42,7 +42,7 @@ async def tmgif(event):
         await event.client.send_file(event.chat_id, cute2, caption=RAZAN, reply_to=leo)
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="ك3$",
@@ -59,7 +59,7 @@ async def tmgif(event):
         await event.client.send_file(event.chat_id, cute3, caption=RAZAN, reply_to=sic_id)
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="ك4$",
@@ -78,7 +78,7 @@ async def tmgif(event):
         )
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="ك5$",
@@ -98,7 +98,7 @@ async def tmgif(event):
         )
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="ك6$",
@@ -118,7 +118,7 @@ async def tmgif(event):
         )
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="ك7$",
@@ -138,4 +138,4 @@ async def tmgif(event):
     
        
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك   
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك   

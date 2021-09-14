@@ -6,7 +6,7 @@ from userbot import jmthon
 from . import *
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 plugin_category = "extra"
 @jmthon.ar_cmd(
@@ -24,7 +24,7 @@ async def tmgif(event):
         await event.client.send_file(event.chat_id, sad, caption=jmthon, reply_to=RR9R7)
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="س2$",
@@ -41,7 +41,7 @@ async def tmgif(event):
         await event.client.send_file(event.chat_id, sad2, caption=RAZAN, reply_to=leo)
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="س3$",
@@ -58,7 +58,7 @@ async def tmgif(event):
         await event.client.send_file(event.chat_id, sad3, caption=RAZAN, reply_to=sic_id)
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="س4$",
@@ -77,7 +77,7 @@ async def tmgif(event):
         )
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="س5$",
@@ -97,7 +97,7 @@ async def tmgif(event):
         )
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="س6$",
@@ -117,7 +117,7 @@ async def tmgif(event):
         )
 
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك
 
 @jmthon.ar_cmd(
     pattern="س7$",
@@ -169,4 +169,4 @@ async def tmgif(event):
         )
       
 #edit  ~ @RR9R7 for Jmthon 
-#جميع الحقوق محفوظة لسـورس جـمثون تخـمط تبيـن فشلـك
+#جميع الحقوق محفوظة لسـورس جـيبثون تخـمط تبيـن فشلـك

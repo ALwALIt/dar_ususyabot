@@ -65,7 +65,7 @@ async def startupmessage():
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/e9cd63140ffaba419db6b.jpg",
                 caption="⌯︙**بــوت جـمـثـون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JEEPTHON",
-                buttons=[(Button.url("كروب جـمثون", "https://t.me/GroupJmthon"),)],
+                buttons=[(Button.url("كروب جـيبثون", "https://t.me/GroupJmthon"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -81,7 +81,7 @@ async def startupmessage():
         if msg_details:
             await jmthon.check_testcases()
             message = await jmthon.get_messages(msg_details[0], ids=msg_details[1])
-            text = message.text + "\n\n**⌯︙اهلا وسهلا لقد قمت باعاده تشغيل بـوت جـمثون تمت بنجاح**"
+            text = message.text + "\n\n**⌯︙اهلا وسهلا لقد قمت باعاده تشغيل بـوت جـيبثون تمت بنجاح**"
             await jmthon.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
                 await jmthon.send_message(

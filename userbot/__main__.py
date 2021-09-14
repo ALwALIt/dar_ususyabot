@@ -48,7 +48,7 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("⌯︙بـوت جـمثون يعـمل بـنجاح ")
+    print("⌯︙بـوت جـيبثون يعـمل بـنجاح ")
     print(
         f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
         \nللمسـاعدة تواصـل  https://t.me/jmthon"
