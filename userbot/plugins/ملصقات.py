@@ -3,17 +3,11 @@ import base64
 import io
 import math
 import random
-import re
-import string
 import urllib.request
 from os import remove
 
-import cloudscraper
 import emoji as catemoji
-from bs4 import BeautifulSoup as bs
 from PIL import Image
-from telethon import events
-from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import functions, types
 from telethon.tl.functions.messages import GetStickerSetRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
@@ -27,9 +21,7 @@ from telethon.tl.types import (
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.functions import crop_and_divide
 from ..helpers.tools import media_type
-from ..helpers.utils import _cattools
 from ..sql_helper.globals import gvarstatus
 
 plugin_category = "fun"
@@ -51,6 +43,7 @@ EMOJI_SEN = [
 KANGING_STR = [
     "**⌔︙ انتظر يتم صنع الملصق*",
 ]
+
 
 def verify_cond(catarray, text):
     return any(i in text for i in catarray)
@@ -183,9 +176,7 @@ async def add_to_pack(
             pack = 1
         packname = pack_name(userid, pack, is_anim)
         packnick = pack_nick(username, pack, is_anim)
-        await catevent.edit(
-            f"** تبديل الحـزمة الى {str(pack)} بسبب امتلاء الحزمة"
-        )
+        await catevent.edit(f"** تبديل الحـزمة الى {str(pack)} بسبب امتلاء الحزمة")
         await conv.send_message(packname)
         x = await conv.get_response()
         if x.text == "**الحـزمة المحددة غير صحيحة**":
@@ -414,9 +405,7 @@ async def pack_kang(event):  # sourcery no-metrics
             event, "**يتم إحضار تفاصيل حزمة الملصقات ، انتظر**"
         )
     except BaseException:
-        return await edit_delete(
-            event, "هاذا ليس ملصق قم بالرد ع الملصق ⌔︙", 5
-        )
+        return await edit_delete(event, "هاذا ليس ملصق قم بالرد ع الملصق ⌔︙", 5)
     try:
         get_stickerset = await event.client(
             GetStickerSetRequest(
@@ -548,6 +537,7 @@ async def pack_kang(event):  # sourcery no-metrics
         )
     await catevent.edit(result)
 
+
 @jmthon.ar_cmd(
     pattern="معلومات_الملصق$",
     command=("معلومات_الملصق", plugin_category),
@@ -576,7 +566,7 @@ async def get_pack_info(event):
     except BaseException:
         return await edit_delete(
             event, "**⌔︙ هذا ليس ملصق يجب الرد على الملصق اولا**", 5
-        )     
+        )
     if not isinstance(stickerset_attr, DocumentAttributeSticker):
         return await catevent.edit("**⌔︙ هذا ليس ملصق يجب الرد على الملصق اولا.**")
     get_stickerset = await event.client(

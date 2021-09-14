@@ -107,9 +107,7 @@ async def _(event):
         except Exception as e:
             LOGS.info(str(e))
             await sleep(0.5)
-    await catevent.edit(
-        f"⌔︙  تم بنجاح طرد من {total} الاعضاء ✅ "
-    )
+    await catevent.edit(f"⌔︙  تم بنجاح طرد من {total} الاعضاء ✅ ")
 
 
 @jmthon.ar_cmd(
@@ -149,13 +147,10 @@ async def _(event):
                     EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS)
                 )
                 success += 1
-                await sleep(0.5) # for avoid any flood waits !!-> do not remove it 
+                await sleep(0.5)  # for avoid any flood waits !!-> do not remove it
         except Exception as e:
             LOGS.info(str(e))
-    await catevent.edit(
-        f"⌔︙  تم بنجاح حظر من {total} الاعضاء ✅ "
-    )
-
+    await catevent.edit(f"⌔︙  تم بنجاح حظر من {total} الاعضاء ✅ ")
 
 
 @jmthon.ar_cmd(
@@ -211,6 +206,7 @@ async def _(event):
                 pass
     await catevent.edit(f"⌔︙ الغاء حظر :__{succ}/{total} في الدردشه {chat.title}__")
 
+
 # Ported by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)
 @jmthon.ar_cmd(
     pattern="المحذوفين ?([\s\S]*)",
@@ -246,9 +242,7 @@ async def rm_deletedacc(show):
     if not admin and not creator:
         await edit_delete(show, "أنا لسـت مشرف هـنا", 5)
         return
-    event = await edit_or_reply(
-        show, "⌔︙ جاري حذف الحسابات المحذوفة"
-    )
+    event = await edit_or_reply(show, "⌔︙ جاري حذف الحسابات المحذوفة")
     del_u = 0
     del_a = 0
     async for user in show.client.iter_participants(show.chat_id):

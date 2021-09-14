@@ -1,24 +1,21 @@
 import asyncio
 import os
-import re
 from io import BytesIO
-from random import choice, randint
+from random import randint
 from textwrap import wrap
 
 from PIL import Image, ImageDraw, ImageFont
 from requests import get
-from telethon.utils import get_display_name
 
 from userbot import jmthon
 
 from ..Config import Config
 from ..core.managers import edit_or_reply
-from ..helpers.utils import get_user_from_event, reply_id
 from . import ALIVE_NAME
 
 plugin_category = "extra"
 
-#كـتابة وتعـديل  @RRRD7
+# كـتابة وتعـديل  @RRRD7
 # JMTHON ™
 async def amongus_gen(text: str, clr: int) -> str:
     url = "https://github.com/JMTHON-AR/Jmthon-Resources/raw/master/Resources/Amongus/"
@@ -75,6 +72,7 @@ async def get_imposter_img(text: str) -> str:
     webp_file = os.path.join(Config.TEMP_DIR, output.name)
     image.save(webp_file, "png")
     return webp_file
+
 
 @jmthon.ar_cmd(
     pattern="من القاتل(|بريء) ([\s\S]*)",
