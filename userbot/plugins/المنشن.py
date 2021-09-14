@@ -77,5 +77,7 @@ async def _(event):
         parse_mode="HTML",
         reply_to=reply_to_id,
     )
-#كـتابة  @RRRD7
-#تعديل وترتيب  @KiNGBrlin
+
+
+# كـتابة  @RRRD7
+# تعديل وترتيب  @KiNGBrlin

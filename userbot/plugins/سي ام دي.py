@@ -3,7 +3,7 @@ from pathlib import Path
 
 from ..Config import Config
 from ..utils import load_module, remove_plugin
-from . import CMD_HELP, CMD_LIST, SUDO_LIST, jmthon, edit_delete, edit_or_reply, reply_id
+from . import CMD_HELP, CMD_LIST, SUDO_LIST, edit_delete, edit_or_reply, jmthon
 
 plugin_category = "tools"
 
@@ -63,9 +63,7 @@ async def unload(event):
     shortname = event.pattern_match.group(1)
     path = Path(f"userbot/plugins/{shortname}.py")
     if not os.path.exists(path):
-        return await edit_delete(
-            event, f"⌔︙ لا يوجد هكذا ملف مع المسار {path} لحذفه"
-        )
+        return await edit_delete(event, f"⌔︙ لا يوجد هكذا ملف مع المسار {path} لحذفه")
     os.remove(path)
     if shortname in CMD_LIST:
         CMD_LIST.pop(shortname)
