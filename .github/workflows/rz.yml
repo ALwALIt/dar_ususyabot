@@ -18,9 +18,9 @@ jobs:
 
         with:
 
-          find: "@JMTHON"
+          find: "جـمثون"
 
-          replace: "@JEEPTHON"
+          replace: "جـيبثون"
 
       - name: Create Pull Request
 
