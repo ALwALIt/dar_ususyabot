@@ -10,7 +10,7 @@ from ..utils import is_admin
 
 plugin_category = "admin"
 
-#copyright for JMTHON © 2021
+# copyright for JMTHON © 2021
 @jmthon.ar_cmd(incoming=True, groups_only=True)
 async def on_new_message(event):
     name = event.raw_text
@@ -59,9 +59,7 @@ async def _(event):
         sql.add_to_blacklist(event.chat_id, trigger.lower())
     await edit_or_reply(
         event,
-        "⌔︙ تم اضافة {} الكلمة في قائمة المنع بنجاح".format(
-            len(to_blacklist)
-        ),
+        "⌔︙ تم اضافة {} الكلمة في قائمة المنع بنجاح".format(len(to_blacklist)),
     )
 
 
@@ -90,7 +88,8 @@ async def _(event):
         for trigger in to_unblacklist
     )
     await edit_or_reply(
-        event, f"⌔︙ تم ازالة الكلمة {successful} / {len(to_unblacklist)} من قائمة المنع بنجاح"
+        event,
+        f"⌔︙ تم ازالة الكلمة {successful} / {len(to_unblacklist)} من قائمة المنع بنجاح",
     )
 
 

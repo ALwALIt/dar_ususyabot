@@ -1,14 +1,14 @@
-#ترجمه فريق جمثون على التيلكرام
+# ترجمه فريق جمثون على التيلكرام
 import json
 
 import requests
-#ترجمه فريق جمثون على التيلكرام
-from ..sql_helper.globals import gvarstatus
-from . import jmthon, edit_delete, edit_or_reply
+
+# ترجمه فريق جمثون على التيلكرام
+from . import edit_delete, edit_or_reply, jmthon
 
 plugin_category = "extra"
 
-#ترجمه فريق جمثون على التيلكرام
+# ترجمه فريق جمثون على التيلكرام
 @jmthon.ar_cmd(
     pattern="صلاة(?: |$)(.*)",
     command=("صلاة", plugin_category),
@@ -25,8 +25,10 @@ async def get_adzan(adzan):
     request = requests.get(url)
     if request.status_code != 200:
         await edit_delete(
-            adzan, f"** لم يـتم العثور على معلومات لـهذه المدينه {LOKASI}**\n يرجى كتابة اسم محافظتك وباللغه الانكليزي ", 5
-        ) #ترجمه فريق جمثون على التيلكرام
+            adzan,
+            f"** لم يـتم العثور على معلومات لـهذه المدينه {LOKASI}**\n يرجى كتابة اسم محافظتك وباللغه الانكليزي ",
+            5,
+        )  # ترجمه فريق جمثون على التيلكرام
         return
     result = json.loads(request.text)
     jmthonresult = f"<b>اوقـات صـلاه المـسلمين 👳‍♂️ </b>\
@@ -45,6 +47,7 @@ async def get_adzan(adzan):
             \n<b>منتـصف الليل : </b><i>{result['results']['datetime'][0]['times']['Midnight']}</i>\
     "
     await edit_or_reply(adzan, jmthonresult, "html")
+
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7

@@ -7,6 +7,7 @@ from ..core.managers import edit_or_reply
 
 plugin_category = "tools"
 
+
 @jmthon.ar_cmd(
     pattern="بنغ$",
     command=("بنغ", plugin_category),

@@ -33,7 +33,7 @@ async def _(event):  #   : @RRRD7
     input_str = "".join(event.text.split(maxsplit=1)[1:])
     reply_message = await event.get_reply_message()
     if not input_str and not reply_message:
-        await edit_delete( #ترجمه فريق جمثون على التيلكرام
+        await edit_delete(  # ترجمه فريق جمثون على التيلكرام
             event,
             "⌔︙  يـجب الـرد على الشخـص او كتـابة معـرفه مع الأمـر لأظـهار تواريـخ اسمـه",
         )
@@ -67,6 +67,6 @@ async def _(event):  #   : @RRRD7
     for i in check:
         if jasem:
             await event.reply(i, parse_mode=_format.parse_pre)
-        else:#ترجمه فريق جمثون على التيلكرام
+        else:  # ترجمه فريق جمثون على التيلكرام
             jasem = True
             await catevent.edit(i, parse_mode=_format.parse_pre)
