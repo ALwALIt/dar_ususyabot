@@ -54,7 +54,7 @@ async def _(event):
         else:
             await edit_or_reply(
                 event,
-               f"⌔︙ ايدي الدردشه : `{str(event.chat_id)}` \n⌔︙ ايدي المستخدم: `{str(r_msg.sender_id)}` ",
+                f"⌔︙ ايدي الدردشه : `{str(event.chat_id)}` \n⌔︙ ايدي المستخدم: `{str(r_msg.sender_id)}` ",
             )
     else:
         await edit_or_reply(event, f"⌔︙ الـدردشـة الـحالية : `{str(event.chat_id)}`")

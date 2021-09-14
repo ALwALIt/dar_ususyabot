@@ -84,9 +84,7 @@ async def _(event):
 async def _(event):
     "To set profile pic for this account."
     reply_message = await event.get_reply_message()
-    catevent = await edit_or_reply(
-        event, "**...**"
-    )
+    catevent = await edit_or_reply(event, "**...**")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     photo = None
@@ -120,9 +118,7 @@ async def _(event):
             except Exception as e:
                 await catevent.edit(f"**خطأ:**\n`{str(e)}`")
             else:
-                await edit_or_reply(
-                    catevent, "⌔︙ تم تغيير الصـورة بنـجاح ✅"
-                )
+                await edit_or_reply(catevent, "⌔︙ تم تغيير الصـورة بنـجاح ✅")
     try:
         os.remove(photo)
     except Exception as e:
@@ -223,9 +219,7 @@ async def remove_profilepic(delpfp):
         for sep in pfplist.photos
     ]
     await delpfp.client(DeletePhotosRequest(id=input_photos))
-    await edit_delete(
-        delpfp, f"⌔︙ تـم الحذف {len(input_photos)} من صور حسابك بنجاح ✅"
-    )
+    await edit_delete(delpfp, f"⌔︙ تـم الحذف {len(input_photos)} من صور حسابك بنجاح ✅")
 
 
 @jmthon.ar_cmd(
@@ -246,4 +240,5 @@ async def _(event):
     )
     await edit_or_reply(event, output_str)
 
-#ملف البروفايل خاص بقناة جمثون
+
+# ملف البروفايل خاص بقناة جمثون

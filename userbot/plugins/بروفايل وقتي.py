@@ -5,31 +5,19 @@ import asyncio
 import base64
 import os
 import random
-import re
 import shutil
 import time
-import urllib
 from datetime import datetime
 
-import requests
 from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
 from telethon.tl import functions
 
 from ..Config import Config
-from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import (
-    AUTONAME,
-    BOTLOG,
-    BOTLOG_CHATID,
-    DEFAULT_BIO,
-    _catutils,
-    jmthon,
-    edit_delete,
-    logging,
-)
+from . import AUTONAME, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, edit_delete, jmthon
+
 DEFAULTUSERBIO = DEFAULT_BIO or "أستغفر اللّه"
 CHANGE_TIME = Config.CHANGE_TIME
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
@@ -42,7 +30,8 @@ autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC
 RRRD7 = gvarstatus("ALIVE_EMOJI") or ""
-#كتابة فريق جمثون  على التليكرام
+# كتابة فريق جمثون  على التليكرام
+
 
 @bot.on(admin_cmd(pattern="الحدث ?(.*)"))
 async def autopic(event):
@@ -60,7 +49,7 @@ async def autopic(event):
         pass
     input_str = event.pattern_match.group(1)
     if input_str:
-        try:  
+        try:
             input_str = int(input_str)
         except ValueError:
             input_str = 60
@@ -197,7 +186,7 @@ async def autopicloop():
             while not downloader.isFinished():
                 pass
         shutil.copy(autopic_path, autophoto_path)
-        im = Image.open(autophoto_path)
+        Image.open(autophoto_path)
         current_time = datetime.now().strftime("  %I:%M ")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
@@ -206,7 +195,11 @@ async def autopicloop():
         img.save(autophoto_path)
         file = await jmthon.upload_file(autophoto_path)
         try:
-            await jmthon(functions.photos.DeletePhotosRequest(await jmthon.get_profile_photos("me", limit=1)))
+            await jmthon(
+                functions.photos.DeletePhotosRequest(
+                    await jmthon.get_profile_photos("me", limit=1)
+                )
+            )
             await jmthon(functions.photos.UploadProfilePhotoRequest(file))
             os.remove(autophoto_path)
             counter += counter
@@ -300,7 +293,7 @@ async def bloom_pfploop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
-        DM = time.strftime("%d-%m-%y")
+        time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
         name = f"{RRRD7} {HM} "
         LOGS.info(name)
@@ -316,7 +309,7 @@ async def autoname_loop():
 async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
-        DMY = time.strftime("%Y.%m.%d")
+        time.strftime("%Y.%m.%d")
         HM = time.strftime("%I:%M")
         bio = f" {DEFAULTUSERBIO} 𓆩{HM}𓆪"
         LOGS.info(bio)

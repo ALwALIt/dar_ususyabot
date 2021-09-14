@@ -1,7 +1,7 @@
 from userbot import jmthon
 
-from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.utils import _catutils, parse_pre, yaml_format
+from ..core.managers import edit_or_reply
+from ..helpers.utils import _catutils, yaml_format
 
 plugin_category = "tools"
 
@@ -35,10 +35,9 @@ async def _(event):
     "To show all config values in userbot"
     cmd = "env"
     o = (await _catutils.runcmd(cmd))[0]
-    OUTPUT = (
-        f"**[جـمـثـون](tg://need_update_for_some_feature/) قـائمـة الـفـارات:**\n\n\n{o}"
-    )
+    OUTPUT = f"**[جـمـثـون](tg://need_update_for_some_feature/) قـائمـة الـفـارات:**\n\n\n{o}"
     await edit_or_reply(event, OUTPUT)
+
 
 @jmthon.ar_cmd(
     pattern="متى$",
