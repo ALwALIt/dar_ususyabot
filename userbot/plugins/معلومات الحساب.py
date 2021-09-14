@@ -1,8 +1,6 @@
-import base64
 import time
 
 from telethon.tl.custom import Dialog
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.tl.types import Channel, Chat, User
 
 from userbot import jmthon
@@ -96,8 +94,8 @@ async def stats(event):  # sourcery no-metrics
                 bots += 1
         unread_mentions += dialog.unread_mentions_count
         unread += dialog.unread_count
-    stop_time = time.time() - start_time
-    full_name = inline_mention(await event.client.get_me())
+    time.time() - start_time
+    inline_mention(await event.client.get_me())
     response = f"✛━━━━━━━━━━━━━✛ \n"
     response += f"**⌔︙ الدردشات الخاصة ️  :** {private_chats} \n"
     response += f"**⌔︙ المستخـدمين : {private_chats - bots} \n"
@@ -106,15 +104,16 @@ async def stats(event):  # sourcery no-metrics
     response += f"**⌔︙ القنـوات  :** {broadcast_channels} \n"
     response += f"**⌔︙ المجـموعات التـي تكـون فيها مشرف  :** {admin_in_groups} \n"
     response += f"**⌔︙ المجموعات التـي تـكون انت مالكـها  **: {creator_in_groups} \n"
-    response += f"**⌔︙ القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
     response += (
-        f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
+        f"**⌔︙ القنوات التـي تكـون فيها مشـرف :** {admin_in_broadcast_channels} \n"
     )
+    response += f"**⌔︙ صلاحيات الاشـراف  :** {admin_in_broadcast_channels - creator_in_channels} \n"
     response += f"**⌔︙ المحـادثـات الغيـر مقـروء**: {unread} \n"
     response += f"**⌔︙ الـتاكـات الغيـر مقـروء** : {unread_mentions} \n"
     response += f"✛━━━━━━━━━━━━━✛\n"
     await cat.edit(response)
-        
+
+
 @jmthon.ar_cmd(
     pattern="كروباته(?:\s|$)([\s\S]*)",
     command=("كروباته", plugin_category),
@@ -129,9 +128,8 @@ async def _(event):
     reply_message = await event.get_reply_message()
     if not input_str and not reply_message:
         return await edit_delete(
-            event,
-            "⌔︙ يجـب وضع ايدي الشخـص او معـرفه او بالرد عليه"
-         )
+            event, "⌔︙ يجـب وضع ايدي الشخـص او معـرفه او بالرد عليه"
+        )
     if input_str:
         try:
             uid = int(input_str)
@@ -139,9 +137,7 @@ async def _(event):
             try:
                 u = await event.client.get_entity(input_str)
             except ValueError:
-                await edit_delete(
-                    event, "⌔︙ يجـب وضع ايدي الشخـص او معـرفه اولا"
-                )
+                await edit_delete(event, "⌔︙ يجـب وضع ايدي الشخـص او معـرفه اولا")
             uid = u.id
     else:
         uid = reply_message.sender_id
@@ -152,5 +148,5 @@ async def _(event):
             await conv.send_message(f"{uid}")
         except Exception:
             await edit_delete(catevent, "`unblock `@tgscanrobot` and then try`")
-        response = await conv.get_response()
+        await conv.get_response()
         await event.client.send_read_ackno

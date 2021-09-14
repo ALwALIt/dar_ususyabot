@@ -18,8 +18,7 @@ from telethon.tl.types import (
 
 from userbot import jmthon
 
-from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.utils import reply_id
+from ..core.managers import edit_or_reply
 from . import BOTLOG, BOTLOG_CHATID
 
 plugin_category = "utils"
@@ -118,7 +117,7 @@ async def purgeme(event):
         await event.client.send_message(
             BOTLOG_CHATID,
             "**⌔︙ أنتـهى التـنظيف ** تـم حـذف  " + str(count) + " من الـرسائـل",
-    )
+        )
     await sleep(5)
     await smsg.delete()
 
@@ -295,7 +294,9 @@ async def fastpurger(event):  # sourcery no-metrics
                     if msgs:
                         await event.client.delete_messages(chat, msgs)
                 elif ty == "الكتابه":
-                    error += f"\n⌔︙ لا تستطـيع استـخدام امر التنظيف عبر البحث مع الاضافه"
+                    error += (
+                        f"\n⌔︙ لا تستطـيع استـخدام امر التنظيف عبر البحث مع الاضافه"
+                    )
                 else:
                     error += f"\n⌔︙ `{ty}`  : هـذه أضافـة خاطئـة "
         elif p_type == "كلمه":
@@ -359,7 +360,9 @@ async def fastpurger(event):  # sourcery no-metrics
     if msgs:
         await event.client.delete_messages(chat, msgs)
     if count > 0:
-        result += "⌔︙ اكـتمل الـتنظيف السـريع\n⌔︙ تـم حـذفㅤ" +  str(count)  + "ㅤمن الـرسائل"
+        result += (
+            "⌔︙ اكـتمل الـتنظيف السـريع\n⌔︙ تـم حـذفㅤ" + str(count) + "ㅤمن الـرسائل"
+        )
     if error != "":
         result += f"\n\n**خـطأ:**{error}"
     if result == "":

@@ -41,9 +41,9 @@ oldvars = {
     info={
         "header": "Set vars in database or Check or Delete",
         "description": "Set , Fetch or Delete values or vars directly in database without restart or heroku vars.\n\nYou can set multiple pics by giving space after links in alive, ialive, pm permit.",
-   },
+    },
 )
-async def bad(event):  
+async def bad(event):
     "To manage vars in database"
     cmd = event.pattern_match.group(1).lower()
     vname = event.pattern_match.group(2)
@@ -65,13 +65,13 @@ async def bad(event):
             if not vinfo and vname == "ALIVE_TEMPLATE":
                 return await edit_delete(event, f"تابع @JJOTT")
             if not vinfo:
-                return await edit_delete(
-                    event, f" ⌔︙ يـجب وضع القـيمـة الصحـيح اولا**"
-                )
+                return await edit_delete(event, f" ⌔︙ يـجب وضع القـيمـة الصحـيح اولا**")
             check = vinfo.split(" ")
             for i in check:
                 if (("PIC" in vname) or ("pic" in vname)) and not url(i):
-                    return await edit_delete(event, "** ⌔︙ يـجـب وضـع رابـط صحـيح اولا**")
+                    return await edit_delete(
+                        event, "** ⌔︙ يـجـب وضـع رابـط صحـيح اولا**"
+                    )
             addgvar(vname, vinfo)
             if BOTLOG_CHATID:
                 await event.client.send_message(
@@ -103,7 +103,9 @@ async def bad(event):
             )
     else:
         await edit_delete(
-            event, f"**📑 يـجب وضع المتغير الصحـيح من هذه الـقائمة :\n\n**{vnlist}", time=60
+            event,
+            f"**📑 يـجب وضع المتغير الصحـيح من هذه الـقائمة :\n\n**{vnlist}",
+            time=60,
         )
 
 
@@ -205,13 +207,9 @@ async def custom_catuserbot(event):
         delgvar("pmpermit_pic")
     if input_str == "startmsg":
         if gvarstatus("START_TEXT") is None:
-            return await edit_delete(
-                event, "⌔︙ انت لم تقم بخصيص رسالة بدء بـوتك ❕"
-            )
+            return await edit_delete(event, "⌔︙ انت لم تقم بخصيص رسالة بدء بـوتك ❕")
         delgvar("START_TEXT")
-    await edit_or_reply(
-        event, f"⌔︙  تم بنجاح ازالة هذا التخصيص ✅"
-    )
+    await edit_or_reply(event, f"⌔︙  تم بنجاح ازالة هذا التخصيص ✅")
     if BOTLOG_CHATID:
         await event.client.send_message(
             BOTLOG_CHATID,

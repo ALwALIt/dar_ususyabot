@@ -1,32 +1,13 @@
-from asyncio import sleep
-
-from telethon import functions
-from telethon.errors import (
-    BadRequestError,
-    ImageProcessFailedError,
-    PhotoCropSizeSmallError,
-)
-from telethon.errors.rpcerrorlist import UserAdminInvalidError, UserIdInvalidError
-from telethon.tl.functions.channels import (
-    EditAdminRequest,
-    EditBannedRequest,
-    EditPhotoRequest,
-)
+from telethon.errors import BadRequestError
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import (
-    ChatAdminRights,
-    ChatBannedRights,
-    InputChatPhotoEmpty,
-    MessageMediaPhoto,
-)
+from telethon.tl.types import ChatBannedRights
 
 from userbot import jmthon
 
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import media_type
-from ..helpers.utils import _format, get_user_from_event
-from ..sql_helper.mute_sql import is_muted, mute, unmute
+from ..helpers.utils import _format
 from . import BOTLOG, BOTLOG_CHATID
 
 # =================== STRINGS ============
@@ -65,7 +46,7 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 plugin_category = "admin"
-#----
+# ----
 
 
 @jmthon.ar_cmd(
@@ -86,7 +67,9 @@ async def pin(event):
     "To pin a message in chat"
     to_pin = event.reply_to_msg_id
     if not to_pin:
-        return await edit_delete(event, "⌔︙ يـجب الـرد على الـرسالة التي تـريد تـثبيـتها ", 5)
+        return await edit_delete(
+            event, "⌔︙ يـجب الـرد على الـرسالة التي تـريد تـثبيـتها ", 5
+        )
     options = event.pattern_match.group(1)
     is_silent = bool(options)
     try:
@@ -104,7 +87,9 @@ async def pin(event):
                 \nالـدردشـة: {event.chat.title}(`{event.chat_id}`)\
                 \nالـتثبيت: {is_silent}",
         )
-#admin plugin for  jmthon
+
+
+# admin plugin for  jmthon
 @jmthon.ar_cmd(
     pattern="الغاء التثبيت( للكل|$)",
     command=("الغاء التثبيت", plugin_category),
@@ -136,7 +121,9 @@ async def pin(event):
             await event.client.unpin_message(event.chat_id)
         else:
             return await edit_delete(
-                event, "⌔︙ يرجى الرد على الرسالة التي تريد تثبيتها استخدم `.الغاء التثبيت للكل`  لالغاء تثبيت جميع الرسائل  📍", 5
+                event,
+                "⌔︙ يرجى الرد على الرسالة التي تريد تثبيتها استخدم `.الغاء التثبيت للكل`  لالغاء تثبيت جميع الرسائل  📍",
+                5,
             )
     except BadRequestError:
         return await edit_delete(event, NO_PERM, 5)
@@ -150,7 +137,9 @@ async def pin(event):
                 \n** ⌔︙ تم بنجاح الغاء التثبيـت في الدردشة  ✅ \
                 \n⌔︙الدردشـه  🔖 : {event.chat.title}(`{event.chat_id}`)",
         )
-#admin plugin for  jmthon
+
+
+# admin plugin for  jmthon
 @jmthon.ar_cmd(
     pattern="الأحداث( -ر)?(?: |$)(\d*)?",
     command=("الأحداث", plugin_category),
@@ -215,5 +204,7 @@ async def _iundlt(event):  # sourcery no-metrics
                     f"{msg.old.message}\n⌔︙ ارسلت بواسطه {_format.mentionuser(ruser.first_name ,ruser.id)}",
                     file=msg.old.media,
                 )
-#admin plugin for  jmthon
+
+
+# admin plugin for  jmthon
 # by  @RRRD7

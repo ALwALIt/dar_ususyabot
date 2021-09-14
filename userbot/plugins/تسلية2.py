@@ -1,7 +1,7 @@
 import asyncio
 from collections import deque
 
-from . import jmthon, edit_or_reply
+from . import edit_or_reply, jmthon
 
 plugin_category = "fun"
 
