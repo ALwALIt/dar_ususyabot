@@ -1,18 +1,15 @@
 import asyncio
-from datetime import datetime
 
-from telethon.errors import BadRequestError
-from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChatBannedRights
 
 from userbot import jmthon
 
-from ..core.managers import edit_delete, edit_or_reply
+from ..core.managers import edit_or_reply
 from ..helpers.utils import _format
 from ..sql_helper import gban_sql_helper as gban_sql
 from ..sql_helper.mute_sql import is_muted, mute, unmute
-from . import BOTLOG, BOTLOG_CHATID, admin_groups, get_user_from_event
+from . import BOTLOG, BOTLOG_CHATID, get_user_from_event
 
 plugin_category = "admin"
 
@@ -40,7 +37,8 @@ UNBAN_RIGHTS = ChatBannedRights(
 )
 
 
-#ARABIC CAT BY  @RRRD7  -  @UUNZZ
+# ARABIC CAT BY  @RRRD7  -  @UUNZZ
+
 
 @jmthon.ar_cmd(
     pattern="المحظورين$",
@@ -93,7 +91,9 @@ async def startgmute(event):
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "⌔︙ اسف انا غير قادر ع حظـر او كتم المستخدم ⚠️")
+        return await edit_or_reply(
+            event, "⌔︙ اسف انا غير قادر ع حظـر او كتم المستخدم ⚠️"
+        )
     if is_muted(userid, "gmute"):
         return await edit_or_reply(
             event,
@@ -159,7 +159,9 @@ async def endgmute(event):
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "**⌔︙ آسف أنا غير قادر على حظـر المستخدم ⚠️**")
+        return await edit_or_reply(
+            event, "**⌔︙ آسف أنا غير قادر على حظـر المستخدم ⚠️**"
+        )
 
     if not is_muted(userid, "gmute"):
         return await edit_or_reply(

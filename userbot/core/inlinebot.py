@@ -233,7 +233,7 @@ def paginate_help(
 
 
 @jmthon.tgbot.on(InlineQuery)
-async def inline_handler(event): 
+async def inline_handler(event):
     builder = event.builder
     result = None
     query = event.text
