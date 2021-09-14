@@ -20,12 +20,9 @@ bot = jmthon
 StartTime = time.time()
 JMVERSION = "4.0.0"
 
-LEO = "1715051616"
-RAZAN = "1657933680"
-JASEM = "1694386561"
 
-if Config.UPSTREAM_REPO == "Jmthon-iq":
-    UPSTREAM_REPO_URL = "https://github.com/JEEPTHON-AR/JM-THON"
+if Config.UPSTREAM_REPO == "Jeepthon":
+    UPSTREAM_REPO_URL = "https://github.com/JEEPTHON/BOT"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
