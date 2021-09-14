@@ -5,13 +5,13 @@ from googletrans import LANGUAGES, Translator
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
-from ..sql_helper.globals import addgvar, gvarstatus
-from . import BOTLOG, BOTLOG_CHATID, deEmojify
+from . import deEmojify
 
 plugin_category = "utils"
 
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
+
 
 async def getTranslate(text, **kwargs):
     translator = Translator()
