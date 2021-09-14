@@ -1,6 +1,5 @@
 import sys
 from asyncio.exceptions import CancelledError
-from time import sleep
 
 from userbot import jmthon
 
@@ -30,7 +29,10 @@ plugin_category = "tools"
 async def _(event):
     "Restarts the bot !!"
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "**⌔︙إعـادة التشغيـل ↻** \n" "**⌔︙ تم إعـادة تشغيـل البـوت ↻**")
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "**⌔︙إعـادة التشغيـل ↻** \n" "**⌔︙ تم إعـادة تشغيـل البـوت ↻**",
+        )
     sandy = await edit_or_reply(
         event,
         "**⌔︙ جـاري إعـادة التشغيـل، قـد يستغـرق الأمـر 2-3 دقائـق لاتقم باعـادة التشغيـل مرة اخـرى مـره اخـرى انتـظـر ⏱**",
@@ -67,12 +69,19 @@ async def _(event):
 async def _(event):
     "Shutdowns the bot"
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "**⌔︙ إيقاف التشغيـل ✕ **\n" "**⌔︙ تـم إيقـاف تشغيـل البـوت بنجـاح ✓**")
-    await edit_or_reply(event, "**⌔︙ جـاري إيقـاف تشغيـل البـوت الآن ..**\n⌔︙  **أعـد تشغيـلي يدويـاً لاحقـاً عـبر هيـروڪو ..**\n⌔︙**سيبقى البـوت متوقفـاً عن العمـل**")
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "**⌔︙ إيقاف التشغيـل ✕ **\n" "**⌔︙ تـم إيقـاف تشغيـل البـوت بنجـاح ✓**",
+        )
+    await edit_or_reply(
+        event,
+        "**⌔︙ جـاري إيقـاف تشغيـل البـوت الآن ..**\n⌔︙  **أعـد تشغيـلي يدويـاً لاحقـاً عـبر هيـروڪو ..**\n⌔︙**سيبقى البـوت متوقفـاً عن العمـل**",
+    )
     if HEROKU_APP is not None:
         HEROKU_APP.process_formation()["worker"].scale(0)
     else:
         sys.exit(0)
+
 
 @jmthon.ar_cmd(
     pattern="التحديثات (تشغيل|ايقاف)$",
@@ -86,7 +95,7 @@ async def _(event):
     },
 )
 async def set_pmlog(event):
-    "⌔︙ لتحديـث الدردشـة بعـد إعـادة التشغيـل  أو إعـادة التحميـل  "
+    "⌔︙ لتحديـث الدردشـة بعـد إعـادة التشغيـل  أو إعـادة التحميـل"
     input_str = event.pattern_match.group(1)
     if input_str == "ايقاف":
         if gvarstatus("restartupdate") is None:

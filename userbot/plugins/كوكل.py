@@ -1,8 +1,7 @@
-#========================#
-#       JMTHON  - RRRD7   #  
+# ========================#
+#       JMTHON  - RRRD7   #
 # =======================#
 
-import io
 import os
 import re
 import urllib
@@ -10,7 +9,6 @@ from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
-from PIL import Image
 from search_engine_parser import BingSearch, GoogleSearch, YahooSearch
 from search_engine_parser.core.exceptions import NoResultsOrTrafficError
 
@@ -120,7 +118,9 @@ async def gsearch(q_event):
             try:
                 gresults = await ysearch.async_search(*search_args)
             except Exception as e:
-                return await edit_delete(catevent, f"**⌔︙ خطـأ  :**\n`{str(e)}`", time=10)
+                return await edit_delete(
+                    catevent, f"**⌔︙ خطـأ  :**\n`{str(e)}`", time=10
+                )
     msg = ""
     for i in range(lim):
         if i > len(gresults["links"]):
@@ -220,8 +220,6 @@ async def _(event):
     await edit_or_reply(catevent, OUTPUT_STR, parse_mode="HTML", link_preview=False)
 
 
-
-
 @jmthon.ar_cmd(
     pattern="كوكل(?:\s|$)([\s\S]*)",
     command=("كوكل", plugin_category),
@@ -238,9 +236,7 @@ async def google_search(event):
     input_str = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
     if not input_str:
-        return await edit_delete(
-            event, "**⌔︙ يجـب إعطـاء معلومـات عن البحـث **"
-        )
+        return await edit_delete(event, "**⌔︙ يجـب إعطـاء معلومـات عن البحـث **")
     input_str = deEmojify(input_str).strip()
     if len(input_str) > 195 or len(input_str) < 1:
         return await edit_delete(

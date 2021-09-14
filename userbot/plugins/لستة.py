@@ -1,15 +1,15 @@
 # Copyright (C) 2021 JMTHON TEAM
 # FILES WRITTEN BY  @RRRD7
-import os
 import re
 
 from telethon import Button
 
 from ..Config import Config
-from . import jmthon, edit_delete, reply_id
+from . import edit_delete, jmthon, reply_id
 
 plugin_category = "tools"
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
+
 
 @jmthon.ar_cmd(
     pattern="لستة(?: |$)(.*)",
