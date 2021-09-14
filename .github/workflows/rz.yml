@@ -18,7 +18,7 @@ jobs:
 
         with:
 
-          find: "جـمثون"
+          find: "جمثون"
 
           replace: "جـيبثون"
 
