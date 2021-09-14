@@ -1,42 +1,19 @@
-#Copyright  By  @JMTHON  © 2021
-#WRITE BY  @RRRD7  
+# Copyright  By  @JMTHON  © 2021
+# WRITE BY  @RRRD7
 
 import asyncio
-import base64
-import io
 import logging
 import os
 import time
 from datetime import datetime
-from io import BytesIO
-from shutil import copyfile
-
-import fitz
-from PIL import Image, ImageDraw, ImageFilter, ImageOps
-from pymediainfo import MediaInfo
-from telethon import types
-from telethon.errors import PhotoInvalidDimensionsError
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-from telethon.tl.functions.messages import SendMediaRequest
-from telethon.utils import get_attributes
 
 from userbot import jmthon
 
 from ..Config import Config
 from ..core.managers import edit_delete, edit_or_reply
-from ..helpers import media_type, progress, thumb_from_audio
-from ..helpers.functions import (
-    convert_toimage,
-    convert_tosticker,
-    invert_frames,
-    l_frames,
-    r_frames,
-    spin_frames,
-    ud_frames,
-    vid_to_gif,
-)
-from ..helpers.utils import _cattools, _catutils, _format, parse_pre, reply_id
-from . import make_gif
+from ..helpers import media_type, progress
+from ..helpers.functions import convert_toimage, convert_tosticker, vid_to_gif
+from ..helpers.utils import _cattools, _catutils, reply_id
 
 plugin_category = "misc"
 
@@ -50,8 +27,9 @@ PATH = os.path.join("./temp", "temp_vid.mp4")
 
 thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
-#Copyright  By  @JMTHON  © 2021
-#WRITE BY  @RRRD7  
+# Copyright  By  @JMTHON  © 2021
+# WRITE BY  @RRRD7
+
 
 @jmthon.ar_cmd(
     pattern="تحويل صورة$",
@@ -109,6 +87,7 @@ async def _(event):
         event.chat_id, meme_file, reply_to=reply_to_id, force_document=False
     )
     await output[0].delete()
+
 
 @jmthon.ar_cmd(
     pattern="تحويل (mp3|voice)$",
@@ -219,9 +198,11 @@ async def _(event):
             )
             os.remove(new_required_file_name)
             await event.delete()
-            
-#Copyright  By  @JMTHON  © 2021
-#WRITE BY  @RRRD7
+
+
+# Copyright  By  @JMTHON  © 2021
+# WRITE BY  @RRRD7
+
 
 @jmthon.ar_cmd(
     pattern="تحويل متحركة ?([0-9.]+)?$",
@@ -251,7 +232,9 @@ async def _(event):
     outputfile = os.path.join(Config.TEMP_DIR, "vidtogif.gif")
     result = await vid_to_gif(inputfile, outputfile, speed=args)
     if result is None:
-        return await edit_delete(event, "**⌔︙ عـذرا لا يمكـنني تحويل هذا الى متـحركة ⚠️**")
+        return await edit_delete(
+            event, "**⌔︙ عـذرا لا يمكـنني تحويل هذا الى متـحركة ⚠️**"
+        )
     jasme = await event.client.send_file(event.chat_id, result, reply_to=reply)
     await _catutils.unsavegif(event, jasme)
     await catevent.delete()

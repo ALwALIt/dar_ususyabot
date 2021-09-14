@@ -21,6 +21,7 @@ plugin_category = "utils"
 )
 # For JMTHON
 
+
 async def _(event):
     "To transfer channel ownership"
     user_name = event.pattern_match.group(1)

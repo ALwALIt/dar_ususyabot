@@ -27,7 +27,7 @@ LOG_CHATS_ = LOG_CHATS()
 
 
 @jmthon.ar_cmd(incoming=True, func=lambda e: e.is_private, edited=False, forword=None)
-async def monito_p_m_s(event): 
+async def monito_p_m_s(event):
     if Config.PM_LOGGER_GROUP_ID == -100:
         return
     if gvarstatus("PMLOG") and gvarstatus("PMLOG") == "false":
@@ -64,7 +64,7 @@ async def monito_p_m_s(event):
                 LOG_CHATS_.COUNT += 1
             except Exception as e:
                 LOGS.warn(str(e))
-                
+
 
 @jmthon.ar_cmd(incoming=True, func=lambda e: e.mentioned, edited=False, forword=None)
 async def log_tagged_messages(event):
@@ -88,9 +88,7 @@ async def log_tagged_messages(event):
     messaget = media_type(event)
     resalt = f" ⌔︙ الـتـاك \n<b>الـكـروب : </b><code>{hmm.title}</code>"
     if full is not None:
-        resalt += (
-            f"\n<b>المـرسـل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
-        )
+        resalt += f"\n<b>المـرسـل : </b> 👤{_format.htmlmentionuser(full.first_name , full.id)}"
     if messaget is not None:
         resalt += f"\n<b>نـوع الـرسالـة : </b><code>{messaget}</code>"
     else:
