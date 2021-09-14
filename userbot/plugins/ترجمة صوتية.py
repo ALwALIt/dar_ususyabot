@@ -91,7 +91,9 @@ async def _(event):
         os.remove(required_file_name)
         await edit_delete(
             catevent,
-            "** معـالجة الـنص {} الـى صوت \n فـي {} مت الثواني**".format(text[0:20], ms),
+            "** معـالجة الـنص {} الـى صوت \n فـي {} مت الثواني**".format(
+                text[0:20], ms
+            ),
         )
     except Exception as e:
         await edit_or_reply(catevent, f"**Error:**\n`{str(e)}`")

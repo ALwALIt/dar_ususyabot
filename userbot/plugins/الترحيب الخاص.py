@@ -1,5 +1,5 @@
-#========================#
-#       JMTHON  - RRRD7  #  
+# ========================#
+#       JMTHON  - RRRD7  #
 # =======================#
 
 from asyncio import sleep
@@ -143,7 +143,9 @@ async def save_welcome(event):
     rmwelcome_setting(event.chat_id)
     if addwelcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("updated"))
-    await edit_or_reply("**⌔︙ حـدث خطـأ أثنـاء ضبـط رسالـة الترحيـب في هـذه الـدردشـة ️**")
+    await edit_or_reply(
+        "**⌔︙ حـدث خطـأ أثنـاء ضبـط رسالـة الترحيـب في هـذه الـدردشـة ️**"
+    )
 
 
 @jmthon.ar_cmd(
@@ -158,7 +160,9 @@ async def save_welcome(event):
 async def del_welcome(event):
     "To turn off private welcome message"
     if rmwelcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "**⌔︙ تم حـذف الترحيـب الـخاص لهـذه الدردشـة بنجـاح **")
+        await edit_or_reply(
+            event, "**⌔︙ تم حـذف الترحيـب الـخاص لهـذه الدردشـة بنجـاح **"
+        )
     else:
         await edit_or_reply(event, "**⌔︙ لـيس لـدي اي رسـالة تـرحيب خـاص هـنا**")
 
