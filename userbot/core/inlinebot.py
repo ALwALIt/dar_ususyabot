@@ -562,7 +562,7 @@ async def inline_handler(event):  # sourcery no-metrics
                 Button.url("قنـاة السـورس ⚒️", "https://t.me/Jmthon"),
                 Button.url(
                     "كـروب المـساعدة 📬",
-                    "https://t.me/GroupJmthon",
+                    "https://t.me/lMl10l",
                 ),
             )
         ]
@@ -576,7 +576,7 @@ async def inline_handler(event):  # sourcery no-metrics
             \n❤ جمثـون هـو بـوت بسـيط يدخـل الـى حسـابك لجعـلك تتحـكم به معـ اوامـر معينـة.\
             \n\
             \n**اذا كـنت تـرغب بتـنصيـب السـورس عـلى حسـابك ,\
-            \n🐾 تعال الـى [كروب المسـاعدة](https://t.me/GroupJmthon)!**",
+            \n🐾 تعال الـى [كروب المسـاعدة](https://t.me/lMl10l)!**",
             "md",
         )
         result = types.InputBotInlineResult(
@@ -584,7 +584,7 @@ async def inline_handler(event):  # sourcery no-metrics
             type="photo",
             title="Jmthon UserBot 🧸♥",
             description="ادخـل كـروب المسـاعدة",
-            url="https://t.me/GroupJmthon",
+            url="https://t.me/lMl10l",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(

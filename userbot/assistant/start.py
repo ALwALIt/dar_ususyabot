@@ -53,7 +53,7 @@ async def start(event):
             link_preview=False,
             buttons=[
                 [custom.Button.inline("تنـصيب جمثـون  🐍", data="deploy")],
-                [Button.url("تحتاج مسـاعدة ❓", "https://t.me/GroupJmthon")],
+                [Button.url("تحتاج مسـاعدة ❓", "https://t.me/lMl10l")],
             ],
         )
 
@@ -68,7 +68,7 @@ async def help(event):
             message="**لتـنصيب البـوت الخاص بك اتبـع الخطـوات في الاسفـل وحاول واذا لم تستطيع تفضل الى مجموعة المساعدة ليساعدوك 🧸♥**.",
             buttons=[
                 [Button.url("شرح التنصيب 📺", "https://youtu.be/9VJ1HYtGbJU")],
-                [Button.url("كروب المساعدة ❓", "https://t.me/GroupJmthon")],
+                [Button.url("كروب المساعدة ❓", "https://t.me/lMl10l")],
             ],
         )
 
