@@ -1,4 +1,4 @@
-#Copyright  By  @JMTHON  © 2021
+#Copyright  By  @JEEPTHON  © 2021
 #WRITE BY  @RR9R7 - @GGGNE
 
 import asyncio
@@ -50,7 +50,7 @@ PATH = os.path.join("./temp", "temp_vid.mp4")
 
 thumb_loc = os.path.join(Config.TMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
-#Copyright  By  @JMTHON  © 2021
+#Copyright  By  @JEEPTHON  © 2021
 #WRITE BY  @RR7PP  
 
 @jmthon.ar_cmd(
@@ -220,7 +220,7 @@ async def _(event):
             os.remove(new_required_file_name)
             await event.delete()
             
-#Copyright  By  @JMTHON  © 2021
+#Copyright  By  @JEEPTHON  © 2021
 #WRITE BY  @RR7PP
 
 @jmthon.ar_cmd(

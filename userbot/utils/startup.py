@@ -64,7 +64,7 @@ async def startupmessage():
             Config.CATUBLOGO = await jmthon.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/e9cd63140ffaba419db6b.jpg",
-                caption="⌯︙**بــوت جـمـثـون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JMTHON",
+                caption="⌯︙**بــوت جـمـثـون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JEEPTHON",
                 buttons=[(Button.url("كروب جـمثون", "https://t.me/GroupJmthon"),)],
             )
     except Exception as e:
@@ -236,7 +236,7 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JMTHON"
+        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JEEPTHON"
         _, groupid = await create_supergroup(
             "كـروب تخزين الخاص", jmthon, Config.TG_BOT_USERNAME, descript
         )

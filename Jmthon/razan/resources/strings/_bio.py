@@ -1,6 +1,6 @@
 # to loaded bio 
 # by ~ @RR9R7  - @GGGNE
-# For @JMTHON
+# For @JEEPTHON
 
 
 GGGNE = [
@@ -16,7 +16,7 @@ GGGNE = [
 `• The sweetest thing said in consolation : if I can't light you, I'll turn it off with you.`
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
- ⌔︙CH : @JMTHON
+ ⌔︙CH : @JEEPTHON
 """,
     """
 `• Never let someone who has done nothing tell you how to do anything .`
@@ -30,7 +30,7 @@ GGGNE = [
 `• Who hates you won't hurt you !Aren't to hurt you only you love.`
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
- ⌔︙CH : @JMTHON
+ ⌔︙CH : @JEEPTHON
 """,
     """
 `• Death ends a life. not a relationship ،`
@@ -44,7 +44,7 @@ GGGNE = [
 `• This suffering will deliver a beast, will never give birth .`
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
- ⌔︙CH : @JMTHON
+ ⌔︙CH : @JEEPTHON
 """,
     """
 `• This suffering will deliver a beast, will never give birth .`
@@ -58,7 +58,7 @@ GGGNE = [
 `• 𝐃𝐎𝐍𝐓 𝐆𝐈𝐕𝐄 𝐀𝐍𝐘𝐎𝐍𝐄 𝐎𝐕𝐄𝐑 𝐇𝐈𝐒 𝐕𝐀𝐋𝐔𝐄 😴♩✿⇣.`
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
- ⌔︙CH : @JMTHON
+ ⌔︙CH : @JEEPTHON
 """,
     """
 `• Interest will not come you except from someone who wants you .`
@@ -72,7 +72,7 @@ GGGNE = [
 `• 𝒅𝒐𝒏 𝒕 𝒄𝒂𝒓𝒆 𝒂𝒃𝒐𝒖𝒕 𝒘𝒉𝒂𝒕 𝒑𝒆𝒐𝒑𝒍𝒆 𝒘𝒂𝒏𝒕 , 𝒄𝒂𝒓𝒆 𝒂𝒃𝒐𝒖𝒕 ، 𝒘𝒉𝒂𝒕 𝒚𝒐𝒖 𝒘𝒂𝒏𝒕 .`
 
 ➖➖➖➖➖➖➖➖➖➖➖➖➖
- ⌔︙CH : @JMTHON
+ ⌔︙CH : @JEEPTHON
 """,
 ]
 
