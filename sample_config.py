@@ -30,7 +30,7 @@ class Config(object):
     TZ = os.environ.get("TZ", "Asia/Kolkata")
     # set this with required cat repo link
     UPSTREAM_REPO = os.environ.get(
-        "UPSTREAM_REPO", "https://github.com/JMTHON-AR/JM-THON.git"
+        "UPSTREAM_REPO", "https://github.com/JEEPTHON-AR/JM-THON.git"
     )
 
     # BASIC and MAIN CONFIG VARS
@@ -41,8 +41,8 @@ class Config(object):
     PING_PIC = os.environ.get("PING_PIC")
     TIME_JM = os.environ.get("TIME_JM", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
-    JMTHON_START = os.environ.get("JMTHON_START", None)
-    PMPERMIT_TEXT_JMTHON = os.environ.get("PMPERMIT_TEXT_JMTHON", None)
+    JEEPTHON_START = os.environ.get("JEEPTHON_START", None)
+    PMPERMIT_TEXT_JEEPTHON = os.environ.get("PMPERMIT_TEXT_JEEPTHON", None)
     BOT_PIC = os.environ.get("BOT_PIC", None)
     # Set this value with group id of private group(can be found this value by .id)
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)

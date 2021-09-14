@@ -1,4 +1,4 @@
-# Copyright (C) 2021 JMTHON TEAM
+# Copyright (C) 2021 JEEPTHON TEAM
 
 import asyncio
 import math

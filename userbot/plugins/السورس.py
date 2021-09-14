@@ -15,7 +15,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
         if query.startswith("السورس") and event.query.user_id == bot.uid:
             buttons = [
                 [
-                    Button.url("قنـاة السـورس ⚙️", "https://t.me/JMTHON"),
+                    Button.url("قنـاة السـورس ⚙️", "https://t.me/JEEPTHON"),
                     Button.url("المطـور 👨🏼‍💻", "https://t.me/RR7PP"),
                 ]
             ]
@@ -29,14 +29,14 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             elif ROZ_PIC:
                 result = builder.document(
                     ROZ_PIC,
-                    title="JMTHON - USERBOT",
+                    title="JEEPTHON - USERBOT",
                     text=ROZ,
                     buttons=buttons,
                     link_preview=False,
                 )
             else:
                 result = builder.article(
-                    title="JMTHON - USERBOT",
+                    title="JEEPTHON - USERBOT",
                     text=ROZ,
                     buttons=buttons,
                     link_preview=False,

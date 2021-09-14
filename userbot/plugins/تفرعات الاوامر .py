@@ -1,5 +1,5 @@
 # WRITE  BY @GGGNE - @RR9R7
-# PLUGIN FOR JMTHON USERBOT
+# PLUGIN FOR JEEPTHON USERBOT
 # @JEEPTHON
 
 import random
@@ -557,5 +557,5 @@ async def _(event):
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit(
-        " قائمة اوامر الجهات والاضافة\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌯︙اختر احدى هذه الاوامر\n\n- ( `.ضيف +  رابط مجموعة` )\n  يستخدم الامر لاخذ اعضاء من مجموعة ثانية واضافتهم في مجموعتك ترسل الامر مع اربط قروب عام في مجموعتك للاضافة \n مثال :  .ضيف t.me/GROUPJMTHON \n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JEEPTHON"
+        " قائمة اوامر الجهات والاضافة\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌯︙اختر احدى هذه الاوامر\n\n- ( `.ضيف +  رابط مجموعة` )\n  يستخدم الامر لاخذ اعضاء من مجموعة ثانية واضافتهم في مجموعتك ترسل الامر مع اربط قروب عام في مجموعتك للاضافة \n مثال :  .ضيف t.me/GROUPJEEPTHON \n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JEEPTHON"
 )

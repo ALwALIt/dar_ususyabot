@@ -1,4 +1,4 @@
-#(c) Copyright JMTHON 2020-21
+#(c) Copyright JEEPTHON 2020-21
 #جميع الحقوق محفودظة لسورس جـيبثون 
 #By ~  @RR9R7
 import asyncio

@@ -4,7 +4,7 @@ from userbot.utils import admin_cmd
 import asyncio 
 
 # Wespr File by  @RR7PP
-# Copyright (C) 2021 JMTHON TEAM
+# Copyright (C) 2021 JEEPTHON TEAM
 @borg.on(
     admin_cmd(pattern="همسة ?(.*)")
 )

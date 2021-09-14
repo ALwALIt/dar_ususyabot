@@ -27,5 +27,5 @@ async def _(event):
             event.chat_id, "⌯︙ايـدي الـدردشة: `{}`".format(str(event.chat_id))
         )
 
-# JMTHON USERBOT 
+# JEEPTHON USERBOT 
 # @RR7PP

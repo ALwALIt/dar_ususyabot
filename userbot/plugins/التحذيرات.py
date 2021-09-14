@@ -7,7 +7,7 @@ from ..sql_helper import warns_sql as sql
 
 plugin_category = "admin"
 
-# Copyright (C) 2021 JMTHON TEAM
+# Copyright (C) 2021 JEEPTHON TEAM
 # FILES WRITTEN BY  @RR7PP
 
 @jmthon.ar_cmd(

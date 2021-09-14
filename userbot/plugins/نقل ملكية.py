@@ -1,4 +1,4 @@
-# Copyright (C) 2021 JMTHON TEAM
+# Copyright (C) 2021 JEEPTHON TEAM
 
 import telethon.password as pwd_mod
 from telethon.tl import functions
@@ -19,7 +19,7 @@ plugin_category = "utils"
         "usage": "{tr}otransfer <username to whom you want to transfer>",
     },
 )
-# For JMTHON
+# For JEEPTHON
 
 async def _(event):
     "To transfer channel ownership"

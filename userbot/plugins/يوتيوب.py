@@ -1,5 +1,5 @@
 #@RR7PP  - @UNZZ  - @JEEPTHON
-# Copyright (C) 2021 JMTHON TEAM
+# Copyright (C) 2021 JEEPTHON TEAM
 # FILES WRITTEN BY  @RR7PP
 import asyncio
 import io
