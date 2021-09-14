@@ -65,7 +65,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**⌯︙قام مطورين السورس بتحديث جمثون**\n⌯︙**التـغييرات\n** {changelog}"
+        f"**⌯︙قام مطورين السورس بتحديث جـيبثون**\n⌯︙**التـغييرات\n** {changelog}"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -107,7 +107,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     jasme = await event.edit(
-        "** ⌯︙تم تحديث سورس جمثون بنجاح انتظر قليلا سوف نخبرك بعد اعادة التشغيل !**"
+        "** ⌯︙تم تحديث سورس جـيبثون بنجاح انتظر قليلا سوف نخبرك بعد اعادة التشغيل !**"
     )
     await event.client.reload(jasme)
 
@@ -255,7 +255,7 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "**⌯︙سورس جمثون محدث الى اخر اصدار **\n"
+            "**⌯︙سورس جـيبثون محدث الى اخر اصدار **\n"
             f"**قـنـاة سـورس جـمـثـون** : @JEEPTHON"
         )
         return repo.__del__()
@@ -263,7 +263,7 @@ async def upstream(event):
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            f"⌔ :  لتحديث سورس جمثون ارسل : `.تحديث الان` "
+            f"⌔ :  لتحديث سورس جـيبثون ارسل : `.تحديث الان` "
         )
 
     if force_update:

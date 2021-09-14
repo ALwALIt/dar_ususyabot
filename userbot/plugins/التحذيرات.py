@@ -48,7 +48,7 @@ async def _(event):
         if warn_reason:
             reply += "\nسبـب أخـر تحـذير:\n{}".format(html.escape(warn_reason))
     await edit_or_reply(event, reply)
-#ملف التحذيرات بواسطه جمثون
+#ملف التحذيرات بواسطه جـيبثون
 
 @jmthon.ar_cmd(
     pattern="التحذيرات",

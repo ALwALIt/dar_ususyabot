@@ -207,7 +207,7 @@ async def verifyLoggerGroup():
     else:
         descript = "⌯︙لا تحذف هذه المجموعة أو تغير إلى مجموعة (إذا قمت بتغيير المجموعة ، فسيتم فقد كل شيئ .)"
         _, groupid = await create_supergroup(
-            "مجموعه بوت جمثون الخاص بك", jmthon, Config.TG_BOT_USERNAME, descript
+            "مجموعه بوت جـيبثون الخاص بك", jmthon, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print(

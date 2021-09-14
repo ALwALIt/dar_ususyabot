@@ -16,11 +16,11 @@ from ..core.managers import edit_delete, edit_or_reply
 plugin_category="extra"
 
 @jmthon.ar_cmd(
-    pattern="جمثون(?:\s|$)([\s\S]*)",
-    command=("جمثون", plugin_category),
+    pattern="جـيبثون(?:\s|$)([\s\S]*)",
+    command=("جـيبثون", plugin_category),
     info={
-        "استخدام": "{tr}جمثون",
-        "مثال":  "{tr}جمثون هلا",
+        "استخدام": "{tr}جـيبثون",
+        "مثال":  "{tr}جـيبثون هلا",
     },
 )
 async def hi_buddy(event):

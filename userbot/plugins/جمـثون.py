@@ -34,7 +34,7 @@ async def _(event):
        pattern="اكس او$"
     )
 )
-# كتابة وتعديل فريق جمثون  #@RR7PP
+# كتابة وتعديل فريق جـيبثون  #@RR7PP
 async def gamez(event):
     if event.fwd_from:
         return

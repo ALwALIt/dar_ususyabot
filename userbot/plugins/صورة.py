@@ -1,4 +1,4 @@
-#ترجمه فريق جمثون على التيلكرام
+#ترجمه فريق جـيبثون على التيلكرام
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
@@ -48,7 +48,7 @@ async def potocmd(event):
             await event.client.send_file(event.chat_id, photos)
         else:
             try:
-                if u:  #ترجمه فريق جمثون على التيلكرام
+                if u:  #ترجمه فريق جـيبثون على التيلكرام
                     photo = await event.client.download_profile_photo(user.sender)
                 else:
                     photo = await event.client.download_profile_photo(event.input_chat)

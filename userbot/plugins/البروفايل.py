@@ -246,4 +246,4 @@ async def _(event):
     )
     await edit_or_reply(event, output_str)
 
-#ملف البروفايل خاص بقناة جمثون
+#ملف البروفايل خاص بقناة جـيبثون
