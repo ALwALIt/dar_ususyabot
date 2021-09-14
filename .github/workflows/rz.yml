@@ -18,9 +18,9 @@ jobs:
 
         with:
 
-          find: "جـمثـون"
+          find: "JEEPTHON"
 
-          replace: "جيـبثون"
+          replace: "JepThon"
 
       - name: Create Pull Request
 
