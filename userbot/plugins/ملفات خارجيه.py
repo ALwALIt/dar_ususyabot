@@ -47,4 +47,4 @@ if Config.PLUGIN_CHANNEL:
 
     jmthon.loop.create_task(install())
 
-#كـتابة  @RRRD7
+# كـتابة  @RRRD7

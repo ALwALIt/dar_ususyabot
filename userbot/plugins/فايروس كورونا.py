@@ -2,7 +2,7 @@
 # FILES WRITTEN BY  @RRRD7
 from covid import Covid
 
-from . import jmthon, covidindia, edit_delete, edit_or_reply
+from . import covidindia, edit_delete, edit_or_reply, jmthon
 
 plugin_category = "extra"
 
@@ -14,7 +14,7 @@ plugin_category = "extra"
         "header": "للحصول على أحدث المعلومات حول كورونا.",
         "description": "للحصول على معلومات فايروس كورونا عن دولة معينه فقط اكتب الامر واسم الدولة بالانكليزي",
         "usage": "{tr}كورونا + الدولة",
-        "examples": "{tr}كورونا + الدولة"
+        "examples": "{tr}كورونا + الدولة",
     },
 )
 async def corona(event):
