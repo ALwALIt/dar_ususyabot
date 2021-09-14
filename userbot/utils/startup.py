@@ -65,7 +65,7 @@ async def startupmessage():
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/e9cd63140ffaba419db6b.jpg",
                 caption="⌯︙**بــوت جـمـثـون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JEEPTHON",
-                buttons=[(Button.url("كروب جـيبثون", "https://t.me/lMl10l"),)],
+                buttons=[(Button.url("مطور جيبثون", "https://t.me/lMl10l"),)],
             )
     except Exception as e:
         LOGS.error(e)
