@@ -5,6 +5,11 @@
 import os
 import random
 
+from userbot import jmthon
+
+from ..core.managers import edit_delete, edit_or_reply
+
+plugin_category="extra"
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -41,17 +46,17 @@ jjj = [
 ]
 
 
-@bot.on(admin_cmd(pattern="كشف(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern="كشف(?: |$)(.*)", allow_sudo=True))
+@jmthon.on(admin_cmd(pattern="كشف(?: |$)(.*)"))
+@jmthon.on(sudo_cmd(pattern="كشف(?: |$)(.*)", allow_sudo=True))
 async def who(event):
-    ics = await eor(event, "ٴ⇌")
+    ics = await edit_or_reply(event, "ٴ⇌")
     if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TMP_DOWNLOAD_DIRECTORY)
     replied_user = await get_user(event)
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        await eor(ics, "لايمكنني العثور ع الحيوان")
+        await edit_or_reply(ics, "لايمكنني العثور ع الحيوان")
         return
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
