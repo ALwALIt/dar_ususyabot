@@ -54,13 +54,14 @@ ZEED_IMG = sts_fanan or sts_fanan2 or sts_fanan3 or sts_fanan4 or sts_fanan5
         "مثال":  "{tr}جـيبثون هلا",
     },
 )
-async def who(event):
-    zed = await eor(event, "⇆")
-    replied_user = await get_user(event)
-    try:
-        ZEED_IMG, caption = await fetch_info(replied_user, event)
-    except AttributeError:
-        await eor(zed, "..")
+async def hi_buddy(event):
+    "Just to say hi to other user."
+    input_str= event.pattern_match.group(1)
+    if not input_str:
+        await edit_delete(event,"No input is found. Use proper syntax.")
+        return
+    outputtext= f"+-+-+-+-+-+\n|h|e|l|l|o|\n+-+-+-+-+-+\n{input_str}"
+    await edit_or_reply(event,outputtext)
         return
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
