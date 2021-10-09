@@ -1,7 +1,4 @@
-#𝙕𝙚𝙙𝙏𝙝𝙤𝙣 ®
-#الملـف حقـوق وكتابـة زلـزال الهيبـه ⤶ @zzzzl1l خاص بسـورس ⤶ 𝙕𝙚𝙙𝙏𝙝𝙤𝙣
-#الملـف متعـوب عليه تخمـط اذكر المصـدر
-#تعـديل بنيـتي 𝙈
+
 
 import os
 import random
@@ -23,7 +20,7 @@ plugin_category="extra"
 
 TMP_DOWNLOAD_DIRECTORY = Config.TMP_DOWNLOAD_DIRECTORY
 
-FANAN = "<b> 𓆩 𝗦𝗢𝗨𝗥𝗖𝗘 𝙕𝞝𝘿 - 💞🤵💞 𓆪 </b>"
+FANAN = "<b> 𓆩 JEPTHON  - 💞🤵💞 𓆪 </b>"
 VANAN = "<b> ⋄︙افيشش 🥺💘 </b>"
 sts_fanan = "https://telegra.ph/file/50caf0efa9a2453985364.jpg"
 sts_fanan2 = "https://telegra.ph/file/dda7dd09f7d697fe92ff6.jpg" 
