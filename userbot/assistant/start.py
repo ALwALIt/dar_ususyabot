@@ -38,7 +38,7 @@ async def start(event):
             buttons=[
                                      [Button.inline("عرض المستخدمين 📬", data="users"), Button.inline(
                                          "اوامر البـوت ⚒️", data="gibcmd")],
-                                     [Button.url("المطـور 🔗", "https://t.me/RR7PP"), Button.inline(
+                                     [Button.url("المطـور 🔗", "https://t.me/lMl10l"), Button.inline(
                                          "اوامر الزغـرفة", data="rozzag")],
 
                                  ])
@@ -68,7 +68,7 @@ async def help(event):
             message="**لتـنصيب البـوت الخاص بك اتبـع الخطـوات في الاسفـل وحاول واذا لم تستطيع تفضل الى مجموعة المساعدة ليساعدوك 🧸♥**.",
             buttons=[
                 [Button.url("شرح التنصيب 📺", "https://youtu.be/9VJ1HYtGbJU")],
-                [Button.url("كروب المساعدة ❓", "https://t.me/lMl10l")],
+                [Button.url("كروب المساعدة ❓", "https://t.me/jepthon1")],
             ],
         )
 
