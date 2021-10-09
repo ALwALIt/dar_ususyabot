@@ -44,8 +44,14 @@ sts_fanan18 = "https://telegra.ph/file/b544499b6853568ce475f.jpg"
 
 ZEED_IMG = sts_fanan or sts_fanan2 or sts_fanan3 or sts_fanan4 or sts_fanan5
 
-@bot.on(admin_cmd(pattern="مشهور(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern="مشهور(?: |$)(.*)", allow_sudo=True))
+ @jmthon.ar_cmd(
+    pattern="ككشف(?:\s|$)([\s\S]*)",
+    command=("ككشف", plugin_category),
+    info={
+        "استخدام": "{tr}جـيبثون",
+        "مثال":  "{tr}جـيبثون هلا",
+    },
+)
 async def who(event):
     zed = await eor(event, "⇆")
     replied_user = await get_user(event)
