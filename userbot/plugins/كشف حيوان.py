@@ -59,7 +59,6 @@ async def hi_buddy(event):
         return
     outputtext= f"+-+-+-+-+-+\n|h|e|l|l|o|\n+-+-+-+-+-+\n{input_str}"
     await edit_or_reply(event,outputtext)
-        return
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
         message_id_to_reply = None
