@@ -42,8 +42,8 @@ jjj = [
 ]
 
 
-@jmthon.on(admin_cmd(pattern="كشف(?: |$)(.*)"))
-@jmthon.on(sudo_cmd(pattern="كشف(?: |$)(.*)", allow_sudo=True))
+@jmthon.on(admin_cmd(pattern="حيوان(?: |$)(.*)"))
+@jmthon.on(sudo_cmd(pattern="حيوان(?: |$)(.*)", allow_sudo=True))
 async def who(event):
     ics = await edit_or_reply(event, "ٴ⇌")
     if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
