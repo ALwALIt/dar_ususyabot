@@ -19,6 +19,8 @@ from telethon.utils import get_input_location
 from . import *
 from . import mention
 
+plugin_category="extra"
+
 TMP_DOWNLOAD_DIRECTORY = Config.TMP_DOWNLOAD_DIRECTORY
 
 FANAN = "<b> 𓆩 𝗦𝗢𝗨𝗥𝗖𝗘 𝙕𝞝𝘿 - 💞🤵💞 𓆪 </b>"
