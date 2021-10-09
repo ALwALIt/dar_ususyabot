@@ -1,79 +1,76 @@
-
+# This File for zed® written by ~ @ZlZZl77
+#الملف كتابتي وحقوقي + متعوب عليه
+#فلا تصير مطور براسي - اذا تريد تخمط اذكر المصدر حبي
 
 import os
 import random
-from asyncio import sleep
-
-from userbot import jmthon
-
-from ..core.managers import edit_delete, edit_or_reply
 
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 
-from . import *
-from . import mention
-
-plugin_category="extra"
-
 TMP_DOWNLOAD_DIRECTORY = Config.TMP_DOWNLOAD_DIRECTORY
 
-FANAN = "<b> 𓆩 JEPTHON  - 💞🤵💞 𓆪 </b>"
-VANAN = "<b> ⋄︙افيشش 🥺💘 </b>"
-sts_fanan = "https://telegra.ph/file/50caf0efa9a2453985364.jpg"
-sts_fanan2 = "https://telegra.ph/file/dda7dd09f7d697fe92ff6.jpg" 
-sts_fanan3 = "https://telegra.ph/file/007f130ef1028d15c3596.jpg"
-sts_fanan4 = "https://telegra.ph/file/593c7e83d4eb25f7b0e55.jpg"
-sts_fanan5 = "https://telegra.ph/file/48f567da3417c581446dc.jpg"
-sts_fanan6 = "https://telegra.ph/file/165c9405bddc89cf818be.jpg"
-sts_fanan7 = "https://telegra.ph/file/7217fc9ebe7c92b1e42c3.jpg"
-sts_fanan8 = "hhttps://telegra.ph/file/de70edbf7e01440c6e7bd.jpg"
-sts_fanan9 = "https://telegra.ph/file/63e1b87537e92c05da46d.jpg"
-sts_fanan10 = "https://telegra.ph/file/d58d68c118d862437f66a.jpg"
-sts_fanan11 = "https://telegra.ph/file/28c209102abe082b97e99.jpg"
-sts_fanan12 = "https://telegra.ph/file/53f4c117abcfc24934337.jpg"
-sts_fanan13 = "https://telegra.ph/file/739a13b944c62412e908b.jpg"
-sts_fanan14 = "https://telegra.ph/file/291a667b5bc7e7f15895d.jpg"
-sts_fanan15 = "https://telegra.ph/file/e83874718d4eb829fc0e7.jpg"
-sts_fanan16 = "https://telegra.ph/file/f2683a9c2f6aec9f16850.jpg"
-sts_fanan17 = "https://telegra.ph/file/8775bf7b8edde56243897.jpg"
-sts_fanan18 = "https://telegra.ph/file/b544499b6853568ce475f.jpg"
+# حقوق زد ثــون -- زلـزال_الهيبـه -- @ZeDThoN
 
-ZEED_IMG = sts_fanan or sts_fanan2 or sts_fanan3 or sts_fanan4 or sts_fanan5
+hhh = [
+    "جلب شوارع 🐕‍🦺",
+    "مطي زربه 🦓",
+    "قرد لزكـه 🐒",
+    "طلي ابو البعرور الوصخ 🐑",
+    "صخل محترم 🐐",
+    "بزون ابوخالد 🐈",
+    "الزاحف ابو بريص 🦎",
+    "جريذي ابو المجاري 🐀",
+    "هايشه دنماركيه 🐄🇩🇰",
+]
 
- @jmthon.ar_cmd(
-    pattern="ككشف(?:\s|$)([\s\S]*)",
-    command=("ككشف", plugin_category),
-    info={
-        "استخدام": "{tr}جـيبثون",
-        "مثال":  "{tr}جـيبثون هلا",
-    },
-)
-async def hi_buddy(event):
-    "Just to say hi to other user."
-    input_str= event.pattern_match.group(1)
-    if not input_str:
-        await edit_delete(event,"No input is found. Use proper syntax.")
+jjj = [
+    "100% مو حيوان غنبله 😱😂.",
+    "90% مو حيوان ضيم 😱😂👆",
+    "80%  ٴ😱😂",
+    "70%  ٴ😱😂",
+    "60% براسه 60 حظ 👌😂",
+    "50% حيوان هجين👍😂",
+    "( 40% ) خوش حيوان 👌😂",
+    "30% ٴ😒😂",
+    "20% ٴ😒😂",
+    "10% ٴ😒😂",
+    "0% ٴ😢😂",
+]
+
+
+@bot.on(admin_cmd(pattern="كشف(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="كشف(?: |$)(.*)", allow_sudo=True))
+async def who(event):
+    ics = await eor(event, "ٴ⇌")
+    if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
+    replied_user = await get_user(event)
+    try:
+        photo, caption = await fetch_info(replied_user, event)
+    except AttributeError:
+        await eor(ics, "لايمكنني العثور ع الحيوان")
         return
-    outputtext= f"+-+-+-+-+-+\n|h|e|l|l|o|\n+-+-+-+-+-+\n{input_str}"
-    await edit_or_reply(event,outputtext)
     message_id_to_reply = event.message.reply_to_msg_id
     if not message_id_to_reply:
         message_id_to_reply = None
     try:
         await event.client.send_file(
             event.chat_id,
-            ZEED_IMG,
+            photo,
             caption=caption,
             link_preview=False,
             force_document=False,
             reply_to=message_id_to_reply,
             parse_mode="html",
         )
+        if not photo.startswith("http"):
+            os.remove(photo)
+        await ics.delete()
     except TypeError:
-        await zed.edit(caption, parse_mode="html")
+        await ics.edit(caption, parse_mode="html")
 
 
 async def get_user(event):
@@ -105,131 +102,54 @@ async def get_user(event):
 
 
 async def fetch_info(replied_user, event):
+    replied_user_profile_photos = await event.client(
+        GetUserPhotosRequest(
+            user_id=replied_user.user.id, offset=42, max_id=0, limit=80
+        )
+    )
+    replied_user_profile_photos_count = "الحيوان مامخلي صورة بروفايل"
+    try:
+        replied_user_profile_photos_count = replied_user_profile_photos.count
+    except AttributeError:
+        pass
     user_id = replied_user.user.id
     first_name = replied_user.user.first_name
     last_name = replied_user.user.last_name
+    try:
+        dc_id, location = get_input_location(replied_user.profile_photo)
+    except:
+        pass
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
+    fof = random.choice(hhh)
+    yoy = random.choice(jjj)
     replied_user.user.bot
     replied_user.user.restricted
     replied_user.user.verified
-    ZEED_IMG
-    x = random.randrange(1, 18)
-    if x == 1:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن إنجين أكيوريك 🥺💘. </b>"
-       return sts_fanan, caption
-    if x == 2:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن كيفانش تاتليتوغ 🥺💘. </b>"
-       return sts_fanan2, caption
-    if x == 3:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن شاتاي أولسوي 🥺💘. </b>"
-       return sts_fanan3, caption
-    if x == 4:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن إنجين ألتان دوزياتان 🥺💘. </b>"
-       return sts_fanan4, caption
-    if x == 5:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن بوراك أوزجيفت 🥺💘. </b>"
-       return sts_fanan5, caption
-    if x == 6:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن أراس بولوت إيناملي 🥺💘. </b>"
-       return sts_fanan6, caption
-    if x == 7:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن گريستيانو رونالدو 🥺💘. </b>"
-       return sts_fanan7, caption
-    if x == 8:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن سيركان شاي أوغلو 🥺💘. </b>"
-       return sts_fanan8, caption
-    if x == 9:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن كرم بورسين🥺💘. </b>"
-       return sts_fanan9, caption
-    if x == 10:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن توم گــروز🥺💘. </b>"
-       return sts_fanan10, caption
-    if x == 11:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن شاهـد گــابور🥺💘. </b>"
-       return sts_fanan11, caption
-    if x == 12:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن ليـو ميسـي🥺💘. </b>"
-       return sts_fanan12, caption
-    if x == 13:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن محمد حماقي🥺💘. </b>"
-       return sts_fanan13, caption
-    if x == 14:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن شَاروخــان🥺💘. </b>"
-       return sts_fanan14, caption
-    if x == 15:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن سيـف نبيل🥺💘. </b>"
-       return sts_fanan15, caption
-    if x == 16:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن ليوناردو گـابريو 🥺💘. </b>"
-       return sts_fanan16, caption
-    if x == 17:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن محمد رمـضان🥺💘. </b>"
-       return sts_fanan17, caption
-    if x == 18:
-       caption = f"<b> {FANAN} </b>\n\n\n"
-       caption += f"<b> {VANAN} </b>"
-       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن سعــد المجرد 🥺💘. </b>"
-       return sts_fanan18, caption
-
+    photo = await event.client.download_profile_photo(
+        user_id, TMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg", download_big=True
+    )
+    first_name = (
+        first_name.replace("\u2060", "")
+        if first_name
+        else ("هذا الحيوان ليس له اسم أول")
+    )
+    last_name = last_name.replace("\u2060", "") if last_name else (" ")
+    username = "@{}".format(username) if username else ("لايوجد معرف")
+    caption = f"<b>  ╮•🦦 الحيوان ⇦ </b> {first_name} {last_name} \n"
+    caption += f"<b> ٴ╼──────────────────╾ </b>\n"
+    caption += f"<b> • 🌚 | معـرفه  ⇦ </b> {username}\n"
+    caption += f"<b> • 🌚 | ايـديه   ⇦ </b> <code>{user_id}</code>\n"
+    caption += f"<b> • 🌚 | صـوره  ⇦ </b> {replied_user_profile_photos_count} </b>\n"
+    caption += f"<b> • 🌚 | نــوعه   ⇦  {fof} </b>\n"
+    caption += f"<b> • 🌚 | نسبتـه  ⇦  {yoy} </b>\n\n\n"
+    caption += f"<b> 𓆩 𝙎𝙊𝙐𝙍𝘾𝞝 𝙕𝞝𝘿 𓆪 </b> - @ZedThon "
+    return photo, caption
 
 CMD_HELP.update(
     {
-        "مشهور": """**اسم الاضافـه : **`مشهور`
-**╮•❐ الامـر ⦂**
-  •  `.مشهور` بالرد / المعرف / الايدي
-**•  الشـرح •• **__امـر تسليـة زوجنـي مـن مشهـور__"""
+        "الحيوان": "**Plugin : **`الحيوان`\n\n"
+        "**⌔∮ الامر : `.كشف`\n**"
+        "**⌔∮ الشرح :** امر تحشيش كشف الحيوان يكشف ع الشخص بالرد والمعرف والايدي والصورة"
     }
 )
