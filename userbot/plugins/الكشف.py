@@ -16,16 +16,6 @@ from . import spamwatch
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
-
-@jmthon.ar_cmd(
-    pattern="اييدي(?:\s|$)([\s\S]*)",
-    command=("اييدي", plugin_category),
-    info={
-        "header": "Gets information of an user such as restrictions ban by spamwatch or cas.",
-        "description": "That is like whether he banned is spamwatch or cas and small info like groups in common, dc ..etc.",
-        "usage": "{tr}userinfo <username/userid/reply>",
-    },
-)
 async def fetch_info(replied_user, event):
     """Get details from the User object."""
     replied_user_profile_photos = await event.client(
