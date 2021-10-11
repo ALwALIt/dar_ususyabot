@@ -18,7 +18,7 @@ async def tmgif(event):
         return
     RR9R7 = await reply_id(event)
     if sad:
-        jmthon = f"**˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰ𝖦𝗂𝖿 𝖲ِ𝖺ٰ𝖣 . .**\n"
+        jmthon = f"**˛ JEP ، ٰ𝖦𝗂𝖿 𝖲ِ𝖺ٰ𝖣 . .**\n"
         jmthon += f"✛━━━━━━━━━━━━━✛\n"
         jmthon += f"**الـمتحـرڪـة الأولـى **"
         await event.client.send_file(event.chat_id, sad, caption=jmthon, reply_to=RR9R7)
@@ -35,7 +35,7 @@ async def tmgif(event):
         return
     leo = await reply_id(event)
     if sad2:
-        RAZAN = f"**˛ 𝖩𝗆𝗍𝖧ٰ𝗈𝗇 ، ٰ𝖦𝗂𝖿 𝖲ِ𝖺ٰ𝖣 . .**\n"
+        RAZAN = f"**˛ JEP ، ٰ𝖦𝗂𝖿 𝖲ِ𝖺ٰ𝖣 . .**\n"
         RAZAN += f"✛━━━━━━━━━━━━━✛\n"
         RAZAN += f"**الـمتحـرڪـة الـثـانيـة **"
         await event.client.send_file(event.chat_id, sad2, caption=RAZAN, reply_to=leo)
