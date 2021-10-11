@@ -52,6 +52,8 @@ async def fetch_info(replied_user, event):
         else ("⌯︙هذا المستخدم ليس لديه اسم اول")
     )
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
+    rotbat = ".「  مطـور السورس 𓄂𓆃 」." if user_id == 705475246 else (".「  العضـو 𓅫  」.") 
+    rotbat = ".「 مـالك الحساب 𓀫 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 else rotbat
     username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
     caption = "✛━━━━━━━━━━━━━✛ \n\n"
@@ -59,6 +61,7 @@ async def fetch_info(replied_user, event):
     caption += f"<b>- المـعـرف ›</b> {username}\n"
     caption += f"<b>- الايـدي  ›</b> <code>{user_id}</code>\n"
     caption += f"<b>- عـدد الصـورة ›</b> {replied_user_profile_photos_count}\n"
+    caption += f"<b>- الرتبـــه  ⇦ {rotbat} </b>\n"
     caption += f"<b>-️ الـنبـذه ›</b> \n<code>{user_bio}</code>\n\n"
     caption += f"<b>- الـمجموعات المشتـركة ›</b> {common_chat}\n"
     caption += f"<b>- رابط حسـابه ›</b> "
