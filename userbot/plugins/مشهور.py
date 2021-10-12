@@ -38,6 +38,7 @@ sts_fanan15 = "https://telegra.ph/file/e83874718d4eb829fc0e7.jpg"
 sts_fanan16 = "https://telegra.ph/file/f2683a9c2f6aec9f16850.jpg"
 sts_fanan17 = "https://telegra.ph/file/8775bf7b8edde56243897.jpg"
 sts_fanan18 = "https://telegra.ph/file/b544499b6853568ce475f.jpg"
+sts_fanan19 = "https://telegra.ph/file/00f9632829ca2449735c9.jpg"
 
 ZEED_IMG = sts_fanan or sts_fanan2 or sts_fanan3 or sts_fanan4 or sts_fanan5
 
@@ -215,6 +216,12 @@ async def fetch_info(replied_user, event):
        caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
        caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن سعــد المجرد 🥺💘. </b>"
        return sts_fanan18, caption
+    if x == 19:
+       caption = f"<b> {FANAN} </b>\n\n\n"
+       caption += f"<b> {VANAN} </b>"
+       caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
+       caption += f"\n\n<b> ⋄︙@lMl10l 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 مبࢪوڪ زواجج مِـن المطور 😂💘. </b>"
+       return sts_fanan19, caption
 
 
 CMD_HELP.update(
