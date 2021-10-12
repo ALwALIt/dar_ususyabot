@@ -79,5 +79,5 @@ async def _(event):
             await geez.edit("**الغي حظر @TempMailBot  و حاول مجددا**")
             return
         await event.edit(
-            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jmthon})"
+            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
         )
