@@ -159,7 +159,7 @@ async def permalink(mention):
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المتهم [{tag}](tg://user?id={user.id}) \n⌯︙ 😂🐍 تم رفعه في قائمة الزواحف ، لك حيوان شوكت تبطل سوالفك  ")
+    await edit_or_reply(mention, f"⌯︙المتهم [{tag}](tg://user?id={user.id}) \n⌯︙تم رفعه في قائمة الزواحف ، لك حيوان شوكت تبطل سوالفك 😂🐍 ")
 
 
 ##RR9R7
