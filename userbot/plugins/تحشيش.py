@@ -31,11 +31,11 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 1694386561:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1657933680:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1715051616:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه مـࢪتك مـشي نخـلف 😹🤤")
@@ -49,11 +49,11 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 1694386561:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1657933680:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1715051616:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه جلب خليه خله ينبح 😂🐶")
@@ -81,11 +81,11 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 1694386561:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1657933680:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1715051616:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه قرد واعطائه موزة 🐒🍌")
@@ -114,11 +114,11 @@ async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 1694386561:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1657933680:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 1715051616:
+    if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفـعه مطي هـنا ")
