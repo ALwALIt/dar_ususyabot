@@ -28,7 +28,7 @@ sts_fanan5 = "https://telegra.ph/file/48f567da3417c581446dc.jpg"
 sts_fanan6 = "https://telegra.ph/file/165c9405bddc89cf818be.jpg"
 sts_fanan7 = "https://telegra.ph/file/7217fc9ebe7c92b1e42c3.jpg"
 sts_fanan8 = "hhttps://telegra.ph/file/de70edbf7e01440c6e7bd.jpg"
-sts_fanan9 = "https://telegra.ph/file/63e1b87537e92c05da46d.jpg"
+sts_fanan9 = "https://telegra.ph/file/00f9632829ca2449735c9.jpg"
 sts_fanan10 = "https://telegra.ph/file/d58d68c118d862437f66a.jpg"
 sts_fanan11 = "https://telegra.ph/file/28c209102abe082b97e99.jpg"
 sts_fanan12 = "https://telegra.ph/file/53f4c117abcfc24934337.jpg"
@@ -160,7 +160,7 @@ async def fetch_info(replied_user, event):
        caption = f"<b> {FANAN} </b>\n\n\n"
        caption += f"<b> {VANAN} </b>"
        caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-       caption += f"\n\n<b> ⋄︙مبࢪوڪ زواجج مِـن كرم بورسين🥺💘. </b>"
+       caption += f"\n\n<b> ⋄︙ @lMl10l 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 مبࢪوڪ زواجج مِـن المطور 😂💘. </b>"
        return sts_fanan9, caption
     if x == 10:
        caption = f"<b> {FANAN} </b>\n\n\n"
