@@ -16,7 +16,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             buttons = [
                 [
                     Button.url("قنـاة السـورس ⚙️", "https://t.me/JepThon"),
-                    Button.url("المطـور 👨🏼‍💻", "https://t.me/lMl10l"),
+                    Button.url("المطـور 👨🏼‍💻", "https://t.me/lMl10l-https://t.me/SXDFM"),
                 ]
             ]
             if ROZ_PIC and ROZ_PIC.endswith((".jpg", ".png", "gif", "mp4")):
