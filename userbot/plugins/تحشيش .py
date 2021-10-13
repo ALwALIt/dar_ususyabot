@@ -83,8 +83,8 @@ async def permalink(mention):
     await edit_or_reply(mention, f"نسبة الكذب لـ [{muh}](tg://user?id={user.id}) هـي {rzona} 😂💔")
 
 @jmthon.ar_cmd(
-    pattern="نسبة الغباء(?:\s|$)([\s\S]*)",
-    command=("نسبة الغباء", plugin_category),
+    pattern="نسبة الذكاء(?:\s|$)([\s\S]*)",
+    command=("نسبة الذكاء", plugin_category),
 )
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
