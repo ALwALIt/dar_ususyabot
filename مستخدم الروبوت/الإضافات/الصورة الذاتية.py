@@ -8,10 +8,9 @@ async def oho(event):
   rr9r7 = await event.get_reply_message()
   pic = await rr9r7.download_media()
   await bot.send_file('me', pic, caption=f"""
--تـم احـضار الصوره 
+-تـم جلب الصوره
 - CH: @Jepthon
 - Dev:¹: @lMl10l
-- DEV²: @SXDFM
   """)
   await event.delete()
 
