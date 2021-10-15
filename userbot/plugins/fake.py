@@ -27,29 +27,31 @@ plugin_category = "fun"
         ],
         "examples": "{tr}scam photo 300",
         "actions": [
-            "يكتب",
-            "جهات",
-            "يلعب",
-            "موقع",
-            "بصمة",
-            "جولة",
-            "فيديو",
-            "صورة",
-            "document",
+        "typing",
+        "contact",
+        "game",
+        "location",
+        "voice",
+        "round",
+        "video",
+        "photo",
+        "document",
+
         ],
     },
 )
 async def _(event):
     options = [
-        "يكتب",
-        "جهات",
-        "يلعب",
-        "موقع",
-        "بصمه",
-        "جولة",
-        "فيديو",
-        "صورة",
+        "typing",
+        "contact",
+        "game",
+        "location",
+        "voice",
+        "round",
+        "video",
+        "photo",
         "document",
+
     ]
     input_str = event.pattern_match.group(1)
     args = input_str.split()
