@@ -146,8 +146,8 @@ async def _(event):
         "**(7) تثبيت الرسائل: ✅**",
         "**(8) تغير معلومات المجموعة: ☑️**",
         "**(8) تغير معلومات المجموعة: ✅**",
-        "**اقدرتم ترقيتك بنجاح ✅**",
-        f"**pRoMooTeD SuCcEsSfUlLy bY: {ALIVE_NAME}**",
+        "**تم ترقيتك بنجاح ✅**",
+        f"**لقد تم رفعك مالك المجموعة من قبل: {ALIVE_NAME}**",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
