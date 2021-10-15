@@ -83,38 +83,6 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="prankpromote(?:\s|$)([\s\S]*)",
-    command=("prankpromote", plugin_category),
-    info={
-        "header": "To promote a person without admin rights",
-        "note": "You need proper rights for this",
-        "usage": [
-            "{tr}prankpromote <userid/username/reply>",
-            "{tr}prankpromote <userid/username/reply> <custom title>",
-        ],
-    },
-    groups_only=True,
-    require_admin=True,
-)
-async def _(event):
-    "To promote a person without admin rights"
-    new_rights = ChatAdminRights(post_messages=True)
-    catevent = await edit_or_reply(event, "`Promoting...`")
-    user, rank = await get_user_from_event(event, catevent)
-    if not rank:
-        rank = "Admin"
-    if not user:
-        return
-    try:
-        await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
-    except BadRequestError:
-        return await catevent.edit("__I think you don't have permission to promote__")
-    except Exception as e:
-        return await edit_delete(catevent, f"__{e}__", time=10)
-    await catevent.edit("`Promoted Successfully! Now gib Party`")
-
-
-@jmthon.ar_cmd(
     pattern="رفع ادمن$",
     command=("رفع ادمن", plugin_category),
     info={
