@@ -110,7 +110,7 @@ async def _(event):
 async def _(event):
 	if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
 		await event.edit(
-		"قائمة اوامر الفارات والتخصيص :\n هـنـا  : \n\n@FYFYFF"
+		"قائمة اوامر الفارات والتخصيص :\n هـنـا  : \n\n@Jepthon2"
 		)
 
 @jmthon.ar_cmd(
