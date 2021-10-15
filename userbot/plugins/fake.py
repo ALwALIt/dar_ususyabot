@@ -126,7 +126,7 @@ async def _(event):
     "Fun animation for faking user promotion."
     animation_interval = 1
     animation_ttl = range(20)
-    event = await edit_or_reply(event, "`promoting.......`")
+    event = await edit_or_reply(event, "`جارِ ترقيتك.......`")
     animation_chars = [
         "**رفع المستخدم الى ادمن...**",
         "**اعطاء كافة الصلاحيات الى المستخدم...**",
