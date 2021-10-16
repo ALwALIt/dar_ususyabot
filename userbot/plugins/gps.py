@@ -1,4 +1,6 @@
-#    Credts @Mrconfused
+#jepthon @lMl10l
+
+
 from geopy.geocoders import Nominatim
 from telethon.tl import types
 
@@ -11,8 +13,8 @@ plugin_category = "extra"
 
 
 @jmthon.ar_cmd(
-    pattern="gps ([\s\S]*)",
-    command=("gps", plugin_category),
+    pattern="موقع ([\s\S]*)",
+    command=("موقع", plugin_category),
     info={
         "header": "To send the map of the given location.",
         "usage": "{tr}gps <place>",
@@ -23,7 +25,7 @@ async def gps(event):
     "Map of the given location."
     reply_to_id = await reply_id(event)
     input_str = event.pattern_match.group(1)
-    catevent = await edit_or_reply(event, "`finding.....`")
+    catevent = await edit_or_reply(event, "`جارِ ايجاد الموقع.....`")
     geolocator = Nominatim(user_agent="catuserbot")
     geoloc = geolocator.geocode(input_str)
     if geoloc:
@@ -32,7 +34,7 @@ async def gps(event):
         await event.client.send_file(
             event.chat_id,
             file=types.InputMediaGeoPoint(types.InputGeoPoint(lat, lon)),
-            caption=f"**Location : **`{input_str}`",
+            caption=f"**الموقع : **`{input_str}`",
             reply_to=reply_to_id,
         )
         await catevent.delete()
