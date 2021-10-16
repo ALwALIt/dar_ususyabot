@@ -11,8 +11,9 @@ import os
 
 from geopy.geocoders import Nominatim
 
-from main_startup.core.decorators import jmthon
-from main_startup.helper_func.basic_helpers import edit_or_reply, get_text
+from userbot import jmthon
+
+from ..core.managers import edit_delete, edit_or_reply
 
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 
