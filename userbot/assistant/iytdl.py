@@ -43,8 +43,8 @@ plugin_category = "bot"
 
 
 @jmthon.ar_cmd(
-    pattern="يوت(?:\s|$)([\s\S]*)",
-    command=("يوت", plugin_category),
+    pattern="تح(?:\s|$)([\s\S]*)",
+    command=("تح", plugin_category),
     info={
         "header": "ytdl with inline buttons.",
         "description": "To search and download youtube videos by inline buttons.",
@@ -63,7 +63,7 @@ async def iytdl_inline(event):
         input_url = (reply.text).strip()
     if not input_url:
         return await edit_delete(
-            event, "**▾∮ اكتب الرابط او قم بالرد ع رابط يوتيوب ✓**"
+            event, "**▾∮ اكتب اسم الاغنية او قم بالرد ع رابط يوتيوب ✓**"
         )
     catevent = await edit_or_reply(
         event, f"**▾∮ جاري البحث في اليوتيوب : ☟** \n`'{input_url}'`"
