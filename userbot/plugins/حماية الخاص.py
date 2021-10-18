@@ -602,7 +602,7 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(تعطيل|تفعيل) الخاص $",
+    pattern="الخاص (تعطيل|تفعيل)$",
     command=("تعطيل", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
@@ -630,7 +630,7 @@ async def pmpermit_on(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(تعطيل|تفعيل) الخاص $",
+    pattern="الخاص (تعطيل|تفعيل)$",
     command=("تفعيل", plugin_category),
     info={
         "header": "To turn on or turn off pmmenu.",
