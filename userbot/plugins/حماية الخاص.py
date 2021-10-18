@@ -602,7 +602,7 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الخاص(قفل|فتح)$",
+    pattern="(تفعيل|تعطيل) الخاص $",
     command=("الخاص", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
@@ -612,7 +612,7 @@ async def on_plug_in_callback_query_handler(event):
 async def pmpermit_on(event):
     "Turn on/off pmpermit."
     input_str = event.pattern_match.group(1)
-    if input_str == "قفل":
+    if input_str == "تفعيل":
         if gvarstatus("pmpermit") is None:
             addgvar("pmpermit", "true")
             await edit_delete(
@@ -630,7 +630,7 @@ async def pmpermit_on(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الخاص(قفل|فتح)$",
+    pattern="(قفل|فتح) الخاص $",
     command=("الخاص", plugin_category),
     info={
         "header": "To turn on or turn off pmmenu.",
@@ -640,25 +640,25 @@ async def pmpermit_on(event):
 async def pmpermit_on(event):
     "Turn on/off pmmenu."
     input_str = event.pattern_match.group(1)
-    if input_str == "فتح":
+    if input_str == "تعطيل":
         if gvarstatus("pmmenu") is None: #ترجمه وكتابة فريق جـيبثون 
             addgvar("pmmenu", "false")
             await edit_delete(
                 event,
-                "⌯︙ تم فتح الخاص لحسابك بنجاح ✅",
+                "⌯︙ تم فتح الحماية لحسابك بنجاح ✅",
             )
         else:
             await edit_delete(
-                event, "⌯︙امر الخاص بالفعل مُعطل لحسابك 🌿"
+                event, "⌯︙امر الحماية بالفعل مُعطل لحسابك 🌿"
             )
     elif gvarstatus("pmmenu") is not None:
         delgvar("pmmenu")
         await edit_delete(
-            event, "⌯︙ تم قفل الخاص لحسابك بنجاح ✅"
+            event, "⌯︙ تم قفل الحماية لحسابك بنجاح ✅"
         )
     else:
         await edit_delete(
-            event, "⌯︙امر الخاص بالفعل مُمكن لحسابك 🌿"
+            event, "⌯︙امر الحماية بالفعل مُمكن لحسابك 🌿"
         )
 
 
