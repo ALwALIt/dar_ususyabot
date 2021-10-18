@@ -602,8 +602,8 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(تعطيل|تفعيل) الخاص $",
-    command=("الخاص", plugin_category),
+    pattern="الخاص (تعطيل|تفعيل)$",
+    command=("تعطيل", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
         "usage": "{tr}pmguard on/off",
@@ -612,7 +612,7 @@ async def on_plug_in_callback_query_handler(event):
 async def pmpermit_on(event):
     "Turn on/off pmpermit."
     input_str = event.pattern_match.group(1)
-    if input_str == "تعطيل":
+    if input_str == "الخاص":
         if gvarstatus("pmpermit") is None:
             addgvar("pmpermit", "true")
             await edit_delete(
@@ -630,8 +630,8 @@ async def pmpermit_on(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(تعطيل|تفعيل) الخاص $",
-    command=("الخاص", plugin_category),
+    pattern="الخاص (تعطيل|تفعيل)$",
+    command=("تفعيل", plugin_category),
     info={
         "header": "To turn on or turn off pmmenu.",
         "usage": "{tr}pmmenu on/off",
@@ -640,7 +640,7 @@ async def pmpermit_on(event):
 async def pmpermit_on(event):
     "Turn on/off pmmenu."
     input_str = event.pattern_match.group(1)
-    if input_str == "تفعيل":
+    if input_str == "الخاص":
         if gvarstatus("pmmenu") is None: #ترجمه وكتابة فريق جـيبثون 
             addgvar("pmmenu", "false")
             await edit_delete(
