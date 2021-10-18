@@ -602,7 +602,7 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(تفعيل|تعطيل) الخاص $",
+    pattern="الخاص(تفعيل|تعطيل)$",
     command=("الخاص", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
@@ -630,7 +630,7 @@ async def pmpermit_on(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(قفل|فتح) الخاص $",
+    pattern="الخاص(تفعيل|تعطيل)$",
     command=("الخاص", plugin_category),
     info={
         "header": "To turn on or turn off pmmenu.",
@@ -645,7 +645,7 @@ async def pmpermit_on(event):
             addgvar("pmmenu", "false")
             await edit_delete(
                 event,
-                "⌯︙ تم فتح الحماية لحسابك بنجاح ✅",
+                "⌯︙ تم تعطيل الحماية لحسابك بنجاح ✅",
             )
         else:
             await edit_delete(
@@ -654,7 +654,7 @@ async def pmpermit_on(event):
     elif gvarstatus("pmmenu") is not None:
         delgvar("pmmenu")
         await edit_delete(
-            event, "⌯︙ تم قفل الحماية لحسابك بنجاح ✅"
+            event, "⌯︙ تم تفعيل الحماية لحسابك بنجاح ✅"
         )
     else:
         await edit_delete(
@@ -678,7 +678,7 @@ async def approve_p_m(event):  # sourcery no-metrics
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الخاص اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
