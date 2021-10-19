@@ -21,8 +21,8 @@ StartTime = time.time()
 JMVERSION = "4.0.0"
 
 
-if Config.UPSTREAM_REPO == "Jeepthon":
-    UPSTREAM_REPO_URL = "https://github.com/JEPTHON1/BOT"
+if Config.UPSTREAM_REPO == "Jepthon-Ar":
+    UPSTREAM_REPO_URL = "https://github.com/almul8ab/Jepthon-Ar"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
