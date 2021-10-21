@@ -7,7 +7,7 @@ from ..helpers.utils import reply_id
 
 plugin_category = "fun"
 
-game_code = ["ttt", "ttf", "cf", "rps", "rpsls", "rr", "c", "pc"]
+game_code = ["لعبة1", "لعبة2", "لعبة3", "لعبة4", "لعبة5", "لعبة6", "لعبة7", "لعبة8"]
 button = ["0", "1", "2", "3", "4", "5", "6", "7"]
 game_name = [
     "Tic-Tac-Toe",
@@ -19,7 +19,7 @@ game_name = [
     "Checkers",
     "Pool Checkers",
 ]
-game_list = "1.`ttt` :- Tic-Tac-Toe\n2.`ttf` :- Tic-Tac-Four\n3.`cf` :- Connect Four\n4.`rps` :- Rock-Paper-Scissors\n5.`rpsls` :- Rock-Paper-Scissors-Lizard-Spock\n6.`rr` :- Russian Roulette\n7.`c` :- Checkers\n8.`pc` :- Pool Checkers"
+game_list = "1.`لعبة1` :- Tic-Tac-Toe\n2.`لعبة2` :- Tic-Tac-Four\n3.`لعبة3` :- Connect Four\n4.`لعبة4` :- Rock-Paper-Scissors\n5.`لعبة5` :- Rock-Paper-Scissors-Lizard-Spock\n6.`لعبة6` :- Russian Roulette\n7.`لعبة7` :- Checkers\n8.`لعبة8` :- Pool Checkers"
 
 
 @jmthon.ar_cmd(
@@ -29,14 +29,14 @@ game_list = "1.`ttt` :- Tic-Tac-Toe\n2.`ttf` :- Tic-Tac-Four\n3.`cf` :- Connect 
         "header": "Play inline games",
         "description": "Start an inline game by inlinegamebot",
         "Game code & Name": {
-            "ttt": "Tic-Tac-Toe",
-            "ttf": "Tic-Tac-Four",
-            "cf": "Connect Four",
-            "rps": "Rock-Paper-Scissors",
-            "rpsls": "Rock-Paper-Scissors-Lizard-Spock",
-            "rr": "Russian Roulette",
-            "c": "Checkers",
-            "pc": "Pool Checkers",
+            "لعبة1": "تيك تاك تو",
+            "لعبة2": "تيك تاك فور",
+            "لعبة3": "ربط اربعه",
+            "لعبة4": "حجر ورقة مقص",
+            "لعبة5": "حجر ورقه مقص زار",
+            "لعبة6": "روليت",
+            "لعبة7": "تشيكرز",
+            "لعبة8": "بول تشيكرز",
         },
         "usage": "{tr}game <game code>",
         "examples": "{tr}game ttt ",
