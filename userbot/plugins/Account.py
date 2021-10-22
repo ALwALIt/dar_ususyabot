@@ -37,7 +37,7 @@ from ..helpers import get_user_from_event, reply_id
 from ..helpers.utils import reply_id, _catutils, parse_pre, yaml_format, install_pip, get_user_from_event, _format
 from ..sql_helper.global_list import add_to_list, get_collection_list, is_in_list, rm_from_list
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import AUTONAME, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, _catutils, edit_delete, iqthon, logging, spamwatch
+from . import AUTONAME, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, _catutils, edit_delete, jmthon, logging, spamwatch
     
 def inline_mention(user):
     full_name = user_full_name(user) or "No Name"
