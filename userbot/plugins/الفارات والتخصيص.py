@@ -25,7 +25,7 @@ vlist = [
     "PM_BLOCK",
     "MAX_FLOOD_IN_PMS",
     "START_TEXT",
-    "TIME_JEP",
+    "TIME_JM",
     "CUSTOM_STICKER_PACKNAME",
 ]
 
