@@ -18,14 +18,6 @@ LOGS = logging.getLogger(__name__)
 @jmthon.ar_cmd(
     pattern="رسالة(?:\s|$)([\s\S]*)",
     command=("رسالة", plugin_category),
-    info={
-        "header": "To message to person or to a chat.",
-        "description": "Suppose you want to message directly to a person/chat from a paticular chat. Then simply reply to a person with this cmd and text or to a text with cmd and username/userid/chatid,",
-        "usage": [
-            "{tr}msgto <username/userid/chatid/chatusername> reply to message",
-            "{tr}msgto <username/userid/chatid/chatusername> <text>",
-        ],
-        "examples": "{tr}msgto @catuserbotot just a testmessage",
     },
 )
 async def catbroadcast_add(event):
@@ -36,7 +28,7 @@ async def catbroadcast_add(event):
         return
     if not reason and not reply:
         return await edit_delete(
-            event, "• ماذا تريدني ان ارسل للشخص ؟ اكتب رسالتك •"
+            event, "• ماذا تريدني ان ارسل للشخص ؟ اكتب معرف الشخص ومن قم الرسالة الذي تريدها •"
         )
     if reply and reason and user.id != reply.sender_id:
         if BOTLOG:
