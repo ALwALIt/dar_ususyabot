@@ -107,7 +107,7 @@ async def autoname_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(Config.CHANGE_TIME)
-        AUTONAMESTART = gvarstatus("اسم وقتي") == "true"
+        AUTONAMESTART = gvarstatus("autoname") == "true"
 
 
 async def autobio_loop():
