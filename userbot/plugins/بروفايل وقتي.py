@@ -95,9 +95,9 @@ async def digitalpicloop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
-        DM = time.strftime("%d-%m-%y")
-        HI = time.strftime("%I:%M")
-        name = f"{RR7PP} {HI} "
+        HM = time.strftime("%I:%M")
+        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
+        name = f"{RR7PP} {HI}"
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -105,7 +105,7 @@ async def autoname_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(Config.CHANGE_TIME)
-        AUTONAMESTART = gvarstatus("autoname") == "true"
+        AUTONAMESTART = gvarstatus("اسم وقتي") == "true"
 
 
 async def autobio_loop():
