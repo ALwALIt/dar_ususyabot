@@ -54,7 +54,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-RR7PP = Config.TIME_JM or ""
+RR7PP = Config.TIME_JEP or ""
 
 
 async def digitalpicloop():
