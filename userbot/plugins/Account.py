@@ -563,7 +563,7 @@ async def autoname_loop():
         name = f"{EMOJI_TELETHON} {go}"
         LOGS.info(name)
         try:
-            await iqthon(functions.account.UpdateProfileRequest(first_name=name))
+            await jmthon(functions.account.UpdateProfileRequest(first_name=name))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
