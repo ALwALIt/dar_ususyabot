@@ -157,7 +157,7 @@ async def stats(event):  # sourcery no-metrics
     response += f"**⌔︙ استغرق الأمر  🔍  :** `{stop_time:.02f}` ثانيه \n"
     await cat.edit(response)
 
-@iqthon.on(admin_cmd(pattern="قائمه (جميع القنوات|قنوات اديرها|قنوات امتلكها)$"))
+@jmthon.on(admin_cmd(pattern="قائمه (جميع القنوات|قنوات اديرها|قنوات امتلكها)$"))
 async def stats(event):  
     catcmd = event.pattern_match.group(1)
     catevent = await edit_or_reply(event, STAT_INDICATION)
@@ -658,7 +658,7 @@ async def who(event):
         await cat.delete()
     except TypeError:
         await cat.edit(caption, parse_mode="html")
-@iqthon.on(admin_cmd(pattern="رابطه(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="رابطه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -667,7 +667,7 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"• ⚜️ | [{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"• ⚜️ | [{tag}](tg://user?id={user.id})")
-@iqthon.on(admin_cmd(pattern="اسمه(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="اسمه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -678,7 +678,7 @@ async def permalink(mention):
     kno = user.last_name.replace("\u2060", "") if user.last_name else (" ")
     await edit_or_reply(mention, f"•  |  {ll5} {kno}")    
 
-@iqthon.on(admin_cmd(pattern="صورته(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="صورته(?:\s|$)([\s\S]*)"))
 async def potocmd(event):
     uid = "".join(event.raw_text.split(maxsplit=1)[1:])
     user = await event.get_reply_message()
