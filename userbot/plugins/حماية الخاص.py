@@ -678,7 +678,7 @@ async def approve_p_m(event):  # sourcery no-metrics
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -757,7 +757,7 @@ async def disapprove_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -805,7 +805,7 @@ async def block_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
         )#ترجمه وكتابة فريق جـيبثون
     if event.is_private:
         user = await event.get_chat()
@@ -861,7 +861,7 @@ async def unblock_pm(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -893,7 +893,7 @@ async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
         )
     approved_users = pmpermit_sql.get_all_approved()
     APPROVED_PMs = "⌯︙قائـمة الـمسموح لـهم الـحالية\n\n"
