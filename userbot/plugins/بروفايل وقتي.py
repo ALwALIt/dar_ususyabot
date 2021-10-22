@@ -13,6 +13,8 @@ import urllib
 from datetime import datetime
 
 import requests
+
+from requests import get
 from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
