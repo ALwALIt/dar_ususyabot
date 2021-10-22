@@ -395,9 +395,9 @@ async def digitalpicloop():
         file = await iqthon.upload_file(autophoto_path)
         try:
             if i > 0:
-                await iqthon(
+                await jmthon(
                     functions.photos.DeletePhotosRequest(
-                        await iqthon.get_profile_photos("me", limit=1)
+                        await jmthon.get_profile_photos("me", limit=1)
                     )
                 )
             i += 1
