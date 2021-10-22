@@ -114,7 +114,7 @@ async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
-        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
+        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HI}").json()['newText']
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
