@@ -71,7 +71,7 @@ FONT_FILE_TO_USE = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
 autopic_path = os.path.join(os.getcwd(), "userbot", "original_pic.png")
 digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
-JEPTHON = Config.TIME_JEP or "•"
+RR7PP = Config.TIME_JEP or "•"
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/6b5db91f38e919e386168.jpg"
 NAME_OK = "**⌔︙تم تغيير اسم حسابك بنجاح  ✅**"
 USERNAME_SUCCESS = "**⌔︙تم تغيير معرّف حسابك بنجاح  ✅**"
@@ -478,7 +478,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         HM = time.strftime("%I:%M")
         go = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        bio = f"{EMOJI_TELETHON} {DEFAULTUSERBIO}  - {go}"
+        bio = f"{RR7PP} {DEFAULTUSERBIO}  - {go}"
         LOGS.info(bio)
         try:
             await iqthon(functions.account.UpdateProfileRequest(about=bio))
@@ -560,7 +560,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         HM = time.strftime("%I:%M")
         go = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        name = f"{JEPTHON} {go}"
+        name = f"{RR7PP} {HI}"
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -754,7 +754,7 @@ async def _(event):
     addgvar("نبذه وقتيه", True)
     await edit_delete(event, "**⌔︙تـمّ بـدأ البايـو الوقتـي بواسطـة المستخـدم ✓**")
     await autobio_loop()
-@jmthon.on(admin_cmd(pattern="ايقاف ([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="انهاء ([\s\S]*)"))
 async def _(event):  # sourcery no-metrics
     input_str = event.pattern_match.group(1)
     if input_str == "تجديد الصوره":
