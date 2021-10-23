@@ -2,7 +2,7 @@
 import os
 
 from telegraph import Telegraph, exceptions, upload_file
-
+from userbot import jmthon
 from main_startup.core.decorators import friday_on_cmd
 from main_startup.helper_func.basic_helpers import edit_or_reply, get_text
 from main_startup.helper_func.plugin_helpers import convert_to_image
@@ -12,7 +12,7 @@ r = telegraph.create_account(short_name="FridayUserBot")
 auth_url = r["auth_url"]
 
 
-@friday_on_cmd(
+@jmthon.ar_cmd(
     ["تلكراف م"],
     cmd_help={
         "help": "⌔: ارسل رابط  تلكراف لتحميل صوره الئ التلكراف",
