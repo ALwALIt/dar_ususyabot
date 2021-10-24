@@ -6,7 +6,7 @@ from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 
-from . import mention, CMD_LIST, HelpString, SUDO_LIST
+from . import mention, CMD_LIST, SUDO_LIST
 from .sql_helper.globals import addgvar, gvarstatus
 
 
