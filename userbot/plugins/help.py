@@ -1,13 +1,16 @@
 import asyncio
 
 import requests
-from telethon import functions
+
+from userbot import jmthon
+
+from ..core.managers import edit_delete, edit_or_reply
 
 from . import mention, CMD_LIST, HelpString, SUDO_LIST
 from .sql_helper.globals import addgvar, gvarstatus
 
 
-@bot.on(
+@jmthon.on(
     icss_cmd(outgoing=True, 
     pattern="help ?(.*)")
 )
@@ -84,7 +87,7 @@ async def cmd_list(event):
             await event.edit(string.format(count=catcount), parse_mode="HTML")
 
 
-@bot.on(
+@jmthon.on(
     sudo_cmd(allow_sudo=True,
     pattern="help ?(.*)")
 )
@@ -150,8 +153,8 @@ async def info(event):
         await event.reply(string.format(count=catcount), parse_mode="HTML")
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="info ?(.*)"))
-@bot.on(sudo_cmd(pattern="info ?(.*)", allow_sudo=True))
+@jmthon.on(admin_cmd(outgoing=True, pattern="info ?(.*)"))
+@jmthon.on(sudo_cmd(pattern="info ?(.*)", allow_sudo=True))
 async def info(event):
     if event.fwd_from:
         return
@@ -178,10 +181,10 @@ async def info(event):
             await event.edit(string.format(count=catcount), parse_mode="HTML")
 
 
-@bot.on(
+@jmthon.on(
     icss_cmd(pattern="dc$")
 )
-@bot.on(
+@jmthon.on(
     sudo_cmd(pattern="dc$", 
     allow_sudo=True)
 )
@@ -202,7 +205,7 @@ async def _(event):
     await edit_or_reply(event, result)
 
 
-@icssbot.on(
+@jmthon.on(
     icss_cmd(outgoing=True,
     pattern="setinline (true|false)")
 )
