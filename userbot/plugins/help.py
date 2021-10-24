@@ -97,7 +97,7 @@ async def plugininfo(input_str, event, flag):
 
 
 async def grpinfo():
-    outstr = "**Plugins in Catuserbot are:**\n\n"
+    outstr = "**Plugins in jmthon are:**\n\n"
     outstr += f"**👩‍💻 Usage : ** `{cmdprefix}help <plugin name>`\n\n"
     category = ["• اوامر الادمن •", "• اوامر البوت •", "• اوامر التسلية •", "• اوامر البحث •", "• الادوات •", "• الملفات •", "• اوامر متفرعه •"]
     for cat in category:
