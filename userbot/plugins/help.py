@@ -126,8 +126,8 @@ async def cmdlist():
 
 
 @jmthon.ar_cmd(
-    pattern="help ?(-c|-p|-t)? ?([\s\S]*)?",
-    command=("help", plugin_category),
+    pattern="مساعدة ?(-c|-p|-t)? ?([\s\S]*)?",
+    command=("مساعدة", plugin_category),
     info={
         "header": "To get guide for catuserbot.",
         "description": "To get information or guide for the command or plugin",
