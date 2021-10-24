@@ -5,41 +5,19 @@
 import asyncio
 import base64
 import os
-import random
-import re
 import shutil
 import time
-import urllib
 from datetime import datetime
 
-import requests
-
-from requests import get
 from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
 from telethon.tl import functions
-from urlextract import URLExtract
 
 from ..Config import Config
 from ..helpers.utils import _format
-from ..sql_helper.global_list import (
-    add_to_list,
-    get_collection_list,
-    is_in_list,
-    rm_from_list,
-)
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import (
-    AUTONAME,
-    BOTLOG,
-    BOTLOG_CHATID,
-    DEFAULT_BIO,
-    _catutils,
-    jmthon,
-    edit_delete,
-    logging,
-)
+from . import AUTONAME, DEFAULT_BIO, edit_delete, jmthon, logging
 
 plugin_category = "tools"
 
@@ -54,7 +32,21 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-RR7PP = Config.TIME_JM or "⁶⁹"
+RR7PP = Config.TIME_JM or ""
+
+normzltext = "1234567890"
+namerzfont = [
+    "𝟙",  
+    "𝟚",
+    "𝟛",  # ههههههههههههههههههههههههههههههههههههههههههههههههه
+    "𝟜",  # اخمط وسمي نفسك مطور
+    "𝟝",  # غير مبري الذمه لكل شخص يخمط
+    "𝟞",  # ها خماط دي
+    "𝟟",
+    "𝟠",
+    "𝟡",
+    "𝟘",
+]
 
 
 async def digitalpicloop():
@@ -97,9 +89,13 @@ async def digitalpicloop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
+        time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
-        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        name = f"{RR7PP} {HI}"
+        for normal in HM:
+            if normal in normzltext:
+                namefont = namerzfont[normzltext.index(normal)]
+                HM = HM.replace(normal, namefont)
+        name = f"{RR7PP} {HM}"
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -113,8 +109,8 @@ async def autoname_loop():
 async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
-        HM = time.strftime("%I:%M")
-        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
+        time.strftime("%d.%m.%Y")
+        HI = time.strftime("%I:%M")
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
@@ -128,7 +124,8 @@ async def autobio_loop():
 
 @jmthon.ar_cmd(
     pattern="الصورة الوقتية$",
-    command=("الصورة الوقتية", plugin_category),)
+    command=("الصورة الوقتية", plugin_category),
+)
 async def _(event):
     "To set random colour pic with time to profile pic"
     downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
@@ -144,7 +141,8 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="اسم وقتي$",
-    command=("اسم وقتي", plugin_category),)
+    command=("اسم وقتي", plugin_category),
+)
 async def _(event):
     "To set your display name along with time"
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
@@ -156,7 +154,8 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="بايو وقتي$",
-    command=("بايو وقتي", plugin_category),)
+    command=("بايو وقتي", plugin_category),
+)
 async def _(event):
     "To update your bio along with time"
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
@@ -168,7 +167,8 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="انهاء ([\s\S]*)",
-    command=("انهاء", plugin_category),)
+    command=("انهاء", plugin_category),
+)
 async def _(event):  # sourcery no-metrics
     "To stop the functions of autoprofile plugin"
     input_str = event.pattern_match.group(1)
@@ -209,7 +209,6 @@ async def _(event):  # sourcery no-metrics
             f"عـذرا يجـب استـخدام الامـر بشـكل صحـيح 🧸♥",
             parse_mode=_format.parse_pre,
         )
-
 
 
 jmthon.loop.create_task(digitalpicloop())
