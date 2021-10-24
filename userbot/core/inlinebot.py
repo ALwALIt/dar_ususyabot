@@ -58,22 +58,22 @@ def main_menu():
         \n\
         \n◽ جيـبثون لـ {mention}**"
     buttons = [
-        (Button.inline("ℹ️ Info", data="check"),),
+        (Button.inline("ℹ️ • التعليمات •", data="check"),),
         (
-            Button.inline(f"👮‍♂️ Admin ({len(GRP_INFO['admin'])})", data="admin_menu"),
-            Button.inline(f"🤖 Bot ({len(GRP_INFO['bot'])})", data="bot_menu"),
+            Button.inline(f"👮‍♂️ • اوامر الادمن • ({len(GRP_INFO['admin'])})", data="admin_menu"),
+            Button.inline(f"🤖 • اوامر البوت • ({len(GRP_INFO['bot'])})", data="bot_menu"),
         ),
         (
-            Button.inline(f"🎨 Fun ({len(GRP_INFO['fun'])})", data="fun_menu"),
-            Button.inline(f"🧩 Misc ({len(GRP_INFO['misc'])})", data="misc_menu"),
+            Button.inline(f"🎨 • اوامر التسلية • ({len(GRP_INFO['fun'])})", data="fun_menu"),
+            Button.inline(f"🎈 • اوامر الصيغ والبحث • ({len(GRP_INFO['misc'])})", data="misc_menu"),
         ),
         (
-            Button.inline(f"🧰 Tools ({len(GRP_INFO['tools'])})", data="tools_menu"),
-            Button.inline(f"🗂 Utils ({len(GRP_INFO['utils'])})", data="utils_menu"),
+            Button.inline(f"🧰 • الادوات • ({len(GRP_INFO['tools'])})", data="tools_menu"),
+            Button.inline(f"🗂 • الملفات • ({len(GRP_INFO['utils'])})", data="utils_menu"),
         ),
         (
-            Button.inline(f"➕ Extra ({len(GRP_INFO['extra'])})", data="extra_menu"),
-            Button.inline("🔒 Close Menu", data="close"),
+            Button.inline(f"🧸 • اوامر متفرعه • ({len(GRP_INFO['extra'])})", data="extra_menu"),
+            Button.inline("🔒 • اغلاق القائمة •", data="close"),
         ),
     ]
 
@@ -171,7 +171,7 @@ def paginate_help(
                 )
             ]
         else:
-            pairs = pairs + [(Button.inline("⚙️ Main Menu", data="mainmenu"),)]
+            pairs = pairs + [(Button.inline("⚙️ • القائمة الرئيسية •", data="mainmenu"),)]
     elif len(pairs) > number_of_rows:
         if category_pgno < 0:
             category_pgno = len(pairs) + category_pgno
@@ -184,7 +184,7 @@ def paginate_help(
                     data=f"{prefix}_prev({modulo_page})_command_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
-                    "⬅️ Back ",
+                    "⬅️ • الرجوع • ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
                 Button.inline(
@@ -199,7 +199,7 @@ def paginate_help(
         pairs = pairs + [
             (
                 Button.inline(
-                    "⬅️ Back ",
+                    "⬅️ • الرجوع • ",
                     data=f"back_plugin_{category_plugins}_{category_pgno}",
                 ),
             )
@@ -336,7 +336,7 @@ async def inline_handler(event):  # sourcery no-metrics
 
             buttons = [Button.inline("عـرض الـرسـالة 🔐", data=f"troll_{timestamp}")]
             result = builder.article(
-                title="رسـالة تـرول من سـورس جمـثون 🧸♥",
+                title="رسـالة تـرول من سـورس جيبثون 🧸♥",
                 text=f"فقـط {razan} هـو مـن يستـطيع مشـاهدتهـا !",
                 buttons=buttons,
             )
@@ -386,7 +386,7 @@ async def inline_handler(event):  # sourcery no-metrics
 
             buttons = [Button.inline("عـرض الـرسـالة 🔐", data=f"rzan_{timestamp}")]
             result = builder.article(
-                title="همسـة سـرية من سـورس جمـثون 🧸♥",
+                title="همسـة سـرية من سـورس جيبثون 🧸♥",
                 text=f"فقـط {razan} هـو مـن يستـطيع مشـاهدتهـا !",
                 buttons=buttons,
             )
@@ -409,7 +409,7 @@ async def inline_handler(event):  # sourcery no-metrics
 
             buttons = [Button.inline("قراءة الـرسالـة ", data=f"hide_{timestamp}")]
             result = builder.article(
-                title="رسـالة مخفيـة من سـورس جمـثون 🧸♥",
+                title="رسـالة مخفيـة من سـورس جيبثون 🧸♥",
                 text=f"✖✖✖",
                 buttons=buttons,
             )
@@ -447,11 +447,11 @@ async def inline_handler(event):  # sourcery no-metrics
                             data=f"ytdl_next_{key_}_1",
                         ),
                         Button.inline(
-                            "📜  List all",
+                            "📜  • اضهار القائمة •",
                             data=f"ytdl_listall_{key_}_1",
                         ),
                         Button.inline(
-                            "⬇️  Download",
+                            "⬇️  • تحميل •",
                             data=f'ytdl_download_{outdata[1]["video_id"]}_0',
                         ),
                     ]
@@ -472,7 +472,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     id=str(uuid4()),
                     type="photo",
                     title=link,
-                    description="⬇️ Click to Download",
+                    description="⬇️ • اضغط للتحميل •",
                     thumb=photo,
                     content=photo,
                     send_message=types.InputBotInlineMessageMediaAuto(
@@ -559,10 +559,10 @@ async def inline_handler(event):  # sourcery no-metrics
     else:
         buttons = [
             (
-                Button.url("قنـاة السـورس ⚒️", "https://t.me/Jmthon"),
+                Button.url("قنـاة السـورس ⚒️", "https://t.me/Jepthon"),
                 Button.url(
                     "كـروب المـساعدة 📬",
-                    "https://t.me/lMl10l",
+                    "https://t.me/Jepthon1",
                 ),
             )
         ]
@@ -571,12 +571,12 @@ async def inline_handler(event):  # sourcery no-metrics
             url=ROZLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "**[بـوت جيـبثون 🧸♥](https://t.me/Jmthon)**\
+            "**[بـوت جيـبثون 🧸♥](https://t.me/Jepthon)**\
             \n\
             \n❤ جيـبثون هـو بـوت بسـيط يدخـل الـى حسـابك لجعـلك تتحـكم به معـ اوامـر معينـة.\
             \n\
             \n**اذا كـنت تـرغب بتـنصيـب السـورس عـلى حسـابك ,\
-            \n🐾 تعال الـى [كروب المسـاعدة](https://t.me/lMl10l)!**",
+            \n🐾 تعال الـى [كروب المسـاعدة](https://t.me/Jepthon1)!**",
             "md",
         )
         result = types.InputBotInlineResult(
@@ -584,7 +584,7 @@ async def inline_handler(event):  # sourcery no-metrics
             type="photo",
             title="Jmthon UserBot 🧸♥",
             description="ادخـل كـروب المسـاعدة",
-            url="https://t.me/lMl10l",
+            url="https://t.me/Jepthon1",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(
