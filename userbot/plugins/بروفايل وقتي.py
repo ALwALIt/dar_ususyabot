@@ -96,8 +96,8 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         HM = time.strftime("%I:%M")
-        go = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        name = f"{RR7PP} {HM}"
+        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
+        name = f"{RR7PP} {HI}"
         LOGS.info(name)
         try:
             await iqthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -112,8 +112,8 @@ async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
         HM = time.strftime("%I:%M")
-        go = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        bio = f"{RR7PP} {DEFAULTUSERBIO}  - {HM}"
+        HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
+        bio = f"{RR7PP} {DEFAULTUSERBIO}  - {HI}"
         LOGS.info(bio)
         try:
             await iqthon(functions.account.UpdateProfileRequest(about=bio))
