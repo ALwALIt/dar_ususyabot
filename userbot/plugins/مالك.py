@@ -35,12 +35,12 @@ def get_key(val):
 
 
 @jmthon.ar_cmd(
-    pattern="مالك (on|off)$",
-    command=("مالك", plugin_category),
+    pattern="sudo (on|off)$",
+    command=("sudo", plugin_category),
     info={
         "header": "To enable or disable sudo of your Catuserbot.",
         "description": "Initially all sudo commands are disabled, you need to enable them by addscmd\n Check `{tr}help -c addscmd`",
-        "usage": "{tr}مالك <on/off>",
+        "usage": "{tr}sudo <on/off>",
     },
 )
 async def chat_blacklist(event):
@@ -51,7 +51,7 @@ async def chat_blacklist(event):
         if gvarstatus("sudoenable") is not None:
             return await edit_delete(event, "__Sudo is already enabled.__")
         addgvar("sudoenable", "true")
-        text = "__• خاصية المالك تم تشغيلها بنجاح •.__\n"
+        text = "__Enabled sudo successfully.__\n"
         if len(sudousers) != 0:
             text += (
                 "**Bot is reloading to apply the changes. Please wait for a minute**"
@@ -69,7 +69,7 @@ async def chat_blacklist(event):
             )
     if gvarstatus("sudoenable") is not None:
         delgvar("sudoenable")
-        text = "__• تم اطفاك خاصية المالك بنجاح •__"
+        text = "__Disabled sudo successfully.__"
         if len(sudousers) != 0:
             text += (
                 "**Bot is reloading to apply the changes. Please wait for a minute**"
@@ -89,11 +89,11 @@ async def chat_blacklist(event):
 
 
 @jmthon.ar_cmd(
-    pattern="اضف مالك(?:\s|$)([\s\S]*)",
-    command=("اضف مالك", plugin_category),
+    pattern="addsudo(?:\s|$)([\s\S]*)",
+    command=("addsudo", plugin_category),
     info={
         "header": "To add user as your sudo.",
-        "usage": "{tr}اضف مالك <username/reply/mention>",
+        "usage": "{tr}addsudo <username/reply/mention>",
     },
 )
 async def add_sudo_user(event):
@@ -102,7 +102,7 @@ async def add_sudo_user(event):
     if replied_user is None:
         return
     if replied_user.id == event.client.uid:
-        return await edit_delete(event, "__• وين لكيت هل كلاوات ترد على نفسك !•__.")
+        return await edit_delete(event, "__You can't add yourself to sudo.__.")
     if replied_user.id in _sudousers_list():
         return await edit_delete(
             event,
@@ -129,8 +129,8 @@ async def add_sudo_user(event):
 
 
 @jmthon.ar_cmd(
-    pattern="حذف مالك(?:\s|$)([\s\S]*)",
-    command=("حذف مالك", plugin_category),
+    pattern="delsudo(?:\s|$)([\s\S]*)",
+    command=("delsudo", plugin_category),
     info={
         "header": "To remove user from your sudo.",
         "usage": "{tr}delsudo <username/reply/mention>",
@@ -148,20 +148,20 @@ async def _(event):
     if str(replied_user.id) not in sudousers:
         return await edit_delete(
             event,
-            f"{mentionuser(get_display_name(replied_user),replied_user.id)} • هذا الشخص ليس مالك لحذفه 🧸•.",
+            f"{mentionuser(get_display_name(replied_user),replied_user.id)} __is not in your sudo__.",
         )
     del sudousers[str(replied_user.id)]
     sql.del_collection("sudousers_list")
     sql.add_collection("sudousers_list", sudousers, {})
-    output = f"{mentionuser(get_display_name(replied_user),replied_user.id)} •لقد تم ازالة الشخص من قائمة المالكين 🎈•\n"
+    output = f"{mentionuser(get_display_name(replied_user),replied_user.id)} __is removed from your sudo users.__\n"
     output += "**Bot is reloading to apply the changes. Please wait for a minute**"
     msg = await edit_or_reply(event, output)
     await event.client.reload(msg)
 
 
 @jmthon.ar_cmd(
-    pattern="قائمة المالكين$",
-    command=("قائمة المالكين", plugin_category),
+    pattern="vsudo$",
+    command=("vsudo", plugin_category),
     info={
         "header": "To list users for whom you are sudo.",
         "usage": "{tr}vsudo",
@@ -176,21 +176,21 @@ async def _(event):
         sudousers = {}
     if len(sudochats) == 0:
         return await edit_delete(
-            event, "__• هذا ليس مالك الحساب في جيبثون ❌ •.__"
+            event, "__There are no sudo users for your Catuserbot.__"
         )
     result = "**The list of sudo users for your Catuserbot are :**\n\n"
     for chat in sudochats:
-        result += f"☞ **الاسم:** {mentionuser(sudousers[str(chat)]['chat_name'],sudousers[str(chat)]['chat_id'])}\n"
-        result += f"**ايدي الدردشه :** `{chat}`\n"
+        result += f"☞ **Name:** {mentionuser(sudousers[str(chat)]['chat_name'],sudousers[str(chat)]['chat_id'])}\n"
+        result += f"**Chat Id :** `{chat}`\n"
         username = f"@{sudousers[str(chat)]['chat_username']}" or "__None__"
-        result += f"**معرفه :** {username}\n"
+        result += f"**Username :** {username}\n"
         result += f"Added on {sudousers[str(chat)]['date']}\n\n"
     await edit_or_reply(event, result)
 
 
 @jmthon.ar_cmd(
-    pattern="ام(s)?(?:\s|$)([\s\S]*)",
-    command=("ام", plugin_category),
+    pattern="addscmd(s)?(?:\s|$)([\s\S]*)",
+    command=("addscmd", plugin_category),
     info={
         "header": "To enable cmds for sudo users.",
         "flags": {
@@ -282,8 +282,8 @@ async def _(event):  # sourcery no-metrics
 
 
 @jmthon.ar_cmd(
-    pattern="حذف امر(s)?(?:\s|$)([\s\S]*)?",
-    command=("حذف امر", plugin_category),
+    pattern="rmscmd(s)?(?:\s|$)([\s\S]*)?",
+    command=("rmscmd", plugin_category),
     info={
         "header": "To disable given cmds for sudo.",
         "flags": {
@@ -374,8 +374,8 @@ async def _(event):  # sourcery no-metrics
 
 
 @jmthon.ar_cmd(
-    pattern="قائمة الاوامر( -d)?$",
-    command=("قائمة الاوامر", plugin_category),
+    pattern="vscmds( -d)?$",
+    command=("vscmds", plugin_category),
     info={
         "header": "To show list of enabled cmds for sudo.",
         "description": "will show you the list of all enabled commands",
