@@ -35,8 +35,8 @@ def get_key(val):
 
 
 @jmthon.ar_cmd(
-    pattern="sudo (on|off)$",
-    command=("sudo", plugin_category),
+    pattern="مالك (on|off)$",
+    command=("مالك", plugin_category),
     info={
         "header": "To enable or disable sudo of your Catuserbot.",
         "description": "Initially all sudo commands are disabled, you need to enable them by addscmd\n Check `{tr}help -c addscmd`",
@@ -54,7 +54,7 @@ async def chat_blacklist(event):
         text = "__Enabled sudo successfully.__\n"
         if len(sudousers) != 0:
             text += (
-                "**Bot is reloading to apply the changes. Please wait for a minute**"
+                "**• جارِ اعادة تحديث بوت جيبثون سيتم اخبارك عند اكتمال التحديث انتضر دقيقه •**"
             )
             msg = await edit_or_reply(
                 event,
@@ -72,7 +72,7 @@ async def chat_blacklist(event):
         text = "__Disabled sudo successfully.__"
         if len(sudousers) != 0:
             text += (
-                "**Bot is reloading to apply the changes. Please wait for a minute**"
+                "**• جارِ اعادة تحديث بوت جيبثون سيتم اخبارك عند اكتمال التحديث انتضر دقيقه •**"
             )
             msg = await edit_or_reply(
                 event,
@@ -89,8 +89,8 @@ async def chat_blacklist(event):
 
 
 @jmthon.ar_cmd(
-    pattern="addsudo(?:\s|$)([\s\S]*)",
-    command=("addsudo", plugin_category),
+    pattern="اضف مالك(?:\s|$)([\s\S]*)",
+    command=("اضف مالك", plugin_category),
     info={
         "header": "To add user as your sudo.",
         "usage": "{tr}addsudo <username/reply/mention>",
@@ -123,14 +123,14 @@ async def add_sudo_user(event):
     sql.del_collection("sudousers_list")
     sql.add_collection("sudousers_list", sudousers, {})
     output = f"{mentionuser(userdata['chat_name'],userdata['chat_id'])} __is Added to your sudo users.__\n"
-    output += "**Bot is reloading to apply the changes. Please wait for a minute**"
+    output += "**• جارِ اعادة تحديث بوت جيبثون سيتم اخبارك عند اكتمال التحديث انتضر دقيقه •**"
     msg = await edit_or_reply(event, output)
     await event.client.reload(msg)
 
 
 @jmthon.ar_cmd(
-    pattern="delsudo(?:\s|$)([\s\S]*)",
-    command=("delsudo", plugin_category),
+    pattern="حذف مالك(?:\s|$)([\s\S]*)",
+    command=("حذف مالك", plugin_category),
     info={
         "header": "To remove user from your sudo.",
         "usage": "{tr}delsudo <username/reply/mention>",
@@ -154,14 +154,14 @@ async def _(event):
     sql.del_collection("sudousers_list")
     sql.add_collection("sudousers_list", sudousers, {})
     output = f"{mentionuser(get_display_name(replied_user),replied_user.id)} __is removed from your sudo users.__\n"
-    output += "**Bot is reloading to apply the changes. Please wait for a minute**"
+    output += "**• جارِ اعادة تحديث بوت جيبثون سيتم اخبارك عند اكتمال التحديث انتضر دقيقه •**"
     msg = await edit_or_reply(event, output)
     await event.client.reload(msg)
 
 
 @jmthon.ar_cmd(
-    pattern="vsudo$",
-    command=("vsudo", plugin_category),
+    pattern="المالكين$",
+    command=("المالكين", plugin_category),
     info={
         "header": "To list users for whom you are sudo.",
         "usage": "{tr}vsudo",
@@ -189,8 +189,8 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="addscmd(s)?(?:\s|$)([\s\S]*)",
-    command=("addscmd", plugin_category),
+    pattern="اضف امر(s)?(?:\s|$)([\s\S]*)",
+    command=("اضف امر", plugin_category),
     info={
         "header": "To enable cmds for sudo users.",
         "flags": {
@@ -273,7 +273,7 @@ async def _(event):  # sourcery no-metrics
         sqllist.add_to_list("sudo_enabled_cmds", cmd)
     result = f"__Successfully enabled __ `{len(loadcmds)}` __ for CatUserbot sudo.__\n"
     output = (
-        result + "**Bot is reloading to apply the changes. Please wait for a minute**\n"
+        result + "**• جارِ اعادة تحديث بوت جيبثون سيتم اخبارك عند اكتمال التحديث انتضر دقيقه •**\n"
     )
     if errors != "":
         output += "\n**Errors:**\n" + errors
@@ -282,8 +282,8 @@ async def _(event):  # sourcery no-metrics
 
 
 @jmthon.ar_cmd(
-    pattern="rmscmd(s)?(?:\s|$)([\s\S]*)?",
-    command=("rmscmd", plugin_category),
+    pattern="حذف امر(s)?(?:\s|$)([\s\S]*)?",
+    command=("حذف امر", plugin_category),
     info={
         "header": "To disable given cmds for sudo.",
         "flags": {
@@ -365,7 +365,7 @@ async def _(event):  # sourcery no-metrics
             sqllist.rm_from_list("sudo_enabled_cmds", cmd)
     result = f"__Successfully disabled __ `{count}` __ for CatUserbot sudo.__\n"
     output = (
-        result + "**Bot is reloading to apply the changes. Please wait for a minute**\n"
+        result + "**• جارِ اعادة تحديث بوت جيبثون سيتم اخبارك عند اكتمال التحديث انتضر دقيقه •**\n"
     )
     if errors != "":
         output += "\n**Errors:**\n" + errors
@@ -374,8 +374,8 @@ async def _(event):  # sourcery no-metrics
 
 
 @jmthon.ar_cmd(
-    pattern="vscmds( -d)?$",
-    command=("vscmds", plugin_category),
+    pattern="ق الاوامر( -d)?$",
+    command=("ق الاوامر", plugin_category),
     info={
         "header": "To show list of enabled cmds for sudo.",
         "description": "will show you the list of all enabled commands",
