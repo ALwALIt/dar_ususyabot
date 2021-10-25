@@ -189,8 +189,8 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="اعطاء امر(s)?(?:\s|$)([\s\S]*)",
-    command=("اعطاء امر", plugin_category),
+    pattern="ام(s)?(?:\s|$)([\s\S]*)",
+    command=("ام", plugin_category),
     info={
         "header": "To enable cmds for sudo users.",
         "flags": {
