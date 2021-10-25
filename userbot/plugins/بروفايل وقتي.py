@@ -100,7 +100,7 @@ async def autoname_loop():
         name = f"{RR7PP} {HI}"
         LOGS.info(name)
         try:
-            await iqthon(functions.account.UpdateProfileRequest(first_name=name))
+            await jmthon(functions.account.UpdateProfileRequest(first_name=name))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
@@ -116,7 +116,7 @@ async def autobio_loop():
         bio = f"{RR7PP} {DEFAULTUSERBIO}  - {HI}"
         LOGS.info(bio)
         try:
-            await iqthon(functions.account.UpdateProfileRequest(about=bio))
+            await jmthon(functions.account.UpdateProfileRequest(about=bio))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
