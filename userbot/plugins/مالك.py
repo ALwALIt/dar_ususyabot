@@ -439,4 +439,4 @@ async def _(event):  # sourcery no-metrics
     await edit_or_reply(event, finalstr, aslink=True, linktext=text)
 
 
-iqthon.loop.create_task(_init())
+jmthon.loop.create_task(_init())
