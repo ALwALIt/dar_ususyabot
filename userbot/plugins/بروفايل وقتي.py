@@ -36,16 +36,16 @@ RR7PP = Config.TIME_JM or ""
 
 normzltext = "1234567890"
 namerzfont = [
-    "𝟙",  
-    "𝟚",
-    "𝟛",  # ههههههههههههههههههههههههههههههههههههههههههههههههه
-    "𝟜",  # اخمط وسمي نفسك مطور
-    "𝟝",  # غير مبري الذمه لكل شخص يخمط
-    "𝟞",  # ها خماط دي
-    "𝟟",
-    "𝟠",
-    "𝟡",
-    "𝟘",
+    "¹",  
+    "²",
+    "³",  # ههههههههههههههههههههههههههههههههههههههههههههههههه
+    "⁴",  # اخمط وسمي نفسك مطور
+    "⁵",  # غير مبري الذمه لكل شخص يخمط
+    "⁶",  # ها خماط دي
+    "⁷",
+    "⁸",
+    "⁹",
+    "⁰",
 ]
 
 
@@ -90,7 +90,7 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         time.strftime("%d-%m-%y")
-        HM = time.strftime("%I:%M")
+        HM = time.strftime("%I﹕%M")
         for normal in HM:
             if normal in normzltext:
                 namefont = namerzfont[normzltext.index(normal)]
