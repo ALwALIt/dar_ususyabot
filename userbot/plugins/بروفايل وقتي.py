@@ -1,23 +1,43 @@
 # اذا تخمط اذكر الحقوق رجـاءا  - 
 # كتابة وتعديل وترتيب  ~ @RR9R7
-# For ~ @jepthon
+# For ~ @Jmthon
 
 import asyncio
 import base64
 import os
+import random
+import re
 import shutil
 import time
+import urllib
 from datetime import datetime
 
+import requests
 from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.errors import FloodWaitError
 from telethon.tl import functions
+from urlextract import URLExtract
 
 from ..Config import Config
 from ..helpers.utils import _format
+from ..sql_helper.global_list import (
+    add_to_list,
+    get_collection_list,
+    is_in_list,
+    rm_from_list,
+)
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
-from . import AUTONAME, DEFAULT_BIO, edit_delete, jmthon, logging
+from . import (
+    AUTONAME,
+    BOTLOG,
+    BOTLOG_CHATID,
+    DEFAULT_BIO,
+    _catutils,
+    jmthon,
+    edit_delete,
+    logging,
+)
 
 plugin_category = "tools"
 
@@ -33,20 +53,6 @@ autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
 RR7PP = Config.TIME_JM or ""
-
-normzltext = "1234567890"
-namerzfont = [
-    "𝟷",  
-    "𝟸",
-    "𝟹",  # ههههههههههههههههههههههههههههههههههههههههههههههههه
-    "𝟺",  # اخمط وسمي نفسك مطور
-    "𝟻",  # غير مبري الذمه لكل شخص يخمط
-    "𝟼",  # ها خماط دي
-    "𝟽",
-    "𝟾",
-    "𝟿",
-    "𝟶",
-]
 
 
 async def digitalpicloop():
@@ -89,16 +95,12 @@ async def digitalpicloop():
 async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
-        time.strftime("%d-%m-%y")
         HM = time.strftime("%I:%M")
-        for normal in HM:
-            if normal in normzltext:
-                namefont = namerzfont[normzltext.index(normal)]
-                HM = HM.replace(normal, namefont)
+        HM = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
         name = f"{RR7PP} {HM}"
         LOGS.info(name)
         try:
-            await jmthon(functions.account.UpdateProfileRequest(first_name=name))
+            await iqthon(functions.account.UpdateProfileRequest(first_name=name))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
@@ -109,12 +111,12 @@ async def autoname_loop():
 async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
-        time.strftime("%d.%m.%Y")
-        HI = time.strftime("%I:%M")
-        bio = f"{DEFAULTUSERBIO} {HI}"
+        HM = time.strftime("%I:%M")
+        HM = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
+        bio = f"{EMOJI_TELETHON} {DEFAULTUSERBIO}  - {HM}"
         LOGS.info(bio)
         try:
-            await jmthon(functions.account.UpdateProfileRequest(about=bio))
+            await iqthon(functions.account.UpdateProfileRequest(about=bio))
         except FloodWaitError as ex:
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
@@ -124,8 +126,7 @@ async def autobio_loop():
 
 @jmthon.ar_cmd(
     pattern="الصورة الوقتية$",
-    command=("الصورة الوقتية", plugin_category),
-)
+    command=("الصورة الوقتية", plugin_category),)
 async def _(event):
     "To set random colour pic with time to profile pic"
     downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
@@ -141,8 +142,7 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="اسم وقتي$",
-    command=("اسم وقتي", plugin_category),
-)
+    command=("اسم وقتي", plugin_category),)
 async def _(event):
     "To set your display name along with time"
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
@@ -154,8 +154,7 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="بايو وقتي$",
-    command=("بايو وقتي", plugin_category),
-)
+    command=("بايو وقتي", plugin_category),)
 async def _(event):
     "To update your bio along with time"
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
@@ -167,8 +166,7 @@ async def _(event):
 
 @jmthon.ar_cmd(
     pattern="انهاء ([\s\S]*)",
-    command=("انهاء", plugin_category),
-)
+    command=("انهاء", plugin_category),)
 async def _(event):  # sourcery no-metrics
     "To stop the functions of autoprofile plugin"
     input_str = event.pattern_match.group(1)
@@ -209,6 +207,7 @@ async def _(event):  # sourcery no-metrics
             f"عـذرا يجـب استـخدام الامـر بشـكل صحـيح 🧸♥",
             parse_mode=_format.parse_pre,
         )
+
 
 
 jmthon.loop.create_task(digitalpicloop())
