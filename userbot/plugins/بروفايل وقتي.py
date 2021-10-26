@@ -113,7 +113,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         HM = time.strftime("%I:%M")
         HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        bio = f"{RR7PP} {DEFAULTUSERBIO}  - {HI}"
+        bio = f"{RR7PP} {DEFAULT_BIO}  - {HI}"
         LOGS.info(bio)
         try:
             await jmthon(functions.account.UpdateProfileRequest(about=bio))
