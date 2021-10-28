@@ -52,7 +52,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-lMl10l = Config.TIME_JEP or ""
+RR9R7 = Config.TIME_JM or ""
 
 
 async def digitalpicloop():
@@ -97,7 +97,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         HM = time.strftime("%I:%M")
         HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        name = f"{lMl10l} {HI}"
+        name = f"{RR9R7} {HI}"
         LOGS.info(name)
         try:
             await jmthon(functions.account.UpdateProfileRequest(first_name=name))
@@ -113,7 +113,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         HM = time.strftime("%I:%M")
         HI = requests.get(f"https://telethon.ml/DontTag.php?text={HM}").json()['newText']
-        bio = f"{lMl10l} {DEFAULT_BIO}  - {HI}"
+        bio = f"{RR9R7} {DEFAULT_BIO}  - {HI}"
         LOGS.info(bio)
         try:
             await jmthon(functions.account.UpdateProfileRequest(about=bio))
