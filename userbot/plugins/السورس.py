@@ -73,7 +73,7 @@ async def amireallyalive(event):
         )
 
 
-temp = """- {ALIVE_TEXT}**\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEPⵧⵧⵧⵧⵧⵧⵧⵧ\n
+temp = """- {ALIVE_TEXT}**\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEPⵧⵧⵧⵧⵧⵧⵧⵧ𓍻
 **{EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
 **{EMOJI} أصـدار جـيبثون :** `{jmver}`
