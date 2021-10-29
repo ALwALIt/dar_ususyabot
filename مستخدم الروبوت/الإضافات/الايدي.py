@@ -37,11 +37,11 @@ async def _(event):
             try:
                 if p.title:
                     return await edit_or_reply(
-                        event, f"⌯︙ايدي الدردشة/القناة `{p.title}` هو `{p.id}`"
+                        event, f"⌁︙ايدي الدردشة/القناة `{p.title}` هو `{p.id}`"
                     )
             except Exception as e:
                 LOGS.info(str(e))
-        await edit_or_reply(event, "⌯︙يـجب كـتابة مـعرف الشـخص او الـرد عـليه")
+        await edit_or_reply(event, "⌁︙يـجب كـتابة مـعرف الشـخص او الـرد عـليه")
     elif event.reply_to_msg_id:
         await event.get_input_chat()
         r_msg = await event.get_reply_message()
@@ -49,12 +49,12 @@ async def _(event):
             bot_api_file_id = pack_bot_file_id(r_msg.media)
             await edit_or_reply(
                 event,
-                f"⌯︙ايدي الدردشه: `{str(event.chat_id)}` \n⌯︙ايدي المستخدم: `{str(r_msg.sender_id)}` \n⌯︙ايدي الميديا: `{bot_api_file_id}`",
+                f"⌁︙ايدي الدردشه: `{str(event.chat_id)}` \n⌁︙ايدي المستخدم: `{str(r_msg.sender_id)}` \n⌁︙ايدي الميديا: `{bot_api_file_id}`",
             )
         else:
             await edit_or_reply(
                 event,
-               f"⌯︙ايدي الدردشه : `{str(event.chat_id)}` \n⌯︙ايدي المستخدم: `{str(r_msg.sender_id)}` ",
+               f"⌁︙ايدي الدردشه : `{str(event.chat_id)}` \n⌁︙ايدي المستخدم: `{str(r_msg.sender_id)}` ",
             )
     else:
-        await edit_or_reply(event, f"⌯︙الـدردشـة الـحالية : `{str(event.chat_id)}`")
+        await edit_or_reply(event, f"⌁︙الـدردشـة الـحالية : `{str(event.chat_id)}`")
