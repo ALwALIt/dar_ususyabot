@@ -42,7 +42,6 @@ async def amireallyalive(event):
     ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جيـبثون يعـمل بنـجـاح **"
     RR7_IMG = gvarstatus("ALIVE_PIC") 
     jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
-    TM = time.strftime("%I:%M")
     caption = jmthon_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         EMOJI=EMOJI,
@@ -74,11 +73,11 @@ async def amireallyalive(event):
         )
 
 
-temp = """- {ALIVE_TEXT}
+temp = """- {ALIVE_TEXT}**\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
 **{EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
 **{EMOJI} أصـدار جـيبثون :** `{jmver}`
 **{EMOJI} أصدار البـايثون :** `{pyver}`
 **{EMOJI} مدة التشغيل :** `{uptime}`
-**{EMOJI} الـوقت  :** `{TM}`
-**{EMOJI} المسـتخدم:** {mention}"""
+**{EMOJI} المسـتخدم:** {mention}
+𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧJEPⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻"""
