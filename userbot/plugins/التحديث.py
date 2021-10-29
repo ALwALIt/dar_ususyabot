@@ -271,6 +271,6 @@ async def upstream(event):
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
     if conf == "الان":
-        await event.edit("** ⌯︙جار تحـديـث سـورس جيـبثون انـتـظـر قـليـلا 🔨**")
+        await event.edit("** ⌯︙جار تحـديـث سـورس جيـبثون انـتـظـر قـليـلا ✅**")
         await update(event, repo, ups_rem, ac_br)
     return
