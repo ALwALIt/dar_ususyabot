@@ -1,57 +1,67 @@
-from telethon import events, Button
+
+import random
+import re
+import time
+from datetime import datetime
+from platform import python_version
+
+from telethon import version
+from telethon.errors.rpcerrorlist import (
+    MediaEmptyError,
+    WebpageCurlFailedError,
+    WebpageMediaEmptyError,
+)
+from telethon.events import CallbackQuery
+
+from userbot import StartTime, jmthon
+
 from ..Config import Config
+from ..core.managers import edit_or_reply
+from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
+from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
-from Jmthon.razan.resources.mybot import *
+from . import mention
 
-ROZ_PIC = "https://telegra.ph/file/6cd6bd71d01a2f75ec443.jpg"
 
-if Config.TG_BOT_USERNAME is not None and tgbot is not None:
-    @tgbot.on(events.InlineQuery)
-    async def inline_handler(event):
-        builder = event.builder
-        result = None
-        query = event.text
-        me = await bot.get_me()
-        if query.startswith("السورس") and event.query.user_id == bot.uid:
-            buttons = [
-                [
-                    Button.url("قنـاة السـورس ⚙️", "https://t.me/JepThon"),
-                    Button.url("المطـور 👨🏼‍💻", "https://t.me/DEVJEPTHON"),
-                ]
-            ]
-            if ROZ_PIC and ROZ_PIC.endswith((".jpg", ".png", "gif", "mp4")):
-                result = builder.photo(
-                    ROZ_PIC,
-                    text=ROZ,
-                    buttons=buttons,
-                    link_preview=False
-                )
-            elif ROZ_PIC:
-                result = builder.document(
-                    ROZ_PIC,
-                    title="JepThon - USERBOT",
-                    text=ROZ,
-                    buttons=buttons,
-                    link_preview=False,
-                )
-            else:
-                result = builder.article(
-                    title="JepThon - USERBOT",
-                    text=ROZ,
-                    buttons=buttons,
-                    link_preview=False,
-                )
-            await event.answer([result] if result else None)
-
-@bot.on(admin_cmd(outgoing=True, pattern="السورس"))
-async def repo(event):
-    if event.fwd_from:
-        return
-    RR7PP = Config.TG_BOT_USERNAME
-    if event.reply_to_msg_id:
-        await event.get_reply_message()
-    response = await bot.inline_query(RR7PP, "السورس")
-    await response[0].click(event.chat_id)
-    await event.delete()
-
-# edit by ~ @RR9R7
+@jmthon.on(admin_cmd(pattern="(السورس|سورس)(?: |$)(.*)"))    
+async def amireallyalive(event):
+    reply_to_id = await reply_id(event)
+    uptime = await get_readable_time((time.time() - StartTime))
+    _, check_sgnirts = check_data_base_heal_th()
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "⎈ ⦙"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "أهـلا بـك فـي جيبثون العربي  👾"
+    RR7_IMG = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/80727a17d54a33e821d16.jpg"
+    me = await event.client.get_me()
+    my_last = me.last_name
+    my_mention = f"[{me.last_name}](tg://user?id={me.id})"
+    TM = time.strftime("%I:%M")
+    if RR7_IMG:
+        CAT = [x for x in jmthon_IMG.split()]
+        A_IMG = list(CAT
+                    )
+        PIC = random.choice(A_IMG
+                           )
+        cat_caption = f"**{ALIVE_TEXT}**\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n" 
+**{EMOJI} مـدة الـتشغيل  : {uptime} **
+**{EMOJI} حسـابك  :   {my_mention} **
+**{EMOJI} الـوقت  : {TM} **
+**{EMOJI} السـورس :** @Jepthon 
+𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻"""
+        try:
+            await event.client.send_file(event.chat_id, 
+                 PIC, caption=cat_caption, 
+                    reply_to=reply_to_id
+                                        )
+            await event.delete()
+        except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
+            return await edit_or_reply(event
+                                      )
+    else:
+        await edit_or_reply(event,
+            f"**{ALIVE_TEXT}**\n\n"
+            f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEP⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n 
+            f"**{EMOJI} ❬ ٰمـدة الـتشغيل  : {uptime}  ٍَ❭**\n"
+            f"**{EMOJI} ❬ ِحسـابك  :   zatlin2  ٍَ❭**\n"
+            f"**{EMOJI} ❬ ٰ الـوقت  : {TM}  ٍَ❭**\n"
+            f"**{EMOJI} ❬ ٰالسـورس :** @Jepthon  ٍَ❭\n"
+            f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEP⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻" )
