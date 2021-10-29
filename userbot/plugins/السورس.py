@@ -62,6 +62,6 @@ async def amireallyalive(event):
             f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEP⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n 
             f"**{EMOJI} ❬ ٰمـدة الـتشغيل  : {uptime}  ٍَ❭**\n"
             f"**{EMOJI} ❬ ِحسـابك  :   zatlin2  ٍَ❭**\n"
-            f"**{EMOJI} ❬ ٰ الـوقت  : {TM}  ٍَ❭**\n"
+            f"**{EMOJI} ❬ ٰ الـوقت  : {HM}  ٍَ❭**\n"
             f"**{EMOJI} ❬ ٰالسـورس :** @Jepthon  ٍَ❭\n"
             f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEP⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻" )
