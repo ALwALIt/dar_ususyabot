@@ -22,7 +22,7 @@ DEFAULTUSER = str(AUTONAME) if AUTONAME else str(ALIVE_NAME)
 DEFAULTUSERBIO = (
     str(DEFAULT_BIO)
     if DEFAULT_BIO
-    else "الـحمد لله عـلى كـل شـيء"
+    else "𝗜 𝗝𝘂𝘀𝘁 𝗔𝘀𝗸𝗲𝗱 𝗙𝗼𝗿 𝗦𝗼𝗺𝗲 𝗣𝗲𝗮𝗰𝗲 🎀 𝑆𝐻 : @JEPTHON"
 )
 
 
@@ -59,7 +59,7 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(about=user_bio))
     pfile = await event.client.upload_file(profile_pic)
     await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
-    await edit_delete(event, "⌯︙تـم نسـخ الـحساب بـنجاح ✅")
+    await edit_delete(event, "⌁︙تـم نسـخ الـحساب بـنجاح ،✅")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
@@ -89,8 +89,8 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(about=bio))
     await event.client(functions.account.UpdateProfileRequest(first_name=name))
     await event.client(functions.account.UpdateProfileRequest(last_name=blank))
-    await edit_delete(event, "⌯︙تـم اعـادة الـحساب بـنجاح ✅")
+    await edit_delete(event, "⌁︙تـم اعـادة الـحساب بـنجاح ،✅")
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, f"⌯︙تـم اعادة الـحساب الى وضـعه الاصلـي ✅")
+            BOTLOG_CHATID, f"⌁︙تـم اعادة الـحساب الى وضـعه الاصلـي ،✅")
        
