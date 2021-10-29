@@ -75,7 +75,6 @@ async def amireallyalive(event):
 
 
 temp = """- {ALIVE_TEXT}
-"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEP⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
 **{EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
 **{EMOJI} أصـدار جـيبثون :** `{jmver}`
@@ -83,4 +82,3 @@ temp = """- {ALIVE_TEXT}
 **{EMOJI} مدة التشغيل :** `{uptime}`
 **{EMOJI} الـوقت  :** `{HM}`
 **{EMOJI} المسـتخدم:** {mention}"""
-"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJEP⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻" )
