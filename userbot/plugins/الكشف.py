@@ -23,7 +23,7 @@ async def fetch_info(replied_user, event):
             user_id=replied_user.user.id, offset=42, max_id=0, limit=80
         )
     )
-    replied_user_profile_photos_count = "⌯︙هذا المستخدم لم يضع اي صورة"
+    replied_user_profile_photos_count = "⌁︙هذا المستخدم لم يضع اي صورة"
     try:
         replied_user_profile_photos_count = replied_user_profile_photos.count
     except AttributeError:
@@ -34,7 +34,7 @@ async def fetch_info(replied_user, event):
     try:
         dc_id, location = get_input_location(replied_user.profile_photo)
     except Exception:
-        dc_id = "تعـذر جلـب ايدي الـديسي"
+        dc_id = "⌁︙تعـذر جلـب ايدي الـديسي"
     common_chat = replied_user.common_chats_count
     username = replied_user.user.username
     user_bio = replied_user.about
@@ -49,12 +49,12 @@ async def fetch_info(replied_user, event):
     first_name = (
         first_name.replace("\u2060", "")
         if first_name
-        else ("⌯︙هذا المستخدم ليس لديه اسم اول")
+        else ("⌁︙هذا المستخدم ليس لديه اسم اول")
     )
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
-    rotbat = ".「  مطـور السورس 𓄂𓆃 」." if user_id == 705475246 else (".「  العضـو 𓅫  」.") 
-    rotbat = ".「 مـالك الحساب 𓀫 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 else rotbat
-    username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
+    rotbat = ".「  مطـور السورس ⌁︙ 」." if user_id == 705475246 1983379011 else (".「  العضـو 𓅫  」.") 
+    rotbat = ".「 مـالك الحساب ⌁︙ 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 1983379011 else rotbat
+    username = "@{}".format(username) if username else ("⌁︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
     caption = "✛━━━━━━━━━━━━━✛ \n\n"
     caption += f"<b>- الاسـم ›</b> {first_name} {last_name}\n"
@@ -71,8 +71,8 @@ async def fetch_info(replied_user, event):
 
 
 @jmthon.ar_cmd(
-    pattern="كشف(?:\s|$)([\s\S]*)",
-    command=("كشف", plugin_category),
+    pattern="كشف المستخدم(?:\s|$)([\s\S]*)",
+    command="كشف المستخدم", plugin_category),
     info={
         "header": "Gets information of an user such as restrictions ban by spamwatch or cas.",
         "description": "That is like whether he banned is spamwatch or cas and small info like groups in common, dc ..etc.",
@@ -84,7 +84,7 @@ async def _(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if not replied_user:
         return
-    catevent = await edit_or_reply(event, "⌯︙جار إحضار معلومات المستخدم اننظر قليلا ⚒️")
+    catevent = await edit_or_reply(event, "⌁︙جار إحضار معلومات المستخدم اننظر قليلا ")
     replied_user = await event.client(GetFullUserRequest(replied_user.id))
     user_id = replied_user.user.id
     # some people have weird HTML in their names
@@ -156,12 +156,12 @@ async def who(event):
     replied_user, reason = await get_user_from_event(event)
     if not replied_user:
         return
-    cat = await edit_or_reply(event, "**⌯︙يتم استخراج معلومات المستخدم **")
+    cat = await edit_or_reply(event, "**⌁︙يتم استخراج معلومات المستخدم **")
     replied_user = await event.client(GetFullUserRequest(replied_user.id))
     try:
         photo, caption = await fetch_info(replied_user, event)
     except AttributeError:
-        return await edit_or_reply(cat, "**⌯︙لم يتم العثور على معلومات لهذا المستخدم **")
+        return await edit_or_reply(cat, "**⌁︙لم يتم العثور على معلومات لهذا المستخدم **")
     message_id_to_reply = await reply_id(event)
     try:
         await event.client.send_file(
@@ -181,8 +181,8 @@ async def who(event):
 #كـتابة  @RR7PP
 #تعديل وترتيب  @SBB_B
 @jmthon.ar_cmd(
-    pattern="رابط الحساب(?:\s|$)([\s\S]*)",
-    command=("رابط الحساب", plugin_category),
+    pattern="رابط المستخدم(?:\s|$)([\s\S]*)",
+    command=("رابط المستخدم", plugin_category),
     info={
         "header": "Generates a link to the user's PM .",
         "usage": "{tr}link <username/userid/reply>",
@@ -196,4 +196,4 @@ async def permalink(mention):
     if custom:
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌔︙[{tag}](tg://user?id={user.id})")
+    await edit_or_reply(mention, f"⌁︙[{tag}](tg://user?id={user.id})")
