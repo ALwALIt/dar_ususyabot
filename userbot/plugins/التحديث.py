@@ -65,7 +65,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**⌯︙قام مطورين السورس بتحديث جـيبثون**\n⌯︙**التـغييرات\n** {changelog}"
+        f"**⌯︙المطورين حدثـوا سـورس جيبثون**\n⌯︙**التـغييرات\n** {changelog}"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -107,7 +107,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     jasme = await event.edit(
-        "** ⌯︙تم تحديث سورس جـيبثون بنجاح انتظر قليلا سوف نخبرك بعد اعادة التشغيل !**"
+        "** ⌯︙تم تحديث السورس سانخبرك بعد اعادة التشغيل ✅**"
     )
     await event.client.reload(jasme)
 
@@ -203,7 +203,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event, "**⌯︙يـتـم البـحـث عـن تـحديثـات سـورس جيـبثون انـتـظـر**")
+    event = await edit_or_reply(event, "**⌯︙جـاري البحث عن تحديثات**")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
