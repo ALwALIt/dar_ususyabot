@@ -18,18 +18,18 @@ except:
 """
 plugin_category = "tools"
 
-PING_PIC = os.environ.get("PING_PIC") or ("https://telegra.ph/file/502a2c9751c3c06222c51.jpg")
+PING_PIC = os.environ.get("PING_PIC") or ("https://telegra.ph/file/a4cafd2056ea12b3a51ef.jpg")
 
-JM_TXT = os.environ.get("PING_TEXT") or "مـن لا يتعلم من الماضي لا يرحمه المستقبل  . 🖤"
+JM_TXT = os.environ.get("PING_TEXT") or ""
 
 
 @jmthon.ar_cmd(
-    pattern="بنك$",
-    command=("بنك", plugin_category),
+    pattern="البنك$",
+    command=("البنك", plugin_category),
     info={
         "header": "امر تجربه البوت اذا يشتغل ارسل  .بنك فقط",
         "option": "امر بنك المتطور كتابة  @RR7PP",
-        "usage": ["{tr}بنك", ],
+        "usage": ["{tr}البنك", ],
     },
 )
 async def _(event):
