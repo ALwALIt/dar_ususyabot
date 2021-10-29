@@ -25,7 +25,10 @@ plugin_category = "utils"
 
 #كتـابة وتعـديل:  @RR9R7
 
-@jmthon.on(admin_cmd(pattern="(السورس|سورس)(?: |$)(.*)"))
+@jmthon.ar_cmd(
+    pattern="فحص$",
+    command=("فحص", plugin_category),)
+
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
     reply_to_id = await reply_id(event)
