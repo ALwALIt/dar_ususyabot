@@ -12,7 +12,7 @@
 - احصل على الايبي هاش والايبي ايدي من  [هـنا](https://my.telegram.org/)    
 
 ### التنصيب عبر هيروكو ##
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/JepThon-AR/JepThon-PACK)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/USERBOTJEPTHON/JEPTHON-AR)
 
 ## الـقـناة ##
    <a href="https://t.me/JepThon"><img src="https://img.shields.io/badge/Source%20Dev%3F-here-inactive?&style=plastic?&logo=telegram" width=220px></a></p>
