@@ -34,7 +34,7 @@ async def amireallyalive(event):
     me = await event.client.get_me()
     my_last = me.last_name
     my_mention = f"[{me.last_name}](tg://user?id={me.id})"
-    TM = time.strftime("%I:%M")
+    HM = time.strftime("%I:%M")
     if RR7_IMG:
         CAT = [x for x in RR7_IMG.split()]
         A_IMG = list(CAT
@@ -44,7 +44,7 @@ async def amireallyalive(event):
         cat_caption = f"**{ALIVE_TEXT}**\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n" 
 **{EMOJI} مـدة الـتشغيل  : {uptime} **
 **{EMOJI} حسـابك  :   {my_mention} **
-**{EMOJI} الـوقت  : {TM} **
+**{EMOJI} الـوقت  : {HM} **
 **{EMOJI} السـورس :** @Jepthon 
 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻"""
         try:
