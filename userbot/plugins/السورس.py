@@ -3,7 +3,7 @@ from ..Config import Config
 from ..sql_helper.globals import gvarstatus
 from Jmthon.razan.resources.mybot import *
 
-ROZ_PIC = "https://telegra.ph/file/7a97963354e87e6fc7cde.jpg"
+ROZ_PIC = "https://telegra.ph/file/6cd6bd71d01a2f75ec443.jpg"
 
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
     @tgbot.on(events.InlineQuery)
@@ -16,7 +16,7 @@ if Config.TG_BOT_USERNAME is not None and tgbot is not None:
             buttons = [
                 [
                     Button.url("قنـاة السـورس ⚙️", "https://t.me/JepThon"),
-                    Button.url("المطـور 👨🏼‍💻", "https://t.me/lMl10l"),
+                    Button.url("المطـور 👨🏼‍💻", "https://t.me/DEVJEPTHON"),
                 ]
             ]
             if ROZ_PIC and ROZ_PIC.endswith((".jpg", ".png", "gif", "mp4")):
