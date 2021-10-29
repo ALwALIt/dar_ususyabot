@@ -20,7 +20,7 @@ plugin_category = "tools"
 
 PING_PIC = os.environ.get("PING_PIC") or ("https://telegra.ph/file/a4cafd2056ea12b3a51ef.jpg")
 
-JM_TXT = os.environ.get("PING_TEXT") or ""
+JM_TXT = os.environ.get("PING_TEXT") or "𝗜 𝗝𝘂𝘀𝘁 𝗔𝘀𝗸𝗲𝗱 𝗙𝗼𝗿 𝗦𝗼𝗺𝗲 𝗣𝗲𝗮𝗰𝗲 🎀 𝑆𝐻 : @JEPTHON"
 
 
 @jmthon.ar_cmd(
@@ -37,7 +37,7 @@ async def _(event):
         return
     reply_to_id = await reply_id(event)
     start = datetime.now()
-    cat = await edit_or_reply(event, "<b><i>  ❤️⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃝⃟✨ البــــنك... 🍀⃝⃝⃟🍂 </b></i>", "html")
+    cat = await edit_or_reply(event, "<b><i>   البــــنك...  </b></i>", "html")
     end = datetime.now()
     await cat.delete()
     ms = (end - start).microseconds / 1000
