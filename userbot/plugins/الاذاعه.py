@@ -11,15 +11,15 @@ from . import *
 plugin_category = "utils"
 
 @jmthon.ar_cmd(
-    pattern="وجه ?(.*)$",
-    command=("وجه", plugin_category),
+    pattern="توجيه ?(.*)$",
+    command=("توجيه", plugin_category),
 )
 async def gcast(event):
     if not event.out and not is_fullsudo(event.sender_id):
-        return await edit_or_reply(event, "هـذا الامـر مقـيد للسـودو")
+        return await edit_or_reply(event, "هـذا الامـر مقـيد ")
     xx = event.pattern_match.group(1)
     if not xx:
-        return edit_or_reply(event, "** ⌯︙يجـب وضـع نـص مع الامـر للتوجيـه**")
+        return edit_or_reply(event, "** ⌯︙يجـب وضـع نـص مع الـتوجيه**")
     tt = event.text
     msg = tt[6:]
     event = await edit_or_reply(event, "** ⌯︙يتـم الـتوجيـة للـمجموعـات انتـظر قليلا**")
