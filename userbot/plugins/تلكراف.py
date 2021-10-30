@@ -89,8 +89,8 @@ async def _(event):
             ms = (end - start).seconds
             os.remove(downloaded_file_name)
             await jmevent.edit(
-                f"** ⌔︙الـرابـط : **[إضـغط هنـا](https://telegra.ph{media_urls[0]})\
-                    \n** ⌁︙الوقـت المأخـوذ لرـفع الصـوره : **`{ms} ثـانيـة.`",
+                f"**  ⌁︙الـرابـط : **[إضـغط هنـا](https://telegra.ph{media_urls[0]})\
+                    \n** ⌁︙الوقـت المأخـوذ لرفـع الصوره الصـوره : **`{ms} ثـانيـة.`",
                 link_preview=False,
             )
     elif input_str in ["نص", "t"]:
@@ -126,7 +126,7 @@ async def _(event):
         ms = (end - start).seconds
         jmt = f"https://telegra.ph/{response['path']}"
         await jmevent.edit(
-            f"** ⌔︙الـرابـط : ** [اضغـط هنـا]({jmt})\
+            f"** .تحديث الـرابـط : ⌁︙ ** [اضغـط هنـا]({jmt})\
                  \n** ⌁︙الـوقـت المـأخـوذ للرفع : **`{ms} ثـانيـة.`",
             link_preview=False,
         )
