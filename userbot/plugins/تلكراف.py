@@ -90,7 +90,7 @@ async def _(event):
             os.remove(downloaded_file_name)
             await jmevent.edit(
                 f"**  ⌁︙الـرابـط : **[إضـغط هنـا](https://telegra.ph{media_urls[0]})\
-                    \n** ⌁︙الوقـت المأخـوذ لرفـع الصوره الصـوره : **`{ms} ثـانيـة.`",
+                    \n** ⌁︙الوقـت المأخـوذ لرفـع الصوره عـلئ التـلكراف : **`{ms} ثـانيـة.`",
                 link_preview=False,
             )
     elif input_str in ["نص", "t"]:
