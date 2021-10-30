@@ -6,9 +6,6 @@ from telethon.errors import (
     MessageNotModifiedError,
     UserAdminInvalidError,
 )
-
-from telethon.tl.functions.channels import GetFullChannelRequest
-from telethon.tl.functions.phone import CreateGroupCallRequest, DiscardGroupCallRequest, GetGroupCallRequest, InviteToGroupCallRequest
 from telethon.tl import functions
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import (
@@ -52,15 +49,6 @@ async def ban_user(chat_id, i, rights):
         return True, None
     except Exception as exc:
         return False, str(exc)
-
-async def getvc(event):
-    chat_ = await event.client(GetFullChannelRequest(event.chat_id))
-    _chat = await event.client(GetGroupCallRequest(chat_.full_chat.call))
-    return _chat.call
-
-def all_users(a, b):
-    for c in range(0, len(a), b):
-        yield a[c : c + b]
 
 @jmthon.ar_cmd(
     pattern="اطردني$",
@@ -121,40 +109,6 @@ async def _(event):
     await catevent.edit(
         f"⌯︙ تم بنجاح طرد من {total} الاعضاء ✅ "
     )
-
-
-@jmthon.ar_cmd(pattern="ف الاتصال$")
-async def _(event):
-    try:
-        await event.client(CreateGroupCallRequest(event.chat_id))
-        await eor(event, "**🔊 تم فتح الاتصال بنجاح ✅**")
-    except Exception as e:
-        await eod(event, f"`{str(e)}`")
-
-@jmthon.ar_cmd(pattern="غ الاتصال$")
-async def _(event):
-    try:
-        await event.client(DiscardGroupCallRequest(await getvc(event)))
-        await eor(event, "**📍 تم انهاء الاتصال بنجاح ✅!!**")
-    except Exception as e:
-        await eod(event, f"`{str(e)}`")
-
-@jmthon.ar_cmd(pattern="د للاتصال$")
-async def _(event):
-    hell = await eor(event, "`🧐 جار دعوة المستخدم الى الاتصال....`")
-    users = []
-    i = 0
-    async for j in event.client.iter_participants(event.chat_id):
-        if not j.bot:
-            users.append(j.id)
-    hel_ = list(all_users(users, 6))
-    for k in hel_:
-        try:
-            await event.client(InviteToGroupCallRequest(call=await getvc(event), users=k))
-            i += 6
-        except BaseException:
-            pass
-    await hell.edit(f"**🚀 لقد دعاك {i} المستخدم الى الصعود للمكالمة**")
 
 @jmthon.ar_cmd(
     pattern="تفليش بالحظر$",
