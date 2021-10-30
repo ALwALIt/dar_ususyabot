@@ -40,7 +40,7 @@ async def _(e):
 @jmthon.on(admin_cmd(pattern="غلق المكالمه(?: |$)(.*)"))
 async def _(e):
     try:
-        await e.client(stopvc(e.chat_id))
+        await e.client(DiscardGroupCallRequest(await getvc(event)))
         await edit_or_reply(e, "`جار انهاء المكالمة ✅...`")
     except Exception as ex:
         await edit_or_reply(e, f"`{str(ex)}`")
