@@ -40,7 +40,7 @@ async def stylish_generator(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await edit_or_reply(event, "**اعـطنـي نـص اولا 🧸🖤**")
+        await edit_or_reply(event, "**اعـطنـي نـص اولا 🌺😗🗿**")
         return
     string = "  ".join(args).lower()
     for normalfontcharacter in string:
