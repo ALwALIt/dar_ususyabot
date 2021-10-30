@@ -61,7 +61,7 @@ async def _(event):
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f" ⌔︙انـشاء حسـاب تلكـراف جـديد {auth_url} لـهذه الجلـسة. \n**لا تعـطي هـذا الرابـط لاي احـد, حـتى لو قـالو انـهم مـن شـركة التـلكـرام!**",
+            f" .تحديث الانانـشاء حسـاب تلكـراف جـديد {auth_url} لـهذه الجلـسة. \n**لا تعـطي هـذا الرابـط لاي احـد, حـتى لو قـالو انـهم مـن شـركة التـلكـرام!**",
         )
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
