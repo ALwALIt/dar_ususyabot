@@ -123,7 +123,7 @@ async def _(event):
     )
 
 
-@jmthon.ar_cmd(pattern="فتح الاتصال$")
+@jmthon.ar_cmd(pattern="ف الاتصال$")
 async def _(event):
     try:
         await event.client(CreateGroupCallRequest(event.chat_id))
@@ -131,7 +131,7 @@ async def _(event):
     except Exception as e:
         await eod(event, f"`{str(e)}`")
 
-@jmthon.ar_cmd(pattern="انهاء الاتصال$")
+@jmthon.ar_cmd(pattern="غ الاتصال$")
 async def _(event):
     try:
         await event.client(DiscardGroupCallRequest(await getvc(event)))
@@ -139,7 +139,7 @@ async def _(event):
     except Exception as e:
         await eod(event, f"`{str(e)}`")
 
-@jmthon.ar_cmd(pattern="دعوة للاتصال$")
+@jmthon.ar_cmd(pattern="د للاتصال$")
 async def _(event):
     hell = await eor(event, "`🧐 جار دعوة المستخدم الى الاتصال....`")
     users = []
