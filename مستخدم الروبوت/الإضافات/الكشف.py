@@ -52,7 +52,7 @@ async def fetch_info(replied_user, event):
         else ("⌁︙هذا المستخدم ليس لديه اسم اول")
     )
     last_name = last_name.replace("\u2060", "") if last_name else (" ")
-    rotbat = ".「  مطـور السورس ⌁︙ 」." if user_id == 705475246 1983379011 else (".「  العضـو 𓅫  」.") 
+    rotbat = ".「  مطـور السورس ⌁︙ 」." if user_id == 705475246 else (".「  العضـو 𓅫  」.") 
     rotbat = ".「 مـالك الحساب ⌁︙ 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 1983379011 else rotbat
     username = "@{}".format(username) if username else ("⌁︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
