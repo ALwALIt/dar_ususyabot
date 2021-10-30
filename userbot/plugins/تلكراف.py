@@ -66,7 +66,7 @@ async def _(event):
     optional_title = event.pattern_match.group(5)
     if not event.reply_to_msg_id:
         return await jmevent.edit(
-            "` ⌔︙يرجـئ الرد ع صوره لـيتم رفعها علئ الـتلكراف`",
+            "`⌁︙ يرجـئ الرد ع صوره لـيتم رفعها علئ الـتلكراف`",
         )
 
     start = datetime.now()
@@ -76,13 +76,13 @@ async def _(event):
         downloaded_file_name = await event.client.download_media(
             r_message, Config.TEMP_DIR
         )
-        await jmevent.edit(f"` ⌔︙تـم التحـميل الـى {downloaded_file_name}`")
+        await jmevent.edit(f"`⌁︙تـم التحـميل الـى تلـكراف{downloaded_file_name}`")
         if downloaded_file_name.endswith((".webp")):
             resize_image(downloaded_file_name)
         try:
             media_urls = upload_file(downloaded_file_name)
         except exceptions.TelegraphException as exc:
-            await jmevent.edit(f"** ⌔︙خـطأ : **\n`{exc}`")
+            await jmevent.edit(f"** ⌁︙خـطأ : **\n`{exc}`")
             os.remove(downloaded_file_name)
         else:
             end = datetime.now()
@@ -90,7 +90,7 @@ async def _(event):
             os.remove(downloaded_file_name)
             await jmevent.edit(
                 f"** ⌔︙الـرابـط : **[إضـغط هنـا](https://telegra.ph{media_urls[0]})\
-                    \n** ⌔︙الوقـت المأخـوذ : **`{ms} ثـانيـة.`",
+                    \n** ⌁︙الوقـت المأخـوذ لرـفع الصـوره : **`{ms} ثـانيـة.`",
                 link_preview=False,
             )
     elif input_str in ["نص", "t"]:
@@ -127,6 +127,6 @@ async def _(event):
         jmt = f"https://telegra.ph/{response['path']}"
         await jmevent.edit(
             f"** ⌔︙الـرابـط : ** [اضغـط هنـا]({jmt})\
-                 \n** ⌔︙الـوقـت المـأخـوذ للرفع : **`{ms} ثـانيـة.`",
+                 \n** ⌁︙الـوقـت المـأخـوذ للرفع : **`{ms} ثـانيـة.`",
             link_preview=False,
         )
