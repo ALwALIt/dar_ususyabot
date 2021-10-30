@@ -16,7 +16,7 @@ def user_list(l, n):
 
 @jmthon.on(admin_cmd(pattern="دعوه للمكالمه(?: |$)(.*)"))
 async def _(e):
-    ok = await eor(e, "`Inviting Members to Voice Chat...`")
+    ok = await edit_or_reply(e, "`Inviting Members to Voice Chat...`")
     users = []
     z = 0
     async for x in e.client.iter_participants(e.chat_id):
@@ -34,6 +34,6 @@ async def _(e):
 async def _(e):
     try:
         await e.client(startvc(e.chat_id))
-        await eor(e, "`Voice Chat Started...`")
+        await edit_or_reply(e, "`جار بدء المكالمة ✅...`")
     except Exception as ex:
-        await eor(e, f"`{str(ex)}`")
+        await edit_or_reply(e, f"`{str(ex)}`")
