@@ -73,7 +73,7 @@ R = [
 
 @jmthon.on(admin_cmd(pattern="بلاي$"))
 async def ithker(knopis):
-    await knopis.edit(knopis(R))
+    await knopis.edit(choice(R))
 
 # ================= Citation_morning =================
 Citation_morning = [
