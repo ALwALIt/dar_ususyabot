@@ -21,7 +21,6 @@ from telethon.tl.types import (
 )
 
 from userbot import jmthon
-from . import R
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import readable_time
