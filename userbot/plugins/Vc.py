@@ -46,8 +46,8 @@ async def _(e):
 # ================العاب جيبثون=========================
 
 R = [
-    "**𓆰**  𝙎𝙊𝙐𝙍𝘾𝙀 JEPTHON   **العـاب الاونلايـن** 🎮𓆪 \n"
-    "◐━─━─━─━─JEP─━─━─━─━◐\n\n"
+    "**𓆰**العـاب الاحترافيه** 🎮𓆪 \n"
+    "𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJ𝖾P ⁦𖢕ⵧⵧⵧⵧⵧⵧⵧ𓍻\n\n"
     "  ❶ **⪼**  [حرب الفضاء 🛸](https://t.me/gamee?game=ATARIAsteroids)   \n"
     "  ❷ **⪼**  [لعبة فلابي بيرد 🐥](https://t.me/awesomebot?game=FlappyBird)   \n"
     "  ❸ **⪼**  [القط المشاكس 🐱](https://t.me/gamee?game=CrazyCat)   \n"
@@ -67,8 +67,8 @@ R = [
     "  ⓱ **⪼**  [جيت واي 🚨](https://t.me/gamee?game=Getaway)   \n"
     "  ⓲ **⪼**  [الالـوان 🔮](https://t.me/gamee?game=ColorHit)   \n"
     "  ⓳ **⪼**  [مدفع الكرات🏮](https://t.me/gamee?game=NeonBlaster)   \n\n\n"
-    "**𓄂-** 𝙎𝙊𝙐𝙍𝘾𝙀 𝘿𝙀𝙑 **⪼**  [𐇮 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 ](t.me/lMl10l)   \n"
-    "**𓆰** 𝙎𝙊𝙐𝙍𝘾𝙀 𝙍𝙀𝙋𝙊 **⪼**  [JEPTHON](https://t.me/Jepthon)  "
+    "**𓄂-** مطور السورس **⪼**  [𐇮 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 ](t.me/lMl10l)   \n"
+    "**𓆰** قناة السورس **⪼**  [JEPTHON](https://t.me/Jepthon)  "
 ]
 
 @jmthon.on(admin_cmd(pattern="بلاي$"))
