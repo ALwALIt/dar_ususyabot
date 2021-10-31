@@ -161,5 +161,58 @@ async def permalink(mention):
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌯︙المتهم [{tag}](tg://user?id={user.id}) \n⌯︙تم رفعه في قائمة الزواحف ، لك حيوان شوكت تبطل سوالفك 😂🐍 ")
 
+@jmthon.ar_cmd(
+    pattern="رفع كحبة(?:\s|$)([\s\S]*)",
+    command=("رفع كحبة", plugin_category),
+)
+async def permalink(mention):
+    """Generates a link to the user's PM with a custom text."""
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه كحبة تعال يلكحبة طوبز خلي انيجك 👉🏻👌🏻")
+
+@jmthon.ar_cmd(
+    pattern="رفع فرخ(?:\s|$)([\s\S]*)",
+    command=("رفع فرخ", plugin_category),
+)
+async def permalink(mention):
+    """Generates a link to the user's PM with a custom text."""
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه فرخ الكروب لكك فرخ استر على خمستك كام ياهو الي يجي يزورها 😉🤤")
+
+@jmthon.ar_cmd(
+    pattern="رزله(?:\s|$)([\s\S]*)",
+    command=("رزله", plugin_category),
+)
+async def permalink(mention):
+    """Generates a link to the user's PM with a custom text."""
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
+    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    await edit_or_reply(mention, f"⌯︙ولك [{tag}](tg://user?id={user.id}) \n⌯︙ هيو لتندك بسيادك لو بهاي 👞👈")
 
 ##RR9R7
