@@ -66,10 +66,12 @@ async def kickme(leave):
     await leave.edit("⌯︙ حسنا سأغادر المجموعه وداعا ")
     await leave.client.kick_participant(leave.chat_id, "me")
 
-@jmthon.on(icss_cmd(pattern="بلاي$"))
-@jmthon.on(sudo_cmd(pattern="بلاي$", allow_sudo=True))
-async def icsrepo(icsp):
-    await edit_or_reply(icsp, R)
+@jmthon.ar_cmd(
+    pattern="بلاي(?:\s|$)([\s\S]*)",
+    command=("بلاي", plugin_category),
+)
+async def edit_delete(event):
+    await edit_or_reply(event, R)
 
 @jmthon.ar_cmd(
     pattern="تفليش بالطرد$",
