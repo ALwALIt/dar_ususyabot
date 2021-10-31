@@ -177,7 +177,7 @@ async def permalink(mention):
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه كحبة تعال يلكحبة طوبز خلي انيجك 👉🏻👌🏻")
+    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه كحبة تعال يلكحبة طوبز خلي انيجك 👌🏻👉🏻")
 
 @jmthon.ar_cmd(
     pattern="رفع فرخ(?:\s|$)([\s\S]*)",
