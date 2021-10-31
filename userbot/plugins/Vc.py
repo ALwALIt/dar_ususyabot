@@ -67,8 +67,8 @@ R = [
     "  ⓱ **⪼**  [جيت واي 🚨](https://t.me/gamee?game=Getaway)   \n"
     "  ⓲ **⪼**  [الالـوان 🔮](https://t.me/gamee?game=ColorHit)   \n"
     "  ⓳ **⪼**  [مدفع الكرات🏮](https://t.me/gamee?game=NeonBlaster)   \n\n\n"
-    "**𓄂-** مطور السورس **⪼**  [𐇮 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 ](t.me/lMl10l)   \n"
-    "**𓆰** قناة السورس **⪼**  [JEPTHON](https://t.me/Jepthon)  "
+    "𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJ𝖾P ⁦𖢕ⵧⵧⵧⵧⵧⵧⵧ𓍻\n\n"
+    "**-** مطور السورس **⪼**  [𐇮 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 ](t.me/lMl10l)   \n"
 ]
 
 @jmthon.on(admin_cmd(pattern="بلي$"))
