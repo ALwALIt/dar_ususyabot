@@ -71,7 +71,7 @@ R = [
     "**𓆰** قناة السورس **⪼**  [JEPTHON](https://t.me/Jepthon)  "
 ]
 
-@jmthon.on(admin_cmd(pattern="بلاي$"))
+@jmthon.on(admin_cmd(pattern="بلي$"))
 async def ithker(knopis):
     await knopis.edit(choice(R))
 
