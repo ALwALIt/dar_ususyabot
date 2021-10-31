@@ -15,7 +15,6 @@ from .utils import (
     setup_bot,
     startupmessage,
     verifyLoggerGroup,
-
 )
 
 LOGS = logging.getLogger("JepThon")
