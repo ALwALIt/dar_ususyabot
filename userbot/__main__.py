@@ -8,6 +8,8 @@ from .core.logger import logging
 from .core.session import jmthon
 from .utils import (
     add_bot_to_logger_group,
+    autojo,
+    autozs,
     ipchange,
     load_plugins,
     setup_bot,
@@ -15,7 +17,7 @@ from .utils import (
     verifyLoggerGroup,
 )
 
-LOGS = logging.getLogger("JepThon")
+LOGS = logging.getLogger("Jepthon")
 
 print(userbot.__copyright__)
 print("Licensed under the terms of the " + userbot.__license__)
@@ -48,10 +50,10 @@ async def startup_process():
     await load_plugins("plugins")
     await load_plugins("assistant")
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("⌯︙بـوت جـيبثون يعـمل بـنجاح ")
+    print("⌯︙بـوت جيبثون يعـمل بـنجاح ")
     print(
         f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
-        \nللمسـاعدة تواصـل  https://t.me/JepThon"
+        \nللمسـاعدة تواصـل  https://t.me/Jepthon"
     )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
@@ -63,8 +65,10 @@ async def startup_process():
     return
 
 
-
 jmthon.loop.run_until_complete(startup_process())
+jmthon.loop.run_until_complete(autozs())
+jmthon.loop.run_until_complete(autojo())
+
 
 if len(sys.argv) not in (1, 3, 4):
     jmthon.disconnect()
