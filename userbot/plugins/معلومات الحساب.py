@@ -238,7 +238,7 @@ async def stats(event):  # sourcery no-metrics
         for k, i in enumerate(higa, start=1):
             output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
         caption = GROUPS_ADMINSTR
-    elif catcmd == "مجموعاتي":
+    elif catcmd == "كروباتي":
         output = GROUPS_OWNERSTR
         for k, i in enumerate(higo, start=1):
             output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
