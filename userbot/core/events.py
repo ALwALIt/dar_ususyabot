@@ -54,7 +54,7 @@ class NewMessage(events.NewMessage):
                 is_admin = event.chat.admin_rights
 
             if not is_creator and not is_admin:
-                text = "`لا تستطيع استعمال اوامر الادمن هنا يجب عليك ان تصبح مشرف في المجموعة`"
+                text = "`لا تستطيع استعمال اوامر الادمن هنا يجب عليك ان تصبح مشرف في المجموعة ❕`"
 
                 event._client.loop.create_task(edit_or_reply(event, text))
                 return
