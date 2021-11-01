@@ -178,6 +178,7 @@ async def _(event):
 	if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
 		await event.edit(
 		"قائمة اوامر تحويل الصيغ و الجهات:\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n ⌯︙اختر احدى هذه القوائم\n\n- ( `.اوامر التحويل` )\n- ( `.اوامر الجهات` ) \n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JepThon"
+)
 
 @jmthon.ar_cmd(
     pattern="م18$",
