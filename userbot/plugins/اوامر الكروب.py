@@ -64,11 +64,7 @@ async def kickme(leave):
     "to leave the group."
     await leave.edit("⌯︙ حسنا سأغادر المجموعه وداعا ")
     await leave.client.kick_participant(leave.chat_id, "me")
-
-@jmthon.on(admin_cmd(pattern="بلاي$"))
-@jmthon.on(sudo_cmd(pattern="بلاي$", allow_sudo=True))
-async def edit_delete(event):
-    await edit_or_reply(event, R)
+)
 
 @jmthon.ar_cmd(
     pattern="تفليش بالطرد$",
