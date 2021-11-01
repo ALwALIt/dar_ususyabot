@@ -567,6 +567,7 @@ async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit(
         " قائمة اوامر الاستغفار والحسنات\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌯︙اختر احدى هذه الاوامر\n\n- ( `.اذكار` ) \n( `.اذكار عشر` )\n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JepThon"
+)
 
 @jmthon.ar_cmd(
     pattern="اوامر الحساب$",
@@ -576,6 +577,7 @@ async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit(
         " قائمة اوامر الحساب والقنوات والمجموعات التي تديرها\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌯︙اختر احدى هذه الاوامر\n\n- ( `.معلوماتي` ) \n( `.قائمه قنواتي` ) \n( `.قائمه كروباتي` )\n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JepThon"
+)
 
 @jmthon.ar_cmd(
     pattern="اوامر الالعاب$",
