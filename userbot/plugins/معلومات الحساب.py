@@ -154,3 +154,107 @@ async def _(event):
             await edit_delete(catevent, "`unblock `@tgscanrobot` and then try`")
         response = await conv.get_response()
         await event.client.send_read_ackno
+
+@jmthon.on(admin_cmd(pattern="قائمه (جميع القنوات|قنوات اديرها|قنواتي)$"))
+async def stats(event):  
+    catcmd = event.pattern_match.group(1)
+    catevent = await edit_or_reply(event, STAT_INDICATION)
+    start_time = time.time()
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    hi = []
+    hica = []
+    hico = []
+    async for dialog in event.client.iter_dialogs():
+        entity = dialog.entity
+        if isinstance(entity, Channel) and entity.broadcast:
+            hi.append([entity.title, entity.id])
+            if entity.creator or entity.admin_rights:
+                hica.append([entity.title, entity.id])
+            if entity.creator:
+                hico.append([entity.title, entity.id])
+    if catcmd == "جميع القنوات":
+        output = CHANNELS_STR
+        for k, i in enumerate(hi, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = CHANNELS_STR
+    elif catcmd == "القنوات اديرها":
+        output = CHANNELS_ADMINSTR
+        for k, i in enumerate(hica, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = CHANNELS_ADMINSTR
+    elif catcmd == "قنواتي":
+        output = CHANNELS_OWNERSTR
+        for k, i in enumerate(hico, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = CHANNELS_OWNERSTR
+    stop_time = time.time() - start_time
+    try:
+        cat = Get(cat)
+        await event.client(cat)
+    except BaseException:
+        pass
+    output += f"\n**استغرق حساب القنوات : ** {stop_time:.02f} ثانيه"
+    try:
+        await catevent.edit(output)
+    except Exception:
+        await edit_or_reply(
+            catevent,
+            output,
+            caption=caption,
+        )
+
+@jmthon.on(admin_cmd(pattern="قائمه (جميع المجموعات|مجموعات اديرها|مجموعات امتلكها)$"))
+async def stats(event):  # sourcery no-metrics
+    catcmd = event.pattern_match.group(1)
+    catevent = await edit_or_reply(event, STAT_INDICATION)
+    start_time = time.time()
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    hi = []
+    higa = []
+    higo = []
+    async for dialog in event.client.iter_dialogs():
+        entity = dialog.entity
+        if isinstance(entity, Channel) and entity.broadcast:
+            continue
+        elif (
+            isinstance(entity, Channel)
+            and entity.megagroup
+            or not isinstance(entity, Channel)
+            and not isinstance(entity, User)
+            and isinstance(entity, Chat)
+        ):
+            hi.append([entity.title, entity.id])
+            if entity.creator or entity.admin_rights:
+                higa.append([entity.title, entity.id])
+            if entity.creator:
+                higo.append([entity.title, entity.id])
+    if catcmd == "جميع المجموعات":
+        output = GROUPS_STR
+        for k, i in enumerate(hi, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = GROUPS_STR
+    elif catcmd == "مجموعات اديرها":
+        output = GROUPS_ADMINSTR
+        for k, i in enumerate(higa, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = GROUPS_ADMINSTR
+    elif catcmd == "مجموعاتي":
+        output = GROUPS_OWNERSTR
+        for k, i in enumerate(higo, start=1):
+            output += f"{k} .) [{i[0]}](https://t.me/c/{i[1]}/1)\n"
+        caption = GROUPS_OWNERSTR
+    stop_time = time.time() - start_time
+    try:
+        cat = Get(cat)
+        await event.client(cat)
+    except BaseException:
+        pass
+    output += f"\n**استغرق حساب المجموعات : ** {stop_time:.02f} ثانيه"
+    try:
+        await catevent.edit(output)
+    except Exception:
+        await edit_or_reply(
+            catevent,
+            output,
+            caption=caption,
+        )
