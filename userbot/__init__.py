@@ -4,7 +4,7 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import jmthon
+from .core.session import jmthon, jepthon
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
 __version__ = "4.0.0"
