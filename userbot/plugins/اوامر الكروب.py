@@ -64,7 +64,6 @@ async def kickme(leave):
     "to leave the group."
     await leave.edit("⌯︙ حسنا سأغادر المجموعه وداعا ")
     await leave.client.kick_participant(leave.chat_id, "me")
-)
 
 @jmthon.ar_cmd(
     pattern="تفليش بالطرد$",
