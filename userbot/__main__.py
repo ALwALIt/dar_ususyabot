@@ -51,7 +51,7 @@ async def startup_process():
     print("⌯︙بـوت جـيبثون يعـمل بـنجاح ")
     print(
         f"يجـب تفـعيل وضع الأنلايـن ثم أرسـل {cmdhr}فحص لـرؤيـة اذا كـان البوت شـغال\
-        \nللمسـاعدة تواصـل  https://t.me/JepThon"
+        \nللمسـاعدة تواصـل  https://t.me/GroupJepthon"
     )
     print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
     await verifyLoggerGroup()
