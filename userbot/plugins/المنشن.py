@@ -7,7 +7,7 @@ from ..helpers.utils import get_user_from_event, reply_id
 plugin_category = "extra"
 
 
-@catub.cat_cmd(
+@jmthon.ar_cmd(
     pattern="(للكل|all)(?:\s|$)([\s\S]*)",
     command=("للكل", plugin_category),
     info={
@@ -30,7 +30,7 @@ async def _(event):
     await event.delete()
 
 
-@catub.cat_cmd(
+@jmthon.ar_cmd(
     pattern="ابلاغ$",
     command=("ابلاغ", plugin_category),
     info={
