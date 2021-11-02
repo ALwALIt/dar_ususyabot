@@ -7,11 +7,11 @@ from ..helpers.utils import get_user_from_event, reply_id
 plugin_category = "extra"
 
 
-@jmthon.ar_cmd(
+@catub.cat_cmd(
     pattern="(للكل|all)(?:\s|$)([\s\S]*)",
     command=("للكل", plugin_category),
     info={
-        "header": "tags recent 100 persons in the group may not work for all",
+        "header": "tags recent 50 persons in the group may not work for all",
         "usage": [
             "{tr}all <text>",
             "{tr}tagall",
@@ -24,13 +24,13 @@ async def _(event):
     input_str = event.pattern_match.group(2)
     mentions = input_str or "@all"
     chat = await event.get_input_chat()
-    async for x in event.client.iter_participants(chat, 100):
+    async for x in event.client.iter_participants(chat, 50):
         mentions += f"[\u2063](tg://user?id={x.id})"
     await event.client.send_message(event.chat_id, mentions, reply_to=reply_to_id)
     await event.delete()
 
 
-@jmthon.ar_cmd(
+@catub.cat_cmd(
     pattern="ابلاغ$",
     command=("ابلاغ", plugin_category),
     info={
@@ -40,7 +40,7 @@ async def _(event):
 )
 async def _(event):
     "To tags admins in group."
-    mentions = "⌯︙@admin \n⌯︙انـتباه أيـها الـمشرفين قـام شـخص بـتبليـغكم"
+    mentions = "@admin: **انتباه ايها المشرفين لقد تم الابلاغ افتحو اعينكم**"
     chat = await event.get_input_chat()
     reply_to_id = await reply_id(event)
     async for x in event.client.iter_participants(
@@ -77,5 +77,3 @@ async def _(event):
         parse_mode="HTML",
         reply_to=reply_to_id,
     )
-#كـتابة  @RR7PP
-#تعديل وترتيب  @KiNGBrlin
