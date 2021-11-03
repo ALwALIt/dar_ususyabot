@@ -377,7 +377,7 @@ async def kakashi(event):
 @jmthon.on(admin_cmd(pattern="معنى  ?(.*)"))
 @jmthon.on(sudo_cmd(pattern="معنى ?(.*)", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
+    if event.client:
         return
     input_str = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
