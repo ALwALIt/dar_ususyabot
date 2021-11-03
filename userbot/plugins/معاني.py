@@ -1,3 +1,5 @@
+# شعندك داخل هنا ؟ تريد تخمط وتقلد عود اخمط ولاتذكر حقوق 🙂 
+
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
