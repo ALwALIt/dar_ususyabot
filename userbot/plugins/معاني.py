@@ -7,8 +7,8 @@ from userbot.utils import sudo_cmd
 from ..helpers.utils import reply_id
 
 
-@jmthon.on(admin_cmd(pattern="معنئ اسم  ?(.*)"))
-@jmthon.on(sudo_cmd(pattern="معنئ اسم ?(.*)", allow_sudo=True))
+@jmthon.on(admin_cmd(pattern="معنى  ?(.*)"))
+@jmthon.on(sudo_cmd(pattern="معنى ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
