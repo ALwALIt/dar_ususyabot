@@ -374,39 +374,30 @@ async def kakashi(event):
     await event.client.delete_messages(
         conv.chat_id, [msg_start.id, response.id, msg.id, video.id, details.id]
     )
-@jmthon.on(admin_cmd(pattern="معنى  ?(.*)"))
-@jmthon.on(sudo_cmd(pattern="معنى ?(.*)", allow_sudo=True))
+@jmthon.on(admin_cmd(pattern="معنى(?: |$)(.*)"))
 async def _(event):
-    if event.client:
+    if event.fwd_from:
         return
-    input_str = event.pattern_match.group(1)
-    reply_to_id = await reply_id(event)
-    if event.reply_to_msg_id and not event.pattern_match.group(1):
-        reply_to_id = await event.get_reply_message()
-        reply_to_id = str(reply_to_id.message)
+    r_link = event.pattern_match.group(1)
+    if ".com" not in r_link:
+        await event.edit("**▾∮ اكتب الاسم اثول **")
     else:
-        reply_to_id = str(event.pattern_match.group(1))
-    if not reply_to_id:
-        return await edit_or_reply(
-            event, "**  .معنى + الاسم ...  \n مثـال**   :  `.معنى محدد`"
-        )
+        await event.edit("**▾∮ تتم المعالجة انتظر قليلا**")
     chat = "@EX6bot"
-    catevent = await edit_or_reply(event, "**- جـارِ عـرض المعـلومات انتـظر 🗿🔥 ⌁︙**")
-    async with event.client.conversation(chat) as conv:
+    async with bot.conversation(chat) as conv:
         try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=1188524603)
-            )
-            await event.client.send_message(chat, "{}".format(input_str))
-            response = await response
-            await event.client.send_read_acknowledge(conv.chat_id)
+            msg_start = await conv.send_message("/start")
+            r = await conv.get_response()
+            msg = await conv.send_message(r_link)
+            details = await conv.get_response()
+            video = await conv.get_response()
+            """ كتابة فريق جيبثون  @Jepthon """
+            await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit(
-                "**- تحـقق من انـك لم تقـم بحظر البوت @EX6bot .. ثم اعـد استخدام الامـر 🔥⌁︙**"
-            )
+            await event.edit("▾∮ الغـي حـظر هـذا البـوت و حـاول مجـددا @EX6bot")
             return
-        if response.text.startswith("I can't find that"):
-            await catevent.edit("**- عـذراً .. لـم استطـع ايجـاد المطلـوب ⌁︙**")
-        else:
-            await catevent.delete()
-            await event.client.send_message(event.chat_id, response.message)
+        await bot.send_file(event.chat_id, video)
+        await event.client.delete_messages(
+            conv.chat_id, [msg_start.id, r.id, msg.id, details.id, video.id]
+        )
+        await event.delete()
