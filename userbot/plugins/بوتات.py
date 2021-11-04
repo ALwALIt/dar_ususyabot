@@ -115,3 +115,19 @@ async def _(event):
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
 
+@jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
+async def _(event):
+    await event.edit("**- يتم اختيار اغنية مثل وجهك ❤️**")
+    async with bot.conversation("@JepthonBoT") as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=1982744058)
+            )
+            await conv.send_message("غنيلي")
+            response = await response
+            await bot.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await event.edit("** اولا الغي حظر @JepthonBoT وحاول مجددا**")
+            return
+        await event.edit(f"- {response.message.message}\n @jepthon")
+
