@@ -87,9 +87,9 @@ async def _(event):
     async with bot.conversation("@EX6bot") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=178220800)
+                events.NewMessage(incoming=True, from_users=1188524603)
             )
-            await conv.send_message("/start")
+            await conv.send_message(chat, "{}".format(input_str))
             response = await response
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
