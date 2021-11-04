@@ -81,7 +81,7 @@ async def _(event):
         await event.edit(
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
         )
-@jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
+@jmthon.on(admin_cmd(pattern="معنى ?(.*)"))
 async def _(event):
     await event.edit("**- انتظر قليلا جارِ اضهار معنى اسمك**")
     async with bot.conversation("@EX6bot") as conv:
