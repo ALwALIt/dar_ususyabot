@@ -81,3 +81,18 @@ async def _(event):
         await event.edit(
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
         )
+@jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
+async def _(event):
+    await event.edit("**- انتظر قليلا جارِ اضهار معنى اسمك**")
+    async with bot.conversation("@EX6bot") as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=178220800)
+            )
+            await conv.send_message("/start")
+            response = await response
+            await bot.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await event.edit("** اولا الغي حظر @EX6bot وحاول مجددا**")
+            return
+        await event.edit(f"- {response.message.message}\n @jepthon")
