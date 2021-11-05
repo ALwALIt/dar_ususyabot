@@ -132,7 +132,7 @@ async def _(event):
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
 
-@bot.on(admin_cmd(pattern="ق ?(.*)"))
+@bot.on(admin_cmd(pattern="زخرفة ?(.*)"))
 async def _(event):
     if event.reply_to_msg_id:
         return
@@ -145,20 +145,20 @@ async def _(event):
         reply_to_id = str(event.pattern_match.group(1))
     if not reply_to_id:
         return await edit_or_reply(
-            event, "**╮ .ق + برج + اسمك برجك ... ...╰**"
+            event, "**╮ .زخرفة + اسمك ... ...╰**"
         )
-    chat = "@JepthonBoT"
+    chat = "@zhrfaJepBoT"
     catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=-1001165119996)
+                events.NewMessage(incoming=True, from_users=2105499822)
             )
             await event.client.send_message(chat, "{}".format(input_str))
             response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @Jepthon1BoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
+            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @zhrfaJepBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
             return
         if response.text.startswith("I can't find that"):
             await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
