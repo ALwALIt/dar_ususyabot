@@ -120,9 +120,7 @@ async def do_pm_permit_action(event, chat):  # sourcery no-metrics
         )
     elif gvarstatus("pmmenu") is None:
         USER_BOT_NO_WARN = f"""ههلا بيك {mention} \n مالك الحساب غير موجود حاليا الرجاء الانتظار وعدم تكرار الرسائل. 
-
 لديك {warns}/{totalwarns} من التحذيرات لا تكرر حتى ما تنحظر من البوت.
-
 اختر احد الخيارات في الاسفل وانتظر الى ان اصبح متصلا بالانترنت ليتم الرد عليك ⬇️⬇️"""
     else:
             USER_BOT_NO_WARN = f"""ههلا بيك {mention} \n مالك الحساب غير موجود حاليا الرجاء الانتظار وعدم تكرار الرسائل. 
@@ -480,7 +478,6 @@ async def on_plug_in_callback_query_handler(event):
         return await event.answer(text, cache_time=0, alert=True)
     text = f"""حسنا الان بإمكانك اختيار احد الخيارات في الاسفل للتواصل مع , {mention}.
 ⌯︙اختر بهدوء خيار واحد فقط لنعرف سبب قدومك هنا 🤍
-
 ⌯︙هذه الخيارات في الاسفل اختر واحد فقط ⬇️"""
     buttons = [
         (Button.inline(text="للاستفسار عن شي ما.", data="to_enquire_something"),),
@@ -533,7 +530,6 @@ async def on_plug_in_callback_query_handler(event):
         return await event.answer(text, cache_time=0, alert=True)
     text = """__حسنا لقد قمت بأبلاغ مالك الحساب عندما يصبح متصلا بالانترنت \
  أو عندما يكون مالك الحساب متاح سوف يقوم بالرد عليك لذلك ارجوك انتظر__\
-
 **لكن في الوقت الحالي لا تكرر ارسال الرسائل حتر لا اضطر لحظرك 🙁💞**"""
     sqllist.add_to_list("pmrequest", event.query.user_id)
     try:
@@ -602,8 +598,8 @@ async def on_plug_in_callback_query_handler(event):
 
 
 @jmthon.ar_cmd(
-    pattern="الخاص (تعطيل|تشغيل)$",
-    command=("الخاص", plugin_category),
+    pattern="الحماية (تشغيل|تعطيل)$",
+    command=("الحماية", plugin_category),
     info={
         "header": "To turn on or turn off pmpermit.",
         "usage": "{tr}pmguard on/off",
@@ -612,26 +608,26 @@ async def on_plug_in_callback_query_handler(event):
 async def pmpermit_on(event):
     "Turn on/off pmpermit."
     input_str = event.pattern_match.group(1)
-    if input_str == "تعطيل":
+    if input_str == "تشغيل":
         if gvarstatus("pmpermit") is None:
             addgvar("pmpermit", "true")
             await edit_delete(
-                event, "⌯︙ تم تعطيل الخاص لحسابك بنجاح ✅"
+                event, "⌯︙ تم تفعيل امر الحماية لحسابك بنجاح ✅"
             )
         else:
             await edit_delete(event, "⌯︙امر الحمايه بالفعل مُمكن لحسابك 🌿")
     elif gvarstatus("pmpermit") is not None:
         delgvar("pmpermit")
         await edit_delete(
-            event, "⌯︙ تم تفعيل الخاص لحسابك بنجاح ✅"
+            event, "⌯︙ تم تعطيل امر الحماية لحسابك بنجاح ✅"
         )
     else:
         await edit_delete(event, "⌯︙امر الحمايه بالفعل مُعطل لحسابك 🌿")
 
 
 @jmthon.ar_cmd(
-    pattern="الخاص (تعطيل|تشغيل)$",
-    command=("الخاص", plugin_category),
+    pattern="الحماية (تشغيل|تعطيل)$",
+    command=("الحماية", plugin_category),
     info={
         "header": "To turn on or turn off pmmenu.",
         "usage": "{tr}pmmenu on/off",
@@ -640,12 +636,12 @@ async def pmpermit_on(event):
 async def pmpermit_on(event):
     "Turn on/off pmmenu."
     input_str = event.pattern_match.group(1)
-    if input_str == "تشغيل":
+    if input_str == "تعطيل":
         if gvarstatus("pmmenu") is None: #ترجمه وكتابة فريق جـيبثون 
             addgvar("pmmenu", "false")
             await edit_delete(
                 event,
-                "⌯︙ تم تفعيل الخاص لحسابك بنجاح ✅",
+                "⌯︙ تم تعطيل امر الحماية لحسابك بنجاح ✅",
             )
         else:
             await edit_delete(
@@ -654,7 +650,7 @@ async def pmpermit_on(event):
     elif gvarstatus("pmmenu") is not None:
         delgvar("pmmenu")
         await edit_delete(
-            event, "⌯︙ تم تعطيل الخاص لحسابك بنجاح ✅"
+            event, "⌯︙ تم تفعيل امر الحماية لحسابك بنجاح ✅"
         )
     else:
         await edit_delete(
@@ -678,7 +674,7 @@ async def approve_p_m(event):  # sourcery no-metrics
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -757,7 +753,7 @@ async def disapprove_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -805,7 +801,7 @@ async def block_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
         )#ترجمه وكتابة فريق جـيبثون
     if event.is_private:
         user = await event.get_chat()
@@ -861,7 +857,7 @@ async def unblock_pm(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الحماية تشغيل` لـيشتغل هذا الأمـر",
         )
     if event.is_private:
         user = await event.get_chat()
@@ -893,7 +889,7 @@ async def approve_p_m(event):
     if gvarstatus("pmpermit") is None:
         return await edit_delete(
             event,
-            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الخاص تعطيل` لـيشتغل هذا الأمـر",
+            f"⌯︙يـجب تفعيـل امـر الحـماية اولا بأرسـال `{cmdhd}الـحماية on` لـيشتغل هذا الأمـر",
         )
     approved_users = pmpermit_sql.get_all_approved()
     APPROVED_PMs = "⌯︙قائـمة الـمسموح لـهم الـحالية\n\n"
