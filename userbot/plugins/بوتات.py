@@ -88,7 +88,7 @@ async def _(event):
     async with bot.conversation("@JepthonBoT") as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=1982744058)
+                events.NewMessage(incoming=True, from_users=-1001165119996)
             )
             await conv.send_message("برج")
             response = await response
