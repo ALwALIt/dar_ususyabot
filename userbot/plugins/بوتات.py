@@ -6,7 +6,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 from userbot import jmthon
 
-
+# الي يخمط ويكول من كتابتي الا امه انيجه وقد اعذر من انذر
 @jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
 async def _(event):
     await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
@@ -111,20 +111,20 @@ async def _(event):
         reply_to_id = str(event.pattern_match.group(1))
     if not reply_to_id:
         return await edit_or_reply(
-            event, "**╮ .ق + برج + اسم برجك ... للبحـث عن الابراج ...╰**"
+            event, "**╮ .دريس + اسم النادي + اسمك بلانجليزي + رقمك المفضل ... لتصميم دريس ...╰**"
         )
-    chat = "@anubistestbot"
-    catevent = await edit_or_reply(event, "**╮•⎚ جـارِ البحـث عـن معنـى الاسـم ... 🧸🎈**")
+    chat = "@Jepthon1BoT"
+    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نخيط بدريسك ... 🧸🎈**")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=1970519213)
+                events.NewMessage(incoming=True, from_users=2034059015)
             )
             await event.client.send_message(chat, "{}".format(input_str))
             response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @JepthonBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
+            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @Jepthon1BoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
             return
         if response.text.startswith("I can't find that"):
             await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
