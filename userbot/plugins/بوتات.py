@@ -98,7 +98,7 @@ async def _(event):
             return
         await event.edit(f"- {response.message.message}\n @jepthon")
 
-@bot.on(admin_cmd(pattern="ق ?(.*)"))
+@bot.on(admin_cmd(pattern="دريس ?(.*)"))
 async def _(event):
     if event.reply_to_msg_id:
         return
