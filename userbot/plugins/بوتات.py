@@ -147,7 +147,7 @@ async def _(event):
         return await edit_or_reply(
             event, "**╮ .ق + برج + اسمك برجك ... ...╰**"
         )
-    chat = "@abrag_jepthon"
+    chat = "@JepthonBoT"
     catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
     async with event.client.conversation(chat) as conv:
         try:
