@@ -82,22 +82,6 @@ async def _(event):
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
         )
 
-@jmthon.on(admin_cmd(pattern="برج ?(.*)"))
-async def _(event):
-    await event.edit("**- يتم اختيار برجك انتضر ❤️**")
-    async with bot.conversation("@JepthonBoT") as conv:
-        try:
-            response = conv.wait_event(
-                events.NewMessage(incoming=True, from_users=-1001165119996)
-            )
-            await conv.send_message("برج")
-            response = await response
-            await bot.send_read_acknowledge(conv.chat_id)
-        except YouBlockedUserError:
-            await event.edit("** اولا الغي حظر @JepthonBoT وحاول مجددا**")
-            return
-        await event.edit(f"- {response.message.message}\n @jepthon")
-
 @bot.on(admin_cmd(pattern="دريس ?(.*)"))
 async def _(event):
     if event.reply_to_msg_id:
@@ -148,7 +132,7 @@ async def _(event):
             event, "**╮ .زخرفة + اسمك ... ...╰**"
         )
     chat = "@zhrfaJepBoT"
-    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
+    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نزخرف اسمك ... 🧸🎈**")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
