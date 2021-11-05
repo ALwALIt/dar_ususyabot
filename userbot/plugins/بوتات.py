@@ -82,15 +82,15 @@ async def _(event):
             f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
         )
 
-@jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
+@jmthon.on(admin_cmd(pattern="برج ?(.*)"))
 async def _(event):
-    await event.edit("**- يتم اختيار اغنية مثل وجهك ❤️**")
+    await event.edit("**- يتم اختيار برجك انتضر ❤️**")
     async with bot.conversation("@JepthonBoT") as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=1982744058)
             )
-            await conv.send_message("غنيلي")
+            await conv.send_message("برج")
             response = await response
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
