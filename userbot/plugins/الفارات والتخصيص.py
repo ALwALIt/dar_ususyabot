@@ -221,3 +221,4 @@ async def custom_catuserbot(event):
             BOTLOG_CHATID,
             f" ⌯︙حـذف فـار\
                     \n**{input_str}** تـم حـذف هـذا الفـار",
+)
