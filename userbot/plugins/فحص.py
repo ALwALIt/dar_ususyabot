@@ -1,5 +1,4 @@
 import random
-import re
 import time
 from datetime import datetime
 from platform import python_version
@@ -10,25 +9,34 @@ from telethon.errors.rpcerrorlist import (
     WebpageCurlFailedError,
     WebpageMediaEmptyError,
 )
-from telethon.events import CallbackQuery
 
-from userbot import StartTime, jmthon, JMVERSION
+from userbot import JMVERSION, StartTime, jmthon
+from userbot.Config import Config
 
-from ..Config import Config
 from ..core.managers import edit_or_reply
-from ..helpers.functions import catalive, check_data_base_heal_th, get_readable_time
+from ..helpers.functions import check_data_base_heal_th, get_readable_time
 from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
+from ..utils.decorators import sudo_cmd
 from . import mention
 
-plugin_category = "utils"
+plugin_category = "bot"
 
-#كتـابة وتعـديل:  @RR9R7
+# كتـابة وتعـديل:  @RR9R7
+
 
 @jmthon.ar_cmd(
     pattern="فحص$",
-    command=("فحص", plugin_category), )
-    
+    command=("فحص", plugin_category),
+    info={
+        "header": "للـتأكـد مـن حـالة البـوت",
+        "options": "لوضـع صـورة مـع الامـر يجـب عليـ ان تضـع رابط الصـورة مـع فـار `ALIVE_PIC` للحصـول علـى رابط الصـورة، بالـرد عليهـا بـ  ( `.تلكراف ميديا` ) ",
+        "usage": [
+            "{tr}فحص",
+        ],
+    },
+)
+@jmthon.on(sudo_cmd(pattern="فحص$", allow_sudo=True))
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
     reply_to_id = await reply_id(event)
@@ -39,8 +47,8 @@ async def amireallyalive(event):
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "  - "
-    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جيـبثون يعـمل بنـجـاح **"
-    RR7_IMG = gvarstatus("ALIVE_PIC") 
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت جيبثون يعـمل بنـجـاح **"
+    RR7_IMG = gvarstatus("ALIVE_PIC") or Config.A_PIC
     jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = jmthon_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
@@ -76,7 +84,7 @@ async def amireallyalive(event):
 temp = """- {ALIVE_TEXT}
 **{EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
 **{EMOJI} أصـدار التـيليثون :** `{telever}`
-**{EMOJI} أصـدار جـيبثون :** `{jmver}`
+**{EMOJI} أصـدار جيبثون :** `{jmver}`
 **{EMOJI} أصدار البـايثون :** `{pyver}`
 **{EMOJI} الوقـت :** `{uptime}`
 **{EMOJI} المسـتخدم:** {mention}"""
