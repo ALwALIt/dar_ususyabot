@@ -65,7 +65,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**⌯︙المطورين حدثـوا سـورس جيبثون**\n⌯︙**التـغييرات\n** {changelog}"
+        f"**⌯︙قام مطورين السورس بتحديث جـيبثون**\n⌯︙**التـغييرات\n** {changelog}"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -107,7 +107,7 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     jasme = await event.edit(
-        "** ⌯︙تم تحديث السورس سانخبرك بعد اعادة التشغيل ✅**"
+        "** ⌯︙تم تحديث سورس جـيبثون بنجاح انتظر قليلا سوف نخبرك بعد اعادة التشغيل !**"
     )
     await event.client.reload(jasme)
 
@@ -184,7 +184,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 
 
 @jmthon.ar_cmd(
-    pattern="تحديث?$",
+    pattern="تحديث(| الان)?$",
     command=("تحديث", plugin_category),
     info={
         "header": "To update userbot.",
@@ -195,7 +195,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
         },
         "usage": [
             "{tr}update",
-            "{tr}تحديث",
+            "{tr}تحديث الان",
             "{tr}update deploy",
         ],
     },
@@ -203,7 +203,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 async def upstream(event):
     "To check if the bot is up to date and update if specified"
     conf = event.pattern_match.group(1).strip()
-    event = await edit_or_reply(event, "**⌯︙جـاري البحث عن تحديثات**")
+    event = await edit_or_reply(event, "**⌯︙يـتـم البـحـث عـن تـحديثـات سـورس جيـبثون انـتـظـر**")
     off_repo = UPSTREAM_REPO_URL
     force_update = False
     if HEROKU_API_KEY is None or HEROKU_APP_NAME is None:
@@ -226,7 +226,7 @@ async def upstream(event):
                 f"`Unfortunately, the directory {error} "
                 "does not seem to be a git repository.\n"
                 "But we can fix that by force updating the userbot using "
-                ".تحديث.`"
+                ".تحديث الان.`"
             )
         repo = Repo.init()
         origin = repo.create_remote("upstream", off_repo)
@@ -255,7 +255,7 @@ async def upstream(event):
     # Special case for deploy
     if changelog == "" and not force_update:
         await event.edit(
-            "**⌯︙سورس جـيبثون محدث **\n"
+            "**⌯︙سورس جـيبثون محدث الى اخر اصدار **\n"
             f"**قـنـاة سـورس جيـبثون** : @JepThon"
         )
         return repo.__del__()
@@ -263,14 +263,14 @@ async def upstream(event):
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
         return await event.respond(
-            f"⌔ :  لتحديث سورس جـيبثون ارسل : `.تحديث` "
+            f"⌔ :  لتحديث سورس جـيبثون ارسل : `.تحديث الان` "
         )
 
     if force_update:
         await event.edit(
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
-    if conf == "تحديث":
-        await event.edit("** ⌯︙جار تحـديـث سـورس جيـبثون انـتـظـر قـليـلا ✅**")
+    if conf == "الان":
+        await event.edit("** ⌯︙جار تحـديـث سـورس جيـبثون انـتـظـر قـليـلا 🔨**")
         await update(event, repo, ups_rem, ac_br)
     return
