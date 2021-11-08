@@ -47,7 +47,6 @@ async def _(e):
 
 R = [
     "**𓆰**العـاب الاحترافيه** 🎮𓆪 \n"
-    "𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJ𝖾P ⁦𖢕ⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
     "  ❶ **⪼**  [حرب الفضاء 🛸](https://t.me/gamee?game=ATARIAsteroids)   \n"
     "  ❷ **⪼**  [لعبة فلابي بيرد 🐥](https://t.me/awesomebot?game=FlappyBird)   \n"
     "  ❸ **⪼**  [القط المشاكس 🐱](https://t.me/gamee?game=CrazyCat)   \n"
@@ -67,7 +66,6 @@ R = [
     "  ⓱ **⪼**  [جيت واي 🚨](https://t.me/gamee?game=Getaway)   \n"
     "  ⓲ **⪼**  [الالـوان 🔮](https://t.me/gamee?game=ColorHit)   \n"
     "  ⓳ **⪼**  [مدفع الكرات🏮](https://t.me/gamee?game=NeonBlaster)   \n"
-    "𓍹ⵧⵧⵧⵧⵧⵧⵧⵧJ𝖾P ⁦𖢕ⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
     "**-** مطور السورس **⪼ [𐇮 𓂐 𓆩الــسيد𓆪 𖠛🇷🇺 ](t.me/lMl10l)   \n"
     "**- قناة السورس⪼ [𐇮 جيبثون العربي ](t.me/Jepthon)   "
 ]
