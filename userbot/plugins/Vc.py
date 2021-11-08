@@ -192,7 +192,7 @@ Jepthon_5erok = [
 ]
 
 
-@jmthon.on(admin_cmd(pattern="لو خيروك$"))
+@jmthon.on(admin_cmd(pattern="خيروك$"))
 async def ithker(knopis):
     await knopis.edit(choice(Jepthon_5erok))
 
