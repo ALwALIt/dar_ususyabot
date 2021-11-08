@@ -26,8 +26,8 @@ async def _(event):
 )
 
 @jmthon.ar_cmd(
-    pattern="الامر 1$",
-    command=("الامر 1", plugin_category),
+    pattern="م1$",
+    command=("م1", plugin_category),
 )
 async def _(event):
 	if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
@@ -36,8 +36,8 @@ async def _(event):
 )
 		
 @jmthon.ar_cmd(
-    pattern="الامر 2$",
-    command=("الامر 2", plugin_category),
+    pattern="م2$",
+    command=("م2", plugin_category),
 )
 async def _(event):
 	if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
@@ -46,8 +46,8 @@ async def _(event):
 )
 
 @jmthon.ar_cmd(
-    pattern="الامر 3$",
-    command=("الامر 3", plugin_category),
+    pattern="م3$",
+    command=("م3", plugin_category),
 )
 async def _(event):
 	if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
