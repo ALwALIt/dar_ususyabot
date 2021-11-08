@@ -75,7 +75,7 @@ async def ithker(knopis):
     await knopis.edit(choice(R))
 # ================= كت تويت ==========================#
 
-Jepthon = [
+J = [
     "** ‎كت تويت | أكثر شيء يُسكِت الطفل برأيك؟ **",
     "** ‎كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟ **",
     "‎** كت تويت | الحرية لـ ... ؟'", كت تويت | قناة الكرتون المفضلة في طفولتك؟ **",
@@ -109,7 +109,7 @@ Jepthon = [
 
 @jmthon.on(admin_cmd(pattern="كت$"))
 async def ithker(knopis):
-    await knopis.edit(choice(Jepthon))
+    await knopis.edit(choice(J))
 
 # ================= Citation_morning =================
 Citation_morning = [
