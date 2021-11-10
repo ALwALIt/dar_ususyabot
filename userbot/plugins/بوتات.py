@@ -197,4 +197,8 @@ async def _(event):
         except YouBlockedUserError:
             await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
-        await event.edit(f"- {response.message.message}\n @jepthon")
+                if response.text.startswith("I can't find that"):
+            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
+        else:
+            await catevent.delete()
+            await event.client.send_message(event.chat_id, response.message)
