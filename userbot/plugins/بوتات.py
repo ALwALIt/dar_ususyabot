@@ -183,7 +183,7 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
+@jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
 async def _(event):
     await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
     async with bot.conversation("@GaneleBot") as conv:
