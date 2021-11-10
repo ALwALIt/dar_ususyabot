@@ -183,36 +183,18 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@bot.on(admin_cmd(pattern="غنيلي ?(.*)"))
+@jmthon.on(admin_cmd(pattern="حالتي ?(.*)"))
 async def _(event):
-    if event.reply_to_msg_id:
-        return
-    input_str = event.pattern_match.group(1)
-    reply_to_id = await reply_id(event)
-    if event.reply_to_msg_id and not event.pattern_match.group(1):
-        reply_to_id = await event.get_reply_message()
-        reply_to_id = str(reply_to_id.message)
-    else:
-        reply_to_id = str(event.pattern_match.group(1))
-    if not reply_to_id:
-        return await edit_or_reply(
-            event, "**╮ .غنيلي ... ...╰**"
-        )
-    chat = "@GaneleBot"
-    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نختار اغنية لعيونك ... 🧸🎈**")
-    async with event.client.conversation(chat) as conv:
+    await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
+    async with bot.conversation("@GaneleBot") as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
             )
-            await event.client.send_message(chat, "غنيلي".format(input_str))
+            await conv.send_message("غنيلي")
             response = await response
-            await event.client.send_read_acknowledge(conv.chat_id)
+            await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @TermexJepBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
+            await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
-        if response.text.startswith("I can't find that"):
-            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
-        else:
-            await catevent.delete()
-            await event.client.send_message(event.chat_id, response.message)
+        await event.edit(f"- {response.message.message}\n @jepthon")
