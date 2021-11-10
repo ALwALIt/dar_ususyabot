@@ -174,7 +174,7 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@bot.on(admin_cmd(pattern="برج ?(.*)"))
+@bot.on(admin_cmd(pattern="غنيلي ?(.*)"))
 async def _(event):
     await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
     async with bot.conversation("@GaneleBot") as conv:
