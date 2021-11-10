@@ -185,8 +185,23 @@ async def _(event):
             await event.client.send_message(event.chat_id, response.message)
 @jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
 async def _(event):
-    await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
-    async with bot.conversation("@GaneleBot") as conv:
+
+    if event.reply_to_msg_id:
+        return
+    input_str = event.pattern_match.group(1)
+    reply_to_id = await reply_id(event)
+    if event.reply_to_msg_id and not event.pattern_match.group(1):
+        reply_to_id = await event.get_reply_message()
+        reply_to_id = str(reply_to_id.message)
+    else:
+        reply_to_id = str(event.pattern_match.group(1))
+    if not reply_to_id:
+        return await edit_or_reply(
+            event, "**╮ .برج + اسم برجك ... ...╰**"
+        )
+    chat = "@GaneleBot"
+    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
+    async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
