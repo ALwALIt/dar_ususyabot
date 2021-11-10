@@ -152,9 +152,19 @@ async def _(event):
 
 @bot.on(admin_cmd(pattern="برج ?(.*)"))
 async def _(event):
+
     if event.reply_to_msg_id:
         return
     input_str = event.pattern_match.group(1)
+    reply_to_id = await reply_id(event)
+    if event.reply_to_msg_id and not event.pattern_match.group(1):
+        reply_to_id = await event.get_reply_message()
+        reply_to_id = str(reply_to_id.message)
+    else:
+        reply_to_id = str(event.pattern_match.group(1))
+    if not reply_to_id:
+        return await edit_or_reply(
+            event, "**╮ .برج + اسم برجك ... ...╰**"
         )
     chat = "@TermexJepBoT"
     catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
