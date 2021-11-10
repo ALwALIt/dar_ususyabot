@@ -183,18 +183,24 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-
-@jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
+@jmthon.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
 async def _(event):
-    await event.edit("**- يتم اختيار مقطع صوتي لك ❤️**")
-    async with bot.conversation("@GaneleBot") as conv:
+    chat = "@GaneleBot"
+    geez = await event.edit("**جاري انشاء بريد ...**")
+    async with bot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
             )
+            await conv.send_message("/start")
+            await asyncio.sleep(1)
             await conv.send_message("غنيلي")
             response = await response
-            await bot.send_read_acknowledge(conv.chat_id)
+            jmthon = (response).reply_markup.rows[2].buttons[0].url
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("** اولا الغي حظر @GaneleBot وحاول مجددا**")
+            await geez.edit("**الغي حظر @TempMailBot  و حاول مجددا**")
             return
+        await event.edit(
+            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
+        )
