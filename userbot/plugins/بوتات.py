@@ -183,24 +183,37 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@jmthon.on(admin_cmd(pattern="غنيلي(?: |$)(.*)"))
+@bot.on(admin_cmd(pattern="غنيلي ?(.*)"))
 async def _(event):
+    if event.reply_to_msg_id:
+        return
+    input_str = event.pattern_match.group(1)
+    reply_to_id = await reply_id(event)
+    if event.reply_to_msg_id and not event.pattern_match.group(1):
+        reply_to_id = await event.get_reply_message()
+        reply_to_id = str(reply_to_id.message)
+    else:
+        reply_to_id = str(event.pattern_match.group(1))
+    if not reply_to_id:
+        return await edit_or_reply(
+            event, "**╮ .غنيلي ... ...╰**"
+        )
     chat = "@GaneleBot"
-    geez = await event.edit("**جاري انشاء بريد ...**")
-    async with bot.conversation(chat) as conv:
+    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نختار اغنية لعيونك ... 🧸🎈**")
+    async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
             )
-            await conv.send_message("/start")
-            await asyncio.sleep(1)
             await conv.send_message("غنيلي")
+            await event.client.send_message(chat, "{}".format(input_str))
             response = await response
-            jmthon = (response).reply_markup.rows[2].buttons[0].url
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await geez.edit("**الغي حظر @TempMailBot  و حاول مجددا**")
+            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @TermexJepBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
             return
-        await event.edit(
-            f"الايميل الخاص هو `{response.message.message}`\n[ اضغط هنا لرؤية من رسائل الايميل الواردة]({jepthon})"
-        )
+        if response.text.startswith("I can't find that"):
+            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
+        else:
+            await catevent.delete()
+            await event.client.send_message(event.chat_id, response.message)
