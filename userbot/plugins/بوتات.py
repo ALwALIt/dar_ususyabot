@@ -183,7 +183,7 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@jmthon.on(admin_cmd(pattern="ايميل وهمي(?: |$)(.*)"))
+@jmthon.on(admin_cmd(pattern="غنيلي(?: |$)(.*)"))
 async def _(event):
     chat = "@GaneleBot"
     geez = await event.edit("**جاري انشاء بريد ...**")
