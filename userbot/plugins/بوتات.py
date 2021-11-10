@@ -182,14 +182,9 @@ async def _(event):
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
             )
-            await event.client.send_message(chat, "{}".format(input_str))
+            await conv.send_message("غنيلي")
             response = await response
-            await event.client.send_read_acknowledge(conv.chat_id)
+            await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @TermexJepBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
+            await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
-        if response.text.startswith("I can't find that"):
-            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
-        else:
-            await catevent.delete()
-            await event.client.send_message(event.chat_id, response.message)
