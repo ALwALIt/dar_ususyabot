@@ -174,12 +174,10 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
+@bot.on(admin_cmd(pattern="برج ?(.*)"))
 async def _(event):
     await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
-    chat = "@GaneleBot"
-    catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
-    async with event.client.conversation(chat) as conv:
+    async with bot.conversation("@GaneleBot") as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
@@ -188,6 +186,10 @@ async def _(event):
             response = await response
             await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
+            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @TermexJepBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
             return
+        if response.text.startswith("I can't find that"):
+            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
+        else:
+            await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
