@@ -174,17 +174,23 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
-@bot.on(admin_cmd(pattern="غنيلي ?(.*)"))
+@bot.on(admin_cmd(pattern="غنيلي"))
 async def _(event):
-    await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
-    async with bot.conversation("@GaneleBot") as conv:
+    chat = "@GaneleBot"
+    catevent = await edit_or_reply(event, "جارِ اختيار مقطع صوتي لعيونك 🎀..!")
+    async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
             )
-            await conv.send_message("غنيلي")
+            await event.client.send_message(chat, "غنيلي")
             response = await response
-            await bot.send_read_acknowledge(conv.chat_id)
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
+            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @GaneleBot .. ثم اعـد استخدام الامـر ...🤖♥️**")
             return
+        if response.text.startswith("I can't find that"):
+            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
+        else:
+            await catevent.delete()
+            await event.client.send_message(event.chat_id, response.message)
