@@ -1,6 +1,6 @@
 # اذا تخمط اذكر الحقوق رجـاءا  - 
-# كتابة وتعديل وترتيب  ~ @RR9R7
-# For ~ @Jmthon
+# كتابة وتعديل وترتيب  ~ @lMl10l
+# For ~ @Jepthon
 
 import asyncio
 import base64
