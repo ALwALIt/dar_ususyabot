@@ -155,15 +155,6 @@ async def _(event):
     if event.reply_to_msg_id:
         return
     input_str = event.pattern_match.group(1)
-    reply_to_id = await reply_id(event)
-    if event.reply_to_msg_id and not event.pattern_match.group(1):
-        reply_to_id = await event.get_reply_message()
-        reply_to_id = str(reply_to_id.message)
-    else:
-        reply_to_id = str(event.pattern_match.group(1))
-    if not reply_to_id:
-        return await edit_or_reply(
-            event, "**╮ .برج + اسم برجك ... ...╰**"
         )
     chat = "@TermexJepBoT"
     catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
@@ -185,20 +176,7 @@ async def _(event):
             await event.client.send_message(event.chat_id, response.message)
 @jmthon.on(admin_cmd(pattern="غنيلي ?(.*)"))
 async def _(event):
-
-    if event.reply_to_msg_id:
-        return
-    input_str = event.pattern_match.group(1)
-    reply_to_id = await reply_id(event)
-    if event.reply_to_msg_id and not event.pattern_match.group(1):
-        reply_to_id = await event.get_reply_message()
-        reply_to_id = str(reply_to_id.message)
-    else:
-        reply_to_id = str(event.pattern_match.group(1))
-    if not reply_to_id:
-        return await edit_or_reply(
-            event, "**╮ .برج + اسم برجك ... ...╰**"
-        )
+    await event.edit("**- يتم التاكد من حالتك اذا كنت محظور او لا**")
     chat = "@GaneleBot"
     catevent = await edit_or_reply(event, "**╮•⎚ اصبر جاي نطلع برجك ... 🧸🎈**")
     async with event.client.conversation(chat) as conv:
@@ -206,9 +184,9 @@ async def _(event):
             response = conv.wait_event(
                 events.NewMessage(incoming=True, from_users=2120653489)
             )
-            await conv.send_message("غنيلي")
+            await event.client.send_message(chat, "{}".format(input_str))
             response = await response
-            await bot.send_read_acknowledge(conv.chat_id)
+            await event.client.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
             await event.edit("** اولا الغي حظر @SpamBot وحاول مجددا**")
             return
