@@ -17,7 +17,7 @@ from . import *
 @jmthon.on(admin_cmd(pattern="طقس (.*)"))
 @jmthon.on(sudo_cmd(pattern="طقس (.*)", allow_sudo=True))
 async def _(event):
-    if event.reply_to_msg_id:
+    if event.fwd_from:
         return
     Jepthon_Key = "a9d7fa6ecbd5c98ca6d8f472f211f3ce"
     sample_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
