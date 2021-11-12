@@ -59,7 +59,7 @@ async def _(event):
         await edit_or_reply(event, response_api["message"])
 
 
-@jmthon.on(admin_cmd(pattern="wttr (.*)"))
+@jmthon.on(admin_cmd(pattern="طقس (.*)"))
 async def _(event):
     if event.fwd_from:
         return
