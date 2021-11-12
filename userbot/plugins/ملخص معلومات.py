@@ -2,7 +2,7 @@ import time
 
 from prettytable import PrettyTable
 
-from userbot import Jmthon
+from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.tools import media_type
@@ -29,7 +29,7 @@ def weird_division(n, d):
     return n / d if d else 0
 
 
-@Jmthon.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تخزين الكروب(?:\s|$)([\s\S]*)",
     command=("تخزين الكروب", plugin_category),
     info={
@@ -131,7 +131,7 @@ async def _(event):  # sourcery no-metrics
     await catevent.edit(result, parse_mode="HTML", link_preview=False)
 
 
-@Jmthon.ar_cmd(
+@jmthon.ar_cmd(
     pattern="تخزين المستخدم(?:\s|$)([\s\S]*)",
     command=("تخزين المستخدم", plugin_category),
     info={
