@@ -24,8 +24,8 @@ JM_TXT = os.environ.get("PING_TEXT") or "𝗜 𝗝𝘂𝘀𝘁 𝗔𝘀𝗸𝗲�
 
 
 @jmthon.ar_cmd(
-    pattern="البنك$",
-    command=("البنك", plugin_category),
+    pattern="بنك$",
+    command=("بنك", plugin_category),
     info={
         "header": "امر تجربه البوت اذا يشتغل ارسل  .بنك فقط",
         "option": "امر بنك المتطور كتابة  @RR7PP",
