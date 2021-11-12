@@ -59,7 +59,7 @@ async def _(event):
             ),
         )
     else:
-        await eor(event, response_api["message"])
+        await edit_or_reply(event, response_api["message"])
 
 
 @jmthon.on(admin_cmd(pattern="wttr (.*)"))
