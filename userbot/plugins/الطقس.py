@@ -19,7 +19,7 @@ from . import *
 async def _(event):
     if event.fwd_from:
         return
-    Key = "a9d7fa6ecbd5c98ca6d8f472f211f3ce"
+    Key = "36980ed85a0d7008872784656e7ff2c8"
     sample_url = (
         "https://api.openweathermap.org/data/2.5/weather?q={}&APPID={}"
     )
