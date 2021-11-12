@@ -1,10 +1,18 @@
-import io
+import asyncio
 import time
 
 import aiohttp
+from telethon.errors import ChatAdminRequiredError as no_admin
+from telethon.tl.functions.messages import ExportChatInviteRequest
 
-from jmthon.utils import admin_cmd
+from Jmthon.razan.resources.strings import *
+from userbot import jmthon
+from userbot.utils import admin_cmd
 
+from ..core.managers import edit_or_reply
+from ..core.managers import edit_or_reply as eod
+from ..helpers import get_user_from_event
+from . import *
 
 @jmthon.on(admin_cmd(pattern="طقس (.*)"))
 @jmthon.on(sudo_cmd(pattern="طقس (.*)", allow_sudo=True))
@@ -29,13 +37,13 @@ async def _(event):
             event,
             """{}
 **درجة الحرارة**: {}°С
-    __الحد الادنى__: {}°С
-    __الحد الاقصى__ : {}°С
+**درجة الحرارة الصغرى:** {}°С
+**درجة الحرارة العظم:** {}°С
 **الرطوبة**: {}%
 **الرياح**: {}m/s
 **السحاب**: {}hpa
 **شروق الشمس**: {} {}
-**الشمس**: {} {}""".format(
+**غروب الشمس**: {} {}""".format(
                 input_str,
                 response_api["main"]["temp"],
                 response_api["main"]["temp_min"],
