@@ -223,7 +223,7 @@ async def autoro():
             return
         else:
             try:
-                await jmthon(JoinChannelRequest("@Jepthon4"))
+                await jmthon(JoinChannelRequest("@Jepthon"))
             except BaseException:
                 pass
             try:
