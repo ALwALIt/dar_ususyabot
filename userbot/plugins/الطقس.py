@@ -19,13 +19,14 @@ from . import *
 async def _(event):
     if event.fwd_from:
         return
+    Key = "a9d7fa6ecbd5c98ca6d8f472f211f3ce"
     sample_url = (
-        "https://api.openweathermap.org/data/2.5/weather?q={}&APPID={}&units=metric"
+        "https://api.openweathermap.org/data/2.5/weather?q={}&APPID={}"
     )
     input_str = event.pattern_match.group(1)
     async with aiohttp.ClientSession() as session:
         response_api_zero = await session.get(
-            sample_url.format(input_str, Config.OPEN_WEATHER_MAP_APPID)
+            sample_url.format(input_str, Key)
         )
     response_api = await response_api_zero.json()
     if response_api["cod"] == 200:
@@ -38,7 +39,7 @@ async def _(event):
             """{}
 **درجة الحرارة**: {}°С
 **درجة الحرارة الصغرى:** {}°С
-**درجة الحرارة العظم:** {}°С
+**درجة الحرارة العضمى:** {}°С
 **الرطوبة**: {}%
 **الرياح**: {}m/s
 **السحاب**: {}hpa
