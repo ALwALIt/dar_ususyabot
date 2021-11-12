@@ -19,7 +19,7 @@ from . import *
 async def _(event):
     if event.fwd_from:
         return
-    Key = "36980ed85a0d7008872784656e7ff2c8"
+    Key = "f806cebbd44f34cc4cd1d79a290081be"
     sample_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
     input_str = event.pattern_match.group(1)
     async with aiohttp.ClientSession() as session:
