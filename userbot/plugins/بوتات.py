@@ -204,3 +204,23 @@ async def _(event):
         else:
             await catevent.delete()
             await event.client.send_message(event.chat_id, response.message)
+@bot.on(admin_cmd(pattern="ث اندرويد"))
+async def _(event):
+    chat = "@ThemeJepBoT"
+    catevent = await edit_or_reply(event, "جارِ اختيار ثيم لعيونك 🎀..!")
+    async with event.client.conversation(chat) as conv:
+        try:
+            response = conv.wait_event(
+                events.NewMessage(incoming=True, from_users=2103356408)
+            )
+            await event.client.send_message(chat, "ثيم")
+            response = await response
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("**╮•⎚ تحـقق من انـك لم تقـم بحظر البوت @ThemeJepBoT .. ثم اعـد استخدام الامـر ...🤖♥️**")
+            return
+        if response.text.startswith("I can't find that"):
+            await catevent.edit("**╮•⎚ عـذراً .. لـم استطـع ايجـاد المطلـوب ☹️💔**")
+        else:
+            await catevent.delete()
+            await event.client.send_message(event.chat_id, response.message)
