@@ -24,25 +24,16 @@ plugin_category = "utils"
 # اذا انت ابن حرام اخمط 😂
 # اي بعدك تريد تخمط ترا من تخمط مراح تنجح
 
-@jmthon.ar_cmd(
-    pattern="رفع مرتي(?:\s|$)([\s\S]*)",
-    command=("رفع مرتي", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع زوجتي(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
-    """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    jepthon = user.last_name.replace("\u2060", "") if user.last_name else user.username
+    me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
-    await edit_or_reply(mention, f"⌯︙المستخدم [{jepthon}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه مـࢪتك بواسطة {my_mention} \n⌯︙يلا حبيبي جاهز/ه نخلف بيبي 👶🏻🤤")
+    await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{jepthon}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعها زوجتك  👰🏼‍♀️.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
 
 @jmthon.ar_cmd(
     pattern="رفع جلب(?:\s|$)([\s\S]*)",
