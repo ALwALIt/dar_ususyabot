@@ -33,7 +33,7 @@ async def permalink(mention):
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
-    await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{jepthon}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعها زوجتك  👰🏼‍♀️.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
+    await edit_or_reply(mention, f"**🚻¦ المستخدم => • ** [{jepthon}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعها مرتك بواسطه  :**{my_mention} 👰🏼‍♀️.\n**يلا حبيبي امشي نخلف بيبي 👶🏻🤤** ")
 
 @jmthon.ar_cmd(
     pattern="رفع جلب(?:\s|$)([\s\S]*)",
