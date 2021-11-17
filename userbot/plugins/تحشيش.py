@@ -43,12 +43,11 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"**⌯︙المستخدم** [{tag}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه جلب 🐶 بواسطة :** {my_mention} \n** خليه خله ينبح 😂**")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه جلب 🐶 بواسطة :** {my_mention} \n** خليه خله ينبح 😂**")
 
 @jmthon.ar_cmd(
     pattern="رفع تاج(?:\s|$)([\s\S]*)",
