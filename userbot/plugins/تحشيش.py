@@ -29,6 +29,8 @@ plugin_category = "utils"
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     if not user:
         return
     if user.id == 705475246:
