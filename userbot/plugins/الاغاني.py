@@ -36,8 +36,8 @@ SONGBOT_BLOCKED_STRING = (
 
 
 @jmthon.ar_cmd(
-    pattern="بحث(320)?(?:\s|$)([\s\S]*)",
-    command=("بحث", plugin_category),
+    pattern="اغنية(320)?(?:\s|$)([\s\S]*)",
+    command=("اغنية", plugin_category),
     info={
         "header": "To get songs from youtube.",
         "description": "Basically this command searches youtube and send the first video as audio file.",
