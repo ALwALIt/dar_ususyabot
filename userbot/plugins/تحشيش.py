@@ -33,7 +33,7 @@ async def permalink(mention):
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
-    await edit_or_reply(mention, f"** ⌯︙ المستخدم => • ** [{jepthon}](tg://user?id={user.id}) \n ☑️ **⌯︙ تم رفعها مرتك بواسطه  :**{my_mention} 👰🏼‍♀️.\n**⌯︙ يلا حبيبي امشي نخلف بيبي 👶🏻🤤** ")
+    await edit_or_reply(mention, f"🚻 ** ⌯︙ المستخدم => • ** [{jepthon}](tg://user?id={user.id}) \n ☑️ **⌯︙ تم رفعها مرتك بواسطه  :**{my_mention} 👰🏼‍♀️.\n**⌯︙ يلا حبيبي امشي نخلف بيبي 👶🏻🤤** ")
 
 @jmthon.on(admin_cmd(pattern="رفع جلب(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
@@ -47,12 +47,9 @@ async def permalink(mention):
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
-    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه جلب 🐶 بواسطة :** {my_mention} \n** خليه خله ينبح 😂**")
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه جلب 🐶 بواسطة :** {my_mention} \n**⌯︙ خليه خله ينبح 😂**")
 
-@jmthon.ar_cmd(
-    pattern="رفع تاج(?:\s|$)([\s\S]*)",
-    command=("رفع تاج", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع تاج(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -60,8 +57,11 @@ async def permalink(mention):
         return
     if custom:
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه تاج 👑🔥")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"⌯︙المستخدم [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه تاج بواسطة :** {my_mention} 👑🔥")
 
 @jmthon.ar_cmd(
     pattern="رفع قرد(?:\s|$)([\s\S]*)",
