@@ -24,7 +24,7 @@ plugin_category = "utils"
 # اذا انت ابن حرام اخمط 😂
 # اي بعدك تريد تخمط ترا من تخمط مراح تنجح
 
-@jmthon.on(admin_cmd(pattern="رفع زوجتي(?:\s|$)([\s\S]*)"))
+@jmthon.on(admin_cmd(pattern="رفع مرتي(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
