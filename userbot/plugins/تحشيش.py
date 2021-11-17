@@ -13,6 +13,8 @@ from ..Config import Config
 from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
+from telethon.utils import get_display_name
+from ..helpers.utils import reply_id, _catutils, parse_pre, yaml_format, install_pip, get_user_from_event, _format
 
 plugin_category = "utils"
 
