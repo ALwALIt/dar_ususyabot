@@ -31,8 +31,6 @@ plugin_category = "utils"
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
-    my_first = me.first_name
-    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     if not user:
         return
     if user.id == 705475246:
@@ -41,8 +39,10 @@ async def permalink(mention):
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه مـࢪتك بواسطة {my_mention} \n⌯︙يلا حبيبي جاهز/ه نخلف بيبي 👶🏻🤤")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"⌯︙المستخدم [{jepthon}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه مـࢪتك بواسطة {my_mention} \n⌯︙يلا حبيبي جاهز/ه نخلف بيبي 👶🏻🤤")
 
 @jmthon.ar_cmd(
     pattern="رفع جلب(?:\s|$)([\s\S]*)",
