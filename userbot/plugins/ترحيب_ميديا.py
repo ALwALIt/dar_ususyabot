@@ -17,7 +17,7 @@ from ._inline import something
 Note = "\n\nNote: `{mention}`, `{group}`, `{count}`, `{name}`, `{fullname}`, `{username}`, `{userid}` can be used as formatting parameters.\n\n"
 
 
-@jmthon.ar_cmd(pattern="ترحيب ميديا", groups_only=True)
+@jmthon.ar_cmd(pattern="ترحيب_ميديا", groups_only=True)
 async def save_welcome(event):
     x = await eor(event, get_string("com_1"))
     r = await event.get_reply_message()
