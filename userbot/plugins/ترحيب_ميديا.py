@@ -78,4 +78,3 @@ async def show_welcome(event):
         return await something(event, msgg, med, btn)
     await event.reply(f"**Welcome Note in this chat**\n\n`{msgg}`", file=med)
     await event.delete()
-)
