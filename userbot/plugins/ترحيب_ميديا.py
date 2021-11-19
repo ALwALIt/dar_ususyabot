@@ -1,6 +1,6 @@
 import os
-
-from pyUltroid.dB.greetings_db import (
+from userbot import jmthon
+from ..sql_helper.welcome_sql import (
     add_goodbye,
     add_thanks,
     add_welcome,
@@ -11,11 +11,11 @@ from pyUltroid.dB.greetings_db import (
     must_thank,
     remove_thanks,
 )
-from pyUltroid.functions.tools import create_tl_btn, format_btn, get_msg_button
+from jmthon.functions.tools import create_tl_btn, format_btn, get_msg_button
 from telegraph import upload_file as uf
 from telethon.utils import pack_bot_file_id
 
-from . import HNDLR, eor, get_string, mediainfo, ultroid_cmd
+from . import HNDLR, eor, get_string, mediainfo, jmthon.ar_cmd
 from ._inline import something
 
 Note = "\n\nNote: `{mention}`, `{group}`, `{count}`, `{name}`, `{fullname}`, `{username}`, `{userid}` can be used as formatting parameters.\n\n"
