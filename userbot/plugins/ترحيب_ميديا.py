@@ -18,7 +18,7 @@ Note = "\n\nNote: `{mention}`, `{group}`, `{count}`, `{name}`, `{fullname}`, `{u
 
 
 @jmthon.ar_cmd(pattern="ترحيب ميديا", groups_only=True)
-async def setwel(event):
+async def save_welcome(event):
     x = await eor(event, get_string("com_1"))
     r = await event.get_reply_message()
     btn = format_btn(r.buttons) if (r and r.buttons) else None
