@@ -15,7 +15,7 @@ from jmthon.functions.tools import create_tl_btn, format_btn, get_msg_button
 from telegraph import upload_file as uf
 from telethon.utils import pack_bot_file_id
 
-from . import HNDLR, eor, get_string, mediainfo, jmthon.ar_cmd
+from . import HNDLR, eor, get_string, mediainfo
 from ._inline import something
 
 Note = "\n\nNote: `{mention}`, `{group}`, `{count}`, `{name}`, `{fullname}`, `{username}`, `{userid}` can be used as formatting parameters.\n\n"
