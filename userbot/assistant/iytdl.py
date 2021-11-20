@@ -1,6 +1,8 @@
-# ----------------------------------------- #
-#  @JepThon  @lMl10l   #
-# ----------------------------------------- #
+""" Download Youtube Video / Audio in a User friendly interface """
+# --------------------------- #
+#   Modded ytdl by code-rgb   #
+# --------------------------- #
+
 import asyncio
 import glob
 import io
@@ -63,7 +65,7 @@ async def iytdl_inline(event):
         input_url = (reply.text).strip()
     if not input_url:
         return await edit_delete(
-            event, "**▾∮ اكتب اسم الاغنية او قم بالرد ع رابط يوتيوب ✓**"
+            event, "**▾∮ اكتب الرابط او قم بالرد ع رابط يوتيوب ✓**"
         )
     catevent = await edit_or_reply(
         event, f"**▾∮ جاري البحث في اليوتيوب : ☟** \n`'{input_url}'`"
