@@ -1,10 +1,10 @@
-# @Jmthon - < https://t.me/Jmthon >
-# Copyright (C) 2021 - JMTHON-AR
+# @Jepthon - < https://t.me/Jepthon >
+# Copyright (C) 2021 - Jepthon-AR
 # All rights reserved.
 #
-# This file is a part of < https://github.com/JMTHON-AR/JMTHON >
+# This file is a part of < https://github.com/USERBOTJEPTHON/JEPTHON-AR >
 # Please read the GNU Affero General Public License in;
-# < https://github.com/JMTHON-AR/JM-THON/blob/master/LICENSE
+# < https://github.com/USERBOTJEPTHON/JEPTHON-AR/blob/master/LICENSE
 # ===============================================================
 import asyncio
 import os
