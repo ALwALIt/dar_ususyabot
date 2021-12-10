@@ -3,8 +3,8 @@ import heroku3
 from telethon.tl.functions.users import GetFullUserRequest
 
 from . import *
-from jmthon.utils import delete_mafia as eod
-from jmthon.utils import edit_or_reply as eor
+from ..core.managers import edit_delete as eod
+from ..core.managers import edit_or_reply as eor
 
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
 heroku_api = "https://api.heroku.com"
