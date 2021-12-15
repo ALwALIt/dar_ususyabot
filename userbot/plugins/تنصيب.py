@@ -3,9 +3,9 @@ from ..Config import Config
 from ..sql_helper.globals import gvarstatus
 from Jmthon.razan.resources.mybot import *
 
-ROZ_PIC = "https://telegra.ph/file/7a97963354e87e6fc7cde.jpg"
+ROZ_PIC = "https://telegra.ph/file/d94c222c321f6d3352842.jpg"
 
-if Config.TG_BOT_USERNAME is not None and tgbot is not     
+if Config.TG_BOT_USERNAME is not None and tgbot is not None:
     @tgbot.on(events.InlineQuery)
     async def inline_handler(event):
         builder = event.builder
