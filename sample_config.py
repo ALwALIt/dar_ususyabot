@@ -37,6 +37,7 @@ class Config(object):
     # تعديلي
     PING_PIC = os.environ.get("PING_PIC")
     TIME_JM = os.environ.get("TIME_JM", None)
+    TI_FN = os.environ.get("TI_FN", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
     JMTHON_START = os.environ.get("JMTHON_START", None)
     PMPERMIT_TEXT_Jepthon = os.environ.get("PMPERMIT_TEXT_Jepthon", None)
