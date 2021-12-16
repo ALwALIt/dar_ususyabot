@@ -21,7 +21,7 @@ from . import AUTONAME, DEFAULT_BIO, edit_delete, jmthon, logging
 
 plugin_category = "tools"
 
-DEFAULTUSERBIO = DEFAULT_BIO or " من تواضع الله رفعه ، 🚶🏻❤️ "
+DEFAULTUSERBIO = DEFAULT_BIO or " آللهم صلِ على محمد وآل محمد "
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 LOGS = logging.getLogger(__name__)
 
@@ -35,19 +35,7 @@ digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a
 RR7PP = Config.TIME_JM or "𖥻"
 
 normzltext = "1234567890"
-namerzfont = [
-    "𝟭",
-    "𝟮",  
-    "𝟯",  
-    "𝟰",
-    "𝟱",
-    "𝟲",
-    "𝟳",
-    "𝟴",
-    "𝟵",
-    "𝟬",
-]
-
+namerzfont = Config.JEP_FN or "𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬"
 
 async def digitalpicloop():
     DIGITALPICSTART = gvarstatus("digitalpic") == "true"
@@ -111,6 +99,10 @@ async def autobio_loop():
     while AUTOBIOSTART:
         time.strftime("%d.%m.%Y")
         HI = time.strftime("%I:%M")
+        for normal in HI:
+            if normal in normzltext:
+                namefont = namerzfont[normzltext.index(normal)]
+                HI = HI.replace(normal, namefont)
         bio = f"{DEFAULTUSERBIO} {HI}"
         LOGS.info(bio)
         try:
@@ -206,7 +198,7 @@ async def _(event):  # sourcery no-metrics
     if input_str not in END_CMDS:
         await edit_delete(
             event,
-            f"عـذرا يجـب استـخدام الامـر بشـكل صحـيح ❤️",
+            f"عـذرا يجـب استـخدام الامـر بشـكل صحـيح 🧸♥",
             parse_mode=_format.parse_pre,
         )
 
