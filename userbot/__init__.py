@@ -7,22 +7,22 @@ from .core.logger import logging
 from .core.session import jmthon
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
-__version__ = "4.0.0"
-__license__ = "كـتابة وتـعديل فريـق جـيبثون"
-__author__ = "جـيبثون <https://T.ME/JepThon>"
-__copyright__ = "JepThon TEAM (C) 2020 - 2021  " + __author__
+__version__ = "1.0.0"
+__license__ = "كـتابة وتـعديل فريـق جيبثون"
+__author__ = "جيبثون <https://T.ME/Jepthob>"
+__copyright__ = "JEPTHON TEAM (C) 2020 - 2021  " + __author__
 
 jmthon.version = __version__
 jmthon.tgbot.version = __version__
-LOGS = logging.getLogger("جـيبثون")
+LOGS = logging.getLogger("جيبـثون")
 bot = jmthon
 
 StartTime = time.time()
-JMVERSION = "4.0.0"
+JMVERSION = "5.2.0"
 
 
-if Config.UPSTREAM_REPO == "Jeepthon":
-    UPSTREAM_REPO_URL = "https://github.com/almul8ab/BOT"
+if Config.UPSTREAM_REPO == "Jepthon-Ar":
+    UPSTREAM_REPO_URL = "https://github.com/USERBOTJEPTHON/JEPTHON-AR"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
@@ -43,12 +43,11 @@ else:
 
 if Config.PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
-        Config.PM_LOGGER_GROUP_ID =-100
+        Config.PM_LOGGER_GROUP_ID = -100
     else:
         Config.PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
 elif str(Config.PM_LOGGER_GROUP_ID)[0] != "-":
     Config.PM_LOGGER_GROUP_ID = int("-" + str(Config.PM_LOGGER_GROUP_ID))
-
 try:
     if Config.HEROKU_API_KEY is not None or Config.HEROKU_APP_NAME is not None:
         HEROKU_APP = heroku3.from_key(Config.HEROKU_API_KEY).apps()[
