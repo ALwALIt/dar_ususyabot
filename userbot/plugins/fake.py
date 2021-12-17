@@ -110,10 +110,6 @@ async def listall(jmthon):
     await jmthon.reply(mentions)
     await jmthon.delete()
 
-
-# don't kang the file your mother puusy
-# code by @jmthon
-
 @jmthon.on(admin_cmd(pattern="طقس (.*)"))
 @jmthon.on(sudo_cmd(pattern="طقس (.*)", allow_sudo=True))
 async def _(event):
@@ -157,13 +153,6 @@ async def _(event):
         )
     else:
         await edit_or_reply(event, response_api["message"])
-
-
-import asyncio
-
-from jmthon.utils import admin_cmd
-
-from userbot import jmthon
 
 R = (
     "┈┈╱▔▔▔▔▔▔▔▔▔▔▔▏\n"
