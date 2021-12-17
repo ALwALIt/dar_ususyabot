@@ -561,3 +561,4 @@ async def permalink(mention):
     jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
     jepthon2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     await edit_or_reply(mention, f"────▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀█─█\n▀▀▀▀▄─█─█─█─█─█─█──█▀█\n─────▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀─▀\n\n**🚹 ╎ تنح واخذ الابره عزيزي 👨🏻‍⚕🤭😂** [{jepthon}{jepthon2}](tg://user?id={user.id})")
+)
