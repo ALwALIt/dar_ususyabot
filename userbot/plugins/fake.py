@@ -170,7 +170,7 @@ R = (
 async def kerz(kerz):
     await kerz.edit(R)
 
-    A = (
+    M = (
         "╭━┳━╭━╭━╮╮\n"
         "┃┈┈┈┣▅╋▅┫┃\n"
         "┃┈┃┈╰━╰━━━━━━╮\n"
@@ -184,7 +184,7 @@ async def kerz(kerz):
 
 @jmthon.on(admin_cmd(pattern=r"كلب"))
 async def dog(dog):
-    await dog.edit(A)
+    await dog.edit(M)
     Z = (
         "┈┏━╮╭━┓┈╭━━━━╮\n"
         "┈┃┏┗┛┓┃╭┫ⓞⓘⓝⓚ┃\n"
@@ -197,7 +197,7 @@ async def dog(dog):
     )
 
 
-A = (
+H = (
     " ╱▏┈┈┈┈┈┈▕╲▕╲┈┈┈\n"
     "▏▏┈┈┈┈┈┈▕▏▔▔╲┈┈\n"
     "▏╲┈┈┈┈┈┈╱┈▔┈▔╲┈\n"
@@ -233,7 +233,7 @@ N = (
 
 @jmthon.on(admin_cmd(pattern=r"ذئب"))
 async def fox(fox):
-    await fox.edit(A)
+    await fox.edit(H)
 
 
 @jmthon.on(admin_cmd(pattern=r"فيل"))
