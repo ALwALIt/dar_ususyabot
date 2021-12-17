@@ -1,3 +1,4 @@
+
 import glob
 import os
 import sys
@@ -7,10 +8,8 @@ from pathlib import Path
 
 import requests
 from telethon import Button, functions, types, utils
-from telethon.tl.functions.channels import JoinChannelRequest
 
 from userbot import BOTLOG, BOTLOG_CHATID, PM_LOGGER_GROUP_ID
-from userbot import jmthon
 
 from ..Config import Config
 from ..core.logger import logging
@@ -24,7 +23,7 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
 
-LOGS = logging.getLogger("Jepthon")
+LOGS = logging.getLogger("JepThon")
 cmdhr = Config.COMMAND_HAND_LER
 
 
@@ -65,9 +64,9 @@ async def startupmessage():
         if BOTLOG:
             Config.CATUBLOGO = await jmthon.tgbot.send_file(
                 BOTLOG_CHATID,
-                "https://telegra.ph/file/d94c222c321f6d3352842.jpg",
-                caption="⌯︙**بــوت جـيـبـثـون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @Jepthon",
-                buttons=[(Button.url("كروب جيبثون", "https://t.me/GroupJepthon"),)],
+                "https://telegra.ph/file/7a97963354e87e6fc7cde.jpg",
+                caption="⌯︙**بــوت جيـبثون يـعـمـل بـنـجـاح**  ✅ \n⌯︙**قـنـاة الـسـورس**  :  @JepThon",
+                buttons=[(Button.url("مطور جيبثون", "https://t.me/lMl10l"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -83,10 +82,7 @@ async def startupmessage():
         if msg_details:
             await jmthon.check_testcases()
             message = await jmthon.get_messages(msg_details[0], ids=msg_details[1])
-            text = (
-                message.text
-                + "\n\n**⌯︙اهلا وسهلا لقد قمت باعاده تشغيل بـوت جيبثون تمت بنجاح**"
-            )
+            text = message.text + "\n\n**⌯︙اهلا وسهلا لقد قمت باعاده تشغيل بـوت جـيبثون تمت بنجاح**"
             await jmthon.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
                 await jmthon.send_message(
@@ -176,45 +172,7 @@ async def load_plugins(folder):
                     os.remove(Path(f"userbot/{folder}/{shortname}.py"))
             except Exception as e:
                 os.remove(Path(f"userbot/{folder}/{shortname}.py"))
-                LOGS.info(
-                    f"⌯︙غير قادر على التحميل {shortname} يوجد هناك خطا بسبب : {e}"
-                )
-
-
-async def autojo():
-    try:
-        await jmthon(JoinChannelRequest("@jepthon"))
-        if gvar("AUTOEO") is False:
-            return
-        else:
-            try:
-                await jmthon(JoinChannelRequest("@jepthon"))
-            except BaseException:
-                pass
-            try:
-                await jmthon(JoinChannelRequest("@jepthon"))
-            except BaseException:
-                pass
-    except BaseException:
-        pass
-
-
-async def autozs():
-    try:
-        await jmthon(JoinChannelRequest("@jepthon"))
-        if gvar("AUTOZS") is False:
-            return
-        else:
-            try:
-                await jmthon(JoinChannelRequest("@jepthon"))
-            except BaseException:
-                pass
-            try:
-                await jmthon(JoinChannelRequest("@jepthon"))
-            except BaseException:
-                pass
-    except BaseException:
-        pass
+                LOGS.info(f"⌯︙غير قادر على التحميل {shortname} يوجد هناك خطا بسبب : {e}")
 
 
 async def verifyLoggerGroup():
@@ -235,7 +193,9 @@ async def verifyLoggerGroup():
                         "⌯︙الفار الأذونات مفقودة لإرسال رسائل لـ PRIVATE_GROUP_BOT_API_ID المحدد."
                     )
         except ValueError:
-            LOGS.error("⌯︙تـأكد من فـار المجـموعة  PRIVATE_GROUP_BOT_API_ID.")
+            LOGS.error(
+                "⌯︙تـأكد من فـار المجـموعة  PRIVATE_GROUP_BOT_API_ID."
+            )
         except TypeError:
             LOGS.error(
                 "⌯︙لا يمكـن العثور على فار المجموعه PRIVATE_GROUP_BOT_API_ID. تأكد من صحتها."
@@ -246,12 +206,14 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @jepthon"
+        descript = "⌯︙لا تحذف هذه المجموعة أو تغير إلى مجموعة (إذا قمت بتغيير المجموعة ، فسيتم فقد كل شيئ .)"
         _, groupid = await create_supergroup(
-            "مجموعة اشعارات جيبثون ", jmthon, Config.TG_BOT_USERNAME, descript, photobt
+            "مجموعه بوت جـيبثون الخاص بك", jmthon, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
-        print("⌯︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
+        print(
+            "⌯︙تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات."
+        )
         flag = True
     if PM_LOGGER_GROUP_ID != -100:
         try:
@@ -271,15 +233,18 @@ async def verifyLoggerGroup():
             LOGS.error("⌯︙PM_LOGGER_GROUP_ID غير مدعوم. تأكد من صحتها.")
         except Exception as e:
             LOGS.error(
-                "⌯︙حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n" + str(e)
+                "⌯︙حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n"
+                + str(e)
             )
     else:
-        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @jepthon"
+        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @JepThon"
         _, groupid = await create_supergroup(
-            "مجموعة التخزين", jmthon, Config.TG_BOT_USERNAME, descript, photobt
+            "كـروب تخزين الخاص", jmthon, Config.TG_BOT_USERNAME, descript
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
-        print("تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه.")
+        print(
+            "تـم عمـل الكروب التخزين بنـجاح واضافة الـفارات الـيه."
+        )
         flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
