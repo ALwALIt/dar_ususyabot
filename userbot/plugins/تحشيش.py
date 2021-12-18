@@ -20,7 +20,7 @@ plugin_category = "utils"
 
 
 
-#كـتابة المـلف وتعديل.    :   محـمد الـزهيري.   اخمط وسمي روحك مطور فرخي 😂
+#كـتابة المـلف وتعديل.    :   السيد حسين.   اخمط وسمي روحك مطور فرخي 😂
 # اذا انت ابن حرام اخمط 😂
 # اي بعدك تريد تخمط ترا من تخمط مراح تنجح
 
@@ -63,28 +63,7 @@ async def permalink(mention):
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"⌯︙المستخدم [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه تاج بواسطة :** {my_mention} 👑🔥")
 
-@jmthon.ar_cmd(
-    pattern="رفع قرد(?:\s|$)([\s\S]*)",
-    command=("رفع قرد", plugin_category),
-)
-async def permalink(mention):
-    """Generates a link to the user's PM with a custom text."""
-    user, custom = await get_user_from_event(mention)
-    if not user:
-        return
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه قرد واعطائه موزة 🐒🍌")
-
-@jmthon.ar_cmd(
-    pattern="رفع بكلبي(?:\s|$)([\s\S]*)",
-    command=("رفع بكلبي", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع قرد(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -92,14 +71,27 @@ async def permalink(mention):
         return
     if custom:
         return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه بڪلبك 🖤 ")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"⌯︙المستخدم [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه قرد واعطائه موزة 🐒🍌 بواسطة :** {my_mention}")
+
+@jmthon.on(admin_cmd(pattern="رفع بكلبي(?:\s|$)([\s\S]*)"))
+async def permalink(mention):
+    """Generates a link to the user's PM with a custom text."""
+    user, custom = await get_user_from_event(mention)
+    if not user:
+        return
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه بكلـبك 🤍 بواسطة :** {my_mention} \n**⌯︙ انت حبي الابدي 😍**")
     
     
-@jmthon.ar_cmd(
-    pattern="رفع مطي(?:\s|$)([\s\S]*)",
-    command=("رفع مطي", plugin_category),
-)
+
+@jmthon.on(admin_cmd(pattern="رفع مطي(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -107,37 +99,33 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تم رفعه مطي في الكروب \n⌯︙ تعال حبي استلم العربانه")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه مطي 🐴 بواسطة :** {my_mention} \n**⌯︙ تعال حبي استلم العربانه **")
     
-#كـتابة المـلف وتعديل.    :   محـمد الـزهيري.   اخمط وسمي روحك مطور فرخي 😂
+#كـتابة المـلف وتعديل.    :   السيد حسين.   اخمط وسمي روحك مطور فرخي 😂
 # اذا انت ابن حرام اخمط 😂
 # اي بعدك تريد تخمط ترا من تخمط مراح تنجح
 
 
-@jmthon.ar_cmd(
-    pattern="رفع زوجي(?:\s|$)([\s\S]*)",
-    command=("رفع زوجي", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع زوجي(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙تـم رفعه زوجج روحوا خلفوا 🤤😂")
+    if user.id == 705475246:
+        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه زوجج بواسطة :** {my_mention} \n**⌯︙ يلا حبيبي امشي نخلف 🤤🔞**")
     
 
-@jmthon.ar_cmd(
-    pattern="رفع زاحف(?:\s|$)([\s\S]*)",
-    command=("رفع زاحف", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع زاحف(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -145,17 +133,13 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المتهم [{tag}](tg://user?id={user.id}) \n⌯︙تم رفعه في قائمة الزواحف ، لك حيوان شوكت تبطل سوالفك 😂🐍 ")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفع المتهم زاحف اصلي بواسطة :** {my_mention} \n**⌯︙ ها يلزاحف شوكت تبطل سوالفك حيوان 😂🐍**")
 
-@jmthon.ar_cmd(
-    pattern="رفع كحبة(?:\s|$)([\s\S]*)",
-    command=("رفع كحبة", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع كحبة(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -163,17 +147,13 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه كحبة تعال يلكحبة طوبز خلي انيجك 👌🏻👉🏻")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفع المتهم كحبة 👙 بواسطة :** {my_mention} \n**⌯︙ ها يلكحبة طوبز خلي انيجك/ج**")
 
-@jmthon.ar_cmd(
-    pattern="رفع فرخ(?:\s|$)([\s\S]*)",
-    command=("رفع فرخ", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع فرخ(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -181,12 +161,11 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تـم رفعـه فرخ الكروب لكك فرخ استر على خمستك كام ياهو الي يجي يزورها 😉🤤")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه فرخ الكروب بواسطة :** {my_mention} \n**⌯︙ لك الفرخ استر على خمستك ياهو اليجي يزورهاً 👉🏻👌🏻**")
 
 @jmthon.ar_cmd(
     pattern="رزله(?:\s|$)([\s\S]*)",
@@ -206,10 +185,7 @@ async def permalink(mention):
     tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
     await edit_or_reply(mention, f"⌯︙ولك [{tag}](tg://user?id={user.id}) \n⌯︙ هيو لتندك بسيادك لو بهاي 👞👈")
 
-@jmthon.ar_cmd(
-    pattern="رفع حاته(?:\s|$)([\s\S]*)",
-    command=("رفع حاته", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع حاته(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -217,17 +193,13 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدمه [{tag}](tg://user?id={user.id}) \n⌯︙ تم رفعها حاته بلكروب  \n⌯︙ تعال يعافيتي الحاته اريد حضن 🥺❤️")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـها حاته الكروب 🤤😻 بواسطة :** {my_mention} \n**⌯︙ تعاي يعافيتي اريد حضن دافي 😽**")
 
-@jmthon.ar_cmd(
-    pattern="رفع بقره(?:\s|$)([\s\S]*)",
-    command=("رفع بقره", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع هايشة(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -235,26 +207,23 @@ async def permalink(mention):
         return
     if user.id == 705475246:
         return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور**")
-    if user.id == 705475246:
-        return await edit_or_reply(mention, f"**- لكك دي هذا المطور **")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تم رفعه بقره في الكروب  \n⌯︙ ها يلهايشه خوش بيك حليب تع احلبك 😹🐄")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه المتهم هايشة 🐄 بواسطة :** {my_mention} \n**⌯︙ ها يلهايشة خوش بيك حليب تعال احلبك 😂**")
 
-@jmthon.ar_cmd(
-    pattern="رفع صاك(?:\s|$)([\s\S]*)",
-    command=("رفع صاك", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern="رفع صاك(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     """Generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if custom:
-        return await edit_or_reply(mention, f"[{custom}](tg://user?id={user.id})")
-    tag = user.first_name.replace("\u2060", "") if user.first_name else user.username
-    await edit_or_reply(mention, f"⌯︙المستخدم [{tag}](tg://user?id={user.id}) \n⌯︙ تم رفعه صاك بلكروب \n⌯︙تعال حبي الصاك نطيني بوسه من الحلق 😻🙊")
+    jepthon = user.first_name.replace("\u2060", "") if user.first_name else user.username
+    me = await mention.client.get_me()
+    my_first = me.first_name
+    my_mention = f"[{me.first_name}](tg://user?id={me.id})"
+    await edit_or_reply(mention, f"**⌯︙المستخدم** [{jepthon}](tg://user?id={user.id}) \n**⌯︙ تـم رفعـه صاك 🤤 بواسطة :** {my_mention} \n**⌯︙ تعال يلحلو انطيني بوسة من رگبتك 😻🤤**")
 
 @jmthon.ar_cmd(
     pattern="مصه(?:\s|$)([\s\S]*)",
