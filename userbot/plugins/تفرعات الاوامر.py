@@ -589,3 +589,14 @@ async def _(event):
         " قائمة اوامر الالعاب\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌯︙اختر احدى هذه الاوامر\n\n- ( `.بلي` )\n- ( `.كت` )\n- ( `.خيروك` )\n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JepThon"
 
 )
+
+@jmthon.ar_cmd(
+    pattern="اوامر الميمز$",
+    command=("اوامر الميمز", plugin_category),
+)
+async def _(event):
+     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+        await event.edit(
+        " قائمة اوامر الميمز\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌯︙اختر احدى هذه الاوامر\n\n- ( `.تراش` )\n- ( `.تهديد` )\n- ( `.فخ` )\n- ( `.بورن` )\n\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n⌔︙CH : @JepThon"
+
+)
