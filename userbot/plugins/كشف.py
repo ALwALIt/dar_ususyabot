@@ -141,7 +141,7 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="ايدي(?:\s|$)([\s\S]*)",
+    pattern="(ايدي|ا)",
     command=("ايدي", plugin_category),
     info={
         "header": "Gets info of an user.",
