@@ -14,7 +14,7 @@ from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
 
-JEP_ID = Config.ID_TEXT or "ツ مـعلومات الـشخص مـن بـوت جيبثون "
+JEP_TEXT = Config.ID_TEXT or "ツ مـعلومات الـشخص مـن بـوت جيبثون "
 JEP_EM = Config.ID_EM or " •❃ "
 
 plugin_category = "utils"
@@ -59,7 +59,7 @@ async def fetch_info(replied_user, event):
     rotbat = ".「 مـالك الحساب 𓀫 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 else rotbat
     username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
-    caption = "{JEP_ID}\n"
+    caption = f"<b> {JEP_TEXT} </b>\n"
     caption = "✛━━━━━━━━━━━━━✛ \n"
     caption += f"<b>{JEP_EM} الاسـم ›</b> {first_name} {last_name}\n"
     caption += f"<b>{JEP_EM} المـعـرف ›</b> {username}\n"
