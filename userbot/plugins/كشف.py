@@ -14,6 +14,9 @@ from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
 
+JEP_ID = Config.ID_TEXT or " مـعلومات الـشخص مـن بـوت جيبثون "
+JEP_EM = Config.ID_EM or " •❃ "
+
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 async def fetch_info(replied_user, event):
@@ -56,15 +59,16 @@ async def fetch_info(replied_user, event):
     rotbat = ".「 مـالك الحساب 𓀫 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 else rotbat
     username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
-    caption = "✛━━━━━━━━━━━━━✛ \n\n"
-    caption += f"<b>- الاسـم ›</b> {first_name} {last_name}\n"
-    caption += f"<b>- المـعـرف ›</b> {username}\n"
-    caption += f"<b>- الايـدي  ›</b> <code>{user_id}</code>\n"
-    caption += f"<b>- عـدد الصـورة ›</b> {replied_user_profile_photos_count}\n"
-    caption += f"<b>- الرتبـــه  ⇦ {rotbat} </b>\n"
-    caption += f"<b>-️ الـنبـذه ›</b> \n<code>{user_bio}</code>\n\n"
-    caption += f"<b>- الـمجموعات المشتـركة ›</b> {common_chat}\n"
-    caption += f"<b>- رابط حسـابه ›</b> "
+    caption = f"<b> {JEP_ID} </b>\n"
+    caption = "✛━━━━━━━━━━━━━✛ \n"
+    caption += f"<b>{JEP_EM} الاسـم ›</b> {first_name} {last_name}\n"
+    caption += f"<b>{JEP_EM} المـعـرف ›</b> {username}\n"
+    caption += f"<b>{JEP_EM} الايـدي  ›</b> <code>{user_id}</code>\n"
+    caption += f"<b>{JEP_EM} عـدد الصـورة ›</b> {replied_user_profile_photos_count}\n"
+    caption += f"<b>{JEP_EM} الرتبـــه  ⇦ {rotbat} </b>\n"
+    caption += f"<b>{JEP_EM} الـنبـذه ›</b> \n<code>{user_bio}</code>\n\n"
+    caption += f"<b>{JEP_EM} الـمجموعات المشتـركة ›</b> {common_chat}\n"
+    caption += f"<b>{JEP_EM} رابط حسـابه ›</b> "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>\n'
     caption += f"✛━━━━━━━━━━━━━✛"
     return photo, caption
