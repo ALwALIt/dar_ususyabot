@@ -58,7 +58,6 @@ async def fetch_info(replied_user, event):
     rotbat = ".「 مـالك الحساب 𓀫 」." if user_id == (await event.client.get_me()).id and user_id != 705475246 else rotbat
     username = "@{}".format(username) if username else ("⌯︙هـذا الشخص ليس لديـه معـرف ")
     user_bio = "⌯︙هذا المستخدم ليس لديه اي نبـذة" if not user_bio else user_bio
-    caption += f"<b> {JEP_TEXT} </b>\n"
     caption += "✛━━━━━━━━━━━━━✛ \n"
     caption += f"<b>{JEP_EM} الاسـم ›</b> {first_name} {last_name}\n"
     caption += f"<b>{JEP_EM} المـعـرف ›</b> {username}\n"
