@@ -38,7 +38,6 @@ class Config(object):
     PING_PIC = os.environ.get("PING_PIC")
     TIME_JM = os.environ.get("TIME_JM", None)
     JP_FN = os.environ.get("JP_FN", None)
-    ID_TEXT = os.environ.get("ID_TEXT", None)
     ID_EM = os.environ.get("ID_EM", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
     JMTHON_START = os.environ.get("JMTHON_START", None)
