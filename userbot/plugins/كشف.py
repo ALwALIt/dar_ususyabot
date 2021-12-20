@@ -14,7 +14,6 @@ from ..core.managers import edit_or_reply
 from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
 
-JEP_TEXT = Config.ID_TEXT or " مـعلومات الـشخص مـن بـوت جيبثون "
 JEP_EM = Config.ID_EM or " •❃ "
 
 plugin_category = "utils"
