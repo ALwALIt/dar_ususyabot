@@ -1,246 +1,425 @@
-import base64
-import io
+import asyncio
+import glob
 import os
-from pathlib import Path
+import shutil
+import time
 
-from ShazamAPI import Shazam
-from telethon import types
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-from validators.url import url
-from youtubesearchpython import Video
+import deezloader
+from hachoir.metadata import extractMetadata
+from hachoir.parser import createParser
+from pylast import User
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
+
+from userbot import CMD_HANDLER as cmd
+from userbot import (
+    CMD_HELP,
+    DEEZER_ARL_TOKEN,
+    LASTFM_USERNAME,
+    TEMP_DOWNLOAD_DIRECTORY,
+    bot,
+    lastfm,
+)
 
 from userbot import jmthon
-
-from ..core.logger import logging
-from ..core.managers import edit_delete, edit_or_reply
-from ..helpers.functions import name_dl, song_dl, video_dl, yt_search
-from ..helpers.tools import media_type
-from ..helpers.utils import _catutils, reply_id
-from . import hmention
-
-plugin_category = "utils"
-LOGS = logging.getLogger(__name__)
-
-# =========================================================== #
-#                           STRINGS                           #
-# =========================================================== #
-SONG_SEARCH_STRING = "⌯︙جاري البحث عن الاغنية إنتظر رجاءًا  🎧"
-SONG_NOT_FOUND = "⌯︙لم أستطع إيجاد هذه الأغنية  ⚠️"
-SONG_SENDING_STRING = "⌯︙قم بإلغاء حظر البوت  🚫"
-SONGBOT_BLOCKED_STRING = (
-    "<code>الـرجاء الـغاء حـظر @songdl_bot و الـمحاولة مـرة اخـرى</code>"
-)
-# =========================================================== #
-#                                                             #
-# =========================================================== #
+from userbot.utils import bash, chrome, edit_or_reply, man_cmd, progress
+from userbot.utils.FastTelethon import upload_file
 
 
-@jmthon.ar_cmd(
-    pattern="اغنية(320)?(?:\s|$)([\s\S]*)",
-    command=("بحث", plugin_category),
-    info={
-        "header": "To get songs from youtube.",
-        "description": "Basically this command searches youtube and send the first video as audio file.",
-        "flags": {
-            "320": "if you use song320 then you get 320k quality else 128k quality",
-        },
-        "usage": "{tr}song <song name>",
-        "examples": "{tr}song memories song",
-    },
-)
-async def _(event):
-    "⌯︙للبحث عن أغاني  🎧"
-    reply_to_id = await reply_id(event)
-    reply = await event.get_reply_message()
-    if event.pattern_match.group(2):
-        query = event.pattern_match.group(2)
-    elif reply and reply.message:
-        query = reply.message
-    else:
-        return await edit_or_reply(event, "**⌔ ︙ما الذي تريد أن أبحث عنه  **")
-    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(
-        event, "**⌯︙لقـد عـثرت عـلى المطلـوب إنتظر قليلا  **"
+async def getmusic(cat):
+    video_link = ""
+    search = cat
+    driver = await chrome()
+    driver.get("https://www.youtube.com/results?search_query=" + search)
+    user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
+    for i in user_data:
+        video_link = i.get_attribute("href")
+        break
+    command = f"yt-dlp -x --add-metadata --embed-thumbnail --no-progress --audio-format mp3 {video_link}"
+    await bash(command)
+    return video_link
+
+
+async def getmusicvideo(cat):
+    video_link = ""
+    search = cat
+    driver = await chrome()
+    driver.get("https://www.youtube.com/results?search_query=" + search)
+    user_data = driver.find_elements_by_xpath('//*[@id="video-title"]')
+    for i in user_data:
+        video_link = i.get_attribute("href")
+        break
+    command = (
+        'yt-dlp -f "[filesize<50M]" --no-progress --merge-output-format mp4 '
+        + video_link
     )
-    video_link = await yt_search(str(query))
-    if not url(video_link):
-        return await catevent.edit(
-            f"**⌯︙عـذرًا لم استطيع ايجاد المقطع الصوتي  أو الفيديو لـ ** `{query}`"
-        )
-    cmd = event.pattern_match.group(1)
-    q = "320k" if cmd == "320" else "128k"
-    song_cmd = song_dl.format(QUALITY=q, video_link=video_link)
-    # thumb_cmd = thumb_dl.format(video_link=video_link)
-    name_cmd = name_dl.format(video_link=video_link)
-    try:
-        cat = Get(cat)
-        await event.client(cat)
-    except BaseException:
-        pass
-    stderr = (await _catutils.runcmd(song_cmd))[1]
-    if stderr:
-        return await catevent.edit(f"**⌯︙خـطأ  :** `{stderr}`")
-    catname, stderr = (await _catutils.runcmd(name_cmd))[:2]
-    if stderr:
-        return await catevent.edit(f"**⌯︙خـطأ   :** `{stderr}`")
-    # stderr = (await runcmd(thumb_cmd))[1]
-    catname = os.path.splitext(catname)[0]
-    # if stderr:
-    #    return await catevent.edit(f"**خطأ :** `{stderr}`")
-    song_file = Path(f"{catname}.mp3")
-    if not os.path.exists(song_file):
-        return await catevent.edit(
-            f"**⌯︙عـذرًا لم أستطع إيجاد الأغنية أو الفيديو لـ  ** `{query}`"
-        )
-    await catevent.edit("**⌯︙ المطلوب لقد وجدت إنتظر قليلا  ⏱**")
-    catthumb = Path(f"{catname}.jpg")
-    if not os.path.exists(catthumb):
-        catthumb = Path(f"{catname}.webp")
-    elif not os.path.exists(catthumb):
-        catthumb = None
-
-    ytdata = Video.get(video_link)
-    await event.client.send_file(
-        event.chat_id,
-        song_file,
-        force_document=False,
-        caption=f"<b><i>➥ الـعنـوان :- {ytdata['title']}</i></b>\n<b><i>➥ الرفـع بـواسـطة :- {hmention}</i></b>",
-        parse_mode="html",
-        thumb=catthumb,
-        supports_streaming=True,
-        reply_to=reply_to_id,
-    )
-    await catevent.delete()
-    for files in (catthumb, song_file):
-        if files and os.path.exists(files):
-            os.remove(files)
+    await bash(command)
 
 
-async def delete_messages(event, chat, from_message):
-    itermsg = event.client.iter_messages(chat, min_id=from_message.id)
-    msgs = [from_message.id]
-    async for i in itermsg:
-        msgs.append(i.id)
-    await event.client.delete_messages(chat, msgs)
-    await event.client.send_read_acknowledge(chat)
-
-
-@jmthon.ar_cmd(
-    pattern="فيديو(?:\s|$)([\s\S]*)",
-    command=("فيديو", plugin_category),
-    info={
-        "header": "To get video songs from youtube.",
-        "description": "Basically this command searches youtube and sends the first video",
-        "usage": "{tr}vsong <song name>",
-        "examples": "{tr}vsong memories song",
-    },
-)
+@jmthon.ar_cmd(pattern="song (.*)")
 async def _(event):
-    "⌯︙للبحث عن فيديوات أغاني"
-    reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-    elif reply and reply.message:
+        xx = await edit_or_reply(event, "`Processing..`")
+    elif reply.message:
         query = reply.message
+        await xx.edit("`Tunggu..! Saya menemukan lagu Anda..`")
     else:
-        return await edit_or_reply(event, "**⌯︙يجـب وضـع  الأمر وبجانبه إسم الأغنية  ")
-    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**⌯︙لقـد وجدت الفيديو المطلوب إنتظر قليلا  ")
-    video_link = await yt_search(str(query))
-    if not url(video_link):
-        return await catevent.edit(
-            f"**⌯︙عـذرًا لم أستطع إيجاد أي فيديو او صوت متعلق بـ ** `{query}`"
-        )
-    # thumb_cmd = thumb_dl.format(video_link=video_link)
-    name_cmd = name_dl.format(video_link=video_link)
-    video_cmd = video_dl.format(video_link=video_link)
-    stderr = (await _catutils.runcmd(video_cmd))[1]
-    if stderr:
-        return await catevent.edit(f"**⌯︙خـطأ  :** `{stderr}`")
-    catname, stderr = (await _catutils.runcmd(name_cmd))[:2]
-    if stderr:
-        return await catevent.edit(f"**⌯︙خـطأ  ️ :** `{stderr}`")
-    # stderr = (await runcmd(thumb_cmd))[1]
-    try:
-        cat = Get(cat)
-        await event.client(cat)
-    except BaseException:
-        pass
-    # if stderr:
-    #    return await catevent.edit(f"**Error :** `{stderr}`")
-    catname = os.path.splitext(catname)[0]
-    vsong_file = Path(f"{catname}.mp4")
-    if not os.path.exists(vsong_file):
-        vsong_file = Path(f"{catname}.mkv")
-    elif not os.path.exists(vsong_file):
-        return await catevent.edit(
-            f"**⌯︙عـذرًا لم أستطع إيجاد أي فيديو او صوت متعلق بـ ** `{query}`"
-        )
-    await catevent.edit("**⌔︙لقد وجدت الفديو المطلوب انتظر قليلا  **")
-    catthumb = Path(f"{catname}.jpg")
-    if not os.path.exists(catthumb):
-        catthumb = Path(f"{catname}.webp")
-    elif not os.path.exists(catthumb):
-        catthumb = None
+        await xx.edit("`Apa yang seharusnya saya temukan?`")
+        return
 
-        ytdata = Video.get(video_link)
+    await getmusic(str(query))
+    loa = glob.glob("*.mp3")[0]
+    await xx.edit("`Yeah.. Mengupload lagu Anda..`")
+    c_time = time.time()
+    with open(loa, "rb") as f:
+        result = await upload_file(
+            client=event.client,
+            file=f,
+            name=loa,
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, event, c_time, "[UPLOAD]", loa)
+            ),
+        )
     await event.client.send_file(
         event.chat_id,
-        vsong_file,
-        force_document=False,
-        caption=f"<b><i>➥ الـعنـوان :- {ytdata['title']}</i></b>\n<b><i>➥ الرفـع بـواسـطة :- {hmention}</i></b>",
-        parse_mode="html",
-        thumb=catthumb,
-        supports_streaming=True,
-        reply_to=reply_to_id,
+        result,
+        allow_cache=False,
     )
-    await catevent.delete()
-    for files in (catthumb, vsong_file):
-        if files and os.path.exists(files):
-            os.remove(files)
+    await event.delete()
+    await bash("rm -rf *.mp3")
 
 
-@jmthon.ar_cmd(
-    pattern="نتائج البحث$",
-    command=("نتائج البحث", plugin_category),
-    info={
-        "الاستخدام": "للـبحث عن اغنيه معـينة.",
-        "الشرح": "اعادة البحث عن اغنيه بالرد على المقطع الصوتي",
-        "الامر": "{tr}معلومات الاغنية <بالرد على رسالة صوتية>",
-    },
-)
-async def shazamcmd(event):
-    "للـبحث عن اغنـية."
+@jmthon.ar_cmd(pattern="vsong(?: |$)(.*)")
+async def _(event):
     reply = await event.get_reply_message()
-    mediatype = media_type(reply)
-    if not reply or not mediatype or mediatype not in ["Voice", "Audio"]:
-        return await edit_delete(
-            event, "⌯︙قم بالرد على الرسالة الصوتية لعكس البحث عن هذه الأغنية  "
+    if event.pattern_match.group(1):
+        query = event.pattern_match.group(1)
+        xx = await edit_or_reply(event, "`Processing..`")
+    elif reply:
+        query = str(reply.message)
+        await xx.edit("**Tunggu..! Saya menemukan lagu video Anda..**")
+    else:
+        await xx.edit("**Apa yang seharusnya saya temukan?**")
+        return
+    await getmusicvideo(query)
+    l = glob.glob(("*.mp4")) + glob.glob(("*.mkv")) + glob.glob(("*.webm"))
+    if l:
+        await xx.edit("**Ya..! aku menemukan sesuatu..**")
+    else:
+        await xx.edit(
+            f"**Maaf..! saya tidak dapat menemukan apa pun dengan** `{query}`"
         )
-    catevent = await edit_or_reply(event, "⌔︙جاري تحميل المقطع الصوتي  ")
+        return
     try:
-        for attr in getattr(reply.document, "attributes", []):
-            if isinstance(attr, types.DocumentAttributeFilename):
-                name = attr.file_name
-        dl = io.FileIO(name, "a")
-        await event.client.fast_download_file(
-            location=reply.document,
-            out=dl,
+        loa = l[0]
+        metadata = extractMetadata(createParser(loa))
+        duration = metadata.get("duration").seconds if metadata.has("duration") else 0
+        width = metadata.get("width") if metadata.has("width") else 0
+        height = metadata.get("height") if metadata.has("height") else 0
+        await bash("cp *mp4 thumb.mp4")
+        await bash("ffmpeg -i thumb.mp4 -vframes 1 -an -s 480x360 -ss 5 thumb.jpg")
+        thumb_image = "thumb.jpg"
+        c_time = time.time()
+        with open(loa, "rb") as f:
+            result = await upload_file(
+                client=event.client,
+                file=f,
+                name=loa,
+                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                    progress(d, t, event, c_time, "[UPLOAD]", loa)
+                ),
+            )
+        await event.client.send_file(
+            event.chat_id,
+            result,
+            force_document=False,
+            thumb=thumb_image,
+            allow_cache=False,
+            caption=query,
+            supports_streaming=True,
+            attributes=[
+                DocumentAttributeVideo(
+                    duration=duration,
+                    w=width,
+                    h=height,
+                    round_message=False,
+                    supports_streaming=True,
+                )
+            ],
         )
-        dl.close()
-        mp3_fileto_recognize = open(name, "rb").read()
-        shazam = Shazam(mp3_fileto_recognize)
-        recognize_generator = shazam.recognizeSong()
-        track = next(recognize_generator)[1]["track"]
-    except Exception as e:
-        LOGS.error(e)
-        return await edit_delete(
-            catevent, f"**⌔︙هناك خطأ عند محاولة البحث عن الأغنية   :**\n__{str(e)}__"
+        await xx.edit(f"**{query} Berhasil Diupload..!**")
+        os.remove(thumb_image)
+        await bash("rm *.mkv *.mp4 *.webm")
+    except BaseException:
+        os.remove(thumb_image)
+        await bash("rm *.mkv *.mp4 *.webm")
+        return
+
+
+@jmthon.ar_cmd(pattern="smd (?:(now)|(.*) - (.*))")
+async def _(event):
+    if event.fwd_from:
+        return
+    if event.pattern_match.group(1) == "now":
+        playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
+        if playing is None:
+            return await event.edit(
+                "`Error: Tidak ada data scrobbling yang ditemukan.`"
+            )
+        artist = playing.get_artist()
+        song = playing.get_title()
+    else:
+        artist = event.pattern_match.group(2)
+        song = event.pattern_match.group(3)
+    track = str(artist) + " - " + str(song)
+    chat = "@SpotifyMusicDownloaderBot"
+    try:
+        await event.edit("`Getting Your Music...`")
+        async with bot.conversation(chat) as conv:
+            await asyncio.sleep(2)
+            await event.edit("`Downloading...`")
+            try:
+                response = conv.wait_event(
+                    events.NewMessage(incoming=True, from_users=752979930)
+                )
+                msg = await bot.send_message(chat, track)
+                respond = await response
+                res = conv.wait_event(
+                    events.NewMessage(incoming=True, from_users=752979930)
+                )
+                r = await res
+                await bot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                await event.reply(
+                    "`Unblock `@SpotifyMusicDownloaderBot` dan coba lagi`"
+                )
+                return
+            await bot.forward_messages(event.chat_id, respond.message)
+        await event.client.delete_messages(conv.chat_id, [msg.id, r.id, respond.id])
+        await event.delete()
+    except TimeoutError:
+        return await event.edit(
+            "`Error: `@SpotifyMusicDownloaderBot` tidak merespons atau Lagu tidak ditemukan!.`"
         )
-    image = track["images"]["background"]
-    song = track["share"]["subject"]
-    await event.client.send_file(
-        event.chat_id, image, caption=f"**⌯︙الأغنية  :** `{song}`", reply_to=reply
+
+
+@jmthon.ar_cmd(pattern="net (?:(now)|(.*) - (.*))")
+async def _(event):
+    if event.fwd_from:
+        return
+    if event.pattern_match.group(1) == "now":
+        playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
+        if playing is None:
+            return await event.edit(
+                "`Error: Tidak ada scrobble saat ini yang ditemukan.`"
+            )
+        artist = playing.get_artist()
+        song = playing.get_title()
+    else:
+        artist = event.pattern_match.group(2)
+        song = event.pattern_match.group(3)
+    track = str(artist) + " - " + str(song)
+    chat = "@WooMaiBot"
+    link = f"/netease {track}"
+    await event.edit("`Searching...`")
+    try:
+        async with bot.conversation(chat) as conv:
+            await asyncio.sleep(2)
+            await event.edit("`Processing...`")
+            try:
+                msg = await conv.send_message(link)
+                response = await conv.get_response()
+                respond = await conv.get_response()
+                await bot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                await event.reply("`Please unblock @WooMaiBot and try again`")
+                return
+            await event.edit("`Sending Your Music...`")
+            await asyncio.sleep(3)
+            await bot.send_file(event.chat_id, respond)
+        await event.client.delete_messages(
+            conv.chat_id, [msg.id, response.id, respond.id]
+        )
+        await event.delete()
+    except TimeoutError:
+        return await event.edit(
+            "`Error: `@WooMaiBot` tidak merespons atau Lagu tidak ditemukan!.`"
+        )
+
+
+@jmthon.ar_cmd(pattern="mhb(?: |$)(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    d_link = event.pattern_match.group(1)
+    if ".com" not in d_link:
+        await event.edit("`Masukkan link yang valid untuk mendownload`")
+    else:
+        await event.edit("`Processing...`")
+    chat = "@MusicsHunterBot"
+    try:
+        async with bot.conversation(chat) as conv:
+            try:
+                msg_start = await conv.send_message("/start")
+                response = await conv.get_response()
+                msg = await conv.send_message(d_link)
+                details = await conv.get_response()
+                song = await conv.get_response()
+                await bot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                await event.edit("`Unblock `@MusicsHunterBot` and retry`")
+                return
+            await bot.send_file(event.chat_id, song, caption=details.text)
+            await event.client.delete_messages(
+                conv.chat_id, [msg_start.id, response.id, msg.id, details.id, song.id]
+            )
+            await event.delete()
+    except TimeoutError:
+        return await event.edit(
+            "`Error: `@MusicsHunterBot` tidak merespons atau Lagu tidak ditemukan!.`"
+        )
+
+
+@jmthon.ar_cmd(pattern="deez (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
+async def _(event):
+    """DeezLoader by @An0nimia. Ported for UniBorg by @SpEcHlDe"""
+    if event.fwd_from:
+        return
+
+    strings = {
+        "name": "DeezLoad",
+        "arl_token_cfg_doc": "Token ARL untuk Deezer",
+        "invalid_arl_token": "Harap setel variabel yang diperlukan untuk modul ini",
+        "wrong_cmd_syntax": "Bruh, sekarang saya pikir seberapa jauh kita harus melangkah. tolong hentikan Sesi saya ð¥º",
+        "server_error": "Mengalami kesalahan teknis.",
+        "processing": "`Sedang Mendownload....`",
+        "uploading": "`Mengunggah.....`",
+    }
+
+    ARL_TOKEN = DEEZER_ARL_TOKEN
+
+    if ARL_TOKEN is None:
+        await event.edit(strings["invalid_arl_token"])
+        return
+
+    try:
+        loader = deezloader.Login(ARL_TOKEN)
+    except Exception as er:
+        await event.edit(str(er))
+        return
+
+    temp_dl_path = os.path.join(TEMP_DOWNLOAD_DIRECTORY, str(time.time()))
+    if not os.path.exists(temp_dl_path):
+        os.makedirs(temp_dl_path)
+
+    required_link = event.pattern_match.group(1)
+    required_qty = event.pattern_match.group(2)
+
+    await event.edit(strings["processing"])
+
+    if "spotify" in required_link:
+        if "track" in required_link:
+            required_track = loader.download_trackspo(
+                required_link,
+                output=temp_dl_path,
+                quality=required_qty,
+                recursive_quality=True,
+                recursive_download=True,
+                not_interface=True,
+            )
+            await event.edit(strings["uploading"])
+            await upload_track(required_track, event)
+            shutil.rmtree(temp_dl_path)
+            await event.delete()
+
+        elif "album" in required_link:
+            reqd_albums = loader.download_albumspo(
+                required_link,
+                output=temp_dl_path,
+                quality=required_qty,
+                recursive_quality=True,
+                recursive_download=True,
+                not_interface=True,
+                zips=False,
+            )
+            await event.edit(strings["uploading"])
+            for required_track in reqd_albums:
+                await upload_track(required_track, event)
+            shutil.rmtree(temp_dl_path)
+            await event.delete()
+
+    elif "deezer" in required_link:
+        if "track" in required_link:
+            required_track = loader.download_trackdee(
+                required_link,
+                output=temp_dl_path,
+                quality=required_qty,
+                recursive_quality=True,
+                recursive_download=True,
+                not_interface=True,
+            )
+            await event.edit(strings["uploading"])
+            await upload_track(required_track, event)
+            shutil.rmtree(temp_dl_path)
+            await event.delete()
+
+        elif "album" in required_link:
+            reqd_albums = loader.download_albumdee(
+                required_link,
+                output=temp_dl_path,
+                quality=required_qty,
+                recursive_quality=True,
+                recursive_download=True,
+                not_interface=True,
+                zips=False,
+            )
+            await event.edit(strings["uploading"])
+            for required_track in reqd_albums:
+                await upload_track(required_track, event)
+            shutil.rmtree(temp_dl_path)
+            await event.delete()
+
+    else:
+        await event.edit(strings["wrong_cmd_syntax"])
+
+
+async def upload_track(track_location, message):
+    metadata = extractMetadata(createParser(track_location))
+    duration = metadata.get("duration").seconds if metadata.has("duration") else 0
+    title = metadata.get("title") if metadata.has("title") else ""
+    performer = metadata.get("artist") if metadata.has("artist") else ""
+    document_attributes = [
+        DocumentAttributeAudio(
+            duration=duration,
+            voice=False,
+            title=title,
+            performer=performer,
+            waveform=None,
+        )
+    ]
+    supports_streaming = True
+    force_document = False
+    caption_rts = os.path.basename(track_location)
+    c_time = time.time()
+    with open(track_location, "rb") as f:
+        result = await upload_file(
+            client=message.client,
+            file=f,
+            name=track_location,
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, message, c_time, "[UPLOAD]", track_location)
+            ),
+        )
+    await message.client.send_file(
+        message.chat_id,
+        result,
+        caption=caption_rts,
+        force_document=force_document,
+        supports_streaming=supports_streaming,
+        allow_cache=False,
+        attributes=document_attributes,
     )
-    await catevent.delete()
+    os.remove(track_location)
