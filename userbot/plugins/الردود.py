@@ -1,8 +1,6 @@
 # Copyright (C) 2021 JepThon TEAM
 import re
 
-from telethon.utils import get_display_name
-
 from userbot import jmthon
 
 from ..core.managers import edit_or_reply
@@ -15,21 +13,22 @@ from ..sql_helper.filter_sql import (
 from . import BOTLOG, BOTLOG_CHATID
 
 plugin_category = "utils"
+ROZTEXT = "عـذرا لا يمكـنك اضافـة رد هـنا" 
 
 
 @jmthon.ar_cmd(incoming=True)
-async def filter_incoming_handler(event):  # sourcery no-metrics
-    if event.sender_id == event.client.uid:
+async def filter_incoming_handler(handler):  # sourcery no-metrics
+    if handler.sender_id == handler.client.uid:
         return
-    name = event.raw_text
-    filters = get_filters(event.chat_id)
+    name = handler.raw_text
+    filters = get_filters(handler.chat_id)
     if not filters:
         return
-    a_user = await event.get_sender()
-    chat = await event.get_chat()
-    me = await event.client.get_me()
-    title = get_display_name(await event.get_chat()) or "لهذه الدردشه"
-    participants = await event.client.get_participants(chat)
+    a_user = await handler.get_sender()
+    chat = await handler.get_chat()
+    me = await handler.client.get_me()
+    title = chat.title or "this chat"
+    participants = await handler.client.get_participants(chat)
     count = len(participants)
     mention = f"[{a_user.first_name}](tg://user?id={a_user.id})"
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
@@ -40,12 +39,13 @@ async def filter_incoming_handler(event):  # sourcery no-metrics
     userid = a_user.id
     my_first = me.first_name
     my_last = me.last_name
-    rottbat = (
+
+    rotbat = (
         ".「  مطـور السورس  」."
         if userid == 705475246
         else (".「  العضـو  」.")
     )
-    rozrtba = (
+    rotbat = (
         ".「 مـالك الحساب  」."
         if userid == (await event.client.get_me()).id
         and userid != 705475246
@@ -56,114 +56,172 @@ async def filter_incoming_handler(event):  # sourcery no-metrics
     for trigger in filters:
         pattern = r"( |^|[^\w])" + re.escape(trigger.keyword) + r"( |$|[^\w])"
         if re.search(pattern, name, flags=re.IGNORECASE):
-            file_media = None
-            filter_msg = None
             if trigger.f_mesg_id:
-                msg_o = await event.client.get_messages(
+                msg_o = await handler.client.get_messages(
                     entity=BOTLOG_CHATID, ids=int(trigger.f_mesg_id)
                 )
-                file_media = msg_o.media
-                filter_msg = msg_o.message
-                link_preview = True
+                await handler.reply(
+                    msg_o.message.format(
+                        mention=mention,
+                        title=title,
+                        count=count,
+                        first=first,
+                        last=last,
+                        fullname=fullname,
+                        username=username,
+                        userid=userid,
+                        rotbat=rozrtba,
+                        my_first=my_first,
+                        my_last=my_last,
+                        my_fullname=my_fullname,
+                        my_username=my_username,
+                        my_mention=my_mention,
+                    ),
+                    file=msg_o.media,
+                )
             elif trigger.reply:
-                filter_msg = trigger.reply
-                link_preview = False
-            await event.reply(
-                filter_msg.format(
-                    mention=mention,
-                    title=title,
-                    count=count,
-                    first=first,
-                    last=last,
-                    fullname=fullname,
-                    username=username,
-                    userid=userid,
-                    my_first=my_first,
-                    my_last=my_last,
-                    rozrtba=rozrtba,
-                    my_fullname=my_fullname,
-                    my_username=my_username,
-                    my_mention=my_mention,
-                ),
+                await handler.reply(
+                    trigger.reply.format(
+                        mention=mention,
+                        title=title,
+                        count=count,
+                        first=first,
+                        last=last,
+                        fullname=fullname,
+                        username=username,
+                        userid=userid,
+                        my_first=my_first,
+                        my_last=my_last,
+                        my_fullname=my_fullname,
+                        my_username=my_username,
+                        my_mention=my_mention,
+                    ),
                 file=file_media,
                 link_preview=link_preview,
-            )
+                )
 
 
-@jmthon.on(admin_cmd(pattern="اضف رد (.*)"))
-async def add_new_filter(event):
+@jmthon.ar_cmd(
+    pattern="اضف رد ([\s\S]*)",
+    command=("اضف رد", plugin_category),
+    info={
+        "header": "To save filter for the given keyword.",
+        "description": "If any user sends that filter then your bot will reply.",
+        "option": {
+            "{mention}": "To mention the user",
+            "{title}": "To get chat name in message",
+            "{count}": "To get group members",
+            "{first}": "To use user first name",
+            "{last}": "To use user last name",
+            "{fullname}": "To use user full name",
+            "{userid}": "To use userid",
+            "{username}": "To use user username",
+            "{my_first}": "To use my first name",
+
+"{my_fullname}": "To use my full name",
+            "{my_last}": "To use my last name",
+            "{my_mention}": "To mention myself",
+            "{my_username}": "To use my username.",
+        },
+        "note": "For saving media/stickers as filters you need to set PRIVATE_GROUP_BOT_API_ID.",
+        "usage": "{tr}filter <keyword>",
+    },
+)
+async def add_new_filter(new_handler):
     "To save the filter"
-    keyword = event.pattern_match.group(1)
-    string = event.text.partition(keyword)[2]
-    msg = await event.get_reply_message()
+    keyword = new_handler.pattern_match.group(1)
+    string = new_handler.text.partition(keyword)[2]
+    msg = await new_handler.get_reply_message()
     msg_id = None
     if msg and msg.media and not string:
         if BOTLOG:
-            await event.client.send_message(
+            await new_handler.client.send_message(
                 BOTLOG_CHATID,
-                f"⌔∮ الردود\
-            \n- ايدي الدردشه: {new_handler.chat_id}\
-            \n- الرد: {keyword}\
-            \n- يتم حفظ الرسالة التالية كبيانات رد على المستخدمين في الدردشه ، يرجى عدم حذفها !!",
+                f"#الــرد\
+            \nايدي الدردشه: {new_handler.chat_id}\
+            \nالـكيبورد: {keyword}\
+            \n\nالرسالة التالية حفظت كرد ارسل معلومات الرد لرؤية الرد  ،  لاتقم بحذف ارسالة !!",
             )
-            msg_o = await event.client.forward_messages(
+            msg_o = await new_handler.client.forward_messages(
                 entity=BOTLOG_CHATID,
                 messages=msg,
-                from_peer=event.chat_id,
+                from_peer=new_handler.chat_id,
                 silent=True,
             )
             msg_id = msg_o.id
         else:
             await edit_or_reply(
                 new_handler,
-                "`يتطلب حفظ الوسائط كردود تعيين فار BOTLOG_CHATID",
+                "⌯︙يتطلب حفظ الوسائط كرد  تعيين PRIVATE_GROUP_BOT_API_ID\n قـم بعمل مجموعه وقم باخذ ايدي المجموعه عبر اي بوت بعدها ارسل\n .set var PRIVATE_GROUP_BOT_API_ID + ايدي المجموعة ",
             )
             return
-    elif msg and msg.text and not string:
-        string = msg.text
-    elif not string:
-        return await edit_or_reply(event, "- يجب عليك تحديد رد لاضافته")
-    success = "الرد **{}** تم **{}** بنجاح"
-    if add_filter(str(event.chat_id), keyword, string, msg_id) is True:
-        return await edit_or_reply(event, success.format(keyword, "اضافته"))
-    remove_filter(str(event.chat_id), keyword)
-    if add_filter(str(event.chat_id), keyword, string, msg_id) is True:
-        return await edit_or_reply(event, success.format(keyword, "تحديثه"))
-    await edit_or_reply(event, f"- هنالك خطا في وضع رد لـ {keyword}")
+    elif new_handler.reply_to_msg_id and not string:
+        rep_msg = await new_handler.get_reply_message()
+        string = rep_msg.text
+    success = "⌯︙الـرد {} تـم اضـافتة بنـجـاح ✅"
+    if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
+        return await edit_or_reply(new_handler, success.format(keyword, "added"))
+    remove_filter(str(new_handler.chat_id), keyword)
+    if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
+        return await edit_or_reply(new_handler, success.format(keyword, "Updated"))
+    await edit_or_reply(new_handler, f"Error while setting filter for {keyword}")
 
 
-@jmthon.on(admin_cmd(pattern="الردود$"))
-@jmthon.on(sudo_cmd(pattern="الردود$", allow_sudo=True))
+@jmthon.ar_cmd(
+    pattern="الردود$",
+    command=("الردود", plugin_category),
+    info={
+        "header": "To list all filters in that chat.",
+        "description": "Lists all active (of your userbot) filters in a chat.",
+        "usage": "{tr}filters",
+    },
+)
 async def on_snip_list(event):
-    OUT_STR = "**⌔∮ لاتوجـد ردود في هذه الدردشة**"
+    "To list all filters in that chat."
+    OUT_STR = "⌯︙لا توجد ردود مضافة في هذه الدردشه  🔍"
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if OUT_STR == "**⌔∮ لاتوجـد ردود في هذه الدردشة**":
-            OUT_STR = "**- قائمـه الـردود في هذه الدردشـه : **\n"
-        OUT_STR += "- {}  \n".format(filt.keyword)
+        if OUT_STR == "⌯︙لا توجد ردود مضافة في هذه الدردشة  🔍":
+            OUT_STR = "⌯︙الردود التي تم اضافتها في هذه الدردشة\n"
+        OUT_STR += "⌯︙{}\n".format(filt.keyword)
     await edit_or_reply(
         event,
         OUT_STR,
-        caption="**- الردود المضـافه في هذه الدردشة**",
+        caption="Available Filters in the Current Chat",
         file_name="filters.text",
     )
 
 
-@jmthon.on(admin_cmd(pattern="حذف رد ([\s\S]*)"))
-async def remove_a_filter(event):
-    filt = event.pattern_match.group(1)
-    if not remove_filter(event.chat_id, filt):
-        await event.edit("الرد **{}** غير موجود ".format(filt))
+@jmthon.ar_cmd(
+    pattern="حذف رد ([\s\S]*)",
+    command=("حذف رد", plugin_category),
+    info={
+        "header": "To delete that filter . so if user send that keyword bot will not reply",
+        "usage": "{tr}stop <keyword>",
+    },
+)
+async def remove_a_filter(r_handler):
+    "Stops the specified keyword."
+    filt = r_handler.pattern_match.group(1)
+    if not remove_filter(r_handler.chat_id, filt):
+        await r_handler.edit("⌯︙الـرد {} غير موجود ".format(filt))
     else:
-        await event.edit("الرد **{}** تم حذفه بنجاح  ✓".format(filt))
+        await r_handler.edit("⌯︙الـرد {} تـم حـذفة بنـجـاح  ✅".format(filt))
 
 
-@jmthon.on(admin_cmd(pattern="حذف الردود$"))
+@jmthon.ar_cmd(
+    pattern="حذف الردود$",
+    command=("حذف الردود", plugin_category),
+    info={
+        "header": "To delete all filters in that group.",
+        "usage": "{tr}rmfilters",
+    },
+)
 async def on_all_snip_delete(event):
     "To delete all filters in that group."
     filters = get_filters(event.chat_id)
     if filters:
         remove_all_filters(event.chat_id)
-        await edit_or_reply(event, "- تم بنجاح حذف الردود  ✓")
+        await edit_or_reply(event, f"⌯︙تم حذف الردود في الدردشة الحالية بنجاح  ✅")
     else:
-        await edit_or_reply(event, "- لا يوجد ردود هنا  ✓")
+        await edit_or_reply(event, f"⌯︙لا توجد ردود في هذه المجموعة  ")
