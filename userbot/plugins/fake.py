@@ -112,12 +112,12 @@ async def listall(jmthon):
 
 @jmthon.on(admin_cmd(pattern="طقس (.*)"))
 @jmthon.on(sudo_cmd(pattern="طقس (.*)", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
+async def _(jmthon):
+    if jmthon.fwd_from:
         return
     Key = "f806cebbd44f34cc4cd1d79a290081be"
     sample_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
-    input_str = event.pattern_match.group(1)
+    input_str = jmthon.pattern_match.group(1)
     async with aiohttp.ClientSession() as session:
         response_api_zero = await session.get(sample_url.format(input_str, Key))
     response_api = await response_api_zero.json()
@@ -152,7 +152,7 @@ async def _(event):
             ),
         )
     else:
-        await edit_or_reply(event, response_api["message"])
+        await edit_or_reply(jmthon, response_api["message"])
 
 R = (
     "┈┈╱▔▔▔▔▔▔▔▔▔▔▔▏\n"
