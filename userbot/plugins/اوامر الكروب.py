@@ -110,20 +110,20 @@ async def _(event):
 
 @jmthon.on(admin_cmd(outgoing=True, pattern="ص1$"))
 async def jpvois(vois):
-    if vois.fwd_from:
+    if event.fwd_from:
         return
-    Ti = await rd(vois)
+    Ti = await rd(event)
     if jpvois1:
-        await vois.client.send_file(vois.chat_id, jpvois1, reply_to=Ti)
-        await vois.delete()
+        await event.client.send_file(vois.chat_id, jpvois1, reply_to=Ti)
+        await event.delete()
 @jmthon.on(admin_cmd(outgoing=True, pattern="ص2$"))
 async def jpvois(vois):
-    if vois.fwd_from:
+    if event.fwd_from:
         return
-    Ti = await rd(vois)
+    Ti = await rd(event)
     if jpvois2:
-        await vois.client.send_file(vois.chat_id, jpvois2, reply_to=Ti)
-        await vois.delete()
+        await event.client.send_file(vois.chat_id, jpvois2, reply_to=Ti)
+        await event.delete()
 
 @jmthon.ar_cmd(
     pattern="تفليش بالحظر$",
