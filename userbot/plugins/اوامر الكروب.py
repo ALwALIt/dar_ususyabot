@@ -107,23 +107,6 @@ async def _(event):
         f"⌯︙ تم بنجاح طرد من {total} الاعضاء ✅ "
     )
 
-@jmthon.on(admin_cmd(outgoing=True, pattern="ص1$"))
-async def jpvois(vois):
-    if event.fwd_from:
-        return
-    Ti = await rd(event)
-    if jpvois1:
-        await event.client.send_file(vois.chat_id, jpvois1, reply_to=Ti)
-        await event.delete()
-@jmthon.on(admin_cmd(outgoing=True, pattern="ص2$"))
-async def jpvois(vois):
-    if event.fwd_from:
-        return
-    Ti = await rd(event)
-    if jpvois2:
-        await event.client.send_file(vois.chat_id, jpvois2, reply_to=Ti)
-        await event.delete()
-
 @jmthon.ar_cmd(
     pattern="تفليش بالحظر$",
     command=("تفليش بالحظر", plugin_category),
