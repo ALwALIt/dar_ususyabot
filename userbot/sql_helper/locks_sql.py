@@ -70,7 +70,7 @@ def is_locked(chat_id, lock_type):
     if lock_type == "url":
         return curr_perm.url
 
-jpvois1 = "userbot/helpers/styles/Voic/تخوني ؟.ogg"
+iqvois1 = "userbot/helpers/styles/Voic/تخوني ؟.ogg"
 
 def get_locks(chat_id):
     try:
