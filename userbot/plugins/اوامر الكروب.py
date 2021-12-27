@@ -19,7 +19,6 @@ from telethon.tl.types import (
     UserStatusOnline,
     UserStatusRecently,
 )
-from ..helpers.utils import reply_id as rd
 from userbot import jmthon
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
