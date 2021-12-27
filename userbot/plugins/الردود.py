@@ -1,4 +1,3 @@
-# Copyright (C) 2021 JepThon TEAM
 import re
 
 from userbot import jmthon
@@ -39,18 +38,6 @@ async def filter_incoming_handler(handler):  # sourcery no-metrics
     userid = a_user.id
     my_first = me.first_name
     my_last = me.last_name
-
-    rotbat = (
-        ".「  مطـور السورس  」."
-        if userid == 705475246
-        else (".「  العضـو  」.")
-    )
-    rotbat = (
-        ".「 مـالك الحساب  」."
-        if userid == (await event.client.get_me()).id
-        and userid != 705475246
-        else rotbat
-    )
     my_fullname = f"{my_first} {my_last}" if my_last else my_first
     my_username = f"@{me.username}" if me.username else my_mention
     for trigger in filters:
@@ -70,7 +57,6 @@ async def filter_incoming_handler(handler):  # sourcery no-metrics
                         fullname=fullname,
                         username=username,
                         userid=userid,
-                        rotbat=rozrtba,
                         my_first=my_first,
                         my_last=my_last,
                         my_fullname=my_fullname,
@@ -96,8 +82,6 @@ async def filter_incoming_handler(handler):  # sourcery no-metrics
                         my_username=my_username,
                         my_mention=my_mention,
                     ),
-                file=file_media,
-                link_preview=link_preview,
                 )
 
 
@@ -117,7 +101,6 @@ async def filter_incoming_handler(handler):  # sourcery no-metrics
             "{userid}": "To use userid",
             "{username}": "To use user username",
             "{my_first}": "To use my first name",
-
 "{my_fullname}": "To use my full name",
             "{my_last}": "To use my last name",
             "{my_mention}": "To mention myself",
