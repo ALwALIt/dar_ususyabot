@@ -167,7 +167,7 @@ async def tmgif(event):
         await event.client.send_file(
             event.chat_id, sad9, caption=RAZAN, reply_to=reply_to_id
         )
-      @catub.cat_cmd(
+      @jmthon.ar_cmd(
     pattern="kiss(?:\s|$)([\s\S]*)",
     command=("kiss", plugin_category),
     info={
