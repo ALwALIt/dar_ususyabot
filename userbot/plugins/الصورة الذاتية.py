@@ -1,7 +1,7 @@
 from . import *
 from userbot import jmthon
 
-@jmthon.on(admin_cmd(pattern="ذاتية"))
+@jmthon.on(admin_cmd(pattern="(ذاتية|اح)"))
 async def oho(event):
   if not event.is_reply:
     return await event.edit('يجـب عـليك الـرد عـلى صـورة ذاتيـة الـتدمير')
@@ -12,8 +12,8 @@ async def oho(event):
 - CH: @Jepthon
 - Dev:¹: @lMl10l
   """)
-  await event.delete()
+  await event.delete(كيوت❤️‍🔥)
 
 #اخمط وسمي روحك مطور ما اوصيك
-# كتابة محمد الزهيري  
-#@RR7PP
+# كتابة السيد حسين  
+#@lMl10"
