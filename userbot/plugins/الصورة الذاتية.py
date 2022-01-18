@@ -5,8 +5,8 @@ from userbot import jmthon
 async def dato(event):
     if not event.is_reply:
         return await event.edit("..")
-    rr9r7 = await event.get_reply_message()
-    pic = await rr9r7.download_media()
+    lMl10l = await event.get_reply_message()
+    pic = await lMl10l.download_media()
     await bot.send_file(
         "me",
         pic,
