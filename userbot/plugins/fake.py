@@ -212,6 +212,6 @@ async def pig(pig):
     await pig.edit(Z)
 
 
-@jmthon.on(admin_cmd(pattern=r"فايروس"))
+@jmthon.on(admin_cmd(pattern=r"تعليك"))
 async def viros(viros):
     await viros.edit(F)
