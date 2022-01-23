@@ -15,6 +15,7 @@ from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
 
 JEP_EM = Config.ID_EM or " •❃ "
+JEP_ET = Config.ID_ET or "ايدي"
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
@@ -143,7 +144,7 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="(ايدي|ا)(?:\s|$)([\s\S]*)",
+    pattern="{JEP_ET}(?:\s|$)([\s\S]*)",
     command=("ايدي", plugin_category),
     info={
         "header": "Gets info of an user.",
