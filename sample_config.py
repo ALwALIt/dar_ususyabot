@@ -27,7 +27,7 @@ class Config(object):
     TZ = os.environ.get("TZ", "Asia/Kolkata")
     # set this with required cat repo link
     UPSTREAM_REPO = os.environ.get(
-        "UPSTREAM_REPO", "https://github.com/Jepthon-AR/JM-THON.git"
+        "UPSTREAM_REPO", "https://github.com/USERBOTJEPTHON/JEPTHON-AR.git"
     )
 
     # BASIC and MAIN CONFIG VARS
@@ -39,7 +39,7 @@ class Config(object):
     TIME_JM = os.environ.get("TIME_JM", None)
     JP_FN = os.environ.get("JP_FN", None)
     ID_EM = os.environ.get("ID_EM", None)
-    ID_ET = os.environ.get("ID_ET", None)
+    ID_ET = os.environ.get("ID_ET", "True")
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
     JMTHON_START = os.environ.get("JMTHON_START", None)
     PMPERMIT_TEXT_Jepthon = os.environ.get("PMPERMIT_TEXT_Jepthon", None)
