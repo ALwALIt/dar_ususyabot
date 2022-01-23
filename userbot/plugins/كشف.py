@@ -15,7 +15,7 @@ from ..helpers import get_user_from_event, reply_id
 from . import spamwatch
 
 JEP_EM = Config.ID_EM or " •❃ "
-ID_ET = gvarstatus("ID_ET") or "ايدي"
+ID_EDIT = gvarstatus("ID_ET") or "ايدي"
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
@@ -143,8 +143,7 @@ async def _(event):
     await edit_or_reply(catevent, caption)
 
 
-@jmthon.ar_cmd(
-    pattern="{ID_ET}(?:\s|$)([\s\S]*)",
+@jmthon.ar_cmd({ID_EDIT}(?:\s|$)([\s\S]*)",
     command=("ايدي", plugin_category),
     info={
         "header": "Gets info of an user.",
