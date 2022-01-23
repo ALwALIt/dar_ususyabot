@@ -143,14 +143,7 @@ async def _(event):
     await edit_or_reply(catevent, caption)
 
 
-@jmthon.ar_cmd({ID_EDIT}(?:\s|$)([\s\S]*)",
-    command=("ايدي", plugin_category),
-    info={
-        "header": "Gets info of an user.",
-        "description": "User compelete details.",
-        "usage": "{tr}whois <username/userid/reply>",
-    },
-)
+@jmthon.on(admin_cmd(pattern=f"{ID_EDIT}(?:\s|$)([\s\S]*)"))
 async def who(event):
     "Gets info of an user"
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
