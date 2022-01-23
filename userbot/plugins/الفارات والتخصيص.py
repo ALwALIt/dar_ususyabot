@@ -28,7 +28,7 @@ vlist = [
     "TIME_JM",
     "CUSTOM_STICKER_PACKNAME",
     "ALIVE_NAME",
-    "ID_EDIT",
+    "ID_ET",
 ]
 
 oldvars = {
