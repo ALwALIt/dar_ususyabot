@@ -13,7 +13,10 @@ from telethon.tl.types import (ChannelParticipantsAdmins,
                                      MessageEntityMentionName,
                                        MessageMediaPhoto)
 from userbot.utils import admin_cmd
+from ..Config import Config
 from userbot import jmthon
+up_admin = Config.UP_ET or "ارفع"
+down_admin = Config.DOWN_ET or "تزل"
 async def get_full_user(event):  
     args = event.pattern_match.group(1).split(':', 1)
     extra = None
@@ -55,7 +58,7 @@ async def get_user_from_id(user, event):
         await event.edit(str(err))
         return None
     return user_obj
-@jmthon.on(admin_cmd(pattern="ارفع ?(.*)"))
+@jmthon.on(admin_cmd(pattern="{up_admin} ?(.*)"))
 async def gben(userbot):
     dc = razan = userbot
     i = 0
@@ -106,7 +109,7 @@ async def gben(userbot):
         f"**▾∮المستخدم [{user.first_name}](tg://user?id={user.id})\n▾∮ تم رفعه في : {i} من المجموعات**"
     )
 
-@jmthon.on(admin_cmd(pattern="نزل ?(.*)"))
+@jmthon.on(admin_cmd(pattern="{down_admin} ?(.*)"))
 async def gben(userbot):
     dc = razan = userbot
     i = 0
