@@ -23,11 +23,9 @@ from . import mention
 
 plugin_category = "utils"
 
-#كتـابة وتعـديل:  @RR9R7
-
-@jmthon.ar_cmd(
-    pattern="فحص$",
-    command=("فحص", plugin_category), )
+#كتـابة وتعـديل:  @lMl10l
+ALIVE_ET = Config.ALIVE_ET or "فحص"
+@jmthon.on(admin_cmd(pattern=f"{ALIVE_ET}(?:\s|$)([\s\S]*)"))
     
 async def amireallyalive(event):
     "للتـأكد من ان البـوت يعـمـل"
