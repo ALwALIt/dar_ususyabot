@@ -16,7 +16,7 @@ from ..sql_helper.globals import gvarstatus
 
 plugin_category = "extra"
 
-Command = gvarstatus("COMM_ET") or "الاوامر"
+Command = Config.COMM_ET or "الاوامر"
 
 @jmthon.on(admin_cmd(pattern=f"{Command}(?:\s|$)([\s\S]*)"))
 async def _(event):
