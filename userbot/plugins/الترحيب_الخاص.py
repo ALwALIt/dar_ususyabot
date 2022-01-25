@@ -7,6 +7,8 @@ from asyncio import sleep
 from telethon import events
 
 from userbot import jmthon
+from ..Config import Config
+
 
 from ..core.managers import edit_or_reply
 from ..sql_helper import pmpermit_sql as pmpermit_sql
@@ -19,6 +21,8 @@ from . import BOTLOG_CHATID
 
 plugin_category = "utils"
 
+welpriv = Config.PRV_ET or "رحب"
+delwelpriv = Config.DELPRV_ET or "حذف رحب"
 
 @jmthon.on(events.ChatAction)
 async def _(event):
@@ -83,34 +87,7 @@ async def _(event):
         )
 
 
-@jmthon.ar_cmd(
-    pattern="رحب(?:\s|$)([\s\S]*)",
-    command=("رحب", plugin_category),
-    info={
-        "header": "To welcome user(sends welcome message to here private messages).",
-        "description": "Saves the message as a welcome note in the chat. And will send welcome message to every new user who ever joins newly in group.",
-        "option": {
-            "{mention}": "To mention the user",
-            "{title}": "To get chat name in message",
-            "{count}": "To get group members",
-            "{first}": "To use user first name",
-            "{last}": "To use user last name",
-            "{fullname}": "To use user full name",
-            "{userid}": "To use userid",
-            "{username}": "To use user username",
-            "{my_first}": "To use my first name",
-            "{my_fullname}": "To use my full name",
-            "{my_last}": "To use my last name",
-            "{my_mention}": "To mention myself",
-            "{my_username}": "To use my username.",
-        },
-        "usage": [
-            "{tr}savepwel <welcome message>",
-            "reply {tr}savepwel to text message or supported media with text as media caption",
-        ],
-        "examples": "{tr}savepwel Hi {mention}, Welcome to {title} chat",
-    },
-)
+@jmthon.on(admin_cmd(pattern=f"{welpriv}(?:\s|$)([\s\S]*)"))
 async def save_welcome(event):
     "To set private welcome message."
     msg = await event.get_reply_message()
@@ -146,15 +123,7 @@ async def save_welcome(event):
     await edit_or_reply("**⌯︙حـدث خطـأ أثنـاء ضبـط رسالـة الترحيـب في هـذه الـدردشـة ️**")
 
 
-@jmthon.ar_cmd(
-    pattern="حذف رحب$",
-    command=("حذف رحب", plugin_category),
-    info={
-        "header": "To turn off private welcome message.",
-        "description": "Deletes the private welcome note for the current chat.",
-        "usage": "{tr}clearpwel",
-    },
-)
+@jmthon.on(admin_cmd(pattern=f"{delwelpriv}(?:\s|$)([\s\S]*)"))
 async def del_welcome(event):
     "To turn off private welcome message"
     if rmwelcome_setting(event.chat_id) is True:
