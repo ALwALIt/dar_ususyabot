@@ -1,5 +1,5 @@
 from asyncio import sleep
-
+from ..Config import Config
 from telethon.errors import (
     ChatAdminRequiredError,
     FloodWaitError,
