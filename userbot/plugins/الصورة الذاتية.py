@@ -1,7 +1,9 @@
 from userbot import *
 from userbot import jmthon
+from ..Config import Config
 
-@jmthon.on(admin_cmd(pattern="(ذاتية|اح)"))
+Thadea = Config.THADEA_ET or "(ذاتية|اح)"
+@jmthon.on(admin_cmd(pattern="{Thadea}"))
 async def dato(event):
     if not event.is_reply:
         return await event.edit("..")
