@@ -12,13 +12,13 @@ import asyncio
 from userbot import jmthon
 
 from ..core.managers import edit_or_reply
+from ..sql_helper.globals import gvarstatus
 
 plugin_category = "extra"
 
-@jmthon.ar_cmd(
-    pattern="الاوامر$",
-    command=("الاوامر", plugin_category),
-)
+Command = gvarstatus("COMM_ET") or "الاوامر"
+
+@jmthon.on(admin_cmd(pattern=f"{Command}(?:\s|$)([\s\S]*)"))
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit(
