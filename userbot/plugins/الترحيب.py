@@ -1,5 +1,5 @@
 # Copyright (C) 2021 JepThon TEAM
-# FILES WRITTEN BY  @RR7PP
+# FILES WRITTEN BY  @lMl10l
 from telethon import events
 
 from userbot import jmthon
@@ -14,10 +14,14 @@ from ..sql_helper.welcome_sql import (
     update_previous_welcome,
 )
 from . import BOTLOG_CHATID
+from ..Config import Config
 
 plugin_category = "utils"
 LOGS = logging.getLogger(__name__)
 
+welcome = Config.WEL_ET or "ترحيب"
+rmvwelcome = Config.RMVWEL_ET or "حذف الترحيبات"
+allwelcome = Config.ALLWEL_ET or "الترحيبات"
 
 @jmthon.on(events.ChatAction)
 async def _(event):  # sourcery no-metrics
@@ -84,34 +88,7 @@ async def _(event):  # sourcery no-metrics
         update_previous_welcome(event.chat_id, current_message.id)
 
 
-@jmthon.ar_cmd(
-    pattern="ترحيب(?:\s|$)([\s\S]*)",
-    command=("ترحيب", plugin_category),
-    info={
-        "الامر": ".ضع ترحيب",
-        "الشرح": "امر الترحيب يقوم بالتحريب بجميع الاشخاص الذين يدخلون للمجموعه",
-        "الاضافات": {
-            "{mention}": "عمل تاك للمستخدم",
-            "{title}": "لوضع اسم الدردشه مع الاسم",
-            "{count}": "لوضع عدد الاعضاء",
-            "{first}": "لوضع الاسم الاول للمستخدم ",
-            "{last}": "لوضع الاسك الثاني للمستخدم",
-            "{fullname}": "لوضع الاسم الكامل للمستخدم",
-            "{userid}": "لوضع ايدي الشخص",
-            "{username}": "لوضع معرف الشخص",
-            "{my_first}": "لوضع الاسم الاول الخاص بك",
-            "{my_fullname}": "لوضع الاسم الكامل الخاص بك",
-            "{my_last}": "لوضع الاسم الثاني الخاص بك",
-            "{my_mention}": "لعمل تاك لنفسك ",
-            "{my_username}": "لاستخدام معرفك.",
-        },
-        "الاستخدام": [
-            "{tr}ترحيب <رسالة الترحيب>",
-            "قم بالرد {tr}ترحيب على الرسالة او الصوره لوضعها رساله ترحيبيه",
-        ],
-        "الامثلة": "{tr} ههلا نورت  .",
-    },
-)
+@jmthon.on(admin_cmd(pattern=f"{welcome}(?:\s|$)([\s\S]*)"))
 async def save_welcome(event):
     "To set welcome message in chat."
     msg = await event.get_reply_message()
@@ -146,15 +123,7 @@ async def save_welcome(event):
     await edit_or_reply("⌯︙هـنالك خـطأ في وضـع الـترحيب هـنا")
 
 
-@jmthon.ar_cmd(
-    pattern="حذف الترحيبات$",
-    command=("حذف الترحيبات", plugin_category),
-    info={
-        "الامر": ".حذف ترحيب",
-        "الشرح": "لحذف  الترحيب",
-        "الاستخدام": "{tr}حذف ترحيب",
-    },
-)
+@jmthon.on(admin_cmd(pattern=f"{rmvwelcome}(?:\s|$)([\s\S]*)"))
 async def del_welcome(event):
     "To turn off welcome message"
     if rm_welcome_setting(event.chat_id) is True:
@@ -163,14 +132,7 @@ async def del_welcome(event):
         await edit_or_reply(event, "⌯︙ليـس لـدي اي تـرحيبـات بالأصـل")
 
 
-@jmthon.ar_cmd(
-    pattern="الترحيبات$",
-    command=("الترحيبات", plugin_category),
-    info={
-        "الاستخدام": "لرؤية جميع الترحيبات المضافه للدردشه",
-        "الامر": "{tr}الترحيبات",
-    },
-)
+@jmthon.on(admin_cmd(pattern=f"{allwelcome}(?:\s|$)([\s\S]*)"))
 async def show_welcome(event):
     "To show current welcome message in group"
     cws = get_current_welcome_settings(event.chat_id)
