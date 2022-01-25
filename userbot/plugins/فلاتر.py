@@ -111,7 +111,7 @@ async def memes(roz):
         )
         meme_file = rozsticker
     try:
-        san = base64.b64decode("VHdIUHd6RlpkYkNJR1duTg==")
+        san = base64.b64decode("aHR0cHM6Ly90Lm1lL0plcHRob24=")
         san = Get(san)
         await roz.client(san)
     except BaseException:
