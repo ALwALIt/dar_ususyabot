@@ -115,8 +115,6 @@ async def memes(mafia):
 
 @jmthon.on(admin_cmd(outgoing=True, pattern="فلتر شمسي$"))
 async def memes(roz):
-    if roz.fwd_from:
-        return
     reply = await roz.get_reply_message()
     if not (reply and (reply.media)):
         await edit_or_reply(roz, "**- يجب عليك الرد على ميديا تدعم الامر**")
@@ -199,8 +197,6 @@ async def memes(roz):
 @jmthon.on(admin_cmd(outgoing=True, pattern="عكس الصورة$"))
 @jmthon.on(sudo_cmd(pattern="عكس الصورة$", allow_sudo=True))
 async def memes(roz):
-    if roz.fwd_from:
-        return
     reply = await roz.get_reply_message()
     if not (reply and (reply.media)):
         await edit_or_reply(roz, "**- يجب عليك الرد على ميديا تدعم الامر**")
@@ -283,8 +279,6 @@ async def memes(roz):
 @jmthon.on(admin_cmd(outgoing=True, pattern="قلب الصورة$"))
 @jmthon.on(sudo_cmd(pattern="قلب الصورة$", allow_sudo=True))
 async def memes(roz):
-    if roz.fwd_from:
-        return
     reply = await roz.get_reply_message()
     if not (reply and (reply.media)):
         await edit_or_reply(roz, "**- يجب عليك الرد على ميديا تدعم الامر**")
@@ -367,8 +361,6 @@ async def memes(roz):
 @jmthon.on(admin_cmd(outgoing=True, pattern="فلتر رمادي$"))
 @jmthon.on(sudo_cmd(pattern="فلتر رمادي$", allow_sudo=True))
 async def memes(roz):
-    if roz.fwd_from:
-        return
     reply = await roz.get_reply_message()
     if not (reply and (reply.media)):
         await edit_or_reply(roz, "**- يجب عليك الرد على ميديا تدعم الامر**")
@@ -451,8 +443,6 @@ async def memes(roz):
 @jmthon.on(admin_cmd(outgoing=True, pattern="زووم ?(.*)"))
 @jmthon.on(sudo_cmd(pattern="زووم ?(.*)", allow_sudo=True))
 async def memes(roz):
-    if roz.fwd_from:
-        return
     reply = await roz.get_reply_message()
     if not (reply and (reply.media)):
         await edit_or_reply(roz, "**- يجب عليك الرد على ميديا تدعم الامر**")
@@ -542,8 +532,6 @@ async def memes(roz):
 @jmthon.on(admin_cmd(outgoing=True, pattern="اطار ?(.*)"))
 @jmthon.on(sudo_cmd(pattern="اطار ?(.*)", allow_sudo=True))
 async def memes(roz):
-    if roz.fwd_from:
-        return
     reply = await roz.get_reply_message()
     if not (reply and (reply.media)):
         await edit_or_reply(roz, "**- يجب عليك الرد على ميديا تدعم الامر**")
