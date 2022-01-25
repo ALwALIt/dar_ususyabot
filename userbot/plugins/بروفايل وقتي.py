@@ -36,6 +36,9 @@ RR7PP = Config.TIME_JM or ""
 
 normzltext = "1234567890"
 namerzfont = Config.JP_FN or "𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬"
+namew8t = Config.NAME_ET or "اسم وقتي"
+biow8t = Config.BIO_ET or "بايو وقتي"
+phow8t = Config.PHOTO_ET or "الصورة الوقتية"
 
 async def digitalpicloop():
     DIGITALPICSTART = gvarstatus("digitalpic") == "true"
@@ -114,10 +117,7 @@ async def autobio_loop():
         AUTOBIOSTART = gvarstatus("autobio") == "true"
 
 
-@jmthon.ar_cmd(
-    pattern="الصورة الوقتية$",
-    command=("الصورة الوقتية", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern=f"{phow8t}(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To set random colour pic with time to profile pic"
     downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
@@ -131,10 +131,7 @@ async def _(event):
     await digitalpicloop()
 
 
-@jmthon.ar_cmd(
-    pattern="اسم وقتي$",
-    command=("اسم وقتي", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern=f"{namew8t}(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To set your display name along with time"
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
@@ -144,10 +141,7 @@ async def _(event):
     await autoname_loop()
 
 
-@jmthon.ar_cmd(
-    pattern="بايو وقتي$",
-    command=("بايو وقتي", plugin_category),
-)
+@jmthon.on(admin_cmd(pattern=f"{biow8t}(?:\s|$)([\s\S]*)"))
 async def _(event):
     "To update your bio along with time"
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
