@@ -40,6 +40,7 @@ class Config(object):
     JP_FN = os.environ.get("JP_FN", None)
     ID_EM = os.environ.get("ID_EM", None)
     ID_ET = os.environ.get("ID_ET", None)
+    COMM_ET = os.environ.get("COMM_ET", None)
     LOAD_MYBOT = os.environ.get("LOAD_MYBOT", "True")
     JMTHON_START = os.environ.get("JMTHON_START", None)
     PMPERMIT_TEXT_Jepthon = os.environ.get("PMPERMIT_TEXT_Jepthon", None)
