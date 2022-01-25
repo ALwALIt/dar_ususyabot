@@ -5,6 +5,7 @@
 import random
 from telethon import events
 import random, re
+from ..Config import Config
 
 from userbot.utils import admin_cmd
 
