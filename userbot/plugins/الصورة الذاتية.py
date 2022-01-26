@@ -2,13 +2,14 @@ from userbot import *
 from userbot import jmthon
 from ..Config import Config
 
-Thadea = Config.THADEA_ET or "ذاتية"
-@jmthon.on(admin_cmd(pattern="{Thadea}"))
+Jepthon_CMD = Config.SCPIC_CMD or "ذاتية"
+
+@jmthon.on(admin_cmd(pattern=f"{Jepthon_CMD}"))
 async def dato(event):
     if not event.is_reply:
         return await event.edit("..")
-    lMl10l = await event.get_reply_message()
-    pic = await lMl10l.download_media()
+    rr9r7 = await event.get_reply_message()
+    pic = await rr9r7.download_media()
     await bot.send_file(
         "me",
         pic,
@@ -18,8 +19,4 @@ async def dato(event):
 - Dev: @lMl10l
   """,
     )
-    await event.edit("احح")
-
-#اخمط وسمي روحك مطور ما اوصيك
-# كتابة السيد حسين  
-#@lMl10"
+    await event.edit("احاا")
