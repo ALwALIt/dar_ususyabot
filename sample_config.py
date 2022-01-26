@@ -47,7 +47,7 @@ class Config(object):
     WEL_ET = os.environ.get("WEL_ET", None)
     RMVWEL_ET = os.environ.get("RMVWEL_ET", None)
     ALLWEL_ET = os.environ.get("ALLWEL_ET", None)
-    THADEA_ET = os.environ.get("THADEA_ET", None)    
+    SCPIC_CMD = os.environ.get("SCPIC_CMD", None)    
     PRV_ET = os.environ.get("PRV_ET", None)
     DELPRV_ET = os.environ.get("DELPRV_ET", None)
     NAME_ET = os.environ.get("NAME_ET", None)
