@@ -74,3 +74,8 @@ async def potocmd(event):
         send_photos = await event.client.download_media(photos[uid - 1])
         await event.client.send_file(event.chat_id, send_photos)
     await event.delete()
+CMD_HELP.update(
+    {
+        "الصورة": "**╮•❐ الامر ⦂** `.صورة` <عدد الصور (اختياري)> <بالرد على الشخص>\nالوظيفة ⦂ لأخذ صورة حساب شخص معين بالرد عليه بالامر"
+    }
+)
