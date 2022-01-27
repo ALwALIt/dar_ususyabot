@@ -8,7 +8,6 @@ from . import parse_pre, sanga_seperator
 @jmthon.on(admin_cmd(pattern="(الاسماء|المعرفات)($| (.*))"))
 @jmthon.on(sudo_cmd(pattern="(الاسماء|المعرفات)($| (.*))", allow_sudo=True))
 async def _(event):
-    if event.fwd_from:
         return
     input_str = "".join(event.text.split(maxsplit=1)[1:])
     reply_message = await event.get_reply_message()
