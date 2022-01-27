@@ -193,7 +193,7 @@ async def memes(roz):
         if files and os.path.exists(files):
             os.remove(files)
             
- @jmthon.ar_cmd(pattern="سمول(?: |$)(.*)")
+@jmthon.ar_cmd(pattern="سمول(?: |$)(.*)")
 async def ultiny(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
