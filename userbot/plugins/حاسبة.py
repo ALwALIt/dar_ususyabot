@@ -161,3 +161,6 @@ async def _(e):
     lst = list(zip(tultd[::4], tultd[1::4], tultd[2::4], tultd[3::4]))
     lst.append([Button.inline("=", data="calc=")])
     await e.edit("**الحـاسبة العـلمية لسـورس جيبثون\n @jepthon**", buttons=lst)
+    CMD_HELP.update(
+    {"الحسابة": ".حاسبة" "\n فقط اكتب الامر لعرض حاسبة علميه تحتاج الى تفعيل وضع الانلاين اولا\n\n"}
+)
