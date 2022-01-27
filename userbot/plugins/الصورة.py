@@ -1,5 +1,5 @@
 #ترجمه فريق جـيبثون على التيلكرام
-from userbot import jmthon
+from userbot import CMD_HELP, jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
 
