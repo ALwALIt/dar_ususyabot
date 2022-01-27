@@ -35,7 +35,7 @@ async def startgmute(event):
         if not user:
             return
         if user.id == 705475246:
-            return await edit_delete(event, "**- لا يمڪنني حظر مطـوري دي لك**")
+            return await edit_delete(event, "**- لا يمڪنني كتم مطـوري يافرخ دي لك**")
         if user.id == jmthon.uid:
             return await edit_or_reply(event, "**𖡛... . لمـاذا تࢪيـد كتم نفسـك؟  ...𖡛**")
         userid = user.id
