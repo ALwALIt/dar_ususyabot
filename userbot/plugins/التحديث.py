@@ -8,7 +8,7 @@ import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import HEROKU_APP, UPSTREAM_REPO_URL, jmthon
+from userbot import HEROKU_APP, UPSTREAM_REPO_URL, jmthon, CMD_HELP
 
 from ..Config import Config
 from ..core.logger import logging
