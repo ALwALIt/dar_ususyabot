@@ -6,7 +6,7 @@ from userbot.utils import admin_cmd
 from userbot import CMD_HELP
 
 
-@borg.on(admin_cmd(pattern="اغنيه ?(.*)"))
+@borg.on(admin_cmd(pattern="بحث ?(.*)"))
 async def FindMusicPleaseBot(roz):
 
     song = roz.pattern_match.group(1)
