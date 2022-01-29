@@ -45,8 +45,8 @@ plugin_category = "bot"
 
 
 @jmthon.ar_cmd(
-    pattern="بحث(?:\s|$)([\s\S]*)",
-    command=("بحث", plugin_category),
+    pattern="اغنيه(?:\s|$)([\s\S]*)",
+    command=("اغنيه", plugin_category),
     info={
         "header": "ytdl with inline buttons.",
         "description": "To search and download youtube videos by inline buttons.",
