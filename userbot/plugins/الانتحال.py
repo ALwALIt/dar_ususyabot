@@ -39,6 +39,8 @@ async def _(event):
     replied_user, error_i_a = await get_user_from_event(event)
     if replied_user is None:
         return
+    if user.id == 705475246:
+        return await edit_delete(event, "**- لا يمڪنني نسخ حساب مطـوري ابني استحي على وجهك**")
     user_id = replied_user.id
     profile_pic = await event.client.download_profile_photo(user_id, Config.TEMP_DIR)
     first_name = html.escape(replied_user.first_name)
