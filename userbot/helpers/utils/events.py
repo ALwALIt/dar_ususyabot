@@ -79,7 +79,7 @@ async def get_user_from_event(
 
 
 async def checking(jmthon):
-    cat_c = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    cat_c = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
     try:
         cat_channel = Get(cat_c)
         await jmthon(cat_channel)
