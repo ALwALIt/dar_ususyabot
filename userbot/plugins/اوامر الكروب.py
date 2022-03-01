@@ -188,8 +188,8 @@ async def _(event):
     )
 
 @jmthon.ar_cmd(
-    pattern="تفليش بالحظر$",
-    command=("تفليش بالحظر", plugin_category),
+    pattern="تفليش$",
+    command=("تفليش", plugin_category),
     info={
         "header": "To ban everyone from group.",
         "description": "To ban all from the group except admins.",
@@ -209,7 +209,7 @@ async def _(event):
         return await edit_or_reply(
             event, "⌯︙- يبدو انه ليس لديك صلاحيات الحذف في هذه الدردشة ❕"
         )
-    catevent = await edit_or_reply(event, "`جار الحظر انتظر قليلا  `")
+    catevent = await edit_or_reply(event, "`نورتونا 😍😍`")
     admins = await event.client.get_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     )
