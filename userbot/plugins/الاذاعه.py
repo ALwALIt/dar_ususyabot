@@ -11,8 +11,8 @@ from . import *
 plugin_category = "utils"
 
 @jmthon.ar_cmd(
-    pattern="للكروبات ?(.*)$",
-    command=("للكروبات", plugin_category),
+    pattern="وجه ?(.*)$",
+    command=("وجه", plugin_category),
 )
 async def gcast(event):
     if not event.out and not is_fullsudo(event.sender_id):
@@ -37,8 +37,8 @@ async def gcast(event):
 
 
 @jmthon.ar_cmd(
-    pattern="للخاص ?(.*)$",
-    command=("للخاص", plugin_category),
+    pattern="حول ?(.*)$",
+    command=("حول", plugin_category),
 )
 async def gucast(event):
     if not event.out and not is_fullsudo(event.sender_id):
