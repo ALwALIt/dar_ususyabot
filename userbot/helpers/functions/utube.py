@@ -23,9 +23,9 @@ YOUTUBE_REGEX = re.compile(
 )
 PATH = "./userbot/cache/ytsearch.json"
 
-song_dl = "youtube-dl --force-ipv4 --write-thumbnail -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
+song_dl = "youtube-dl --force-ipv4 --write-thumbnail --add-metadata --embed-thumbnail -o './temp/%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality {QUALITY} {video_link}"
 thumb_dl = "youtube-dl --force-ipv4 -o './temp/%(title)s.%(ext)s' --write-thumbnail --skip-download {video_link}"
-video_dl = "youtube-dl --force-ipv4 --write-thumbnail  -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
+video_dl = "youtube-dl --force-ipv4 --write-thumbnail  --add-metadata --embed-thumbnail -o './temp/%(title)s.%(ext)s' -f '[filesize<20M]' {video_link}"
 name_dl = (
     "youtube-dl --force-ipv4 --get-filename -o './temp/%(title)s.%(ext)s' {video_link}"
 )
@@ -85,6 +85,17 @@ class YT_Search_X:
 
 
 ytsearch_data = YT_Search_X()
+
+
+async def yt_data(cat):
+    params = {"format": "json", "url": cat}
+    url = "https://www.youtube.com/oembed"  # https://stackoverflow.com/questions/29069444/returning-the-urls-as-a-list-from-a-youtube-search-query
+    query_string = urllib.parse.urlencode(params)
+    url = url + "?" + query_string
+    with urllib.request.urlopen(url) as response:
+        response_text = response.read()
+        data = ujson.loads(response_text.decode())
+    return data
 
 
 async def get_ytthumb(videoid: str):
@@ -147,12 +158,12 @@ async def result_formatter(results: list):
             out += "<code>{}</code>\n\n".format(
                 "".join(x.get("text") for x in r.get("descriptionSnippet"))
             )
-        out += f'<b>❯  Duration:</b> {r.get("accessibility").get("duration")}\n'
-        views = f'<b>❯  Views:</b> {r.get("viewCount").get("short")}\n'
+        out += f'<b>❯  مدة الاغنية:</b> {r.get("accessibility").get("duration")}\n'
+        views = f'<b>❯  المشاهدات:</b> {r.get("viewCount").get("short")}\n'
         out += views
-        out += f'<b>❯  Upload date:</b> {r.get("publishedTime")}\n'
+        out += f'<b>❯  تاريخ النشر:</b> {r.get("publishedTime")}\n'
         if upld:
-            out += "<b>❯  Uploader:</b> "
+            out += "<b>❯  القناة:</b> "
             out += f'<a href={upld.get("link")}>{upld.get("name")}</a>'
 
         output[index] = dict(
@@ -171,7 +182,7 @@ def yt_search_btns(
     buttons = [
         [
             Button.inline(
-                text="⬅️  Back",
+                text="⬅️  الرجوع",
                 data=f"ytdl_back_{data_key}_{page}",
             ),
             Button.inline(
@@ -181,11 +192,11 @@ def yt_search_btns(
         ],
         [
             Button.inline(
-                text="📜  List all",
+                text="📜  قائمة الجميع",
                 data=f"ytdl_listall_{data_key}_{page}",
             ),
             Button.inline(
-                text="⬇️  Download",
+                text="⬇️  تنزيل",
                 data=f"ytdl_download_{vid}_0",
             ),
         ],
@@ -271,7 +282,7 @@ def _tubeDl(url: str, starttime, uid: str):
         "outtmpl": os.path.join(
             Config.TEMP_DIR, str(starttime), "%(title)s-%(format)s.%(ext)s"
         ),
-        "logger": LOGS,
+        #         "logger": LOGS,
         "format": uid,
         "writethumbnail": True,
         "prefer_ffmpeg": True,
@@ -299,7 +310,7 @@ def _tubeDl(url: str, starttime, uid: str):
 def _mp3Dl(url: str, starttime, uid: str):
     _opts = {
         "outtmpl": os.path.join(Config.TEMP_DIR, str(starttime), "%(title)s.%(ext)s"),
-        "logger": LOGS,
+        #         "logger": LOGS,
         "writethumbnail": True,
         "prefer_ffmpeg": True,
         "format": "bestaudio/best",
