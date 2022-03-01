@@ -36,7 +36,7 @@ class Config(object):
 
     # تعديلي
     PING_PIC = os.environ.get("PING_PIC")
-    TIME_JM = os.environ.get("TIME_JM", None)
+    TIME_JEP = os.environ.get("TIME_JEP", None)
     JP_FN = os.environ.get("JP_FN", None)
     ID_EM = os.environ.get("ID_EM", None)
     ID_ET = os.environ.get("ID_ET", None)
