@@ -2,14 +2,22 @@ import asyncio
 import base64
 import io
 import math
+import os
+import random
+import re
+import string
 import urllib.request
 from os import remove
-from telethon.tl.functions.stickers import SuggestShortNameRequest
+import cloudscraper
 import emoji as catemoji
+from bs4 import BeautifulSoup as bs
 from PIL import Image
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.stickers import SuggestShortNameRequest
 from telethon.tl import functions, types
-from telethon.utils import get_input_document
 from telethon.tl.functions.messages import GetStickerSetRequest
+from telethon.utils import get_input_document
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from telethon.tl.types import (
     DocumentAttributeFilename,
@@ -21,12 +29,14 @@ from telethon.tl.types import (
 from userbot import jmthon
 
 from ..core.managers import edit_delete, edit_or_reply
+from ..helpers.functions import animator, crop_and_divide
 from ..helpers.tools import media_type
+from ..helpers.utils import _cattools
 from ..sql_helper.globals import gvarstatus
 
 plugin_category = "fun"
 
-# modified and developed by @jmthon
+# modified and developed by @mrconfused , @jisan7509
 
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
@@ -42,7 +52,7 @@ EMOJI_SEN = [
 ]
 
 KANGING_STR = [
-    "**⌯︙انتظر يتم صنع الملصق*",
+    " ⌯︙انتظر يتم صنع الملصق ",
 ]
 
 
@@ -50,9 +60,11 @@ def verify_cond(catarray, text):
     return any(i in text for i in catarray)
 
 
-def pack_name(userid, pack, is_anim):
+def pack_name(userid, pack, is_anim, is_video):
     if is_anim:
-        return f"JEPTHONBOT_{userid}_{pack}_anim"
+        return f"Jepthon_{userid}_{pack}_anim"
+    elif is_video:
+        return f"Jepthon_{userid}_{pack}_vid"
     return f"Jepthon_{userid}_{pack}"
 
 
@@ -60,19 +72,37 @@ def char_is_emoji(character):
     return character in catemoji.UNICODE_EMOJI["en"]
 
 
-def pack_nick(username, pack, is_anim):
+def pack_nick(username, pack, is_anim, is_video):
     if gvarstatus("CUSTOM_STICKER_PACKNAME"):
         if is_anim:
-            packnick = (
-                f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقـوق.{pack} (Animated)"
-            )
-        else:
-            packnick = f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقـوق.{pack}"
-    elif is_anim:
-        packnick = f"@{username} حقـوق.{pack} (Animated)"
+            return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقوق.{pack} "
+        elif is_video:
+            return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقوق. {pack} "
+        return f"{gvarstatus('CUSTOM_STICKER_PACKNAME')} حقوق.{pack}"
+
+    if is_anim:
+        return f"@{username} {pack} "
+    elif is_video:
+        return f"@{username} {pack} "
     else:
-        packnick = f"@{username} حقـوق.{pack}"
-    return packnick
+        return f"@{username} {pack}"
+
+
+async def delpack(catevent, conv, cmd, args, packname):
+    try:
+        await conv.send_message(cmd)
+    except YouBlockedUserError:
+        await catevent.edit("لقد قمت بحظر البوت @stickers . قم بألغاء الحظر عن البوت.")
+        return None, None
+    await conv.send_message("/delpack")
+    await conv.get_response()
+    await args.client.send_read_acknowledge(conv.chat_id)
+    await conv.send_message(packname)
+    await conv.get_response()
+    await args.client.send_read_acknowledge(conv.chat_id)
+    await conv.send_message("Yes, I am totally sure.")
+    await conv.get_response()
+    await args.client.send_read_acknowledge(conv.chat_id)
 
 
 async def resize_photo(photo):
@@ -106,31 +136,42 @@ async def newpacksticker(
     args,
     pack,
     packnick,
-    stfile,
+    is_video,
     emoji,
     packname,
     is_anim,
+    stfile,
     otherpack=False,
     pkang=False,
 ):
-    await conv.send_message(cmd)
+    try:
+        await conv.send_message(cmd)
+    except YouBlockedUserError:
+        await catevent.edit("لقد قمت بحظر البوت @stickers قم بفك الحظر وحاول مره اخرى.")
+        if not pkang:
+            return None, None, None
+        return None, None
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.send_message(packnick)
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
-    if is_anim:
+    if is_video:
+        await conv.send_file("animate.webm")
+    elif is_anim:
         await conv.send_file("AnimatedSticker.tgs")
-        remove("AnimatedSticker.tgs")
+        os.remove("AnimatedSticker.tgs")
     else:
         stfile.seek(0)
         await conv.send_file(stfile, force_document=True)
     rsp = await conv.get_response()
     if not verify_cond(EMOJI_SEN, rsp.text):
         await catevent.edit(
-            f"فشل اضافة الملصق ، استخدم بوت الملصقات @Stickers لأضافة الملصق يدويا.\n**خطأ :**{rsp}"
+            f"فشل اضافة الملصق ، استخدم بوت الملصقات @Stickers لأضافة الملصق يدويا.\n**خطا :**{rsp}"
         )
-        return
+        if not pkang:
+            return None, None, None
+        return None, None
     await conv.send_message(emoji)
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.get_response()
@@ -160,13 +201,20 @@ async def add_to_pack(
     pack,
     userid,
     username,
+    is_video,
     is_anim,
     stfile,
     emoji,
     cmd,
     pkang=False,
 ):
-    await conv.send_message("/addsticker")
+    try:
+        await conv.send_message("/addsticker")
+    except YouBlockedUserError:
+        await catevent.edit("لقد قمت بحظر البوت @stickers bot. قم بفك الحظر عنه واعد المحاولة.")
+        if not pkang:
+            return None, None
+        return None, None
     await conv.get_response()
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.send_message(packname)
@@ -177,12 +225,12 @@ async def add_to_pack(
             pack = val + 1
         except ValueError:
             pack = 1
-        packname = pack_name(userid, pack, is_anim)
-        packnick = pack_nick(username, pack, is_anim)
-        await catevent.edit(f"** تبديل الحـزمة الى {str(pack)} بسبب امتلاء الحزمة")
+        packname = pack_name(userid, pack, is_anim, is_video)
+        packnick = pack_nick(username, pack, is_anim, is_video)
+        await catevent.edit(f"`تبديل الحزمه الى {pack} بسبب امتلائها`")
         await conv.send_message(packname)
         x = await conv.get_response()
-        if x.text == "**الحـزمة المحددة غير صحيحة**":
+        if x.text == "الحزمة المحددة غير صحيحه.":
             return await newpacksticker(
                 catevent,
                 conv,
@@ -190,16 +238,20 @@ async def add_to_pack(
                 args,
                 pack,
                 packnick,
-                stfile,
+                is_video,
                 emoji,
                 packname,
                 is_anim,
+                stfile,
                 otherpack=True,
                 pkang=pkang,
             )
-    if is_anim:
+    if is_video:
+        await conv.send_file("animate.webm")
+        os.remove("animate.webm")
+    elif is_anim:
         await conv.send_file("AnimatedSticker.tgs")
-        remove("AnimatedSticker.tgs")
+        os.remove("AnimatedSticker.tgs")
     else:
         stfile.seek(0)
         await conv.send_file(stfile, force_document=True)
@@ -208,7 +260,9 @@ async def add_to_pack(
         await catevent.edit(
             f"⌯︙فشل اضافة الملصق ، استخدم بوت الملصقات @Stickers لأضافة الملصق يدويا.\n**خطأ :**{rsp}"
         )
-        return
+        if not pkang:
+            return None, None
+        return None, None
     await conv.send_message(emoji)
     await args.client.send_read_acknowledge(conv.chat_id)
     await conv.get_response()
@@ -220,15 +274,13 @@ async def add_to_pack(
     return pack, packname
 
 
-@jmthon.ar_cmd(
-    pattern="ملصق(?:\s|$)([\s\S]*)",
-    command=("ملصق", plugin_category),
-)
-async def kang(args):
-    "Jepthon userbot"
+@jmthon.on(admin_cmd(pattern="ملصق"))
+async def kang(args):  # sourcery no-metrics
+    "Jepthon Userbot."
     photo = None
     emojibypass = False
     is_anim = False
+    is_video = False
     emoji = None
     message = await args.get_reply_message()
     user = await args.client.get_me()
@@ -237,19 +289,19 @@ async def kang(args):
             user.first_name.encode("utf-8").decode("ascii")
             username = user.first_name
         except UnicodeDecodeError:
-            username = f"rz_{user.id}"
+            username = f"jepthon_{user.id}"
     else:
         username = user.username
     userid = user.id
     if message and message.media:
         if isinstance(message.media, MessageMediaPhoto):
-            rozevent = await edit_or_reply(args, f"-  يتم اضافة الملصق الى الحزمة")
+            catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
             photo = io.BytesIO()
             photo = await args.client.download_media(message.photo, photo)
         elif "image" in message.media.document.mime_type.split("/"):
-            rozevent = await edit_or_reply(args, f"-  يتم اضافة الملصق الى الحزمة")
+            catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
             photo = io.BytesIO()
-            await args.client.download_file(message.media.document, photo)
+            await args.client.download_media(message.media.document, photo)
             if (
                 DocumentAttributeFilename(file_name="sticker.webp")
                 in message.media.document.attributes
@@ -257,11 +309,10 @@ async def kang(args):
                 emoji = message.media.document.attributes[1].alt
                 emojibypass = True
         elif "tgsticker" in message.media.document.mime_type:
-            rozevent = await edit_or_reply(args, f"-  يتم اضافة الملصق الى الحزمة")
-            await args.client.download_file(
+            catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
+            await args.client.download_media(
                 message.media.document, "AnimatedSticker.tgs"
             )
-
             attributes = message.media.document.attributes
             for attribute in attributes:
                 if isinstance(attribute, DocumentAttributeSticker):
@@ -269,11 +320,25 @@ async def kang(args):
             emojibypass = True
             is_anim = True
             photo = 1
+        elif message.media.document.mime_type in ["video/mp4", "video/webm"]:
+            if message.media.document.mime_type == "video/webm":
+                catevent = await edit_or_reply(args, f"`{random.choice(KANGING_STR)}`")
+                sticker = await args.client.download_media(
+                    message.media.document, "animate.webm"
+                )
+            else:
+                catevent = await edit_or_reply(args, "__⌛ جار التحويل ..__")
+                sticker = await animator(message, args, catevent)
+                await edit_or_reply(catevent, f"`{random.choice(KANGING_STR)}`")
+            is_video = True
+            emoji = "🤍"
+            emojibypass = True
+            photo = 1
         else:
-            await edit_delete(args, "- الملف غير مدعوم")
+            await edit_delete(args, "`- الملف غير مدعوم`")
             return
     else:
-        await edit_delete(args, "-  لا استطيع اخذ هذا الملصق")
+        await edit_delete(args, "`-  لا استطيع اخذ هذا الملصق...`")
         return
     if photo:
         splat = ("".join(args.text.split(maxsplit=1)[1:])).split()
@@ -282,24 +347,26 @@ async def kang(args):
         if len(splat) == 2:
             if char_is_emoji(splat[0][0]):
                 if char_is_emoji(splat[1][0]):
-                    return await rozevent.edit("تأكد من الامر بشكل صحيح")
-                pack = splat[1]
+                    return await catevent.edit("تأكد من الامر بشكل صحيح`")
+                pack = splat[1]  # User sent both
                 emoji = splat[0]
             elif char_is_emoji(splat[1][0]):
-                pack = splat[0]
+                pack = splat[0]  # User sent both
                 emoji = splat[1]
             else:
-                return await rozevent.edit("تأكد من الامر بشكل صحيح")
+                return await catevent.edit("تأكد من الامر بشكل صحيح")
         elif len(splat) == 1:
             if char_is_emoji(splat[0][0]):
                 emoji = splat[0]
             else:
                 pack = splat[0]
-        packnick = pack_nick(username, pack, is_anim)
-        packname = pack_name(userid, pack, is_anim)
+        packname = pack_name(userid, pack, is_anim, is_video)
+        packnick = pack_nick(username, pack, is_anim, is_video)
         cmd = "/newpack"
         stfile = io.BytesIO()
-        if is_anim:
+        if is_video:
+            cmd = "/newvideo"
+        elif is_anim:
             cmd = "/newanimated"
         else:
             image = await resize_photo(photo)
@@ -315,13 +382,14 @@ async def kang(args):
         ):
             async with args.client.conversation("@Stickers") as conv:
                 packname, emoji = await add_to_pack(
-                    rozevent,
+                    catevent,
                     conv,
                     args,
                     packname,
                     pack,
                     userid,
                     username,
+                    is_video,
                     is_anim,
                     stfile,
                     emoji,
@@ -330,42 +398,45 @@ async def kang(args):
             if packname is None:
                 return
             await edit_delete(
-                rozevent,
-                f"-  تم بنجاح اخذ الملصق \
-                    \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
+                catevent,
+                f"-  تم بنجاح اخذ الملصق!\
+                    \nالحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هو {emoji}",
                 parse_mode="md",
                 time=10,
             )
         else:
-            await rozevent.edit("- يتم احضار حزمة جديدة")
+            await catevent.edit("`- يتم احضار حزمة جديدة`")
             async with args.client.conversation("@Stickers") as conv:
                 otherpack, packname, emoji = await newpacksticker(
-                    rozevent,
+                    catevent,
                     conv,
                     cmd,
                     args,
                     pack,
                     packnick,
-                    stfile,
+                    is_video,
                     emoji,
                     packname,
                     is_anim,
+                    stfile,
                 )
+            if os.path.exists(sticker):
+                os.remove(sticker)
             if otherpack is None:
                 return
             if otherpack:
                 await edit_delete(
-                    rozevent,
+                    catevent,
                     f"-  تم بنجاح اخذ الملصق لحزمة ثانيـة\
-                    \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
+                    \nالحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هو {emoji}",
                     parse_mode="md",
                     time=10,
                 )
             else:
                 await edit_delete(
-                    rozevent,
-                    f"-  تم بنجاح اخذ الملصق \
-                    \n الحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هز {emoji}",
+                    catevent,
+                    f"-  تم بنجاح اخذ الملصق!!\
+                    \nالحزمة الخاصة بك هي  [اضغط هنا](t.me/addstickers/{packname}) و الايموجي الخاص هو {emoji}",
                     parse_mode="md",
                     time=10,
                 )
@@ -412,7 +483,6 @@ async def jmthonpkg(_):
     await edit_or_reply(
         _, f"**- تم اخذ الحزمه بنجاح ✓ \nالحزمه  → [اضغط هنا](https://t.me/addstickers/{jmthon_roz.set.short_name})**")
 
-
 @jmthon.ar_cmd(
     pattern="معلومات_الملصق$",
     command=("معلومات_الملصق", plugin_category),
@@ -426,24 +496,24 @@ async def get_pack_info(event):
     "To get information about a sticker pick."
     if not event.is_reply:
         return await edit_delete(
-            event, "`لا أستطيع إحضار المعلومات من لا شيء ، هل يمكنني ذلك ؟!`", 5
+            event, "`لايمكنني جلب معلومات هذا الملصق ?!`", 5
         )
     rep_msg = await event.get_reply_message()
     if not rep_msg.document:
         return await edit_delete(
-            event, "**⌯︙هاذا ليس ملصق يجب الرد على الملصق اولا**", 5
+            event, "`قم بالرد على الملصق لاستخراج معلوماته`", 5
         )
     try:
         stickerset_attr = rep_msg.document.attributes[1]
         catevent = await edit_or_reply(
-            event, "**⌯︙إحضار تفاصيل حزمة الملصقات ، يُرجى الانتظار**`"
+            event, "`جار استخراج معلومات الملصق , انتظر قليلاً..`"
         )
     except BaseException:
         return await edit_delete(
-            event, "**⌯︙هذا ليس ملصق يجب الرد على الملصق اولا**", 5
+            event, "`هذا ليس ملصق قم بالرد ع الملصق`", 5
         )
     if not isinstance(stickerset_attr, DocumentAttributeSticker):
-        return await catevent.edit("**⌯︙هذا ليس ملصق يجب الرد على الملصق اولا.**")
+        return await catevent.edit("`This is not a sticker. Reply to a sticker.`")
     get_stickerset = await event.client(
         GetStickerSetRequest(
             InputStickerSetID(
@@ -462,6 +532,37 @@ async def get_pack_info(event):
         f"**⌯︙المـسؤل:** `{get_stickerset.set.official}`\n"
         f"**⌯︙الارشيف:** `{get_stickerset.set.archived}`\n"
         f"**⌯︙حزمة الملصق:** `{get_stickerset.set.count}`\n"
-        f"**⌯︙الايموجي المستخدم:**\n{' '.join(pack_emojis)}"
+        f"**⌯︙الايموجي المستخدم**\n{' '.join(pack_emojis)}"
     )
     await catevent.edit(OUTPUT)
+
+
+@jmthon.ar_cmd(
+    pattern="الملصقات ?([\s\S]*)",
+    command=("الملصقات", plugin_category),
+    info={
+        "header": "To get list of sticker packs with given name.",
+        "description": "shows you the list of non-animated sticker packs with that name.",
+        "usage": "{tr}stickers <query>",
+    },
+)
+async def cb_sticker(event):
+    "To get list of sticker packs with given name."
+    split = event.pattern_match.group(1)
+    if not split:
+        return await edit_delete(event, "`اكتب اسم الحزمه للبحث عنها.`", 5)
+    catevent = await edit_or_reply(event, "`جارِ البحث عن الحزمه....`")
+    scraper = cloudscraper.create_scraper()
+    text = scraper.get(combot_stickers_url + split).text
+    soup = bs(text, "lxml")
+    results = soup.find_all("div", {"class": "sticker-pack__header"})
+    if not results:
+        return await edit_delete(catevent, "`لم يتم العثور على النتائج :(.`", 5)
+    reply = f"**Sticker packs found for {split} are :**"
+    for pack in results:
+        if pack.button:
+            packtitle = (pack.find("div", "sticker-pack__title")).get_text()
+            packlink = (pack.a).get("href")
+            packid = (pack.button).get("data-popup")
+            reply += f"\n **• ID: **`{packid}`\n [{packtitle}]({packlink})"
+    await catevent.edit(reply)
