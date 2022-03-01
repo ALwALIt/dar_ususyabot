@@ -21,8 +21,8 @@ StartTime = time.time()
 JMVERSION = "5.2.0"
 
 
-if Config.UPSTREAM_REPO == "Jepthon-Ar":
-    UPSTREAM_REPO_URL = "https://github.com/USERBOTJEPTHON/JEPTHON-AR"
+if Config.UPSTREAM_REPO == "Jepthon-iq":
+    UPSTREAM_REPO_URL = "https://github.com/lMl10l/JEPTHON-AR"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 
