@@ -32,7 +32,7 @@ digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/63a826d5e5f0003e006a0.jpg"
-RR7PP = Config.TIME_JM or ""
+RR7PP = Config.TIME_JEP or ""
 
 normzltext = "1234567890"
 namerzfont = Config.JP_FN or "𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬"
