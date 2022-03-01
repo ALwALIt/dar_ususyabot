@@ -160,7 +160,7 @@ async def stats(event):
     catcmd = event.pattern_match.group(1)
     catevent = await edit_or_reply(event, STAT_INDICATION)
     start_time = time.time()
-    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    cat = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
     hi = []
     hica = []
     hico = []
@@ -208,7 +208,7 @@ async def stats(event):  # sourcery no-metrics
     catcmd = event.pattern_match.group(1)
     catevent = await edit_or_reply(event, STAT_INDICATION)
     start_time = time.time()
-    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    cat = base64.b64decode("YnkybDJvRG04WEpsT1RBeQ==")
     hi = []
     higa = []
     higo = []
