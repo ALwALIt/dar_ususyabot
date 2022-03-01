@@ -93,11 +93,11 @@ class CatUserBotClient(TelegramClient):
         def decorator(func):  # sourcery no-metrics
             async def wrapper(check):
                 if groups_only and not check.is_group:
-                    await edit_delete(check, "`I don't think this is a group.`", 10)
+                    await edit_delete(check, "`لا أعتقد ان هذه مجموعة, جرب بلكروب عزيزي.`", 10)
                     return
                 if private_only and not check.is_private:
                     await edit_delete(
-                        check, "`I don't think this is a personal Chat.`", 10
+                        check, "`لا أعتقد ان هذه محادثة شخصية, جرب بلخاص عزيزي.`", 10
                     )
                     return
                 try:
@@ -141,7 +141,7 @@ class CatUserBotClient(TelegramClient):
                             ftext, pastetype="s", markdown=False
                         )
                         text = "**تقرير خطا جيبثون**\n\n"
-                        link = "[هنا](https://t.me/GroupJepthon)"
+                        link = "[هنا](https://t.me/JepthonSupport)"
                         text += "إذا كنت تريد يمكنك الإبلاغ عن ذلك"
                         text += f"- فقط قم بإعادة توجيه هذه الرسالة {link}.\n"
                         text += "لا يتم تسجيل اي خطا فقط التاريخ والوقت\n\n"
