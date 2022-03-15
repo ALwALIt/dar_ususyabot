@@ -11,7 +11,7 @@ import requests
 from telethon import functions
 from telethon.errors import ChatSendInlineForbiddenError as noin
 from telethon.errors.rpcerrorlist import BotMethodInvalidError as dedbot, BotInlineDisabledError as noinline, YouBlockedUserError
-from ..core.managers import edit_or_reply or eor
+from ..core.managers import edit_or_reply
 
 botname = Config.TG_BOT_USERNAME
 
@@ -30,7 +30,7 @@ async def _(event):
             )
             await event.delete()
         except:
-            jepiq = await eor(event, "**❈╎جـارِ الاتصـال ببـوت فـاذر ...⏣**\n**❈╎تـم تفعيـل انـلاين بـوتك .. بنجـاح ☑️**\n\n**❈╎جـاري اعـادة تشغيل البـوت الرجـاء الانتظـار  ▬▭...𓅫**")
+            jepiq = await edit_or_reply(event, "**❈╎جـارِ الاتصـال ببـوت فـاذر ...⏣**\n**❈╎تـم تفعيـل انـلاين بـوتك .. بنجـاح ☑️**\n\n**❈╎جـاري اعـادة تشغيل البـوت الرجـاء الانتظـار  ▬▭...𓅫**")
             async with bot.conversation(chat) as conv:
                 try:
                     first = await conv.send_message("/setinline")
@@ -49,7 +49,7 @@ async def _(event):
                 conv.chat_id, [first.id, second.id, third.id, fourth.id, fifth.id, sixth.id]
             )
     else:
-        await eor(event, "**❈╎هنـالك خطـأ!!⚠️**\n**❈╎الـرجاء التحـقق مـن فـارات TG_BOT_TOKEN & TG_BOT_USERNAME عـلى هيـروكـو ...⏣**")
+        await edit_or_reply(event, "**❈╎هنـالك خطـأ!!⚠️**\n**❈╎الـرجاء التحـقق مـن فـارات TG_BOT_TOKEN & TG_BOT_USERNAME عـلى هيـروكـو ...⏣**")
 
 
 @bot.on(admin_cmd(pattern="انلاين تعطيل ?(.*)", outgoing=True))
@@ -67,7 +67,7 @@ async def _(event):
             )
             await event.delete()
         except:
-            jepiq = await eor(event, "**❈╎جـارِ الاتصـال ببـوت فـاذر ...⏣**\n**❈╎تـم تعطيـل انـلاين بـوتك .. بنجـاح ☑️**\n\n**❈╎جـاري اعـادة تشغيل البـوت الرجـاء الانتظـار  ▬▭...𓅫**")
+            jepiq = await edit_or_reply(event, "**❈╎جـارِ الاتصـال ببـوت فـاذر ...⏣**\n**❈╎تـم تعطيـل انـلاين بـوتك .. بنجـاح ☑️**\n\n**❈╎جـاري اعـادة تشغيل البـوت الرجـاء الانتظـار  ▬▭...𓅫**")
             async with bot.conversation(chat) as conv:
                 try:
                     first = await conv.send_message("/setinline")
@@ -86,4 +86,4 @@ async def _(event):
                 conv.chat_id, [first.id, second.id, third.id, fourth.id, fifth.id, sixth.id]
             )
     else:
-        await eor(event, "**❈╎هنـالك خطـأ!!⚠️**\n**❈╎الـرجاء التحـقق مـن فـارات TG_BOT_TOKEN & TG_BOT_USERNAME عـلى هيـروكـو ...⏣**")
+        await edit_or_reply(event, "**❈╎هنـالك خطـأ!!⚠️**\n**❈╎الـرجاء التحـقق مـن فـارات TG_BOT_TOKEN & TG_BOT_USERNAME عـلى هيـروكـو ...⏣**")
