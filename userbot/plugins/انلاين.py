@@ -11,6 +11,7 @@ import requests
 from telethon import functions
 from telethon.errors import ChatSendInlineForbiddenError as noin
 from telethon.errors.rpcerrorlist import BotMethodInvalidError as dedbot, BotInlineDisabledError as noinline, YouBlockedUserError
+from ..core.managers import edit_or_reply or eor
 
 botname = Config.TG_BOT_USERNAME
 
