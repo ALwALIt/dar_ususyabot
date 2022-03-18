@@ -78,5 +78,6 @@ temp = """{ALIVE_TEXT}
 **{EMOJI} أصـدار جـيبثون ↜  :** `{jmver}`
 **{EMOJI} أصدار البـايثون ↜ :** `{pyver}`
 **{EMOJI} الوقـت ↜ :** `{uptime}`
+**{EMOJI} البنك ↜ :** `{ping}`
 **{EMOJI} المسـتخدم ↜:** {mention}
   ⋘ ⋰⋱⋰⋱⋰⋱⋰⋱⋰⋱⋰⋱ ⋙"""
