@@ -1,5 +1,5 @@
-# edit ~ @RR9R7
-# for ~ @Jmthon
+# edit ~ @lMl10l
+# for ~ @Jepthon
 
 from asyncio import sleep
 
@@ -179,8 +179,8 @@ async def promote(event):
 
 
 @jmthon.ar_cmd(
-    pattern="تك(?:\s|$)([\s\S]*)",
-    command=("تك", plugin_category),
+    pattern="تنزيل الكل(?:\s|$)([\s\S]*)",
+    command=("تنزيل الكل", plugin_category),
     info={
         "الامر": "⌯︙لتنزيل الشخص كن الاشراف",
         "الشرح": "⌯︙يقوم هذا الامر بحذف جميع صلاحيات المشرف\
