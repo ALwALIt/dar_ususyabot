@@ -37,7 +37,7 @@ async def _(event):
                     second = await conv.get_response()
                     third = await conv.send_message(tgbotusername)
                     fourth = await conv.get_response()
-                    fifth = await conv.send_message("ZedThon")
+                    fifth = await conv.send_message("Jepthon")
                     sixth = await conv.get_response()
                     seventh = await conv.send_message(perf)
                     eighth = await conv.get_response()
