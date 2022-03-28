@@ -68,6 +68,246 @@ async def event(vois):
     if jpvois2:
         await vois.client.send_file(vois.chat_id, jpvois2, reply_to=Ti)
         await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="احب العراق$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois3:
+        await vois.client.send_file(vois.chat_id, jpvois3, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="احبك$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois4:
+        await vois.client.send_file(vois.chat_id, jpvois4, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="اخت التنيج$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois5:
+        await vois.client.send_file(vois.chat_id, jpvois5, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="اذا اكمشك$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois6:
+        await vois.client.send_file(vois.chat_id, jpvois6, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="اسكت$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois7:
+        await vois.client.send_file(vois.chat_id, jpvois7, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="افتهمنا$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois8:
+        await vois.client.send_file(vois.chat_id, jpvois8, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="اكل خرا$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois9:
+        await vois.client.send_file(vois.chat_id, jpvois9, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="العراق$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois10:
+        await vois.client.send_file(vois.chat_id, jpvois10, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="الكعده وياكم$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois11:
+        await vois.client.send_file(vois.chat_id, jpvois11, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="الكمر اني$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois12:
+        await vois.client.send_file(vois.chat_id, jpvois12, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="اللهم لا شماته$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois13:
+        await vois.client.send_file(vois.chat_id, jpvois13, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="اني مااكدر$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois14:
+        await vois.client.send_file(vois.chat_id, jpvois14, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="بقولك ايه$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois15:
+        await vois.client.send_file(vois.chat_id, jpvois15, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="تف على شرفك$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois16:
+        await vois.client.send_file(vois.chat_id, jpvois16, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="شجلبت$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois17:
+        await vois.client.send_file(vois.chat_id, jpvois17, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="شكد شفت ناس$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois18:
+        await vois.client.send_file(vois.chat_id, jpvois18, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="صباح القنادر$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois19:
+        await vois.client.send_file(vois.chat_id, jpvois19, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="ضحكة فيطية$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois20:
+        await vois.client.send_file(vois.chat_id, jpvois20, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="طار القلب$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois21:
+        await vois.client.send_file(vois.chat_id, jpvois21, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="غطيلي$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois22:
+        await vois.client.send_file(vois.chat_id, jpvois22, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="في منتصف الجبهة$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois23:
+        await vois.client.send_file(vois.chat_id, jpvois23, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="لاتقتل المتعه$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois24:
+        await vois.client.send_file(vois.chat_id, jpvois24, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="لا لتغلط$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois25:
+        await vois.client.send_file(vois.chat_id, jpvois25, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="لا يمه لا$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois26:
+        await vois.client.send_file(vois.chat_id, jpvois26, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="لحد يحجي وياي$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois27:
+        await vois.client.send_file(vois.chat_id, jpvois27, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="ماادري يعني$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois28:
+        await vois.client.send_file(vois.chat_id, jpvois28, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="منو انت$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois29:
+        await vois.client.send_file(vois.chat_id, jpvois29, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="مو صوجكم$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois30:
+        await vois.client.send_file(vois.chat_id, jpvois30, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="خوش تسولف$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois31:
+        await vois.client.send_file(vois.chat_id, jpvois31, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="يع$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois32:
+        await vois.client.send_file(vois.chat_id, jpvois32, reply_to=Ti)
+        await vois.delete()
     
 @jmthon.ar_cmd(
     pattern="اطردني$",
