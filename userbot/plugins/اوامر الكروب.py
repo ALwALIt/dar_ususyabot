@@ -59,6 +59,15 @@ async def event(vois):
     if jpvois1:
         await vois.client.send_file(vois.chat_id, jpvois1, reply_to=Ti)
         await vois.delete()
+
+@jmthon.on(admin_cmd(outgoing=True, pattern="مستمرة الكلاوات$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois2:
+        await vois.client.send_file(vois.chat_id, jpvois2, reply_to=Ti)
+        await vois.delete()
     
 @jmthon.ar_cmd(
     pattern="اطردني$",
