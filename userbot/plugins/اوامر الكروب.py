@@ -23,10 +23,10 @@ from userbot import jmthon
 from .. import jmthon
 from ..core.logger import logging
 from ..helpers.utils import reply_id
+from ..sql_helper.locks_sql import *
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers import readable_time
 from . import BOTLOG, BOTLOG_CHATID
-from ..utils.tools import create_supergroup
 
 LOGS = logging.getLogger(__name__)
 plugin_category = "admin"
