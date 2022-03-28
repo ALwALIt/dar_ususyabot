@@ -60,7 +60,7 @@ from . import AUTONAME, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO, _catutils, edit_dele
 async def jpvois(vois):
     if vois.fwd_from:
         return
-    Ti = await rd(vois)
+    Ti = await reply_id(vois)
     if jpvois1:
         await vois.client.send_file(vois.chat_id, jpvois1, reply_to=Ti)
         await vois.delete()
