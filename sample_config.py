@@ -7,7 +7,7 @@ class Config(object):
     LOGGER = True
 
     A_PIC = os.environ.get("A_PIC", None)
-    SCPIC_TEXT = os.environ.get("SCPIC_TEXT", None)
+    SC_TEXT = os.environ.get("SCPIC_TEXT", None)
     A_TEXT = os.environ.get("A_TEXT", None)
     # MUST NEEDED VARS
     # set this value with your name
