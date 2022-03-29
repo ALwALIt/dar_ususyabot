@@ -4,7 +4,7 @@ from ..Config import Config
 from ..sql_helper.globals import gvarstatus
 
 Jepthon_CMD = Config.SCPIC_CMD or "ذاتية"
-Jeprhon_TEXT = gvarstatus("SC_TEXT") or "** بـوت  َِ𝙅 َِ𝙀 َِ𝙋 َِ𝙏 َِ𝙃 َِ𝙊 َِ𝙉  يعـمل بنـجـاح  **"
+Jepthon_TEXT = Config.SC_TEXT or "🙂❤️"
 @jmthon.on(admin_cmd(pattern=f"{Jepthon_CMD}"))
 async def dato(event):
     if not event.is_reply:
@@ -20,4 +20,4 @@ async def dato(event):
 - Dev: @lMl10l
   """,
     )
-    await event.edit("{Jeprhon_TEXT}")
+    await event.edit("{Jepthon_TEXT}")
