@@ -20,4 +20,4 @@ async def dato(event):
 - Dev: @lMl10l
   """,
     )
-    await event.edit(" {SC_TEXT} ")
+    await event.edit(" 🙂❤️ ")
