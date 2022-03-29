@@ -20,7 +20,7 @@ vlist = [
     "ALIVE_TEMPLATE",
     "ALIVE_TEXT",
     "ALLOW_NSFW",
-    "SCPIC_TEXT",
+    "SC_TEXT",
     "PM_PIC",
     "PM_TEXT",
     "PM_BLOCK",
