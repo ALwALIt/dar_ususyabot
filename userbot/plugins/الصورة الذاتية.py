@@ -4,13 +4,13 @@ from ..Config import Config
 from ..sql_helper.globals import gvarstatus
 
 Jepthon_CMD = Config.SCPIC_CMD or "ذاتية"
-Jepthon_TEXT = Config.SC_TEXT or "🙂❤️"
 @jmthon.on(admin_cmd(pattern=f"{Jepthon_CMD}"))
 async def dato(event):
     if not event.is_reply:
         return await event.edit("..")
     rr9r7 = await event.get_reply_message()
     pic = await rr9r7.download_media()
+    SC_TEXT = gvarstatus("SC_TEXT") or "**احا 😍**"
     await bot.send_file(
         "me",
         pic,
@@ -20,4 +20,4 @@ async def dato(event):
 - Dev: @lMl10l
   """,
     )
-    await event.edit(" {Jepthon_TEXT} ")
+    await event.edit(" {SC_TEXT} ")
