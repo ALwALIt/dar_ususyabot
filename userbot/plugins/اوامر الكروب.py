@@ -308,7 +308,22 @@ async def event(vois):
     if jpvois32:
         await vois.client.send_file(vois.chat_id, jpvois32, reply_to=Ti)
         await vois.delete()
-    
+@jmthon.on(admin_cmd(outgoing=True, pattern="زيج$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois33:
+        await vois.client.send_file(vois.chat_id, jpvois32, reply_to=Ti)
+        await vois.delete()
+@jmthon.on(admin_cmd(outgoing=True, pattern="زيج2$"))
+async def event(vois):
+    if vois.fwd_from:
+        return
+    Ti = await reply_id(vois)
+    if jpvois34:
+        await vois.client.send_file(vois.chat_id, jpvois32, reply_to=Ti)
+        await vois.delete()
 @jmthon.ar_cmd(
     pattern="اطردني$",
     command=("اطردني", plugin_category),
