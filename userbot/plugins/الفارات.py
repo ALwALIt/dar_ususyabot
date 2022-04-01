@@ -17,6 +17,8 @@ heroku_api = "https://api.heroku.com"
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME
 HEROKU_API_KEY = Config.HEROKU_API_KEY
 from . import BOTLOG_CHATID, mention, jmthon
+from userbot.utils import admin_cmd, sudo_cmd
+from userbot import LOGS, bot as jmthon
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
