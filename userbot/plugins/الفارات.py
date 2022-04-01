@@ -6,7 +6,7 @@ import heroku3
 import requests
 import urllib3
 from datetime import datetime
-
+from random import choice
 from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -140,14 +140,6 @@ async def variable(event):
         else:
             await jep.edit("**✾╎تم اضافـة {} بنجـاح ☑️** \n**✾╎المضاف اليه :**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت جيبثون يستغـرق الامر 2-1 دقيقـه ...**".format(input_str, vinfo))
         heroku_var[variable] = vinfo
-    elif input_str == "نقطة الاوامر" or input_str == "نقطه الاوامر":
-        variable = "COMMAND_HAND_LER"
-        await asyncio.sleep(1.5)
-        if variable in heroku_var:
-            await jep.edit("**✾╎تم تغييـر {} بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت جيبثون يستغـرق الامر 2-1 دقيقـه ...**".format(input_str, vinfo))
-        else:
-            await jep.edit("**✾╎تم اضافـة {} بنجـاح ☑️** \n**✾╎المضاف اليه :**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت جيبثون يستغـرق الامر 2-1 دقيقـه ...**".format(input_str, vinfo))
-        heroku_var[variable] = vinfo
     elif input_str == "التوكن" or input_str == "توكن البوت":
         variable = "TG_BOT_TOKEN"
         await asyncio.sleep(1.5)
@@ -214,7 +206,6 @@ async def variable(event):
     input_str = event.text[5:]
     heroku_var = app.config()
     jep = await edit_or_reply(event, "**✾╎جـاري حـذف الفـار مـن بـوتك 🚮...**")
-    # All Rights Reserved for "Zedthon - UserBot" "زلـزال الهيبـه"
     if input_str == "كليشة الفحص" or input_str == "كليشه الفحص":
         variable = "ALIVE_TEMPLATE"
         await asyncio.sleep(1.5)
@@ -480,14 +471,6 @@ async def variable(event):
             await jep.edit("**✾╎الفـار {} موجـود ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎قنـاة السـورس : @jepthon**".format(input_str, heroku_var[variable]))
         else:
             await jep.edit("**✾╎ الفـار {} غيـر موجـود ❌** \n**✾╎المتغيـر :**\n `{}` \n**✾╎قنـاة السـورس : @jepthon**".format(input_str, heroku_var[variable]))
-
-    elif input_str == "المطور" or input_str == "المطورين":
-        variable = "SUDO_USERS"
-        await asyncio.sleep(1.5)
-        if variable in heroku_var:
-            await jep.edit("**✾╎المطـور {} موجـود 🧑🏻‍💻☑️**\n**✾╎ايدي المطـور : ↶**\n `{}` \n**✾╎قنـاة السـورس : @jepthon**".format(input_str, heroku_var[variable]))
-        else:
-            await jep.edit("**✾╎ المطـور {} غيـر موجـود 🧑🏻‍💻❌** \n**✾╎المتغيـر :**\n `{}` \n**✾╎قنـاة السـورس : @jepthon**".format(input_str, heroku_var[variable]))
 
     elif input_str == "رسائل الحماية" or input_str == "رسائل الحمايه" or input_str == "رسائل الخاص" or input_str == "رسائل حماية الخاص":
         variable = "MAX_FLOOD_IN_PMS"
