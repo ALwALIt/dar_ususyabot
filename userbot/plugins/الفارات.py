@@ -19,6 +19,7 @@ HEROKU_API_KEY = Config.HEROKU_API_KEY
 from . import BOTLOG_CHATID, mention, jmthon
 from userbot.utils import admin_cmd, sudo_cmd
 from userbot import LOGS, bot as jmthon
+from ..core.managers import edit_or_reply
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name=Config.TELEGRAPH_SHORT_NAME)
