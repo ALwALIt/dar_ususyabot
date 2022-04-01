@@ -563,7 +563,7 @@ async def _(tosh):
                 os.remove(downloaded_file_name)
                 vinfo = ("https://telegra.ph{}".format(media_urls[0]))
                 heroku_var["PMPERMIT_PIC"] = vinfo
-                await jep.edit("**✾╎تم تغييـر صـورة {} .. بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت زد ثـون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(input_str, vinfo))
+                await jep.edit("**✾╎تم تغييـر صـورة {} .. بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت جيبثون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(input_str, vinfo))
         elif input_str in ["الفحص", "السورس"]:
             downloaded_file_name = await tosh.client.download_media(
                 r_message, Config.TEMP_DIR
@@ -587,7 +587,7 @@ async def _(tosh):
                 os.remove(downloaded_file_name)
                 vinfo = ("https://telegra.ph{}".format(media_urls[0]))
                 heroku_var["ALIVE_PIC"] = vinfo
-                await jep.edit("**✾╎تم تغييـر صـورة {} .. بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت زد ثـون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(input_str, vinfo))
+                await jep.edit("**✾╎تم تغييـر صـورة {} .. بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت جيبثون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(input_str, vinfo))
         elif input_str in ["الوقتي", "البروفايل"]:
             downloaded_file_name = await tosh.client.download_media(
                 r_message, Config.TEMP_DIR
@@ -611,7 +611,7 @@ async def _(tosh):
                 os.remove(downloaded_file_name)
                 vinfo = ("https://telegra.ph{}".format(media_urls[0]))
                 heroku_var["DIGITAL_PIC"] = vinfo
-                await jep.edit("**✾╎تم تغييـر صـورة {} .. بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت زد ثـون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(input_str, vinfo))
+                await jep.edit("**✾╎تم تغييـر صـورة {} .. بنجـاح ☑️**\n**✾╎المتغيـر : ↶**\n `{}` \n**✾╎يتم الان اعـادة تشغيـل بـوت جيبثون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(input_str, vinfo))
 
 
     else:
@@ -627,7 +627,6 @@ def resize_image(image):
 
 
 # Copyright (C) 2022 Jepthon . All Rights Reserved
-@jmthon.on(admin_cmd(pattern="اوامر الفارات"))
-@jmthon.on(sudo_cmd(pattern="اوامر الفارات", allow_sudo=True))
-async def cmd(jepthonn):
-    await edit_or_reply(jepthonn, jepthonnn)
+@jmthon.on(admin_cmd(pattern="اوامر الفارات$"))
+async def ithker(knopis):
+    await knopis.edit(choice(jepthonnn))
