@@ -51,7 +51,7 @@ async def ban_user(chat_id, i, rights):
     except Exception as exc:
         return False, str(exc)
 
-@jmthon.on(admin_cmd(outgoing=True, pattern="ص1$"))
+@jmthon.on(admin_cmd(outgoing=True, pattern="تخوني$"))
 async def event(vois):
     if vois.fwd_from:
         return
