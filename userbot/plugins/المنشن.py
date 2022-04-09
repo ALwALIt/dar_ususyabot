@@ -8,39 +8,26 @@ plugin_category = "extra"
 
 
 @jmthon.ar_cmd(
-    pattern="(للكل|all)(?:\s|$)([\s\S]*)",
-    command=("للكل", plugin_category),
-    info={
-        "header": "tags recent 50 persons in the group may not work for all",
-        "usage": [
-            "{tr}all <text>",
-            "{tr}tagall",
-        ],
-    },
-)
+    pattern="(تاك للكل|للكل)(?:\s|$)([\s\S]*)",
+    command=("تاك للكل", menu_category))
 async def _(event):
     "To tag all."
     reply_to_id = await reply_id(event)
     input_str = event.pattern_match.group(2)
     mentions = input_str or "@all"
     chat = await event.get_input_chat()
-    async for x in event.client.iter_participants(chat, 50):
-        mentions += f"[\u2063](tg://user?id={x.id})"
+    async for x in event.client.iter_participants(chat, 100):
+        mentions += f" \n- [{x.first_name}](tg://user?id={x.id})"  # [\u2063]
     await event.client.send_message(event.chat_id, mentions, reply_to=reply_to_id)
     await event.delete()
 
 
 @jmthon.ar_cmd(
-    pattern="ابلاغ$",
-    command=("ابلاغ", plugin_category),
-    info={
-        "header": "To tags admins in group.",
-        "usage": "{tr}report",
-    },
-)
+    pattern="تبليغ$",
+    command=("تبليغ", menu_category))
 async def _(event):
     "To tags admins in group."
-    mentions = "@admin: **انتباه ايها المشرفين لقد تم الابلاغ افتحو اعينكم**"
+    mentions = "- انتباه الى المشرفين تم تبليغكم \n@admin"
     chat = await event.get_input_chat()
     reply_to_id = await reply_id(event)
     async for x in event.client.iter_participants(
@@ -53,17 +40,8 @@ async def _(event):
 
 
 @jmthon.ar_cmd(
-    pattern="تاك([\s\S]*)",
-    command=("تاك", plugin_category),
-    info={
-        "header": "Tags that person with the given custom text.",
-        "usage": [
-            "{tr}men username/userid text",
-            "text (username/mention)[custom text] text",
-        ],
-        "examples": ["{tr}men @mrconfused hi", "Hi @mrconfused[How are you?]"],
-    },
-)
+    pattern="منشن ([\s\S]*)",
+    command=("mention", menu_category))
 async def _(event):
     "Tags that person with the given custom text."
     user, input_str = await get_user_from_event(event)
