@@ -37,7 +37,7 @@ async def amireallyalive(event):
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✇ ◅"
-    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت الوالي يعـمل بنـجـاح  **"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت ماتركس يعـمل بنـجـاح  **"
     RR7_IMG = gvarstatus("ALIVE_PIC") or Config.A_PIC or "https://telegra.ph/file/8551703388894b681166b.jpg"
     jmthon_caption = gvarstatus("ALIVE_TEMPLATE") or temp
     caption = jmthon_caption.format(
@@ -75,7 +75,7 @@ temp = """{ALIVE_TEXT}
   ⋘ ⋰⋱⋰⋱⋰⋱⋰⋱⋰⋱⋰⋱ ⋙
 **{EMOJI} قاعدۿ البيانات ↜ ** تعمل بنـجاح ✓
 **{EMOJI} أصـدار التـيليثون ↜ :** `{telever}`
-**{EMOJI} أصـدار الوالي ↜  :** `{jmver}`
+**{EMOJI} أصـدار ماتركس ↜  :** `{jmver}`
 **{EMOJI} أصدار البـايثون ↜ :** `{pyver}`
 **{EMOJI} الوقـت ↜ :** `{uptime}`
 **{EMOJI} البنك ↜ :** `{ping}`
