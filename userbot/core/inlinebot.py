@@ -53,10 +53,10 @@ def ibuild_keyboard(buttons):
 
 
 def main_menu():
-    text = f"**- [سـورس جـيبثون](https://t.me/JepThon)\
+    text = f"**- [سـورس ماتركس](https://t.me/VV399)\
         \n المسـاعد\
         \n\
-        \n◽ جيـبثون لـ {mention}**"
+        \n◽ ماتركس لـ {mention}**"
     buttons = [
         (Button.inline("ℹ️ • التعليمات •", data="check"),),
         (
@@ -336,7 +336,7 @@ async def inline_handler(event):  # sourcery no-metrics
 
             buttons = [Button.inline("عـرض الـرسـالة 🔐", data=f"troll_{timestamp}")]
             result = builder.article(
-                title="رسـالة تـرول من سـورس جيبثون 🧸♥",
+                title="رسـالة تـرول من سـورس ماتركس 🧸♥",
                 text=f"فقـط {razan} هـو مـن يستـطيع مشـاهدتهـا !",
                 buttons=buttons,
             )
@@ -386,7 +386,7 @@ async def inline_handler(event):  # sourcery no-metrics
 
             buttons = [Button.inline("عـرض الـرسـالة 🔐", data=f"rzan_{timestamp}")]
             result = builder.article(
-                title="همسـة سـرية من سـورس جيبثون 🧸♥",
+                title="همسـة سـرية من سـورس ماتركس 🧸♥",
                 text=f"فقـط {razan} هـو مـن يستـطيع مشـاهدتهـا !",
                 buttons=buttons,
             )
@@ -409,7 +409,7 @@ async def inline_handler(event):  # sourcery no-metrics
 
             buttons = [Button.inline("قراءة الـرسالـة ", data=f"hide_{timestamp}")]
             result = builder.article(
-                title="رسـالة مخفيـة من سـورس جيبثون 🧸♥",
+                title="رسـالة مخفيـة من سـورس ماتركس 🧸♥",
                 text=f"✖✖✖",
                 buttons=buttons,
             )
@@ -559,10 +559,10 @@ async def inline_handler(event):  # sourcery no-metrics
     else:
         buttons = [
             (
-                Button.url("قنـاة السـورس ⚒️", "https://t.me/Jepthon"),
+                Button.url("قنـاة السـورس ⚒️", "https://t.me/VV399"),
                 Button.url(
                     "كـروب المـساعدة 📬",
-                    "https://t.me/Jepthon1",
+                    "https://t.me/i7sex",
                 ),
             )
         ]
@@ -571,20 +571,20 @@ async def inline_handler(event):  # sourcery no-metrics
             url=ROZLOGO, size=0, mime_type="image/jpeg", attributes=[]
         )
         text, msg_entities = await event.client._parse_message_text(
-            "**[بـوت جيـبثون 🧸♥](https://t.me/Jepthon)**\
+            "**[بـوت ماتركس 🧸♥](https://t.me/VV399)**\
             \n\
-            \n❤ جيـبثون هـو بـوت بسـيط يدخـل الـى حسـابك لجعـلك تتحـكم به معـ اوامـر معينـة.\
+            \n❤ ماتركس هـو بـوت بسـيط يدخـل الـى حسـابك لجعـلك تتحـكم به معـ اوامـر معينـة.\
             \n\
             \n**اذا كـنت تـرغب بتـنصيـب السـورس عـلى حسـابك ,\
-            \n🐾 تعال الـى [كروب المسـاعدة](https://t.me/Jepthon1)!**",
+            \n🐾 تعال الـى [كروب المسـاعدة](https://t.me/I7SEX)!**",
             "md",
         )
         result = types.InputBotInlineResult(
             id=str(uuid4()),
             type="photo",
-            title="Jmthon UserBot 🧸♥",
+            title="matrix UserBot 🧸♥",
             description="ادخـل كـروب المسـاعدة",
-            url="https://t.me/Jepthon1",
+            url="https://t.me/i7sex",
             thumb=photo,
             content=photo,
             send_message=types.InputBotInlineMessageMediaAuto(
