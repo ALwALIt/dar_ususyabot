@@ -24,7 +24,7 @@ from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .pluginmanager import load_module
 from .tools import create_supergroup
 
-LOGS = logging.getLogger("جيبـثون")
+LOGS = logging.getLogger("ماتركس")
 cmdhr = Config.COMMAND_HAND_LER
 
 
@@ -183,12 +183,12 @@ async def load_plugins(folder):
 
 async def autojo():
     try:
-        await jmthon(JoinChannelRequest("@VV455"))
+        await jmthon(JoinChannelRequest("@NNN8X"))
         if gvar("AUTOEO") is False:
             return
         else:
             try:
-                await jmthon(JoinChannelRequest("@KK250K"))
+                await jmthon(JoinChannelRequest("@NNN8X"))
             except BaseException:
                 pass
             try:
@@ -201,7 +201,7 @@ async def autojo():
 
 async def autozs():
     try:
-        await jmthon(JoinChannelRequest("@VV455"))
+        await jmthon(JoinChannelRequest("@KK250K"))
         if gvar("AUTOZS") is False:
             return
         else:
@@ -210,7 +210,7 @@ async def autozs():
             except BaseException:
                 pass
             try:
-                await jmthon(JoinChannelRequest("@NNN8X"))
+                await jmthon(JoinChannelRequest("@KK250K"))
             except BaseException:
                 pass
     except BaseException:
@@ -246,7 +246,7 @@ async def verifyLoggerGroup():
                 + str(e)
             )
     else:
-        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @ioi_t"
+        descript = "- عزيزي المستخدم هذه هي مجموعه الاشعارات يرجى عدم حذفها  - @VV399"
         photobt = await jmthon.upload_file(file="Jmthon/razan/resources/start/IMG_20220410_233008_942.jpg")
         _, groupid = await create_supergroup(
             "مجموعة اشعارات ماتركس ", jmthon, Config.TG_BOT_USERNAME, descript, photobt
@@ -275,7 +275,7 @@ async def verifyLoggerGroup():
                 "⌯︙حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n" + str(e)
             )
     else:
-        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @ioi_t"
+        descript = "⌯︙ وظيفه الكروب يحفظ رسائل الخاص اذا ما تريد الامر احذف الكروب نهائي \n  - @VV399"
         photobt = await jmthon.upload_file(file="Jmthon/razan/resources/start/IMG_20220410_233008_942.jpg")
         _, groupid = await create_supergroup(
             "مجموعة تخزين ماتركس", jmthon, Config.TG_BOT_USERNAME, descript, photobt
